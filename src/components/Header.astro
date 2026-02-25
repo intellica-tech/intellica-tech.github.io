@@ -1,34 +1,34 @@
 ---
 const navLinks = [
-  { label: 'Ürünler', href: '/products' },
-  { label: 'Çözümler', href: '/solutions' },
-  { label: 'Hakkımızda', href: '/about' },
-  { label: 'İletişim', href: '/contact' },
+  { label: 'Products', href: '/products' },
+  { label: 'Solutions', href: '/solutions' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const products = [
   {
-    category: 'Veri Modelleri',
+    category: 'Data Models',
     items: [
-      { name: 'IFDM', desc: 'Finans için sektörel veri modeli', href: '/products#ifdm' },
-      { name: 'ITDM', desc: 'Telekom için sektörel veri modeli', href: '/products#itdm' },
-      { name: 'HRDM', desc: 'İnsan kaynakları veri modeli', href: '/products#hrdm' },
+      { name: 'IFDM', desc: 'Industry data model for finance', href: '/products#ifdm' },
+      { name: 'ITDM', desc: 'Industry data model for telecom', href: '/products#itdm' },
+      { name: 'HRDM', desc: 'Human resources data model', href: '/products#hrdm' },
     ]
   },
   {
-    category: 'Veri Platformu & Yönetim',
+    category: 'Data Platform & Governance',
     items: [
-      { name: 'ICC', desc: 'Veri tutarlılığı ve kalite kontrolleri', href: '/products#icc' },
-      { name: 'ReTouch', desc: 'Doğrulamalı veri girişi ve RDM', href: '/products#retouch' },
-      { name: 'Retable AI', desc: 'No-code uygulamalar ve tablolar', href: '/products#retable' },
+      { name: 'ICC', desc: 'Data consistency & quality control', href: '/products#icc' },
+      { name: 'ReTouch', desc: 'Validated data entry & RDM', href: '/products#retouch' },
+      { name: 'Retable AI', desc: 'No-code apps & data tables', href: '/products#retable' },
     ]
   },
   {
-    category: 'AI Ürünleri',
+    category: 'AI Products',
     items: [
-      { name: 'Talk To', desc: 'Doğal dil ile veri etkileşimi', href: '/products#talkto' },
-      { name: 'Blue Octopus', desc: 'Olay izleme ve aksiyon yönetimi', href: '/products#blueoctopus' },
-      { name: 'VAR', desc: 'AI tabanlı ses analizi ve tanıma', href: '/products#var' },
+      { name: 'Talk To', desc: 'Natural language data interaction', href: '/products#talkto' },
+      { name: 'Blue Octopus', desc: 'Event monitoring & action management', href: '/products#blueoctopus' },
+      { name: 'VAR', desc: 'AI-powered voice analysis & recognition', href: '/products#var' },
     ]
   }
 ];
@@ -37,16 +37,16 @@ const products = [
 <header class="site-header">
   <div class="container header-inner">
     <!-- Logo -->
-    <a href="/" class="brand" aria-label="Intellica Ana Sayfa">
+    <a href="/" class="brand" aria-label="Intellica Home">
       <img src="/assets/img/intellica-logo.png" alt="Intellica" class="brand-logo" height="36" />
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="nav-desktop" aria-label="Ana Menü">
+    <nav class="nav-desktop" aria-label="Main Navigation">
       <!-- Products Mega Menu -->
       <div class="nav-item" data-dropdown>
         <button type="button" aria-haspopup="true" aria-expanded="false" class="nav-link nav-link--dd">
-          Ürünler
+          Products
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron">
             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -67,24 +67,24 @@ const products = [
           </div>
           <div class="mega-footer">
             <a href="/products" class="mega-footer-link">
-              Tüm Ürünleri Görüntüle →
+              View All Products →
             </a>
           </div>
         </div>
       </div>
 
-      <a href="/solutions" class="nav-link">Çözümler</a>
-      <a href="/about" class="nav-link">Hakkımızda</a>
-      <a href="/contact" class="nav-link">İletişim</a>
+      <a href="/solutions" class="nav-link">Solutions</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/contact" class="nav-link">Contact</a>
     </nav>
 
     <!-- CTA -->
     <div class="header-actions">
       <a href="/contact" class="btn btn-primary btn-sm">
-        Demo Talep Et
+        Request Demo
       </a>
       <!-- Mobile toggle -->
-      <button id="mobile-toggle" class="mobile-toggle" aria-label="Menüyü aç/kapat">
+      <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -93,11 +93,11 @@ const products = [
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="mobile-menu">
     <nav>
-      <a href="/products" class="mobile-link">Ürünler</a>
-      <a href="/solutions" class="mobile-link">Çözümler</a>
-      <a href="/about" class="mobile-link">Hakkımızda</a>
-      <a href="/contact" class="mobile-link">İletişim</a>
-      <a href="/contact" class="btn btn-primary" style="margin-top:12px; justify-content:center;">Demo Talep Et</a>
+      <a href="/products" class="mobile-link">Products</a>
+      <a href="/solutions" class="mobile-link">Solutions</a>
+      <a href="/about" class="mobile-link">About</a>
+      <a href="/contact" class="mobile-link">Contact</a>
+      <a href="/contact" class="btn btn-primary" style="margin-top:12px; justify-content:center;">Request Demo</a>
     </nav>
   </div>
 </header>
