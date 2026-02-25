@@ -83,22 +83,7 @@ const products = [
       <a href="/contact" class="btn btn-primary btn-sm">
         Request Demo
       </a>
-      <!-- Mobile toggle -->
-      <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu">
-    <nav>
-      <a href="/products" class="mobile-link">Products</a>
-      <a href="/solutions" class="mobile-link">Solutions</a>
-      <a href="/about" class="mobile-link">About</a>
-      <a href="/contact" class="mobile-link">Contact</a>
-      <a href="/contact" class="btn btn-primary" style="margin-top:12px; justify-content:center;">Request Demo</a>
-    </nav>
   </div>
 </header>
 
@@ -125,7 +110,7 @@ const products = [
   gap: 32px;
 }
 .brand { display: flex; align-items: center; }
-.brand-logo { height: 36px; width: auto; }
+.brand-logo { height: 36px; width: auto; filter: invert(1) hue-rotate(180deg); }
 
 /* Desktop Nav */
 .nav-desktop {
@@ -241,59 +226,8 @@ const products = [
 }
 .mega-footer-link:hover { color: var(--clr-secondary); }
 
-/* Mobile toggle */
-.mobile-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  width: 32px;
-  padding: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.mobile-toggle span {
-  display: block;
-  height: 2px;
-  background: rgba(240,244,255,0.8);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-.mobile-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.mobile-toggle.open span:nth-child(2) { opacity: 0; }
-.mobile-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* Mobile Menu */
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: rgba(3, 11, 22, 0.98);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 20px;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu nav {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.mobile-link {
-  padding: 14px 16px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: rgba(240,244,255,0.85);
-  border-radius: var(--radius-sm);
-  transition: background 0.2s ease, color 0.2s ease;
-}
-.mobile-link:hover {
-  background: rgba(255,255,255,0.07);
-  color: #fff;
-}
-
 @media (max-width: 900px) {
   .nav-desktop { display: none; }
-  .mobile-toggle { display: flex; }
   .header-actions .btn { display: none; }
 }
 </style>

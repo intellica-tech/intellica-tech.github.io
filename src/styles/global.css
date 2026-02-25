@@ -1418,3 +1418,10 @@ textarea.form-input {
   font-size: 1.1rem;
   max-width: 640px;
 }
+
+/* ── Mobile Bottom Nav spacing ───────────────────── */
+@media (max-width: 900px) {
+  body {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+}

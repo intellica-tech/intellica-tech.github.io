@@ -1,0 +1,411 @@
+---
+const navItems = [
+  {
+    label: 'Home',
+    href: '/',
+    page: 'home',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.707 2.293a1 1 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13h1v8a1 1 0 0 0 1 1h5v-6h4v6h5a1 1 0 0 0 1-1v-8h1a1 1 0 0 0 .707-1.707l-9-9z"/></svg>`,
+  },
+  {
+    label: 'Products',
+    href: null,
+    page: 'products',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="7" height="7" rx="1.5"/><rect x="15" y="3" width="7" height="7" rx="1.5"/><rect x="2" y="14" width="7" height="7" rx="1.5"/><rect x="15" y="14" width="7" height="7" rx="1.5"/></svg>`,
+    iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="2" y="3" width="7" height="7" rx="1.5"/><rect x="15" y="3" width="7" height="7" rx="1.5"/><rect x="2" y="14" width="7" height="7" rx="1.5"/><rect x="15" y="14" width="7" height="7" rx="1.5"/></svg>`,
+  },
+  {
+    label: 'Solutions',
+    href: '/solutions',
+    page: 'solutions',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M11.293 2.293a1 1 0 0 1 1.414 0l9 4.5A1 1 0 0 1 22 7.764v.007a1 1 0 0 1-.555.894L12 13.382 2.555 8.665A1 1 0 0 1 2 7.77V7.764a1 1 0 0 1 .293-.707l9-4.764zm-9 9.553l9 4.5 9-4.5V14a1 1 0 0 1-.555.894L12 19.382l-9.445-4.488A1 1 0 0 1 2 14v-2.154zm0 5 9 4.5 9-4.5V19a1 1 0 0 1-.555.894L12 24.382l-9.445-4.488A1 1 0 0 1 2 19v-2.154z"/></svg>`,
+  },
+  {
+    label: 'About',
+    href: '/about',
+    page: 'about',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`,
+    iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path fill-rule="evenodd" d="M12 2a6 6 0 1 1 0 12A6 6 0 0 1 12 2zm-8 18a8 8 0 0 1 16 0H4z"/></svg>`,
+  },
+  {
+    label: 'Contact',
+    href: '/contact',
+    page: 'contact',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>`,
+  },
+];
+
+const productGroups = [
+  {
+    category: 'Data Models',
+    items: [
+      { name: 'IFDM', desc: 'Industry data model for finance', href: '/products#ifdm' },
+      { name: 'ITDM', desc: 'Industry data model for telecom', href: '/products#itdm' },
+      { name: 'HRDM', desc: 'Human resources data model', href: '/products#hrdm' },
+    ]
+  },
+  {
+    category: 'Data Platform & Governance',
+    items: [
+      { name: 'ICC', desc: 'Data consistency & quality control', href: '/products#icc' },
+      { name: 'ReTouch', desc: 'Validated data entry & RDM', href: '/products#retouch' },
+      { name: 'Retable AI', desc: 'No-code apps & data tables', href: '/products#retable' },
+    ]
+  },
+  {
+    category: 'AI Products',
+    items: [
+      { name: 'Talk To', desc: 'Natural language data interaction', href: '/products#talkto' },
+      { name: 'BlueOctopus', desc: 'Event monitoring & action management', href: '/products#blueoctopus' },
+      { name: 'VAR', desc: 'AI-powered voice analysis & recognition', href: '/products#var' },
+    ]
+  }
+];
+---
+
+<!-- Bottom Navigation Bar (mobile only) -->
+<nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation">
+  {navItems.map(item => (
+    item.href !== null ? (
+      <a
+        href={item.href}
+        class="bnav-item"
+        data-page={item.page}
+        aria-label={item.label}
+      >
+        <span class="bnav-icon bnav-icon--outline" aria-hidden="true" set:html={item.icon} />
+        <span class="bnav-icon bnav-icon--filled" aria-hidden="true" set:html={item.iconActive} />
+        <span class="bnav-label">{item.label}</span>
+      </a>
+    ) : (
+      <button
+        type="button"
+        class="bnav-item"
+        data-page={item.page}
+        id="bnav-products-btn"
+        aria-label={item.label}
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <span class="bnav-icon bnav-icon--outline" aria-hidden="true" set:html={item.icon} />
+        <span class="bnav-icon bnav-icon--filled" aria-hidden="true" set:html={item.iconActive} />
+        <span class="bnav-label">{item.label}</span>
+      </button>
+    )
+  ))}
+</nav>
+
+<!-- Products Bottom Sheet -->
+<div class="sheet-overlay" id="sheet-overlay" aria-hidden="true"></div>
+<div class="bottom-sheet" id="products-sheet" role="dialog" aria-modal="true" aria-label="Products">
+  <div class="sheet-handle-wrap">
+    <div class="sheet-handle"></div>
+  </div>
+  <div class="sheet-header">
+    <span>Products</span>
+    <button class="sheet-close" id="sheet-close" aria-label="Close products">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body">
+    {productGroups.map(group => (
+      <div class="sheet-group">
+        <div class="sheet-group-title">{group.category}</div>
+        {group.items.map(item => (
+          <a href={item.href} class="sheet-item">
+            <div class="sheet-item-name">{item.name}</div>
+            <div class="sheet-item-desc">{item.desc}</div>
+          </a>
+        ))}
+      </div>
+    ))}
+    <a href="/products" class="sheet-cta">
+      View All Products
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<style>
+/* ============================
+   BOTTOM NAVIGATION BAR
+   ============================ */
+.bottom-nav {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: calc(64px + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: rgba(3, 11, 22, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  z-index: 990;
+  align-items: stretch;
+}
+
+.bnav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px;
+  color: rgba(240,244,255,0.45);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font, inherit);
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Active indicator pill at top */
+.bnav-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 28px; height: 3px;
+  background: var(--clr-primary, #00C7BE);
+  border-radius: 0 0 4px 4px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bnav-item.active {
+  color: var(--clr-primary, #00C7BE);
+}
+.bnav-item.active::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Icon switching: outline vs filled */
+.bnav-icon { display: flex; line-height: 0; }
+.bnav-icon--filled { display: none; }
+
+.bnav-item.active .bnav-icon--outline { display: none; }
+.bnav-item.active .bnav-icon--filled  { display: flex; }
+
+.bnav-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+/* Tap feedback */
+.bnav-item:active {
+  background: rgba(0, 199, 190, 0.06);
+}
+
+/* ============================
+   PRODUCTS BOTTOM SHEET
+   ============================ */
+.sheet-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 995;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.sheet-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+.bottom-sheet {
+  position: fixed;
+  bottom: calc(-100% - 64px);
+  left: 0; right: 0;
+  max-height: 82vh;
+  background: rgba(8, 15, 30, 0.98);
+  border-radius: 20px 20px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: bottom 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.bottom-sheet.open {
+  bottom: calc(64px + env(safe-area-inset-bottom));
+}
+
+.sheet-handle-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 4px;
+  flex-shrink: 0;
+}
+.sheet-handle {
+  width: 36px; height: 4px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 4px;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #F0F4FF;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.sheet-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: none;
+  color: rgba(240,244,255,0.6);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.sheet-close:hover { background: rgba(255,255,255,0.12); }
+
+.sheet-body {
+  overflow-y: auto;
+  padding: 16px 16px 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheet-group {
+  margin-bottom: 20px;
+}
+.sheet-group-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-primary, #00C7BE);
+  padding: 0 4px 10px;
+  border-bottom: 1px solid rgba(0, 199, 190, 0.15);
+  margin-bottom: 6px;
+}
+
+.sheet-item {
+  display: block;
+  padding: 11px 10px;
+  border-radius: 10px;
+  transition: background 0.18s ease;
+  text-decoration: none;
+}
+.sheet-item:hover, .sheet-item:active {
+  background: rgba(255,255,255,0.05);
+}
+.sheet-item-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #F0F4FF;
+  margin-bottom: 2px;
+}
+.sheet-item-desc {
+  font-size: 0.75rem;
+  color: rgba(240,244,255,0.45);
+  line-height: 1.4;
+}
+
+.sheet-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0,199,190,0.12), rgba(45,125,210,0.12));
+  border: 1px solid rgba(0,199,190,0.2);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--clr-primary, #00C7BE);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.sheet-cta:hover {
+  background: linear-gradient(135deg, rgba(0,199,190,0.2), rgba(45,125,210,0.2));
+  border-color: rgba(0,199,190,0.4);
+}
+
+/* ============================
+   RESPONSIVE — mobile only
+   ============================ */
+@media (max-width: 900px) {
+  .bottom-nav { display: flex; }
+}
+</style>
+
+<script>
+  // ─── Active page detection ───────────────────────────────────
+  const path = window.location.pathname;
+  const pageMap: Record<string, string> = {
+    '/': 'home',
+    '/products': 'products',
+    '/solutions': 'solutions',
+    '/about': 'about',
+    '/contact': 'contact',
+  };
+  const activePage = pageMap[path] ?? '';
+
+  document.querySelectorAll<HTMLElement>('.bnav-item').forEach(item => {
+    if (item.dataset.page === activePage) {
+      item.classList.add('active');
+    }
+  });
+
+  // ─── Products bottom sheet ───────────────────────────────────
+  const productsBtn = document.getElementById('bnav-products-btn');
+  const sheet = document.getElementById('products-sheet');
+  const overlay = document.getElementById('sheet-overlay');
+  const closeBtn = document.getElementById('sheet-close');
+
+  function openSheet() {
+    sheet?.classList.add('open');
+    overlay?.classList.add('open');
+    productsBtn?.setAttribute('aria-expanded', 'true');
+    productsBtn?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSheet() {
+    sheet?.classList.remove('open');
+    overlay?.classList.remove('open');
+    productsBtn?.setAttribute('aria-expanded', 'false');
+    // keep active if on products page
+    if (activePage !== 'products') {
+      productsBtn?.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+  }
+
+  productsBtn?.addEventListener('click', () => {
+    const isOpen = sheet?.classList.contains('open');
+    isOpen ? closeSheet() : openSheet();
+  });
+
+  overlay?.addEventListener('click', closeSheet);
+  closeBtn?.addEventListener('click', closeSheet);
+
+  // Close on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSheet();
+  });
+
+  // Close sheet when a product link is tapped
+  sheet?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeSheet);
+  });
+</script>
