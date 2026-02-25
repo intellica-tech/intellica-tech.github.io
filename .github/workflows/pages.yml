@@ -1,0 +1,87 @@
+name: Deploy to GitHub Pages
+
+# Trigger: every push to any release/* branch
+on:
+  push:
+    branches:
+      - 'release/**'
+
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+# Set GITHUB_TOKEN permissions for Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only allow one concurrent deployment; cancel in-progress if a new one starts
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # ── Job 1: Build ────────────────────────────────────────────────────────────
+  build:
+    name: Build Astro Site
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Setup Node.js ─────────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # ── 3. Setup GitHub Pages (writes correct base path etc.) ────────────────
+      - name: Setup GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # ── 4. Install dependencies ───────────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 5. Build with Astro ───────────────────────────────────────────────────
+      - name: Build Astro
+        run: npm run build
+        env:
+          # Inject base path provided by configure-pages (handles repo-name subdirs)
+          ASTRO_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      # ── 6. Upload artifact for Pages ─────────────────────────────────────────
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  # ── Job 2: Deploy ───────────────────────────────────────────────────────────
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # ── Summary ────────────────────────────────────────────────────────────
+      - name: Write job summary
+        run: |
+          echo "## 🚀 Deployed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | ${{ steps.deployment.outputs.page_url }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commit | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
