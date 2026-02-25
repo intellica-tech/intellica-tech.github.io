@@ -1,0 +1,59 @@
+# Intellica
+
+> Intellica is a global Data & AI company founded in 2006 in Istanbul, Turkey. We empower enterprises to generate sustainable value from data through modern data platforms, analytics solutions, and production-grade AI systems. Active in 20+ countries with 450+ expert professionals and 200+ enterprise projects delivered across banking, telecom, insurance, retail, and government sectors.
+
+## Pages
+
+- [Home](https://intellica-tech.github.io/): Main landing page — capabilities, global impact, products, AI solutions, methodology
+- [Products](https://intellica-tech.github.io/products): Licensed product ecosystem — 9 proprietary products across data models, governance, and AI
+- [Solutions](https://intellica-tech.github.io/solutions): Enterprise data & AI solutions, services, and AI portfolio
+- [About](https://intellica-tech.github.io/about): Company background, values, timeline since 2006
+- [Contact](https://intellica-tech.github.io/contact): Contact information and inquiry form
+
+## Products
+
+### Data Models
+- **IFDM** (Intellica Finance Data Model): International standard data warehouse model for the finance industry — pre-modeled for regulatory reporting, risk, CRM
+- **ITDM** (Intellica Telecom Data Model): Industry-specific data warehouse model for telecom operators — network, billing, CRM dimensioning
+- **HRDM** (Human Resources Data Model): Data warehouse model optimized for HR processes — workforce analytics, payroll, talent management
+
+### Data Platform & Governance
+- **ICC** (Intellica Consistency Controller): Central data consistency management, reconciliation, and quality control platform
+- **ReTouch**: Data entry management platform that validates and imports external data with approval workflows and audit trails
+- **Retable AI**: Cloud-based, collaborative no-code data and application development platform
+
+### AI Products
+- **Talk To**: AI data analyst — natural language to SQL for enterprise data, generating instant insights without coding
+- **BlueOctopus**: AI-powered centralized analytics and surveillance platform for critical data monitoring
+- **VAR** (Voice AI Recognition): AI-powered voice signature creation, speaker matching, and identity extraction
+
+## Key Capabilities
+- Modern Data Platforms & DWH Modernization
+- BI & Advanced Analytics
+- AI & Machine Learning (GenAI, LLM, Agentic AI)
+- Data Governance & Quality
+- Data Integration & Operations
+- Consulting & Managed Services
+
+## AI Solutions Portfolio
+- Conversational & Copilot AI (Talk To Your Data, Customer 360)
+- Predictive & Causal Modeling (Price Prediction, Demand Forecasting)
+- Knowledge Automation (Enterprise Document AI with RAG)
+- Operational & Agentic AI (AI Defect Solver, Predictive Maintenance)
+
+## Company Facts
+- Founded: 2006, Istanbul, Turkey
+- Employees: 450+ expert professionals
+- Countries: 20+ active delivery
+- Projects: 200+ enterprise-scale
+- Clients: 100+ enterprise clients
+- Growth: 40% year-over-year
+- Address: Atatürk Mah. Turgut Özal Blv. Gardenya 1 Plaza, Floor 1, Ataşehir, Istanbul, Turkey
+- Phone: +90 216 688 45 46
+- Email: info@intellica.net
+- LinkedIn: https://www.linkedin.com/company/intellica
+- Website: https://www.intellica.net
+
+## Detailed Content
+
+- [Full site content](https://intellica-tech.github.io/llms-full.txt)

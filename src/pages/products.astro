@@ -1,8 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const siteUrl = "https://intellica-tech.github.io";
+const breadcrumbs = [{ name: "Products", url: `${siteUrl}/products` }];
+
+const productsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Intellica Product Ecosystem",
+  "description": "Licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools.",
+  "numberOfItems": 9,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "IFDM", "description": "International standard data warehouse model for the finance industry — pre-modeled for regulatory reporting, risk, CRM.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud", "offers": { "@type": "Offer", "availability": "https://schema.org/InStock" } } },
+    { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "ITDM", "description": "Industry-specific data warehouse model for telecom operators — network, billing, CRM dimensioning.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "HRDM", "description": "Data warehouse model optimized for human resources — workforce analytics, payroll, talent management.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "ICC", "description": "Central data consistency management, reconciliation, and quality control platform.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 5, "item": { "@type": "SoftwareApplication", "name": "ReTouch", "description": "Data entry management platform that validates and imports external data with approval workflows and audit trails.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 6, "item": { "@type": "SoftwareApplication", "name": "Retable AI", "description": "Cloud-based, collaborative no-code data and application development platform.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 7, "item": { "@type": "SoftwareApplication", "name": "Talk To", "description": "AI data analyst — natural language to SQL for enterprise data, generating instant insights without coding.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 8, "item": { "@type": "SoftwareApplication", "name": "BlueOctopus", "description": "AI-powered centralized analytics and surveillance platform for critical data monitoring.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 9, "item": { "@type": "SoftwareApplication", "name": "VAR", "description": "AI-powered voice signature creation, speaker matching and identity extraction tool.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } }
+  ]
+};
 ---
 
-<Layout title="Products | Intellica" description="Explore Intellica's licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools.">
+<Layout title="Products | Intellica" description="Explore Intellica's licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productsSchema)} />
 
   <!-- Page Hero -->
   <section class="page-hero">

@@ -6,23 +6,128 @@ import Footer from '../components/Footer.astro';
 export interface Props {
   title: string;
   description?: string;
+  pageType?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
-const { title, description = "Intellica — Empowering enterprises to generate sustainable value from data through modern data platforms, analytics solutions, and production-grade AI systems." } = Astro.props;
+const { 
+  title, 
+  description = "Intellica — Empowering enterprises to generate sustainable value from data through modern data platforms, analytics solutions, and production-grade AI systems.",
+  pageType = "website",
+  breadcrumbs = []
+} = Astro.props;
+
+const siteUrl = "https://intellica-tech.github.io";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = `${siteUrl}/assets/img/intellica-og.png`;
+
+// Organization JSON-LD (shared across all pages)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "Intellica",
+  "url": siteUrl,
+  "logo": `${siteUrl}/assets/img/intellica-logo.png`,
+  "description": "Intellica is a global Data & AI company empowering enterprises with modern data platforms, analytics solutions, and production-grade AI systems since 2006.",
+  "foundingDate": "2006",
+  "numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 450 },
+  "areaServed": ["Turkey", "United Arab Emirates", "Saudi Arabia", "Pakistan", "United Kingdom", "United States", "Albania"],
+  "knowsAbout": ["Data Warehousing", "Business Intelligence", "Artificial Intelligence", "Machine Learning", "Data Governance", "Data Analytics", "Generative AI", "Agentic AI"],
+  "sameAs": [
+    "https://www.linkedin.com/company/intellica",
+    "https://www.intellica.net"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Atatürk Mah. Turgut Özal Blv. Gardenya 1 Plaza, Floor 1",
+    "addressLocality": "Ataşehir",
+    "addressRegion": "Istanbul",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-216-688-45-46",
+    "contactType": "sales",
+    "email": "info@intellica.net",
+    "availableLanguage": ["English", "Turkish"]
+  }
+};
+
+// BreadcrumbList JSON-LD
+const breadcrumbSchema = breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+    ...breadcrumbs.map((crumb, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": crumb.name,
+      "item": crumb.url
+    }))
+  ]
+} : null;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="Intellica" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Preconnect hints -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.linkedin.com" />
+
   <title>{title}</title>
   <meta name="description" content={description} />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Intellica" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={pageType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <meta name="theme-color" content="#030B16" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXE19ZY84F"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CXE19ZY84F');
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+  <!-- Structured Data: BreadcrumbList -->
+  {breadcrumbSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  )}
+
+  <!-- Page-specific structured data slot -->
+  <slot name="head" />
 </head>
 <body>
   <Header />

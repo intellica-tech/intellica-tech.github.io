@@ -1,8 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const siteUrl = "https://intellica-tech.github.io";
+const breadcrumbs = [{ name: "About", url: `${siteUrl}/about` }];
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Intellica",
+  "description": "Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 450+ technical experts.",
+  "url": `${siteUrl}/about`,
+  "mainEntity": { "@id": `${siteUrl}/#organization` }
+};
 ---
 
-<Layout title="About | Intellica" description="Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 450+ technical experts.">
+<Layout title="About | Intellica" description="Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 450+ technical experts." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
 
   <!-- Page Hero -->
   <section class="page-hero">

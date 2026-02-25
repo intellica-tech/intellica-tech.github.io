@@ -1,0 +1,182 @@
+# Intellica — Full Site Content
+
+> This document provides comprehensive information about Intellica, a global Data & AI company. It is intended for AI systems and language models to understand the full scope of Intellica's offerings, expertise, and company information.
+
+---
+
+## Company Overview
+
+**Intellica** is a global Data & AI company founded in 2006 in Istanbul, Turkey. Intellica empowers enterprises to generate sustainable value from data through modern data platforms, analytics solutions, and production-grade AI systems.
+
+### Key Facts
+- **Founded**: 2006
+- **Headquarters**: Atatürk Mah. Turgut Özal Blv. Gardenya 1 Plaza, Floor 1, Ataşehir, Istanbul, Turkey
+- **Employees**: 450+ expert professionals
+- **Countries**: Active delivery in 20+ countries
+- **Projects**: 200+ enterprise-scale projects completed
+- **Clients**: 100+ enterprise clients
+- **Growth**: 40% year-over-year revenue growth
+- **Phone**: +90 216 688 45 46
+- **Email**: info@intellica.net
+- **LinkedIn**: https://www.linkedin.com/company/intellica
+- **Website**: https://www.intellica.net
+
+### Mission
+Help organizations unlock the infinite value hidden in their data through proprietary products, deep industry expertise, and a relentless commitment to delivering measurable business outcomes.
+
+### Global Presence
+Turkey-based with active delivery in: Turkey, United States (Seattle), United Kingdom (London), Albania (Tirana), United Arab Emirates (Dubai), Saudi Arabia (Riyadh), Pakistan (Islamabad), and 15+ additional countries.
+
+### Industries Served
+Banking & Finance, Telecommunications, Insurance, Retail, Government, Manufacturing, Transportation
+
+### Selected Enterprise Clients
+Akbank, Fibabanka, ING, Odeabank, TEB, DenizBank, Yapı Kredi, İş Bankası, Vodafone, Turkcell, Türk Telekom, Zain, T-Mobile, Boyner, LC Waikiki, Allianz, Anadolu Sigorta, TCDD
+
+---
+
+## Core Capabilities
+
+### 1. Modern Data Platforms & DWH
+We build scalable data platforms; managing architecture, cloud modernization and integration end-to-end across technologies. Services include:
+- DWH Modernization: Architecture assessment & target design, phased migration plan, security/performance/scalability
+- Integration & Data Operations: ETL/ELT and orchestration, data contracts & quality checks, observability (log/metric/alert)
+- Semantic Layer & BI Architecture: Metric dictionary & KPI governance, semantic model design, reporting performance & standards
+
+### 2. BI & Advanced Analytics
+Transforming data into actionable insights with dashboards, decision support systems, and self-service analytics for real-time decisions. Including enterprise dashboarding, self-service analytics, semantic layer design, and KPI governance.
+
+### 3. AI & Machine Learning
+Enhancing processes with GenAI/LLM and intelligent agents — demand forecasting, churn prediction, and NLP analytics. Capabilities include GenAI, LLM integration, predictive models, NLP, and computer vision solutions — from PoC to production with MLOps.
+
+### 4. Data Governance
+Ensuring data quality and consistency with proprietary tools ICC, ReTouch, and industry-specific data models. Covers data quality, lineage, cataloging, master data management, and regulatory compliance frameworks.
+
+### 5. Data Integration
+Building reliable data flows from source systems with data quality gates. ETL/ELT orchestration, real-time streaming, data mesh patterns, and observability for reliable data pipelines.
+
+### 6. Consulting & Expert Support
+Governance, GAP analysis and target architecture roadmaps. Strategy workshops, architecture assessments, technology selection, team augmentation, and end-to-end managed services.
+
+---
+
+## Products
+
+Intellica offers 9 proprietary licensed products across three categories:
+
+### Data Models
+
+#### IFDM (Intellica Finance Data Model)
+International standard data warehouse model for the finance industry. Pre-modeled with regulatory reporting, risk, CRM and more — ready to deploy. Accelerates data platform delivery for banking and financial institutions.
+
+#### ITDM (Intellica Telecom Data Model)
+Industry-specific data warehouse model for telecom operators. Network, billing, CRM dimensioning — pre-built and tested globally across multiple telecom operators.
+
+#### HRDM (Human Resources Data Model)
+Data warehouse model optimized for HR processes — workforce analytics, payroll, talent management ready from day one.
+
+### Data Platform & Governance
+
+#### ICC (Intellica Consistency Controller)
+Central data consistency management platform. Define reconciliation rules, monitor quality gates, and get automated alerts on data drift. Enterprise-grade data quality control.
+
+#### ReTouch
+Data entry management platform. Validates, cleanses, and imports external data into core systems with approval workflows, audit trails, and version control. Reference data management solution.
+
+#### Retable AI
+Cloud-based, collaborative modern online table and application development platform. Build flexible apps and data tables without code, with automations, integrations, and AI capabilities.
+
+### AI Products
+
+#### Talk To
+AI data analyst generating instant insights from enterprise data via natural language — no SQL required. Ask your enterprise data questions in natural language, get instant SQL queries, visualizations and insights — completely governed and auditable. Uses NL2SQL technology.
+
+#### BlueOctopus
+AI-powered centralized analytics and surveillance platform for critical data monitoring. Event detection, alerting, and action management across systems from a single center.
+
+#### VAR (Voice AI Recognition)
+AI-powered voice signature creation, speaker matching, and identity extraction tool. Built for security, call center, and compliance use cases.
+
+---
+
+## AI Solutions Portfolio
+
+### Conversational & Copilot AI
+- **Talk To Your Data**: Natural language interface to enterprise databases and APIs. Generates instant analysis and visualizations without SQL knowledge. Technologies: Generative AI, NL2SQL, Governed AI.
+- **AI-Assisted Customer 360**: Unifies CRM, transaction history, and support records. Delivers "Next Best Action" and cross-sell recommendations. Technologies: Generative AI, Agentic AI, Decision Support.
+
+### Predictive & Causal Modeling
+- **Procurement Price Prediction**: Analyzes historical data, commodity indices, and FX dynamics to produce reference prices. Risk and anomaly detection at the point of decision. Technologies: ML/DL, Time Series, Risk Detection.
+- **Demand Prediction**: Models seasonality and external factors to forecast demand. Reduces inventory costs and optimizes supply chain. Technologies: Forecasting, ML/DL, Supply Chain.
+
+### Knowledge Automation
+- **Document Answers (Enterprise Document AI)**: LLM + RAG architecture producing context-aware, source-citing answers from internal documents. Secure information access for audit, legal, and operations teams. Technologies: RAG, Enterprise Search, Source-Grounded AI.
+
+### Operational & Agentic AI
+- **AI Defect Solver (Code Intelligence)**: Analyzes the codebase, diagnoses bugs, and suggests fixes within the IDE. Technologies: Generative AI, Agentic Engineering, Code Intelligence.
+- **Predictive Maintenance (Industrial AI)**: Analyzes sensor data to predict failures hours in advance — minimizing unplanned downtime. Technologies: Predictive Maintenance, ML/DL, Time Series.
+
+---
+
+## Methodology — How We Work
+
+1. **Discovery & GAP Analysis**: Identify current state, risks, and quick wins; define target KPIs.
+2. **Target Architecture & Roadmap**: Design platform, DWH, semantic layer, and governance with phased transition plan.
+3. **Implementation & Integration**: Build pipelines, apply quality gates and observability with production standards.
+4. **Go-Live & MLOps**: Deploy AI solutions to production with versioning, monitoring, and improvement cycles.
+5. **Operations & Expert Support**: Sustain SLA, maintenance, optimization, and continuous improvement with managed service model.
+
+---
+
+## Service Models
+
+### Project Delivery
+Fixed-scope projects with clear milestones, deliverables, and acceptance criteria. From architecture design to production deployment. Covers DWH/Data Platform Build, BI & Analytics Implementation, AI/ML Model Development, Data Migration & Modernization.
+
+### Managed Services
+Ongoing operational support with SLA-driven service levels. Platform Operations & Maintenance, Data Quality Monitoring, Performance Optimization, Expert Team Augmentation.
+
+### Strategy & Advisory
+Strategic advisory services. Data Strategy Workshops, Architecture Assessment, Technology Selection, Governance Framework Design.
+
+### Training & Enablement
+Knowledge transfer and capability building. Technical Training Programs, Hands-on Workshops, Best Practice Documentation, Ongoing Coaching & Support.
+
+---
+
+## Company Values
+
+1. **Measurable Impact**: Every project designed to create tangible, measurable business value.
+2. **Technical Excellence**: Deep technical expertise combined with industry knowledge delivering production-grade solutions.
+3. **Long-term Partnership**: Lasting relationships — 80% of revenue comes from recurring engagements.
+4. **Innovation Culture**: Continuously investing in R&D, proprietary products, and emerging technologies.
+
+---
+
+## Company Timeline
+
+- **2006**: Founded in Istanbul with a vision to transform enterprise data management
+- **2009**: Launch of IFDM (Finance) and ITDM (Telecom) proprietary data models
+- **2012**: First international projects in Middle East and Central Asia, 50+ enterprise clients
+- **2015**: ICC and ReTouch products launched, team exceeds 200 professionals
+- **2018**: AI & Machine Learning practice established, first production ML models
+- **2020**: Active in 20+ countries, Talk To and BlueOctopus AI products launched, 100+ references
+- **2022**: Generative AI and LLM capabilities integrated, team grows to 450+, 40% annual growth
+- **2025**: Pioneering agentic AI solutions, expanding globally
+
+---
+
+## Contact Information
+
+- **Address**: Atatürk Mah. Turgut Özal Blv. Gardenya 1 Plaza, Floor 1, Ataşehir, Istanbul, Turkey
+- **Phone**: +90 216 688 45 46
+- **Email**: info@intellica.net
+- **LinkedIn**: https://www.linkedin.com/company/intellica
+- **Website**: https://www.intellica.net
+
+### Why Choose Intellica?
+- 20+ years of data & AI expertise
+- 200+ successful enterprise projects
+- Active in 20+ countries globally
+- 9 proprietary products
+- 450+ expert professionals

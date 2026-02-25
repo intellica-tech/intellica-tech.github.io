@@ -1,8 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const siteUrl = "https://intellica-tech.github.io";
+const breadcrumbs = [{ name: "Solutions", url: `${siteUrl}/solutions` }];
+
+const solutionsSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Enterprise Solutions | Intellica",
+  "description": "Enterprise data & AI solutions — from modern data platforms and analytics to production-grade AI systems.",
+  "url": `${siteUrl}/solutions`,
+  "provider": { "@id": `${siteUrl}/#organization` },
+  "about": [
+    { "@type": "Service", "name": "Modern Data Platforms", "description": "Cloud-native data platform architecture, DWH modernization, data lake and lakehouse implementations." },
+    { "@type": "Service", "name": "BI & Advanced Analytics", "description": "Enterprise dashboarding, self-service analytics, semantic layer design and KPI governance." },
+    { "@type": "Service", "name": "AI & Machine Learning", "description": "GenAI, LLM integration, predictive models, NLP and computer vision solutions — from PoC to production with MLOps." },
+    { "@type": "Service", "name": "Data Governance", "description": "Data quality, lineage, cataloging, master data management and regulatory compliance frameworks." },
+    { "@type": "Service", "name": "Data Integration", "description": "ETL/ELT orchestration, real-time streaming, data mesh patterns and observability." },
+    { "@type": "Service", "name": "Consulting & Managed Services", "description": "Strategy workshops, GAP analysis, architecture assessments, team augmentation and managed services." }
+  ]
+};
 ---
 
-<Layout title="Solutions | Intellica" description="Enterprise data & AI solutions — from modern data platforms and analytics to production-grade AI systems.">
+<Layout title="Solutions | Intellica" description="Enterprise data & AI solutions — from modern data platforms and analytics to production-grade AI systems." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(solutionsSchema)} />
 
   <!-- Page Hero -->
   <section class="page-hero">
