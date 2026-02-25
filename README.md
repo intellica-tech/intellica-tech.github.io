@@ -130,6 +130,11 @@ Run all commands from the project root. On Windows with Chocolatey Node, prefix 
 $env:PATH = "C:\Program Files\nodejs;" + $env:PATH
 ```
 
+or 
+```powershell
+$env:PATH = "C:\Program Files\nodejs;" + $env:PATH; & "C:\Program Files\nodejs\npm" run dev
+```
+
 | Command | Action |
 |---------|--------|
 | `npm.cmd install` | Install dependencies |
