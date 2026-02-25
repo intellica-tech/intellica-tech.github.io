@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Intellica" description="Get in touch with Intellica — schedule a demo, request a consultation, or reach our team.">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label anim-fade-up">Contact Us</div>
+      <h1 class="anim-fade-up">Get in <span class="grad-text">Touch</span></h1>
+      <p class="anim-fade-up">Schedule a demo, request a consultation, or simply reach out to our team.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="contact-grid anim-fade-up">
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <h2 style="color:var(--clr-light-text);font-size:1.8rem;margin-bottom:8px;">Send Us a Message</h2>
+          <p style="color:var(--clr-light-muted);margin-bottom:36px;">Fill out the form and our team will get back to you within 24 hours.</p>
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" class="form-input" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" class="form-input" placeholder="Doe" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Business Email</label>
+              <input type="email" id="email" class="form-input" placeholder="john@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" id="company" class="form-input" placeholder="Company Name" />
+            </div>
+            <div class="form-group">
+              <label for="interest">Area of Interest</label>
+              <select id="interest" class="form-input">
+                <option value="">Select an option</option>
+                <option value="data-platform">Modern Data Platforms</option>
+                <option value="analytics">BI & Analytics</option>
+                <option value="ai">AI & Machine Learning</option>
+                <option value="governance">Data Governance</option>
+                <option value="products">Product Demo</option>
+                <option value="consulting">Consulting & Advisory</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-input" placeholder="Tell us about your project or requirements..." rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-pill btn-lg" style="width:100%;justify-content:center;">
+              Send Message →
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">📍</div>
+            <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Office</h3>
+            <p style="color:var(--clr-light-muted);font-size:0.9rem;line-height:1.7;">
+              Atatürk Mah. Turgut Özal Blv.<br/>
+              Gardenya 1 Plaza · Floor 1<br/>
+              Ataşehir, Istanbul · Turkey
+            </p>
+          </div>
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">📧</div>
+            <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Email</h3>
+            <p style="color:var(--clr-light-muted);font-size:0.9rem;">
+              <a href="mailto:info@intellica.net" style="color:var(--clr-primary);">info@intellica.net</a>
+            </p>
+          </div>
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">📞</div>
+            <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Phone</h3>
+            <p style="color:var(--clr-light-muted);font-size:0.9rem;">
+              <a href="tel:+902166884546" style="color:var(--clr-primary);">+90 216 688 45 46</a>
+            </p>
+          </div>
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">🔗</div>
+            <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">LinkedIn</h3>
+            <p style="color:var(--clr-light-muted);font-size:0.9rem;">
+              <a href="https://www.linkedin.com/company/intellica" target="_blank" rel="noopener" style="color:var(--clr-primary);">
+                linkedin.com/company/intellica
+              </a>
+            </p>
+          </div>
+
+          <div class="contact-why anim-fade-up">
+            <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:16px;">Why Intellica?</h3>
+            <ul class="contact-why__list">
+              <li>20+ years of data & AI expertise</li>
+              <li>200+ successful enterprise projects</li>
+              <li>Active in 20+ countries globally</li>
+              <li>9 proprietary products</li>
+              <li>450+ expert professionals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 60px;
+  align-items: start;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact-info-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.contact-info-card__icon {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.contact-why {
+  padding: 28px;
+  background: linear-gradient(135deg, rgba(0,200,150,0.06), rgba(0,159,227,0.04));
+  border: 1px solid rgba(0,200,150,0.15);
+  border-radius: var(--radius-md);
+  margin-top: 8px;
+}
+.contact-why__list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.contact-why__list li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.88rem; color: var(--clr-light-muted);
+}
+.contact-why__list li::before {
+  content: '✓';
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--grad-brand);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236B7280' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>

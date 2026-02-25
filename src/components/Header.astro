@@ -1,0 +1,299 @@
+---
+const navLinks = [
+  { label: 'Ürünler', href: '/products' },
+  { label: 'Çözümler', href: '/solutions' },
+  { label: 'Hakkımızda', href: '/about' },
+  { label: 'İletişim', href: '/contact' },
+];
+
+const products = [
+  {
+    category: 'Veri Modelleri',
+    items: [
+      { name: 'IFDM', desc: 'Finans için sektörel veri modeli', href: '/products#ifdm' },
+      { name: 'ITDM', desc: 'Telekom için sektörel veri modeli', href: '/products#itdm' },
+      { name: 'HRDM', desc: 'İnsan kaynakları veri modeli', href: '/products#hrdm' },
+    ]
+  },
+  {
+    category: 'Veri Platformu & Yönetim',
+    items: [
+      { name: 'ICC', desc: 'Veri tutarlılığı ve kalite kontrolleri', href: '/products#icc' },
+      { name: 'ReTouch', desc: 'Doğrulamalı veri girişi ve RDM', href: '/products#retouch' },
+      { name: 'Retable AI', desc: 'No-code uygulamalar ve tablolar', href: '/products#retable' },
+    ]
+  },
+  {
+    category: 'AI Ürünleri',
+    items: [
+      { name: 'Talk To', desc: 'Doğal dil ile veri etkileşimi', href: '/products#talkto' },
+      { name: 'Blue Octopus', desc: 'Olay izleme ve aksiyon yönetimi', href: '/products#blueoctopus' },
+      { name: 'VAR', desc: 'AI tabanlı ses analizi ve tanıma', href: '/products#var' },
+    ]
+  }
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="/" class="brand" aria-label="Intellica Ana Sayfa">
+      <img src="/assets/img/intellica-logo.png" alt="Intellica" class="brand-logo" height="36" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="nav-desktop" aria-label="Ana Menü">
+      <!-- Products Mega Menu -->
+      <div class="nav-item" data-dropdown>
+        <button type="button" aria-haspopup="true" aria-expanded="false" class="nav-link nav-link--dd">
+          Ürünler
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="dd-menu mega-menu">
+          <div class="mega-inner">
+            {products.map(group => (
+              <div class="mega-col">
+                <div class="mega-col-title">{group.category}</div>
+                {group.items.map(item => (
+                  <a href={item.href} class="mega-item">
+                    <div class="mega-item-name">{item.name}</div>
+                    <div class="mega-item-desc">{item.desc}</div>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div class="mega-footer">
+            <a href="/products" class="mega-footer-link">
+              Tüm Ürünleri Görüntüle →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/solutions" class="nav-link">Çözümler</a>
+      <a href="/about" class="nav-link">Hakkımızda</a>
+      <a href="/contact" class="nav-link">İletişim</a>
+    </nav>
+
+    <!-- CTA -->
+    <div class="header-actions">
+      <a href="/contact" class="btn btn-primary btn-sm">
+        Demo Talep Et
+      </a>
+      <!-- Mobile toggle -->
+      <button id="mobile-toggle" class="mobile-toggle" aria-label="Menüyü aç/kapat">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <nav>
+      <a href="/products" class="mobile-link">Ürünler</a>
+      <a href="/solutions" class="mobile-link">Çözümler</a>
+      <a href="/about" class="mobile-link">Hakkımızda</a>
+      <a href="/contact" class="mobile-link">İletişim</a>
+      <a href="/contact" class="btn btn-primary" style="margin-top:12px; justify-content:center;">Demo Talep Et</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+/* Header */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--header-h);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+.site-header.scrolled {
+  background: rgba(3, 11, 22, 0.85);
+  border-bottom-color: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 32px;
+}
+.brand { display: flex; align-items: center; }
+.brand-logo { height: 36px; width: auto; }
+
+/* Desktop Nav */
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(240,244,255,0.8);
+  transition: color 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font);
+}
+.nav-link:hover, .nav-link--dd:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+.chevron {
+  transition: transform 0.2s ease;
+}
+[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 8px;
+}
+
+/* Dropdown */
+.nav-item { position: relative; }
+.dd-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(8, 15, 30, 0.97);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  animation: fadeUp 0.2s ease forwards;
+  z-index: 100;
+}
+.dd-menu.open { display: block; }
+
+/* Mega Menu */
+.mega-menu {
+  width: 680px;
+  left: 0;
+  transform: none;
+}
+.mega-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 24px;
+}
+.mega-col { padding: 8px; }
+.mega-col-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 200, 150, 0.15);
+}
+.mega-item {
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  margin-bottom: 2px;
+}
+.mega-item:hover { background: rgba(255,255,255,0.05); }
+.mega-item-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #F0F4FF;
+  margin-bottom: 2px;
+}
+.mega-item-desc {
+  font-size: 0.75rem;
+  color: var(--clr-muted);
+  line-height: 1.4;
+}
+.mega-footer {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 12px 24px;
+}
+.mega-footer-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--clr-primary);
+  transition: color 0.2s ease;
+}
+.mega-footer-link:hover { color: var(--clr-secondary); }
+
+/* Mobile toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 32px;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.mobile-toggle span {
+  display: block;
+  height: 2px;
+  background: rgba(240,244,255,0.8);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.mobile-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mobile-toggle.open span:nth-child(2) { opacity: 0; }
+.mobile-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: rgba(3, 11, 22, 0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-link {
+  padding: 14px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(240,244,255,0.85);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.mobile-link:hover {
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .nav-desktop { display: none; }
+  .mobile-toggle { display: flex; }
+  .header-actions .btn { display: none; }
+}
+</style>

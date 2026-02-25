@@ -1,0 +1,115 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Intellica — Modern veri platformları, analitik çözümler ve üretimde çalışan AI sistemleri ile kurumların veriden sürdürülebilir değer üretmesini sağlar." } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#030B16" />
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.anim-fade-up').forEach(el => observer.observe(el));
+
+    // Counter animation
+    function animateCounter(el: HTMLElement) {
+      const target = parseInt(el.dataset.target || '0');
+      const duration = 1800;
+      const start = performance.now();
+      const update = (now: number) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = String(Math.round(ease * target));
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target as HTMLElement);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+        mobileToggle.classList.toggle('open');
+      });
+    }
+
+    // Dropdown menus
+    document.querySelectorAll('[data-dropdown]').forEach(dd => {
+      const btn = dd.querySelector('button');
+      const menu = dd.querySelector('.dd-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          menu.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(menu.classList.contains('open')));
+        });
+      }
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.dd-menu.open').forEach(m => {
+        m.classList.remove('open');
+        const btn = m.previousElementSibling as HTMLElement;
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Header scroll
+    const header = document.querySelector('.site-header') as HTMLElement;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
