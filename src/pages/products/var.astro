@@ -1,0 +1,520 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: "Products", url: "/products" },
+  { name: "VAR", url: "/products/var" }
+];
+---
+
+<Layout title="VAR — Voice Analysis & Recognition | Intellica" description="VAR: AI-based voice analytics. Automatic transcription, sentiment analysis, and quality compliance insights for call centers and enterprise audio." breadcrumbs={breadcrumbs}>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label anim-fade-up">AI Products</div>
+      <h1 class="anim-fade-up">VAR — Voice <span class="grad-text">Analytics</span> & Recognition</h1>
+      <p class="anim-fade-up">Turn your voice recordings into actionable intelligence. VAR uses AI to generate automatic transcripts and deep-dive insights to improve quality, compliance, and customer CX measurably.</p>
+      <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">Request VAR Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 48px; align-items: start;">
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px;">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">What does it <span class="grad-text">solve?</span></h2>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Problem</p>
+            <p style="color: var(--clr-light-muted);">Manual listening to massive call volumes is unsustainable, leading to missed quality issues, compliance risks, and customer frustration.</p>
+          </div>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Approach</p>
+            <p style="color: var(--clr-light-muted);">VAR converts voice data into transcripts and applies NLP models for sentiment, topic classification, and keyword spotting, enabling automated auditing at scale.</p>
+          </div>
+          <div>
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Business Value</p>
+            <p style="color: var(--clr-light-muted);">100% coverage of call audits, faster incident detection, and data-driven insights for agent training and coaching.</p>
+          </div>
+        </div>
+
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px; background: #f8fafc;">
+          <h3 style="color: var(--clr-light-text); margin-bottom: 24px;">When is it <span class="grad-text">preferred?</span></h3>
+          <ul class="check-list">
+            <li>When manual call center auditing is no longer scalable</li>
+            <li>To automate quality scoring and agent performance tracking</li>
+            <li>For real-time keyword spotting to detect ethical or compliance risks</li>
+            <li>To visualize customer complaint trends by topic and segment</li>
+            <li>When migrating from legacy IVR recording to advanced voice intelligence</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--clr-light-muted); margin-top: 24px; font-style: italic;">Note: VAR supports both internal call recordings and multi-channel audio data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Capabilities</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Voice <span class="grad-text">Capabilities</span></h2>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Speech-to-Text</h3>
+          <p>Automatic daily transcription of call recordings into high-accuracy, searchable text.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Keyword Spotting</h3>
+          <p>Real-time or batch identification of specific terms, product names, or compliance markers.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Sentiment Analysis</h3>
+          <p>AI-driven scoring of agent and customer emotions to identify at-risk interactions.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Topic Classification</h3>
+          <p>Automatic grouping of calls by subject matter (Billing, Technical, Sales, etc.).</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Automated Quality Set</h3>
+          <p>Ready-to-use dashboards for agent KPIs, silence ratios, and overlap analytics.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Ecosystem Ready</h3>
+          <p>Open APIs to connect voice insights directly into CRM, Ticket, or BI environments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section (Process Overview) -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 60px; align-items: center;">
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">Intelligent <span class="grad-text">Voice Processing</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 32px; font-size: 1.1rem; line-height: 1.7;">
+            VAR transforms static call recordings into a dynamic knowledge base. By applying advanced NLP, we extract context, sentiment, and compliance signals that were previously hidden in audio files.
+          </p>
+          <div class="cap-card-modern" style="padding: 24px; background: #fff;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Multi-Dimensional Analysis</p>
+            <p style="color: var(--clr-light-muted); font-size: 0.95rem;">Combine metadata (agent ID, duration) with transcription data for 360° operational visibility.</p>
+          </div>
+        </div>
+        <div class="anim-fade-up">
+          <div class="img-frame" style="background: #fff; padding: 12px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+            <div style="background: #f8fafc; border-radius: 12px; padding: 60px; display: flex; align-items: center; justify-content: center;">
+               <img src="/assets/images/logos/VAR_logo.png" alt="VAR Voice Analysis" style="width: 200px; opacity: 0.9;" />
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-top: 12px; font-style: italic;">
+              VAR Interface: Transforming call recordings into intelligent quality and compliance insights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Use Cases -->
+  <section class="section section--light" id="use-cases">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Solutions</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Strategic <span class="grad-text">Use Cases</span></h2>
+        <p class="section-sub">Discover how VAR optimizes call center operations and mitigates enterprise compliance risks.</p>
+      </div>
+
+      <div class="tabs-container anim-fade-up">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="qa">Quality Assurance</button>
+          <button class="tab-btn" data-tab="compliance">Compliance & Ethics</button>
+          <button class="tab-btn" data-tab="cx">Customer Experience</button>
+        </div>
+
+        <!-- QA Tab -->
+        <div id="qa" class="tab-content active">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: rgba(0, 200, 150, 0.1); color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.05em;">Coaching</span>
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: #f1f5f9; color: #64748b; text-transform: uppercase;">Agent ROI</span>
+              </div>
+              <h4>Automated Quality Scoring</h4>
+              <p class="scenario">Traditional call auditing covers less than 2% of calls, making agent coaching subjective and missing majority of performance signals.</p>
+              <div class="uc-section">
+                <p class="uc-label">VAR INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Standardize scoring across 100% of recorded interactions.</li>
+                  <li>Automated detection of silence, overlap, and script adherence.</li>
+                  <li>Identification of top-performing patterns for training.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Significant reduction in manual audit hours.</li>
+                  <li>Consistent, data-driven agent performance metrics.</li>
+                  <li>Measurable improvement in average transaction quality.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: rgba(0, 200, 150, 0.1); color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.05em;">Sales</span>
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: #f1f5f9; color: #64748b; text-transform: uppercase;">Growth</span>
+              </div>
+              <h4>Sales Pattern Intelligence</h4>
+              <p class="scenario">Closing techniques of top sales agents are often organic and not documented for the rest of the team.</p>
+              <div class="uc-section">
+                <p class="uc-label">VAR INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Analyze successful close scripts and rebuttal logic.</li>
+                  <li>Correlate sentiment shifts with conversion outcomes.</li>
+                  <li>Automated tagging of objection types and agent response.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Standardized high-performance sales playbook.</li>
+                  <li>Faster ramp-up for new sales representatives.</li>
+                  <li>Increased overall conversion rates through data.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compliance Tab -->
+        <div id="compliance" class="tab-content">
+          <div style="display: flex; justify-content: center;">
+            <div class="use-case-card-alt" style="max-width: 800px; width: 100%;">
+              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: rgba(0, 200, 150, 0.1); color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.05em;">Security</span>
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: #f1f5f9; color: #64748b; text-transform: uppercase;">Legal Risk</span>
+              </div>
+              <h4>Regulatory Compliance & Ethical Monitoring</h4>
+              <p class="scenario">Undetected script violations or illegal verbal promises can lead to significant regulatory fines and brand damage.</p>
+              <div class="uc-section">
+                <p class="uc-label">VAR INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Keyword spotting for mandatory legal disclosures.</li>
+                  <li>Real-time alerting for high-risk verbal patterns.</li>
+                  <li>Secure, searchable archive for audit investigations.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Guaranteed adherence to regulatory speech requirements.</li>
+                  <li>Minimized risk of operational fines and penalties.</li>
+                  <li>Proactive management of potential legal liabilities.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CX Tab -->
+        <div id="cx" class="tab-content">
+          <div style="display: flex; justify-content: center;">
+            <div class="use-case-card-alt" style="max-width: 800px; width: 100%;">
+              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: rgba(0, 200, 150, 0.1); color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.05em;">Retention</span>
+                <span style="font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; background: #f1f5f9; color: #64748b; text-transform: uppercase;">Churn</span>
+              </div>
+              <h4>Customer Emotion & Attrition Prediction</h4>
+              <p class="scenario">Quietly frustrated customers often port out or cancel services without documented reason, as text-only CRM notes miss vocal cues.</p>
+              <div class="uc-section">
+                <p class="uc-label">VAR INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Sentiment trend monitoring over the customer lifecycle.</li>
+                  <li>Identify vocal stress and dissatisfaction signals.</li>
+                  <li>Flagging specific "I want to cancel" intent patterns.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Proactive retention workflows for at-risk customers.</li>
+                  <li>Increased Net Promoter Score (NPS).</li>
+                  <li>Reduced churn through early intervention.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 60px;">
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 32px;">Execution <span class="grad-text">Journey</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 24px;">From raw audio to strategic insights, VAR manages the entire voice intelligence lifecycle.</p>
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-num">01</span>
+              <div>
+                <h6>Ingest & Transcribe</h6>
+                <p>Bulk collection of audio from IVR/ACD systems and automated speech-to-text conversion.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">02</span>
+              <div>
+                <h6>Analyze & Score</h6>
+                <p>NLP models apply sentiment scoring, topic extraction, and keyword spotting logic.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">03</span>
+              <div>
+                <h6>Orchestrate Action</h6>
+                <p>Results delivered to dashboards, CRMs, or quality audit workflows for intervention.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">Integration & <span class="grad-text">Standardization</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 24px;">VAR is designed to slot into your existing contact center ecosystem with professional flexibility:</p>
+          <ul class="bullet-list">
+            <li>Native integration with major call recording and IVR platforms</li>
+            <li>Direct CRM and Ticket system sync for session context</li>
+            <li>Customized NLP models for dialect and industry-specific terminology</li>
+            <li>Role-based access (RBAC) and mTLS-encrypted data transit</li>
+            <li>Standardized export formats for BI and reporting integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>Uncover the Value of <span class="grad-text">Voice</span></h2>
+        <p>Talk to our experts to learn how automated voice intelligence can transform your quality and compliance metrics.</p>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">Request a Demo</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.check-list, .bullet-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.check-list li, .bullet-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: var(--clr-light-muted);
+  font-size: 0.95rem;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--clr-primary); font-weight: bold;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clr-primary);
+}
+
+/* Capabilities Modern */
+.cap-card-modern {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+.cap-card-modern:hover {
+  border-color: var(--clr-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.cap-icon-box {
+  width: 80px;
+  height: 80px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+.cap-icon-box img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.cap-card-modern h3 {
+  font-size: 1.1rem;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+.cap-card-modern p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+
+/* Use Case Tabs */
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 12px 24px;
+  border-radius: 99px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+.tab-btn.active {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 200, 150, 0.2);
+}
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Use Case Cards Alt */
+.use-case-card-alt {
+  background: #fff;
+  border: 1px solid #E8EEF5;
+  border-radius: 24px;
+  padding: 40px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+.use-case-card-alt:hover {
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+.use-case-card-alt h4 {
+  font-size: 1.25rem;
+  color: var(--clr-light-text);
+  margin-bottom: 20px;
+}
+.use-case-card-alt .scenario {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+.uc-section { margin-bottom: 24px; }
+.uc-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--clr-primary);
+  margin-bottom: 16px;
+}
+.uc-label--impact { color: #10B981; }
+.uc-list { list-style: none; padding: 0; }
+.uc-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--clr-light-muted);
+}
+.uc-list li::before {
+  content: '•';
+  position: absolute; left: 0; color: var(--clr-primary);
+}
+
+/* Step List */
+.step-list { display: flex; flex-direction: column; gap: 32px; }
+.step-item { display: flex; gap: 24px; align-items: flex-start; }
+.step-num {
+  font-size: 2rem; font-weight: 800;
+  color: rgba(0, 200, 150, 0.15);
+  line-height: 1;
+}
+.step-item h6 {
+  font-size: 1.1rem; color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+.step-item p { font-size: 0.95rem; color: var(--clr-light-muted); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>
+
+<script>
+  function initTabs() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        const targetElement = document.getElementById(target as string);
+        if (targetElement) {
+          targetElement.classList.add('active');
+        }
+      });
+    });
+  }
+
+  // Run on page load
+  initTabs();
+
+  // Run on view transition (for Astro)
+  document.addEventListener('astro:page-load', initTabs);
+</script>

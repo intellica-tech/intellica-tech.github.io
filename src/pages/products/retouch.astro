@@ -1,0 +1,522 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: "Products", url: "/products" },
+  { name: "ReTouch", url: "/products/retouch" }
+];
+---
+
+<Layout title="ReTouch — Reference Data & Entry Management | Intellica" description="ReTouch: Governed data entry and reference data management; replacing manual processes with validated workflows and full audit trails." breadcrumbs={breadcrumbs}>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label anim-fade-up">Data Platform & Governance</div>
+      <h1 class="anim-fade-up">ReTouch — Entry <span class="grad-text">Management</span></h1>
+      <p class="anim-fade-up">Master your manual data entries and reference data. Eliminate Excel-based collection and secure your processes with approval workflows, validation rules, and full auditability.</p>
+      <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">Request ReTouch Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 48px; align-items: start;">
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px;">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">What does it <span class="grad-text">solve?</span></h2>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Problem</p>
+            <p style="color: var(--clr-light-muted);">Relying on manual data entry or shared Excel sheets for master and reference data leads to errors, lack of validation, and zero audit trails.</p>
+          </div>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Approach</p>
+            <p style="color: var(--clr-light-muted);">ReTouch provides a web-based, governed interface for data entry. It ensures data is validated against your business rules and approved by designated stakeholders before entering core systems.</p>
+          </div>
+          <div>
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Business Value</p>
+            <p style="color: var(--clr-light-muted);">100% auditable data entry. Significant reduction in data correction costs. Significantly improved reference data quality.</p>
+          </div>
+        </div>
+
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px; background: #f8fafc;">
+          <h3 style="color: var(--clr-light-text); margin-bottom: 24px;">When is it <span class="grad-text">preferred?</span></h3>
+          <ul class="check-list">
+            <li>When reference data (tags, categories, lookups) is currently managed in Excel</li>
+            <li>To implement "Maker-Checker" approval workflows for critical data changes</li>
+            <li>When manual data entry needs to be validated against existing system data</li>
+            <li>To maintain a full version history of all manual data updates</li>
+            <li>When data governance policies require formal data entry controls</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--clr-light-muted); margin-top: 24px; font-style: italic;">Note: ReTouch integrates with your existing identity management for secure access.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Capabilities</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Governance <span class="grad-text">Capabilities</span></h2>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Custom Workflows</h3>
+          <p>Flexible approval steps including multi-tier Maker-Checker-Approver patterns.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Data Validation</h3>
+          <p>Enforce strict rules like regex, range checks, and cross-reference lookups.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Full Audit Trail</h3>
+          <p>Track every single change: Who changed what, when, and the before/after state.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Version Control</h3>
+          <p>Easily browse and revert to previous states of your reference data tables.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Form Builder</h3>
+          <p>Create and deploy data entry screens dynamically without writing front-end code.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>System Sync</h3>
+          <p>Automatically push approved data into your target DWH, Lakehouse, or ERP systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section (Standardization) -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 60px; align-items: center;">
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">Standardize and Secure Your <span class="grad-text">Data Entry</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 32px; font-size: 1.1rem; line-height: 1.7;">
+            ReTouch disciplines data entry with a user-friendly form and grid-based interface. Sustainable enterprise data quality is achieved through robust validation, approval, and authorization mechanisms.
+          </p>
+          <div class="cap-card-modern" style="padding: 24px; background: #fff;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Validated Governance</p>
+            <p style="color: var(--clr-light-muted); font-size: 0.95rem;">Prevent errors at the source with real-time field-level validation and lookup controls.</p>
+          </div>
+        </div>
+        <div class="anim-fade-up">
+          <div class="img-frame" style="background: #fff; padding: 12px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+            <img src="/assets/images/Retouch_Ekran görüntüsü.png" alt="ReTouch Interface" style="width: 100%; border-radius: 12px; filter: brightness(0.98);" />
+            <p style="text-align: center; font-size: 0.85rem; color: #64748b; margin-top: 12px; font-style: italic;">
+              ReTouch Interface: Validated data entry and management layer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Use Cases -->
+  <section class="section section--light" id="use-cases">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Solutions</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Strategic <span class="grad-text">Use Cases</span></h2>
+        <p class="section-sub">Explore ReTouch solutions in Finance, Telecom, and Manufacturing.</p>
+      </div>
+
+      <div class="tabs-container anim-fade-up">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="finance">Finance</button>
+          <button class="tab-btn" data-tab="telecom">Telecom</button>
+          <button class="tab-btn" data-tab="manufacturing">Manufacturing</button>
+        </div>
+
+        <!-- Finance Tab -->
+        <div id="finance" class="tab-content active">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <h4>Regulatory Parameter Management</h4>
+              <p class="scenario">Manual management of reference and mapping tables used in regulatory reports can lead to compliance risks and audit failures.</p>
+              <div class="uc-section">
+                <p class="uc-label">RETOUCH INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Centralized platform for reference and mapping tables.</li>
+                  <li>Mandatory field and lookup controls applied.</li>
+                  <li>Permission-based entry and approval mechanism.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Reduced compliance risk.</li>
+                  <li>Informed, accurate regulatory reporting.</li>
+                  <li>Simplified audit processes.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <h4>Branch & Product Goal Consistency</h4>
+              <p class="scenario">Managing branch-level targets in scattered Excel files causes version chaos and inconsistent executive reporting.</p>
+              <div class="uc-section">
+                <p class="uc-label">RETOUCH INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Single source of truth for all target tables.</li>
+                  <li>Role-based entry and workflow management.</li>
+                  <li>Automatic validation prevents incorrect data entry.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Improved reporting consistency.</li>
+                  <li>Reliable performance measurement.</li>
+                  <li>Executive access to a single truth source.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telecom Tab -->
+        <div id="telecom" class="tab-content">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <h4>Campaign Parameter Control</h4>
+              <p class="scenario">Small errors in campaign or tariff parameters can lead to significant revenue loss and customer dissatisfaction.</p>
+              <div class="uc-section">
+                <p class="uc-label">RETOUCH INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Centralized management of tariffs and price tables.</li>
+                  <li>Date range and pricing validation rules.</li>
+                  <li>Approved-only publishing workflow.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Minimized revenue leakage risks.</li>
+                  <li>Increased pricing precision.</li>
+                  <li>Stronger revenue assurance posture.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <h4>Dealer Commission Consistency</h4>
+              <p class="scenario">Manual management of dealer commission and revenue share tables causes reconciliation problems and financial disputes.</p>
+              <div class="uc-section">
+                <p class="uc-label">RETOUCH INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Commission tables collected in standard, structured formats.</li>
+                  <li>Permission-based entry with double-control (maker-checker).</li>
+                  <li>Real-time validation prevents incomplete or inconsistent records.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Strengthened reconciliation and accounting accuracy.</li>
+                  <li>Reduced risk of incorrect payments and disputes.</li>
+                  <li>Reliable financial reporting data.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manufacturing Tab -->
+        <div id="manufacturing" class="tab-content">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <h4>Dealer Sales Quota Management</h4>
+              <p class="scenario">Managing dealer sales targets via Excel leads to data freshness issues and planning inconsistencies.</p>
+              <div class="uc-section">
+                <p class="uc-label">RETOUCH INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Centralized platform for model and dealer targets.</li>
+                  <li>Strict range and mandatory field checks.</li>
+                  <li>Version history and change tracking.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Reliable sales planning data.</li>
+                  <li>Faster regional performance reporting.</li>
+                  <li>Enhanced operational coordination.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <h4>Production Reference Data Control</h4>
+              <p class="scenario">Errors in part code mapping and supplier reference tables affect production planning and reporting accuracy.</p>
+              <div class="uc-section">
+                <p class="uc-label">RETOUCH INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Centralized management of part mapping and references.</li>
+                  <li>Lookup and dictionary controls ensure data integrity.</li>
+                  <li>Approved publishing and version tracking for ERP readiness.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Increased production planning accuracy.</li>
+                  <li>Reduced supply chain risks.</li>
+                  <li>Ensured consistency in corporate reporting.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 60px;">
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 32px;">The ReTouch <span class="grad-text">Process</span></h2>
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-num">01</span>
+              <div>
+                <h6>Design</h6>
+                <p>Define table/form structures, validation rules, and user permissions.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">02</span>
+              <div>
+                <h6>Validate & Approve</h6>
+                <p>Real-time checks during entry followed by a governed approval workflow.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">03</span>
+              <div>
+                <h6>Publish</h6>
+                <p>Approved data is synchronized with your enterprise data layer for reporting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">Better <span class="grad-text">Governance</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 24px;">ReTouch transforms unmanaged manual data into governed enterprise assets:</p>
+          <ul class="bullet-list">
+            <li>Single point of entry for all manual reference data</li>
+            <li>Centralized management of business validation rules</li>
+            <li>Proactive identification of data quality issues at the source</li>
+            <li>Elimination of distributed, un-versioned Excel files</li>
+            <li>Secure, role-based access to sensitive data domains</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>End the Era of <span class="grad-text">Ungoverned Excel</span></h2>
+        <p>Talk to our experts to learn how ReTouch can secure your manual data processes.</p>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">Request ReTouch Demo</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.check-list, .bullet-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.check-list li, .bullet-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: var(--clr-light-muted);
+  font-size: 0.95rem;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--clr-primary); font-weight: bold;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clr-primary);
+}
+
+.cap-card-modern {
+  padding: 32px;
+  background: #fff;
+  border: 1px solid #e8eef5;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.cap-card-modern:hover {
+  transform: translateY(-5px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.cap-icon-box {
+  width: 80px;
+  height: 80px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+.cap-icon-box img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.cap-card-modern h3 {
+  font-size: 1.1rem;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+.cap-card-modern p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+
+.step-list { display: flex; flex-direction: column; gap: 32px; }
+.step-item { display: flex; gap: 24px; align-items: flex-start; }
+.step-num {
+  font-size: 2rem; font-weight: 800;
+  color: rgba(0,200,150,0.15);
+  line-height: 1;
+}
+.step-item h6 {
+  font-size: 1.1rem; color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+.step-item p { font-size: 0.95rem; color: var(--clr-light-muted); }
+
+/* Use Case Tabs */
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 12px 24px;
+  border-radius: 99px;
+  border: 1px solid #E2E8F0;
+  background: #fff;
+  color: #64748B;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn.active {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 200, 150, 0.25);
+}
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Use Case Cards Alt */
+.use-case-card-alt {
+  background: #fff;
+  border: 1px solid #E8EEF5;
+  border-radius: 24px;
+  padding: 40px;
+  transition: all 0.3s ease;
+}
+.use-case-card-alt:hover {
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+.use-case-card-alt h4 {
+  font-size: 1.25rem;
+  color: var(--clr-light-text);
+  margin-bottom: 20px;
+}
+.use-case-card-alt .scenario {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+.uc-section { margin-bottom: 24px; }
+.uc-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--clr-primary);
+  margin-bottom: 16px;
+}
+.uc-label--impact { color: #10B981; }
+.uc-list { list-style: none; padding: 0; }
+.uc-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--clr-light-muted);
+}
+.uc-list li::before {
+  content: '•';
+  position: absolute; left: 0; color: var(--clr-primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>
+
+<script is:inline>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.tabs-container');
+      const target = btn.dataset.tab;
+      
+      parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
