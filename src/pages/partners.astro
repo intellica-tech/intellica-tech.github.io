@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 
 const breadcrumbs = [
   { name: 'About', url: '/about' },
@@ -9,23 +7,26 @@ const breadcrumbs = [
 ];
 
 const partners = [
-  { name: 'Microsoft', src: '/assets/images/logos/Microsoft_Logo.svg.png' },
-  { name: 'AWS', src: '/assets/images/logos/Amazon_Web_Services_Logo.svg.png' },
-  { name: 'Google Cloud', src: '/assets/images/logos/Google_Cloud_Logo.svg.png' },
-  { name: 'Oracle', src: '/assets/images/logos/Oracle_logo.svg.png' },
-  { name: 'Snowflake', src: '/assets/images/logos/Snowflake_Logo.svg.png' },
-  { name: 'Databricks', src: '/assets/images/logos/Databricks_Logo.svg.png' },
-  { name: 'Cloudera', src: '/assets/images/logos/cloudera-logo.png' },
-  { name: 'Informatica', src: '/assets/images/logos/Informatica_logo.svg.png' },
-  { name: 'Tableau', src: '/assets/images/logos/Tableau_Logo.png' },
-  { name: 'PowerBI', src: '/assets/images/logos/Microsoft_Power_BI_Logo.svg.png' }
+  { name: 'Microsoft', src: 'https://logo.clearbit.com/microsoft.com' },
+  { name: 'AWS', src: 'https://logo.clearbit.com/aws.amazon.com' },
+  { name: 'Google Cloud', src: 'https://logo.clearbit.com/cloud.google.com' },
+  { name: 'Oracle', src: 'https://logo.clearbit.com/oracle.com' },
+  { name: 'Snowflake', src: 'https://logo.clearbit.com/snowflake.com' },
+  { name: 'Databricks', src: 'https://logo.clearbit.com/databricks.com' },
+  { name: 'Informatica', src: 'https://logo.clearbit.com/informatica.com' },
+  { name: 'Tableau', src: 'https://logo.clearbit.com/tableau.com' },
+  { name: 'PowerBI', src: 'https://logo.clearbit.com/powerbi.microsoft.com' },
+  { name: 'Cloudera', src: 'https://logo.clearbit.com/cloudera.com' }
 ];
 ---
 
-<Layout title="Partners | Intellica" description="We collaborate with the world's leading technology providers to deliver robust, scalable data and AI solutions." breadcrumbs={breadcrumbs}>
+<Layout 
+  title="Partners | Intellica" 
+  description="We collaborate with the world's leading technology providers to deliver robust, scalable data and AI solutions." 
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+>
   
-  <Header />
-
   <!-- HERO -->
   <section class="hero noise" id="partners-hero">
     <div class="container hero__inner">
@@ -37,7 +38,6 @@ const partners = [
           <p class="hero__desc">Intellica establishes strategic alliances with the world's most powerful technology companies. Together, we provide our clients with vendor-agnostic, best-in-class solutions that accelerate digital transformation across every industry.</p>
           <div class="hero__actions">
             <a href="/contact" class="btn btn-primary btn-pill btn-lg">Become a Partner</a>
-            <a href="/solutions" class="btn btn-ghost btn-pill btn-lg">View Solutions</a>
           </div>
         </div>
         
@@ -58,7 +58,7 @@ const partners = [
       <div class="logo-grid anim-fade-up" style="margin-top: 60px;">
         {partners.map(partner => (
           <div class="logo-tile">
-            <img alt={partner.name} src={partner.src} loading="lazy" />
+            <span class="partner-name">{partner.name}</span>
           </div>
         ))}
       </div>
@@ -66,21 +66,18 @@ const partners = [
   </section>
 
   <!-- CTA -->
-  <section class="section section--light">
+  <section class="section section--dark">
     <div class="container">
-      <div class="cta-banner anim-fade-up">
-        <div class="cta-banner-content">
-          <h3>Build the Future with Us</h3>
-          <p>Interested in joining our global technology network or exploring how our partnerships can benefit your organization?</p>
-        </div>
-        <div class="cta-banner-actions">
-          <a href="/contact" class="btn btn-primary btn-pill">Get in Touch</a>
+      <div class="cta-strip text-center anim-fade-up">
+        <h3>Build the Future with Us</h3>
+        <p>Interested in joining our global technology network or exploring how our partnerships can benefit your organization?</p>
+        <div class="hero__actions" style="justify-content: center; margin-top: 32px;">
+          <a href="/contact" class="btn btn-primary btn-pill btn-lg">Get in Touch</a>
         </div>
       </div>
     </div>
   </section>
 
-  <Footer />
 
 </Layout>
 
@@ -117,26 +114,29 @@ const partners = [
   background: #FFF;
   border: 1px solid #E2E8F0;
   border-radius: 20px;
-  padding: 32px;
+  padding: 16px; /* Reduced padding for larger logos */
   height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.logo-tile img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: transform 0.4s ease;
+.partner-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1E293B;
+  text-align: center;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
 }
 .logo-tile:hover {
   border-color: var(--clr-primary);
   transform: translateY(-8px);
+  background: #F8FAFC;
   box-shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
-.logo-tile:hover img {
-  transform: scale(1.1);
+.logo-tile:hover .partner-name {
+  color: var(--clr-primary);
 }
 
 @media (max-width: 1100px) {

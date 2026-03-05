@@ -9,13 +9,15 @@ export interface Props {
   description?: string;
   pageType?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
+  hideCta?: boolean;
 }
 
 const { 
   title, 
   description = "Intellica — Empowering enterprises to generate sustainable value from data through modern data platforms, analytics solutions, and production-grade AI systems.",
   pageType = "website",
-  breadcrumbs = []
+  breadcrumbs = [],
+  hideCta = false
 } = Astro.props;
 
 const siteUrl = "https://intellica-tech.github.io";
@@ -135,11 +137,34 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
 </head>
 <body>
   <Header />
-  <main>
+  <main role="main">
     <slot />
   </main>
   <BottomNav />
-  <Footer />
+  <Footer hideCta={hideCta} />
+
+  <style is:global>
+    @media (max-width: 900px) {
+      main {
+        padding-top: var(--header-h);
+        padding-bottom: 70px; /* Space for fixed BottomNav */
+      }
+      .site-header {
+        position: fixed !important;
+        top: 0 !important;
+        background: #fff !important;
+        z-index: 1100 !important;
+      }
+      .bottom-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        display: flex !important;
+        z-index: 1100 !important;
+      }
+    }
+  </style>
   <script>
     // Scroll animations
     const observer = new IntersectionObserver((entries) => {

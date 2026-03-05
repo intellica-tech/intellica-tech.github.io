@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 
 const breadcrumbs = [
   { name: 'About', url: '/about' },
@@ -81,12 +79,29 @@ const faqs = [
   { q: 'Is a certificate provided?', a: 'Yes, participants who successfully complete the program receive a certificate.' },
   { q: 'Is accommodation provided?', a: 'Participants handle their own accommodation during the training period.' }
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
 ---
 
-<Layout title="Academy | Intellica" description="Intellica Academy: Preparing the next generation of data leaders through hands-on camps and professional workshops." breadcrumbs={breadcrumbs}>
+<Layout 
+  title="Academy | Intellica" 
+  description="Intellica Academy offers high-level training and career opportunities in Data & AI technologies."
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   
-  <Header />
-
   <!-- HERO -->
   <section class="hero noise" id="academy-hero">
     <div class="container hero__inner">
@@ -266,19 +281,22 @@ const faqs = [
         ))}
       </div>
 
-      <div class="cta-banner anim-fade-up">
-        <div class="cta-banner-content">
-          <h3>Apply / Detailed Information</h3>
-          <p>Contact us for any questions regarding the program.</p>
-        </div>
-        <div class="cta-banner-actions">
-          <a href="/contact" class="btn btn-primary btn-pill">Get in Touch</a>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip text-center anim-fade-up">
+        <h3>Apply / Detailed Information</h3>
+        <p>Contact us for any questions regarding the program.</p>
+        <div class="hero__actions" style="justify-content: center; margin-top: 32px;">
+          <a href="/contact" class="btn btn-primary btn-pill btn-lg">Get in Touch</a>
         </div>
       </div>
     </div>
   </section>
-
-  <Footer />
 
 </Layout>
 

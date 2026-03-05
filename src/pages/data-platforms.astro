@@ -11,34 +11,34 @@ const breadcrumbs = [
   title="Modern Data Platforms | Intellica" 
   description="Design and build scalable data platforms that collect, organize and govern enterprise data. A modern data foundation for analytics, reporting and AI."
   breadcrumbs={breadcrumbs}
+  hideCta={true}
 >
   <!-- ===== HERO ===== -->
   <section class="hero noise" id="data-hero">
-    <div class="container hero-grid">
-      <div class="hero-content anim-fade-up">
-        <div class="section-label">DATA PLATFORM</div>
-        <h1 class="hero-title">Enterprise Data Platforms <br /><span class="grad-text">Built for AI</span></h1>
-        <p class="hero-desc">
-          Scalable architectures that collect, integrate and govern enterprise data — enabling analytics and AI at scale.
-        </p>
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content anim-fade-up">
+          <div class="section-label">DATA PLATFORM</div>
+          <h1 class="hero__title">Enterprise Data Platforms <br /><span class="grad-text">Built for AI</span></h1>
+          <span class="hero__accent"></span>
+          <p class="hero__desc">
+            Scalable architectures that collect, integrate and govern enterprise data — enabling analytics and AI at scale.
+          </p>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Contact Us</a>
+          <div class="hero__actions">
+            <a class="btn btn-primary btn-pill btn-lg" href="/contact">Contact Us</a>
+          </div>
+
+
         </div>
 
-        <div class="pills-row">
-          <span class="pill">Assessment & Roadmap</span>
-          <span class="pill">Migration & Modernization</span>
-          <span class="pill">Lakehouse Architecture</span>
+        <div class="hero__visual anim-fade-up">
+          <img 
+            src="/assets/img/data_platform_hero_architecture.png" 
+            alt="Data Platform Architecture Flow" 
+            class="hero__shape-new" 
+          />
         </div>
-      </div>
-
-      <div class="hero-visual anim-fade-up">
-        <img 
-          src="/assets/img/data_platform_hero_architecture.png" 
-          alt="Data Platform Architecture Flow" 
-          class="hero-render" 
-        />
       </div>
     </div>
   </section>
@@ -140,24 +140,51 @@ const breadcrumbs = [
   </section>
 
   <!-- ===== ARCHITECTURE ===== -->
-  <section class="section section--light" id="architecture">
+  <section class="section section--dark" id="architecture" style="background: radial-gradient(circle at 50% 50%, #1a365d 0%, #020617 100%);">
     <div class="container">
       <div class="text-center anim-fade-up">
         <h2 class="section-title">Modern Data Platform <span class="grad-text">Architecture</span></h2>
-        <p class="section-sub">
+        <p class="section-sub" style="color: rgba(255,255,255,0.7);">
           We design enterprise data platforms with a layered architecture—covering ingestion, integration, storage and consumption.
         </p>
       </div>
 
       <div class="architecture-main anim-fade-up">
-        <div class="card-light archi-card">
-          <img
-            src="/assets/img/modern_data_platform_architecture_blueprint.png"
-            alt="Modern Data Platform Architecture"
-            class="archi-img"
-          />
-          <div class="archi-note">
-            <p>A modern data platform enables reliable analytics, scalable processing and AI-ready data foundations.</p>
+        <div class="card-glass archi-card-modern">
+          <div class="archi-layers-grid">
+            <div class="archi-layer-col">
+              <div class="layer-title">SOURCES</div>
+              <div class="layer-chip">CRM / ERP</div>
+              <div class="layer-chip">Logs / Files</div>
+              <div class="layer-chip">Web / API</div>
+            </div>
+            <div class="archi-arrow">→</div>
+            <div class="archi-layer-col main-layer">
+              <div class="layer-title">DATA PLATFORM ENGINE</div>
+              <div class="platform-box">
+                <div class="platform-row">
+                  <div class="platform-segment">INGESTION</div>
+                  <div class="platform-segment">INTEGRATION</div>
+                </div>
+                <div class="platform-row">
+                  <div class="platform-segment destaque">WAREHOUSE / LAKEHOUSE</div>
+                </div>
+                <div class="platform-row">
+                  <div class="platform-segment">GOVERNANCE</div>
+                  <div class="platform-segment">QUALITY</div>
+                </div>
+              </div>
+            </div>
+            <div class="archi-arrow">→</div>
+            <div class="archi-layer-col">
+              <div class="layer-title">VALUE</div>
+              <div class="layer-chip highlight">BI / AI</div>
+              <div class="layer-chip highlight">Analytics</div>
+              <div class="layer-chip highlight">Insights</div>
+            </div>
+          </div>
+          <div class="archi-note" style="background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: rgba(255,255,255,0.8);">A reliable, scalable, and AI-ready data foundation tailored for enterprise scale.</p>
           </div>
         </div>
       </div>
@@ -174,25 +201,25 @@ const breadcrumbs = [
       </div>
 
       <div class="grid-3 cap-grid anim-fade-up">
-        <div class="card-light">
+        <div class="card-light" id="integration">
           <h3>Data Integration</h3>
           <p>Unify data from operational systems, apps and external sources with reliable pipelines.</p>
         </div>
-        <div class="card-light">
+        <div class="card-light" id="warehouse">
           <h3>Data Warehousing</h3>
           <p>High-performance analytical storage for reporting and advanced analytics.</p>
         </div>
-        <div class="card-light">
+        <div class="card-light" id="lakehouse">
           <h3>Lakehouse Architecture</h3>
           <p>Scale storage and processing for both structured and unstructured data.</p>
         </div>
-        <div class="card-light">
+        <div class="card-light" id="governance">
           <h3>Data Governance</h3>
           <p>Quality, lineage, access management and compliance—built into the platform.</p>
         </div>
-        <div class="card-light">
-          <h3>Real-Time Data</h3>
-          <p>Streaming pipelines that enable real-time analytics and operational insights.</p>
+        <div class="card-light" id="quality">
+          <h3>Data Quality</h3>
+          <p>Consistency monitoring, quality gates and automated reconciliation.</p>
         </div>
         <div class="card-light">
           <h3>Semantic Layer</h3>
@@ -203,26 +230,28 @@ const breadcrumbs = [
   </section>
 
   <!-- ===== VENDOR-AGNOSTIC ===== -->
-  <section class="section section--dark" id="vendor-agnostic">
+  <section class="section section--dark" id="vendor-agnostic" style="border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
     <div class="container">
       <div class="vendor-box anim-fade-up">
         <div class="vendor-content">
           <h2 class="section-title" style="text-align: left; color: #fff;">Vendor-Agnostic by <span class="grad-text">Design</span></h2>
-          <p class="section-sub" style="text-align: left; margin-inline: 0; margin-bottom: 24px;">
+          <p class="section-sub" style="text-align: left; margin-inline: 0; margin-bottom: 24px; color: rgba(255,255,255,0.8);">
             We are not tied to a single technology vendor. We evaluate alternatives and design the best-fit architecture based on your specific needs.
           </p>
           <ul class="check-list">
-            <li>Data volumes and performance requirements</li>
-            <li>Your existing ecosystem and constraints</li>
-            <li>Scalability and flexibility needs</li>
-            <li>Cost efficiency and operational sustainability</li>
+            <li style="color: rgba(255,255,255,0.7);">Data volumes and performance requirements</li>
+            <li style="color: rgba(255,255,255,0.7);">Your existing ecosystem and constraints</li>
+            <li style="color: rgba(255,255,255,0.7);">Scalability and flexibility needs</li>
+            <li style="color: rgba(255,255,255,0.7);">Cost efficiency and operational sustainability</li>
           </ul>
-          <div class="vendor-badge">
+          <div class="vendor-badge" style="background: rgba(0,200,150,0.1); color: var(--clr-primary); border: 1px solid rgba(0,200,150,0.2);">
             Future-proof platforms without lock-in — optimized for your business goals.
           </div>
         </div>
         <div class="vendor-visual">
-          <img src="/assets/images/dataplatform.png" alt="Data Platform Vendor-Agnostic" class="vendor-img" />
+          <div class="tech-glow-box">
+            <img src="/assets/img/data_architecture_abstract_1772397463623.png" alt="Data Architecture Visual" class="vendor-img" style="filter: drop-shadow(0 0 30px rgba(0,200,150,0.3));" />
+          </div>
         </div>
       </div>
     </div>
@@ -402,14 +431,14 @@ const breadcrumbs = [
   </section>
 
   <!-- ===== CTA ===== -->
-  <section class="section section--white">
+  <section class="section section--dark">
     <div class="container">
-      <div class="card-light cta-card text-center anim-fade-up">
-        <h2 class="section-title" style="margin-bottom: 20px;">Build Your Data Platform <span class="grad-text">Strategy</span> with Intellica</h2>
-        <p class="section-sub" style="margin-bottom: 32px;">
+      <div class="cta-strip text-center anim-fade-up">
+        <h2 class="section-title">Build Your Data Platform <span class="grad-text">Strategy</span> with Intellica</h2>
+        <p class="section-sub">
           Let's assess your current architecture, define the target platform and plan a roadmap that enables analytics and AI at scale.
         </p>
-        <div class="hero-actions" style="justify-content: center;">
+        <div class="hero__actions" style="justify-content: center; margin-top: 32px;">
           <a class="btn btn-primary btn-pill btn-lg" href="/contact">Contact Us</a>
         </div>
       </div>
@@ -485,46 +514,78 @@ const breadcrumbs = [
     line-height: 1.5;
     margin: 0;
   }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-    align-items: center;
-    padding-top: 60px;
-    padding-bottom: 80px;
+  /* HERO: STANDARDIZED */
+  .hero { 
+    min-height: 800px; display: flex; align-items: center; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
   }
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .hero__inner { 
+    display: flex; align-items: center; justify-content: center; position: relative; width: 100%; 
   }
-  .hero-title {
-    margin-bottom: 24px;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: #fff;
-    line-height: 1.1;
+  .hero__content-wrap { 
+    display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 40px; width: 100%; 
   }
-  .hero-desc {
-    font-size: 1.25rem;
-    color: rgba(255,255,255,0.8);
-    max-width: 600px;
-    margin-bottom: 40px;
+  .hero__content { 
+    display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; 
   }
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 40px;
+  .hero__title { 
+    font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; 
+  }
+  .hero__accent { 
+    display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; 
+  }
+  .hero__desc { 
+    font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; 
+  }
+  .hero__actions { 
+    display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px;
   }
   .pills-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 24px;
+    display: flex; flex-wrap: wrap; gap: 12px;
   }
-  .hero-note {
-    font-size: 0.85rem;
-    color: var(--clr-muted);
-    font-style: italic;
+  .pill {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+  .hero__visual { 
+    display: flex; justify-content: center; align-items: center; 
+  }
+  .hero__shape-new { 
+    width: 100%; max-width: 600px; 
+    filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.2)); 
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+
+  @media (max-width: 1024px) {
+    .hero { min-height: 700px !important; }
+    .hero__content-wrap {
+      grid-template-columns: 1fr;
+      text-align: left;
+      position: relative;
+      padding-top: 40px;
+    }
+    .hero__content { align-items: flex-start; }
+    .hero__visual {
+      position: absolute;
+      top: 10px; 
+      right: 15px;
+      width: 90px;
+      justify-content: flex-end;
+      margin: 0;
+      z-index: 10;
+    }
+    .hero__shape-new { max-width: 100%; opacity: 0.9; }
+    .hero__desc { font-size: 1.15rem; max-width: 100%; margin-bottom: 32px; }
+    .hero__title { font-size: clamp(2.2rem, 8vw, 3.5rem); margin-bottom: 16px; }
+    .pills-row { gap: 8px; }
+    .pill { font-size: 0.8rem; padding: 6px 12px; }
   }
 
   /* Hero Side Card */
@@ -562,10 +623,100 @@ const breadcrumbs = [
     display: block;
     margin-bottom: 2px;
   }
-  .engagement-desc {
-    font-size: 0.95rem;
+  /* Modern Archi Viz */
+  .archi-card-modern {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 60px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+  }
+  .archi-layers-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .archi-layer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .layer-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .layer-chip {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  .layer-chip.highlight {
+    background: rgba(0, 200, 150, 0.1);
+    border-color: rgba(0, 200, 150, 0.3);
     color: var(--clr-primary);
-    font-weight: 500;
+  }
+  .archi-arrow {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+  .platform-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .platform-row {
+    display: flex;
+    gap: 12px;
+  }
+  .platform-segment {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .platform-segment.destaque {
+    background: linear-gradient(135deg, rgba(0, 200, 150, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+    border-color: rgba(0, 200, 150, 0.3);
+    color: #fff;
+    padding: 24px;
+  }
+  .tech-glow-box {
+    position: relative;
+    padding: 20px;
+  }
+  .tech-glow-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 200, 150, 0.15) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: -1;
+  }
   }
 
   /* KPI Banner */

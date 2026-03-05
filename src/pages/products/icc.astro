@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "ICC", url: "/products/icc" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "ICC", url: `${siteUrl}/products/icc` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ICC — Intellica Consistency Controller",
+  "description": "Central data consistency management, reconciliation, and quality control platform for enterprise data integrity.",
+  "applicationCategory": "BusinessApplication, DataGovernance",
+  "operatingSystem": "Web-based",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="ICC — Intellica Consistency Controller | Intellica" description="ICC: Automated data reconciliation and consistency management; ensuring trust across source systems and reporting layers with real-time drift alerts." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

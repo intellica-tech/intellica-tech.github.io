@@ -32,7 +32,9 @@ const websiteSchema = {
           </div>
         </div>
         <div class="hero__visual anim-fade-up">
-          <img class="hero__shape-new" src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica" aria-hidden="true" />
+          <div class="tech-glow-box">
+             <img class="hero__shape-new" src="/assets/img/index_hero_data_abstract_1772742957116.png" alt="Intellica Data & AI" style="filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.2));" />
+          </div>
         </div>
       </div>
     </div>
@@ -781,6 +783,41 @@ const websiteSchema = {
   line-height: 1.1;
   margin-bottom: 16px;
   color: var(--clr-light-text);
+}
+.tech-glow-box {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tech-glow-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 200, 150, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+}
+
+/* Refined Step Cards */
+.step-card {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 200, 150, 0.1);
+  border-color: rgba(0, 200, 150, 0.3) !important;
+}
+.step-card__num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--clr-primary), #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .shelf-desc {
   font-size: 1.05rem;

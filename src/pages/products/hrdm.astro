@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "HRDM", url: "/products/hrdm" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "HRDM", url: `${siteUrl}/products/hrdm` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HRDM — Human Resources Data Model",
+  "description": "Data warehouse model optimized for HR processes, workforce analytics, payroll, and talent management.",
+  "applicationCategory": "BusinessApplication, DataModel",
+  "operatingSystem": "Platform independent",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
-<Layout title="HRDM — Human Resources Data Model | Intellica" description="HRDM: Optimized data warehouse model for HR analytics; covering talent management, payroll, and workforce planning for rapid strategic insights." breadcrumbs={breadcrumbs}>
+<Layout title="HRDM — Human Resources Data Model | Intellica" description="HRDM: Comprehensive data warehouse model for HR analytics; covering talent management, employee lifecycle, and workforce optimization." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

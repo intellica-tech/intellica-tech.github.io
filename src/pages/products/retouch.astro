@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "ReTouch", url: "/products/retouch" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "ReTouch", url: `${siteUrl}/products/retouch` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ReTouch",
+  "description": "Data entry management platform that validates and imports external data with approval workflows and audit trails.",
+  "applicationCategory": "BusinessApplication, DataEntry",
+  "operatingSystem": "Web-based",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="ReTouch — Reference Data & Entry Management | Intellica" description="ReTouch: Governed data entry and reference data management; replacing manual processes with validated workflows and full audit trails." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

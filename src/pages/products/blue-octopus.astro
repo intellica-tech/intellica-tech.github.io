@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "Blue Octopus", url: "/products/blue-octopus" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "Blue Octopus", url: `${siteUrl}/products/blue-octopus` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Blue Octopus",
+  "description": "AI-powered centralized analytics and surveillance platform for critical data monitoring and action management.",
+  "applicationCategory": "BusinessApplication, AISurveillance",
+  "operatingSystem": "Web-based",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="Blue Octopus — AI Surveillance & Action Platform | Intellica" description="Blue Octopus: AI-powered centralized analytics and surveillance platform for critical data monitoring, event detection, and action management." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

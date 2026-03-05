@@ -46,7 +46,7 @@ const aboutMenu = [
 ];
 ---
 
-<header class="site-header">
+<header class="site-header" role="banner">
   <div class="container header-inner">
     <!-- Logo -->
     <a href="/" class="brand" aria-label="Intellica Home">
@@ -116,7 +116,7 @@ const aboutMenu = [
         </div>
       </div>
 
-      <a href="/contact" class="nav-link">CONTACT US</a>
+      <a href="/contact" class="nav-link">Contact</a>
     </nav>
 
     <!-- Mobile Hamburger -->
@@ -134,7 +134,7 @@ const aboutMenu = [
     <a href="/insights" class="mobile-link">Insights</a>
     <a href="/partners" class="mobile-link">Partners</a>
     <a href="/about" class="mobile-link">About</a>
-    <a href="/contact" class="mobile-link">CONTACT US</a>
+    <a href="/contact" class="mobile-link">Contact</a>
   </div>
 </header>
 
@@ -348,6 +348,6 @@ const aboutMenu = [
 
 @media (max-width: 1100px) {
   .nav-desktop { display: none; }
-  .mobile-toggle { display: flex; }
+  .mobile-toggle { display: none; }
 }
 </style>

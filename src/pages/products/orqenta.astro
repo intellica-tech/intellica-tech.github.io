@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "Orqenta", url: "/products/orqenta" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "Orqenta", url: `${siteUrl}/products/orqenta` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ORQENTA",
+  "description": "Bank-grade deterministic workflow orchestration engine for mission-critical enterprise processes.",
+  "applicationCategory": "BusinessApplication, WorkflowEngine",
+  "operatingSystem": "Platform independent",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="ORQENTA — Deterministic Workflow Orchestration | Intellica" description="ORQENTA: Bank-grade workflow orchestration engine. Safe, deterministic, and auditable execution for mission-critical enterprise processes." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

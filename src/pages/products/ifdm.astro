@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "IFDM", url: "/products/ifdm" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "IFDM", url: `${siteUrl}/products/ifdm` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "IFDM — Intellica Finance Data Model",
+  "description": "A standard data model approach for finance analytics that provides core assets, KPI frameworks, and analytical layers for rapid data warehouse transformation.",
+  "applicationCategory": "BusinessApplication, DataModel",
+  "operatingSystem": "Platform independent",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="IFDM — Intellica Finance Data Model | Intellica" description="IFDM: Standard data model approach for finance analytics; fast mapping/discovery, KPI framework and wave-based reporting rollout." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

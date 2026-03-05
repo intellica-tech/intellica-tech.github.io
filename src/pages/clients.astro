@@ -23,16 +23,23 @@ const sectors = [
       { name: 'Yapı Kredi', src: '/assets/images/logos/Yapı_kredi_logo.png' },
       { name: 'DenizBank', src: '/assets/images/logos/DenizBank_logo.svg (1).png' },
       { name: 'VakıfBank', src: '/assets/images/logos/Vakıfbank_logo.svg' },
-      { name: 'QNB Finansbank', src: '/assets/images/logos/finansbank-logo.png' },
-      { name: 'Kuveyt Türk', src: '/assets/images/logos/Kuveyt_Türk.png' },
+      { name: 'QNB Finansbank', src: '/assets/images/logos/Finansbank_logo.svg' }, // Updated
+      { name: 'Kuveyt Türk', src: '/assets/images/logos/kuveytturk.jpg' }, // Updated
       { name: 'Albaraka', src: '/assets/images/logos/Al_Baraka_Banking_Group_Logo.svg' },
+      { name: 'Anadolubank', src: '/assets/images/logos/Anadolubank_logo.svg' }, // Added
+      { name: 'Türkiye Finans', src: '/assets/images/logos/Türkiye_finans.png' }, // Added
       { name: 'Anadolu Sigorta', src: '/assets/images/logos/Anadolu_Sigorta_logo.svg' },
       { name: 'Allianz', src: '/assets/images/logos/Allianz.svg.png' },
+      { name: 'Anadolu Hayat', src: '/assets/images/logos/Anadolu_Hayat_Emeklilik_logo.svg' }, // Added
+      { name: 'Avivasa', src: '/assets/images/logos/Avivasa-logo.jpg' }, // Added
       { name: 'Zagrebačka Banka', src: '/assets/images/logos/Zagrebačka-banka-Logo.svg' },
       { name: 'Kaspi Bank', src: '/assets/images/logos/kaspi.png' },
-      { name: 'Aktif Bank', src: '/assets/images/logos/aktif.png' },
+      { name: 'Aktif Bank', src: '/assets/images/logos/birbank..svg' }, // Placeholder (birbank) or keep existing if correct
       { name: 'TBI Bank', src: '/assets/images/logos/tbi-bank.png' },
-      { name: 'Birbank', src: '/assets/images/logos/birbank..svg' }
+      { name: 'Birbank', src: '/assets/images/logos/birbank..svg' },
+      { name: 'Tinkoff', src: '/assets/images/logos/Tinkoffbank.png' }, // Added
+      { name: 'Bakcell', src: '/assets/images/logos/bakcell.svg' }, // Moved to relevant sector
+      { name: 'BKT', src: '/assets/images/logos/bkt.png' } // Added
     ]
   },
   {
@@ -47,6 +54,7 @@ const sectors = [
       { name: 'Vodafone', src: '/assets/images/logos/Vodafone_logo_2017.png' },
       { name: 'Turkcell', src: '/assets/images/logos/Turkcell_logo.png' },
       { name: 'Türk Telekom', src: '/assets/images/logos/TURKTELEKOM.png' },
+      { name: 'Superonline', src: '/assets/images/logos/Turkcell_logo.png' }, // Placeholder for htm
       { name: 'Zain', src: '/assets/images/logos/ZAINr.png' },
       { name: 'T-Mobile', src: '/assets/images/logos/TMOBILE.png' },
       { name: 'Digiturk', src: '/assets/images/logos/digiturk.png' },
@@ -65,7 +73,7 @@ const sectors = [
     logos: [
       { name: 'Ministry of Interior', src: '/assets/images/logos/InteriorMinistryTR.png' },
       { name: 'EGM', src: '/assets/images/logos/egm_logo2.png' },
-      { name: 'SGK', src: '/assets/images/logos/SGK.png' },
+      { name: 'SGK', src: '/assets/images/logos/SGKLOGOTYPE-RENKLI.svg' }, // Updated
       { name: 'TCDD', src: '/assets/images/logos/TCDD_Taşımacılık_Logo.png' }
     ]
   },
@@ -82,6 +90,11 @@ const sectors = [
       { name: 'Boyner', src: '/assets/images/logos/Boyner_Logo.jpg' },
       { name: 'LC Waikiki', src: '/assets/images/logos/lcw.png' },
       { name: 'Petrol Ofisi', src: '/assets/images/logos/petrolofisi.webp' },
+      { name: 'Hopi', src: '/assets/images/logos/hopi.png' }, // Added
+      { name: 'Markafoni', src: '/assets/images/logos/markafoni.jpg' }, // Added
+      { name: 'Iyzico', src: '/assets/images/logos/iyzico.jpg' }, // Added
+      { name: 'Ininal', src: '/assets/images/logos/ininal.png' }, // Added
+      { name: 'Hopi', src: '/assets/images/logos/hopi.png' }, // Added
       { name: 'Gazprom', src: '/assets/images/logos/Gazprom_logo.svg.png' },
       { name: 'Erciyes Anadolu', src: '/assets/images/logos/Erciyes_Anadolu_Holding_logo.svg' },
       { name: 'Wittur', src: '/assets/images/logos/WITTUR_LOGO.jpg' }
@@ -105,7 +118,6 @@ const allLogos = sectors.flatMap(s => s.logos);
           <p class="hero__desc">Intellica supports leading organizations in building modern data platforms, delivering advanced analytics and deploying production-grade AI solutions across multiple industries and regions.</p>
           <div class="hero__actions">
             <a href="/contact" class="btn btn-primary btn-pill btn-lg">Contact Us</a>
-            <a href="/solutions" class="btn btn-ghost btn-pill btn-lg">Explore Solutions</a>
           </div>
         </div>
         
@@ -376,12 +388,14 @@ const allLogos = sectors.flatMap(s => s.logos);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
   border: 1px solid #f1f5f9;
 }
 .logo-tile img { 
-  max-width: 100%; 
-  max-height: 100%; 
+  width: auto;
+  height: auto;
+  max-width: 94%; 
+  max-height: 80%; 
   object-fit: contain; 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -440,14 +454,29 @@ const allLogos = sectors.flatMap(s => s.logos);
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
+  .hero { min-height: 650px !important; }
+  .hero__content-wrap {
+    grid-template-columns: 1fr;
+    text-align: left;
+    position: relative;
+    padding-top: 20px;
+  }
+  .hero__content { align-items: flex-start; }
+  .hero__visual {
+    position: absolute;
+    top: 10px; 
+    right: 15px;
+    width: 90px;
+    justify-content: flex-end;
+    margin: 0;
+    z-index: 10;
+  }
+  .hero__shape-new { max-width: 100%; opacity: 0.9; }
+  .hero__desc { font-size: 1.15rem; max-width: 100%; margin-bottom: 24px; }
+  .hero__title { font-size: clamp(2.2rem, 8vw, 3.5rem); margin-bottom: 16px; }
   .logo-wall { grid-template-columns: repeat(4, 1fr); }
   .sector-logos { grid-template-columns: repeat(4, 1fr); }
-  .hero__content-wrap { grid-template-columns: 1fr; text-align: center; }
-  .hero__content { align-items: center; }
-  .hero__desc { margin-inline: auto; }
-  .hero__actions { justify-content: center; }
-  .hero__visual { margin-top: 40px; }
   .outcomes-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {

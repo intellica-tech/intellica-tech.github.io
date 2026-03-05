@@ -217,16 +217,10 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
 
 <Layout title={`${article.title} | Intellica Insights`} description={article.desc} breadcrumbs={breadcrumbs}>
   <!-- HERO SECTION (Dark & Impactful) -->
-  <section class="insight-hero">
+  <section class="insight-hero noise">
     <div class="insight-hero-bg"></div>
     <div class="container relative">
-      <nav class="breadcrumb-nav anim-fade-up" aria-label="Breadcrumb">
-        <a href="/">Home</a>
-        <span class="sep">/</span>
-        <a href="/insights">Insights</a>
-        <span class="sep">/</span>
-        <span class="current">{article.title}</span>
-      </nav>
+      
       
       <div class="insight-header-meta anim-fade-up">
         <span class="insight-date">{article.date}</span>
@@ -299,7 +293,7 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
 .insight-hero {
   position: relative;
   padding: 180px 0 100px;
-  background: var(--clr-dark);
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
   color: #fff;
   overflow: hidden;
   text-align: center;
@@ -308,7 +302,7 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.1), transparent 70%);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 .relative { position: relative; z-index: 2; }
 
@@ -342,7 +336,7 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
   font-weight: 700;
   color: var(--clr-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 .insight-dot {
   width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2);
@@ -354,7 +348,9 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
   max-width: 1000px;
   margin-inline: auto;
   margin-bottom: 40px;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.05em;
+  font-weight: 950;
+  color: #fff;
 }
 
 .insight-header-tags {

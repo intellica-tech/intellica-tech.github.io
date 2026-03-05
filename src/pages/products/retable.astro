@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "Retable AI", url: "/products/retable" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "Retable AI", url: `${siteUrl}/products/retable` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Retable",
+  "description": "Cloud-based, collaborative no-code data and application development platform for modern data teams.",
+  "applicationCategory": "BusinessApplication, NoCode",
+  "operatingSystem": "Web-based",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="Retable AI — No-Code Data Application Platform | Intellica" description="Retable AI: Collaborative cloud-based no-code platform; transform spreadsheets into powerful databases with AI-driven automations and seamless integrations." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

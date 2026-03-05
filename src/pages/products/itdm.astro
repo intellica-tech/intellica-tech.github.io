@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "ITDM", url: "/products/itdm" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "ITDM", url: `${siteUrl}/products/itdm` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ITDM — Intellica Telecom Data Model",
+  "description": "Industry-specific data model for telecom operators covering network, billing, and CRM dimensioning to accelerate business intelligence.",
+  "applicationCategory": "BusinessApplication, DataModel",
+  "operatingSystem": "Platform independent",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="ITDM — Intellica Telecom Data Model | Intellica" description="ITDM: Industry-standard telecom data warehouse model; TM Forum SID aligned, covering network, billing and CRM for rapid analytics deployment." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

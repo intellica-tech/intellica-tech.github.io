@@ -1,13 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "VAR", url: "/products/var" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "VAR", url: `${siteUrl}/products/var` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "VAR — Voice Analysis & Recognition",
+  "description": "AI-based voice analytics platform for automatic transcription, sentiment analysis, and quality compliance insights.",
+  "applicationCategory": "BusinessApplication, VoiceAnalytics",
+  "operatingSystem": "Web-based",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="VAR — Voice Analysis & Recognition | Intellica" description="VAR: AI-based voice analytics. Automatic transcription, sentiment analysis, and quality compliance insights for call centers and enterprise audio." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">

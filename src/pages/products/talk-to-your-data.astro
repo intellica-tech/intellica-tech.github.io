@@ -1,13 +1,32 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
-  { name: "Products", url: "/products" },
-  { name: "Talk To Your Data", url: "/products/talk-to-your-data" }
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "Talk To Your Data", url: `${siteUrl}/products/talk-to-your-data` }
 ];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Talk To Your Data",
+  "description": "AI-powered data analyst that allows users to query enterprise data using natural language. Translates questions into SQL and provides instant insights.",
+  "applicationCategory": "BusinessApplication, Analytics",
+  "operatingSystem": "Web-based",
+  "author": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <Layout title="Talk To Your Data — AI Data Analytics | Intellica" description="Talk To Your Data: Query your enterprise data using natural language. AI-powered insights, visualization, and tool orchestration." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
