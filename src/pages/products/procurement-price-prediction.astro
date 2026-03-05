@@ -1,0 +1,179 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: "Solutions", url: "/solutions" },
+  { name: "Procurement Price Prediction", url: "/products/procurement-price-prediction" }
+];
+---
+
+<Layout title="Procurement Price Prediction — AI Solutions | Intellica" description="Procurement Price Prediction: AI-powered price forecasting and anomaly detection for strategic procurement, optimizing purchasing decisions with market intelligence." breadcrumbs={breadcrumbs}>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label anim-fade-up">AI Solutions</div>
+      <h1 class="anim-fade-up">Procurement Price <span class="grad-text">Prediction</span></h1>
+      <p class="anim-fade-up">Predictive intelligence for your procurement strategy. Optimize purchasing decisions with AI-powered price forecasting and market-driven anomaly detection.</p>
+      <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">CONTACT US</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 48px; align-items: start;">
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px;">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">What does it <span class="grad-text">solve?</span></h2>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Problem</p>
+            <p style="color: var(--clr-light-muted);">Procurement teams struggle with volatile market prices, fluctuating FX rates, and inconsistent supplier quotes, leading to sub-optimal purchasing timing and cost overruns.</p>
+          </div>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Approach</p>
+            <p style="color: var(--clr-light-muted);">This AI solution integrates internal procurement data with external market indicators (Commodity indices, FX, Energy) to generate accurate reference prices and anomaly alerts for bids.</p>
+          </div>
+          <div>
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Business Value</p>
+            <p style="color: var(--clr-light-muted);">Significant cost savings on strategic categories, proactive risk management against market spikes, and automated fraud/anomaly detection in supplier bids.</p>
+          </div>
+        </div>
+
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px; background: #f8fafc;">
+          <h3 style="color: var(--clr-light-text); margin-bottom: 24px;">When is it <span class="grad-text">preferred?</span></h3>
+          <ul class="check-list">
+            <li>For organizations with high-volume procurement of raw materials or commodities</li>
+            <li>To standardize "Reference Price" calculations across distributed purchasing units</li>
+            <li>When manual price tracking in Excel is no longer sufficient for global markets</li>
+            <li>To detect suspicious price anomalies or outlier quotations from suppliers</li>
+            <li>For strategic medium-to-long term planning of high-value procurement contracts</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--clr-light-muted); margin-top: 24px; font-style: italic;">Note: Models are customized based on the specific commodity universe of the enterprise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Capabilities</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Solution <span class="grad-text">Capabilities</span></h2>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Index Integration</h3>
+          <p>Automatic daily ingestion of global commodity, energy, and financial indices (LME, Brent, etc.).</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Price Forecasting</h3>
+          <p>Multi-variable ML models predicting price trends for the upcoming 1 to 12 months.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Anomaly Detection</h3>
+          <p>Automated flagging of supplier bids that deviate from expected market-driven ranges.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Driver Analysis</h3>
+          <p>Identification of which external factors (FX, labor, oil) are most affecting your costs.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Strategic Alerts</h3>
+          <p>Notifications when market conditions suggest optimal windows for high-volume purchases.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Category Customization</h3>
+          <p>Tailored logic and models for different industrial categories (Metal, Plastic, Logistics, etc.).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>Optimize Your <span class="grad-text">Spend</span> with AI</h2>
+        <p>Talk to our experts to learn how predictive intelligence can transform your procurement strategy.</p>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">CONTACT US</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.check-list, .bullet-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.check-list li, .bullet-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: var(--clr-light-muted);
+  font-size: 0.95rem;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--clr-primary); font-weight: bold;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clr-primary);
+}
+
+.cap-card-modern {
+  padding: 32px;
+  background: #fff;
+  border: 1px solid #e8eef5;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.cap-card-modern:hover {
+  transform: translateY(-5px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.cap-icon-box {
+  width: 80px;
+  height: 80px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+.cap-icon-box img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.cap-card-modern h3 {
+  font-size: 1.1rem;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+.cap-card-modern p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>

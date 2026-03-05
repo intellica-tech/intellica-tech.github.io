@@ -1,0 +1,521 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  const articles = [
+    {
+      slug: "dashboard-guven",
+      title: "Why Trust Declines as the Number of Dashboards Increases",
+      desc: "Why does dashboard inflation actually hurt trust? A practical framework exploring definition drift, loss of lineage, and maintenance obesity.",
+      date: "Feb 1, 2026",
+      time: "6 min",
+      topics: ["Data Governance", "Dashboard Governance", "Data Lineage", "Semantic Layer"],
+      content: `
+        <p class="lead">As dashboards multiply, one would expect trust in data to increase. In large enterprises, however, the opposite is often true: as the number of dashboards rises, trust falls.</p>
+        <div class="callout"><b>Quick summary:</b> Definition drift + loss of lineage + invisible change impact → "Where does this number come from?" remains unanswered → trust erodes.</div>
+        
+        <h2>The Paradox</h2>
+        <p>When the same metric looks different on different screens, the dashboard ceases to be a decision support tool; it begins to produce conflict between teams rather than alignment. Trust isn't built by the volume of information, but by its consistency.</p>
+        
+        <h2>Three Core Destructions</h2>
+        <ul>
+          <li><b>Definition Confusion (Metric Drift):</b> The same business concept (e.g., "Active Customer") is defined differently by different teams. If Finance and Sales see different numbers for the same label, the dashboard becomes a source of debate rather than action.</li>
+          <li><b>Loss of Lineage:</b> When the data journey from source to surface is invisible, trust is broken. Users cannot verify the origin of the numbers, leading to the "black box" syndrome where they revert to their own Excel files.</li>
+          <li><b>Maintenance Obesity:</b> A small database change can affect hundreds of dashboards. Without impact analysis, these dashboards become "stale" or incorrect without anyone noticing, until a major stakeholder points out an error.</li>
+        </ul>
+        
+        <h2>A Practical Solution Framework</h2>
+        <ul>
+          <li><b>Official Metric Catalog:</b> Maintain a single source of truth for definitions—one dictionary, one owner for every core business metric.</li>
+          <li><b>Lineage Visibility:</b> Provide interactive traceability from the raw data source all the way to the final report directly within the BI tool.</li>
+          <li><b>Change Discipline:</b> Implement rigorous impact analysis, versioning, and clear communication workflows for every data pipeline modification.</li>
+          <li><b>Trust Signals:</b> Visually indicate the timestamp of the last data update, the DQ health status, and the clear scope of the data.</li>
+        </ul>
+        <p>Trust in data is not a technical byproduct; it is a designed outcome. By focusing on consistency rather than volume, enterprises can turn their dashboard sprawl into a high-trust decision engine.</p>
+        <p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>
+      `
+    },
+    {
+      slug: "manuel-kontroller",
+      title: "Why Manual Controls Are Still Alive in the Age of AI",
+      desc: "The real reason behind Excel silos: trust trauma and risk ownership. How to design trust into systems to reduce manual reconciliation.",
+      date: "Feb 1, 2026",
+      time: "5 min",
+      topics: ["Data Quality", "Reconciliation", "Operational Risk", "Data Lineage"],
+      content: `
+        <p class="lead">Excel files often survive not because of technical deficiencies, but because of the trauma caused by "incorrect reports" in the past. Manual control becomes a psychological sanctuary for decision-makers.</p>
+        <div class="callout"><b>Quick summary:</b> Banning Excel is not the solution. Trust must be designed into the automatic system: visibility + automated reconciliation + clear ownership.</div>
+        
+        <h2>The Breaking Point of Trust</h2>
+        <p>A single incident with an incorrect report can destroy years of accumulated trust in seconds. Users start thinking, "What if today is one of those days?" and revert to manual checks to protect themselves—and their decisions—from risk.</p>
+        
+        <h2>Why Does Manual Control Feel "Safe"?</h2>
+        <ul>
+          <li><b>Visibility:</b> "I saw the difference with my own eyes" provides immediate peace of mind that a black-box system cannot match.</li>
+          <li><b>Ownership:</b> "I checked it myself" makes the responsibility distribution clear and personal. If there's an error, they know why.</li>
+          <li><b>Flexibility:</b> It provides a seemingly quick solution to an immediate data gap, even though it accumulates massive technical and operational debt over time.</li>
+        </ul>
+        
+        <h2>Three Steps to Reduce Manual Work</h2>
+        <ul>
+          <li><b>Lineage:</b> Let the system automatically and visually answer the question: "Where does this number come from?"</li>
+          <li><b>Automated Reconciliation:</b> Run critical consistency checks (e.g., GL vs Sub-ledger) in a scheduled, planned, and traceable manner that users can monitor.</li>
+          <li><b>Alert + Action Line:</b> Define clear owners for data issues, set SLAs for resolution, and standardize the steps for closing an alert so users know someone is watching.</li>
+        </ul>
+        <p>The goal is not to eliminate Excel, but to make the central data platform so reliable and transparent that using Excel feels like an unnecessary risk rather than a safe haven.</p>
+        <p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>
+      `
+    },
+    {
+      slug: "verinin-nabzi",
+      title: "Data Autopsy or Data Pulse? Rethinking Early Warning",
+      desc: "Standard reports are autopsies; true early warning is a data-in-motion discipline. Leveraging dynamic thresholds and event correlation.",
+      date: "Feb 1, 2026",
+      time: "6 min",
+      topics: ["Early Warning", "Data Observability", "Anomaly Detection", "Event Correlation"],
+      content: `
+        <p class="lead">Most reports are autopsies: they tell you "What happened yesterday." Early warning is different—it's the pulse, catching the signal before the crisis actually arises.</p>
+        <div class="callout"><b>Quick summary:</b> Early warning is not a Business Intelligence (BI) output; it is a data-in-motion discipline. It requires dynamic thresholds + event correlation + an immediate action line.</div>
+        
+        <h2>Why Is the Report Always Late?</h2>
+        <p>By the time a report is opened, analyzed, and discussed, the opportunity to intervene is often gone. While you are watching the result on a dashboard, the underlying problem is actively impacting your bottom line.</p>
+        
+        <h2>Triple Filtering for Real-Time Awareness</h2>
+        <ul>
+          <li><b>Dynamic Thresholds:</b> Static limits generate too much noise and lead to alert fatigue. Thresholds must adapt to seasonal patterns, business cycles, and evolving baselines.</li>
+          <li><b>Event Correlation:</b> Catch complex patterns by correlating events across different systems (e.g., Drop in API calls + Increase in Support tickets), rather than looking at metrics in isolation.</li>
+          <li><b>Action Channel:</b> A warning should not just be an email; it should trigger a direct intervention, a system-level guardrail, or a priority ticket in a workflow system.</li>
+        </ul>
+        
+        <h2>Designing a High-Quality Early Warning System</h2>
+        <ul>
+          <li><b>Reduce Noise:</b> Prioritize signals that actually require action. A signal without a clear response path is just noise.</li>
+          <li><b>Provide Context:</b> Every warning should explain which business process is being impacted, the potential cost of inaction, and the recommended first step.</li>
+          <li><b>Actionable Ownership:</b> Every signal must have a defined owner and a clear path to resolution that is tracked by the system.</li>
+        </ul>
+        <p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>
+      `
+    },
+    {
+      slug: "is-analizi",
+      title: "Business Analysis: Where Everything Starts and Ends",
+      desc: "Success starts before the code. A professional approach to clarify scope and reduce regression risk with 5W1H and impact analysis.",
+      date: "Feb 1, 2026",
+      time: "7 min",
+      topics: ["Business Analysis", "Scope Management", "Impact Analysis", "CR Process"],
+      content: `
+        <p class="lead">The fate of a project is determined long before the first line of code is written. Professional business analysis filters every request through business value, technical feasibility, and system integrity.</p>
+        <div class="callout"><b>Quick summary:</b> Break the "simple report" illusion. Clarify scope and manage regression risk using 5W1H methodology and thorough impact analysis.</div>
+        
+        <h2>The Chaos of Definitions</h2>
+        <p>If the same business concept is assigned different meanings by different stakeholders, the development process will eventually produce risk rather than value. Good analysis is the process of resolving these contradictions early.</p>
+        
+        <h2>Methodology for Precision</h2>
+        <ul>
+          <li><b>5W1H:</b> Rigorously ask What, Why, How, Where, When, and Who for every single requirement to uncover hidden complexities.</li>
+          <li><b>Impact Analysis:</b> Make the hidden "domino effect" of a change visible before implementation begins. How will this change impact existing reports, downstream systems, or historical data?</li>
+          <li><b>CR Discipline:</b> Manage every Change Request with a balanced approach that respects both business agility and system stability.</li>
+        </ul>
+        
+        <h2>Practical Deliverables of Good Analysis</h2>
+        <ul>
+          <li><b>Clear Project Scope:</b> Documentation that includes not just what is being built, but also what is explicitly out of scope.</li>
+          <li><b>Risk & Dependency Mapping:</b> A proactive list of what could go wrong and which systems are required for success.</li>
+          <li><b>Standardized CR Workflow:</b> A clear path for new requests that prevents scope creep and ensures every change is intentional.</li>
+        </ul>
+        <p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>
+      `
+    },
+    {
+      slug: "rag-ne-zaman-ise-yarar",
+      title: "When Does RAG (Retrieval) Work and When Does It Mislead?",
+      desc: "RAG success depends more on the quality of information access than the model: chunking, metadata, relevance, freshness, and attribution.",
+      date: "Feb 1, 2026",
+      time: "8 min",
+      topics: ["RAG", "GenAI", "Information Retrieval", "Document AI"],
+      content: `
+        <p class="lead">RAG (Retrieval-Augmented Generation) is the most practical way to speak your <b>enterprise's internal knowledge</b>. However, RAG success is built on the quality of your <b>data retrieval</b>, not just the "intelligence" of the model.</p>
+        <div class="callout"><b>Quick summary:</b> RAG success is built on 5 pillars: <b>chunking + metadata + relevance + freshness + attribution</b>. If one is weak, RAG "polishes the wrong answer" instead of finding the right one.</div>
+        
+        <h2>When Does RAG Really Work?</h2>
+        <ul>
+          <li><b>Scattered Knowledge:</b> When your information is across many documents like procedures, contract clauses, runbooks, or FAQs.</li>
+          <li><b>Quote-Based Answers:</b> When users need a source-backed response rather than creative generation.</li>
+          <li><b>Current Information:</b> When you need to answer "What is the latest policy?" and versioning is critical.</li>
+          <li><b>Governed Access:</b> When you need to ensure users only see information they are authorized to access based on their enterprise role.</li>
+        </ul>
+        
+        <h2>When Can RAG Mislead?</h2>
+        <ul>
+          <li><b>Ambiguous Sources:</b> When multiple documents provide contradictory information on the same topic without clear precedence.</li>
+          <li><b>Lack of Context:</b> When the answer depends heavily on complex tables or appendices that lose meaning when split into small chunks.</li>
+          <li><b>Extreme Precision:</b> When the difference between a "yes" and "no" depends on a tiny exception buried in a footnote.</li>
+        </ul>
+        
+        <h2>Five Pillars of Success</h2>
+        <p><b>1) Chunking:</b> Don't just split text by size; respect the document hierarchy and context to ensure the model understands the surrounding information.</p>
+        <p><b>2) Metadata:</b> Use tags (version, date, department) to filter and rank relevance beyond just keyword matching. Metadata is the key to enterprise-grade search.</p>
+        <p><b>3) Relevance:</b> Similarity is not the same as intent. Use re-ranking and semantic search to find the true <i>meaning</i> of the query.</p>
+        <p><b>4) Freshness:</b> Implement "Deprecated" flags and publication dates to ensure the latest information always takes precedence over the old.</p>
+        <p><b>5) Attribution:</b> Always provide the Document Name + Section + Link. It is the visual proof that builds user trust in the AI's answer.</p>
+        <p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>
+      `
+    },
+    {
+      slug: "genai-guven-standardi",
+      title: "Establishing a 'Trust Standard' in Enterprise GenAI",
+      desc: "Trust in GenAI is built through processes, measurement, and governance—not just model selection. Leveraging attribution, access, evaluation, and traceability.",
+      date: "Feb 1, 2026",
+      time: "9 min",
+      topics: ["GenAI", "Governance", "Security", "LLM Evaluation"],
+      content: `
+        <p class="lead">In Enterprise GenAI, the real question isn't "how smart is the model?" but <b>"how much can I trust the output?"</b> Trust is not a feature; it is a designed standard.</p>
+        <div class="callout"><b>Quick summary:</b> A trust standard is established through <b>attribution</b>, <b>governed access (RBAC)</b>, <b>rigorous evaluation (LLM eval)</b>, <b>deep observability</b>, and <b>human-in-the-loop (HITL)</b> workflows.</div>
+        
+        <h2>7 Components of the Trust Standard</h2>
+        <h3>1) Data Boundaries & Content Lifecycle</h3>
+        <p>Define what counts as a "single source of truth." Implement a strict lifecycle from draft to approved to archived so the model never consumes outdated information.</p>
+        
+        <h3>2) Access / RBAC (System-Controlled)</h3>
+        <p>Don't trust the model to follow privacy rules. Use a secure retrieval layer that filters content based on the user's specific enterprise permissions before it even reaches the LLM.</p>
+        
+        <h3>3) Evidence-First Attribution</h3>
+        <p>Build trust by presenting the "Answer + Evidence" structure. Every piece of information must be traceble back to its source document, section, and page.</p>
+        
+        <h3>4) Continuous Evaluation (LLM-as-a-Judge)</h3>
+        <p>Use "Golden Question Sets" and automated benchmarks (Groundedness, Faithfulness, Relevance) to ensure that model or index updates don't cause performance regressions.</p>
+        
+        <h3>5) Guardrails & Red Lines</h3>
+        <p>Define strict "never-do" policies for PII handling, financial advice, or competitive sensitivity. These should be enforced at both input and output stages by independent middleware.</p>
+        
+        <h3>6) Deep Observability</h3>
+        <p>Don't just log the final answer; log the context, the retrievals, the latency, and the reasoning steps to allow for root-cause analysis when things go wrong.</p>
+        
+        <h3>7) Human-in-the-Loop (HITL)</h3>
+        <p>For high-risk actions (financial transactions, contract approvals), always insert a human verification step into the agentic workflow. The AI facilitates; the human decides.</p>
+        
+        <p>Establishing this standard ensures that GenAI moves from "cool demo" to "production-grade tool" that the business can rely on for critical operations.</p>
+        <p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>
+      `
+    }
+  ];
+
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article, articles }
+  }));
+}
+
+const { article, articles } = Astro.props;
+const breadcrumbs = [
+  { name: "Insights", url: "/insights" },
+  { name: article.title, url: `/insights/${article.slug}` }
+];
+
+const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3);
+---
+
+<Layout title={`${article.title} | Intellica Insights`} description={article.desc} breadcrumbs={breadcrumbs}>
+  <!-- HERO SECTION (Dark & Impactful) -->
+  <section class="insight-hero noise">
+    <div class="insight-hero-bg"></div>
+    <div class="container relative">
+      
+      
+      <div class="insight-header-meta anim-fade-up">
+        <span class="insight-date">{article.date}</span>
+        <span class="insight-dot"></span>
+        <span class="insight-time">{article.time} read</span>
+      </div>
+      
+      <h1 class="insight-title anim-fade-up">{article.title}</h1>
+      
+      <div class="insight-header-tags anim-fade-up">
+        {article.topics.map(t => <span class="header-tag">{t}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY SECTION (White Background) -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="article-layout">
+        
+        <!-- Main Content -->
+        <article class="article-main anim-fade-up">
+          <div class="article-body" set:html={article.content} />
+          
+          <div class="article-footer">
+            <div class="footer-actions">
+              <a href="/insights" class="btn btn-primary btn-pill">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                BACK TO ALL INSIGHTS
+              </a>
+              <div class="share-box">
+                <!-- Social share placeholder -->
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Sidebar -->
+        <aside class="article-sidebar anim-fade-up">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Related Insights</h3>
+            <div class="related-stack">
+              {relatedArticles.map(ra => (
+                <a href={`/insights/${ra.slug}`} class="related-card">
+                  <h4 class="related-h">{ra.title}</h4>
+                  <p class="related-p">{ra.desc.substring(0, 85)}...</p>
+                  <span class="related-link">Read More →</span>
+                </a>
+              ))}
+            </div>
+            <a href="/insights" class="btn btn-ghost-dark btn-pill btn-full" style="margin-top: 32px;">EXPLORE LIBRARY</a>
+          </div>
+          
+          <div class="sidebar-card cta-card">
+            <h3 class="sidebar-title">Adapting this insight</h3>
+            <p class="cta-p">
+              Want to apply this methodology to your organization? Let's discuss your specific challenges and build a roadmap together.
+            </p>
+            <a href="/contact" class="btn btn-primary btn-pill btn-full">CONTACT US</a>
+          </div>
+        </aside>
+        
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+/* Hero Design */
+.insight-hero {
+  position: relative;
+  padding: 180px 0 100px;
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+.insight-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.1), transparent 70%);
+  opacity: 0.4;
+}
+.relative { position: relative; z-index: 2; }
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--clr-muted);
+  margin-bottom: 32px;
+}
+.breadcrumb-nav a {
+  color: var(--clr-muted);
+  transition: color 0.2s ease;
+}
+.breadcrumb-nav a:hover { color: var(--clr-primary); }
+.breadcrumb-nav .sep { color: rgba(255,255,255,0.2); }
+.breadcrumb-nav .current { color: #fff; font-weight: 600; }
+
+.insight-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.insight-date, .insight-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.insight-dot {
+  width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2);
+}
+
+.insight-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+  max-width: 1000px;
+  margin-inline: auto;
+  margin-bottom: 40px;
+  letter-spacing: -0.05em;
+  font-weight: 950;
+  color: #fff;
+}
+
+.insight-header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.header-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Layout */
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Article Styling */
+.article-main {
+  max-width: 850px;
+}
+.article-body :global(.lead) {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: var(--clr-light-text);
+  margin-bottom: 48px;
+  font-weight: 500;
+}
+.article-body :global(.callout) {
+  padding: 32px 40px;
+  background: #f8fafc;
+  border-left: 6px solid var(--clr-primary);
+  border-radius: 0 24px 24px 0;
+  margin: 48px 0;
+  font-size: 1.1rem;
+  color: #334155;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+.article-body :global(h2) {
+  font-size: 2.2rem;
+  margin-top: 64px;
+  margin-bottom: 24px;
+  color: var(--clr-light-text);
+  letter-spacing: -0.02em;
+}
+.article-body :global(h3) {
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: var(--clr-light-text);
+}
+.article-body :global(p) {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--clr-light-muted);
+  margin-bottom: 24px;
+}
+.article-body :global(ul), .article-body :global(ol) {
+  margin-bottom: 40px;
+  padding-left: 20px;
+}
+.article-body :global(li) {
+  font-size: 1.15rem;
+  color: var(--clr-light-muted);
+  margin-bottom: 16px;
+}
+.article-body :global(b), .article-body :global(strong) {
+  color: var(--clr-light-text);
+  font-weight: 700;
+}
+.article-body :global(.meta-line) {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* Article Footer */
+.article-footer {
+  margin-top: 100px;
+  padding-top: 48px;
+  border-top: 1px solid #e2e8f0;
+}
+.footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Sidebar */
+.sidebar-card {
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+}
+.cta-card {
+  background: linear-gradient(135deg, rgba(0, 200, 150, 0.05), rgba(0, 159, 227, 0.05));
+  border: 1px solid rgba(0, 200, 150, 0.1);
+}
+.sidebar-title {
+  font-size: 1.4rem;
+  margin-bottom: 32px;
+  color: var(--clr-light-text);
+}
+.related-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.related-card {
+  display: block;
+  text-decoration: none;
+  group: hover;
+}
+.related-h {
+  font-size: 1.1rem;
+  color: var(--clr-light-text);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+.related-card:hover .related-h { color: var(--clr-primary); }
+.related-p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.related-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.cta-p {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.btn-full { width: 100%; justify-content: center; }
+
+@media (max-width: 1200px) {
+  .article-layout { grid-template-columns: 1fr; gap: 60px; }
+  .article-sidebar { grid-row: 2; }
+}
+@media (max-width: 768px) {
+  .insight-hero { padding: 140px 0 60px; }
+  .insight-title { font-size: 2.2rem; }
+  .article-body :global(.lead) { font-size: 1.2rem; }
+  .article-body :global(h2) { font-size: 1.8rem; }
+}
+</style>
+

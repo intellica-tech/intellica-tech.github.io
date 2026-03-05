@@ -1,7 +1,7 @@
 ---
 const navLinks = [
   { label: 'Products', href: '/products' },
-  { label: 'Solutions', href: '/solutions' },
+  { label: 'AI Solutions', href: '/solutions' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -10,31 +10,43 @@ const products = [
   {
     category: 'Data Models',
     items: [
-      { name: 'IFDM', desc: 'Industry data model for finance', href: '/products#ifdm' },
-      { name: 'ITDM', desc: 'Industry data model for telecom', href: '/products#itdm' },
-      { name: 'HRDM', desc: 'Human resources data model', href: '/products#hrdm' },
+      { name: 'IFDM', desc: 'Industry data model for finance', href: '/products/ifdm' },
+      { name: 'ITDM', desc: 'Industry data model for telecom', href: '/products/itdm' },
+      { name: 'HRDM', desc: 'Human resources data model', href: '/products/hrdm' },
     ]
   },
   {
     category: 'Data Platform & Governance',
     items: [
-      { name: 'ICC', desc: 'Data consistency & quality control', href: '/products#icc' },
-      { name: 'ReTouch', desc: 'Validated data entry & RDM', href: '/products#retouch' },
-      { name: 'Retable AI', desc: 'No-code apps & data tables', href: '/products#retable' },
+      { name: 'ICC', desc: 'Data consistency & quality control', href: '/products/icc' },
+      { name: 'ReTouch', desc: 'Validated data entry & RDM', href: '/products/retouch' },
+      { name: 'Retable', desc: 'No-code apps & data tables', href: '/products/retable' },
+      { name: 'Orqenta', desc: 'Deterministic workflow orchestration', href: '/products/orqenta', target: '_blank' },
     ]
   },
   {
     category: 'AI Products',
     items: [
-      { name: 'Talk To', desc: 'Natural language data interaction', href: '/products#talkto' },
-      { name: 'Blue Octopus', desc: 'Event monitoring & action management', href: '/products#blueoctopus' },
-      { name: 'VAR', desc: 'AI-powered voice analysis & recognition', href: '/products#var' },
+      { name: 'Talk To', desc: 'Natural language data analyst', href: '/products/talk-to-your-data' },
+      { name: 'Blue Octopus', desc: 'Event monitoring & action management', href: '/products/blue-octopus' },
+      { name: 'VAR', desc: 'AI voice analytics & recognition', href: '/products/var' },
+    ]
+  }
+];
+
+const aboutMenu = [
+  {
+    category: 'Company',
+    items: [
+      { name: 'About Intellica', desc: 'Our mission and global footprint', href: '/about' },
+      { name: 'Academy', desc: 'Our Data & AI training center', href: '/academy' },
+      { name: 'Careers', desc: 'Join our journey of innovation', href: '/careers' },
     ]
   }
 ];
 ---
 
-<header class="site-header">
+<header class="site-header" role="banner">
   <div class="container header-inner">
     <!-- Logo -->
     <a href="/" class="brand" aria-label="Intellica Home">
@@ -57,7 +69,7 @@ const products = [
               <div class="mega-col">
                 <div class="mega-col-title">{group.category}</div>
                 {group.items.map(item => (
-                  <a href={item.href} class="mega-item">
+                  <a href={item.href} class="mega-item" target={item.target}>
                     <div class="mega-item-name">{item.name}</div>
                     <div class="mega-item-desc">{item.desc}</div>
                   </a>
@@ -73,70 +85,118 @@ const products = [
         </div>
       </div>
 
-      <a href="/solutions" class="nav-link">Solutions</a>
-      <a href="/about" class="nav-link">About</a>
+      <a href="/solutions" class="nav-link">AI Solutions</a>
+      <a href="/data-platforms" class="nav-link">Data Platforms</a>
+      <a href="/clients" class="nav-link">Clients</a>
+      <a href="/insights" class="nav-link">Insights</a>
+      <a href="/partners" class="nav-link">Partners</a>
+
+      <!-- About Mega Menu -->
+      <div class="nav-item" data-dropdown>
+        <button type="button" aria-haspopup="true" aria-expanded="false" class="nav-link nav-link--dd">
+          About
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="dd-menu mega-menu" style="width: 320px;">
+          <div class="mega-inner" style="grid-template-columns: 1fr;">
+            {aboutMenu.map(group => (
+              <div class="mega-col">
+                <div class="mega-col-title">{group.category}</div>
+                {group.items.map(item => (
+                  <a href={item.href} class="mega-item">
+                    <div class="mega-item-name">{item.name}</div>
+                    <div class="mega-item-desc">{item.desc}</div>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <a href="/contact" class="nav-link">Contact</a>
     </nav>
 
-    <!-- CTA -->
-    <div class="header-actions">
-      <a href="/contact" class="btn btn-primary btn-sm">
-        Request Demo
-      </a>
-    </div>
+    <!-- Mobile Hamburger -->
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/products" class="mobile-link">Products</a>
+    <a href="/solutions" class="mobile-link">AI Solutions</a>
+    <a href="/data-platforms" class="mobile-link">Data Platforms</a>
+    <a href="/clients" class="mobile-link">Clients</a>
+    <a href="/insights" class="mobile-link">Insights</a>
+    <a href="/partners" class="mobile-link">Partners</a>
+    <a href="/about" class="mobile-link">About</a>
+    <a href="/contact" class="mobile-link">Contact</a>
   </div>
 </header>
 
 <style>
-/* Header */
+/* Header — White background, black text */
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   height: var(--header-h);
-  border-bottom: 1px solid transparent;
-  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  background: #ffffff;
+  border-bottom: 1px solid #E8EEF5;
+  transition: box-shadow 0.3s ease;
 }
 .site-header.scrolled {
-  background: rgba(3, 11, 22, 0.85);
-  border-bottom-color: rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
 }
 .header-inner {
   display: flex;
   align-items: center;
   height: 100%;
   gap: 32px;
+  max-width: 1600px; /* Wider container for the header to push logo left */
+  margin: 0 auto;
+  padding: 0 40px;
 }
-.brand { display: flex; align-items: center; }
-.brand-logo { height: 36px; width: auto; filter: invert(1) hue-rotate(180deg); }
+.brand { 
+  display: flex; 
+  align-items: center;
+  margin-right: auto; /* Push the nav to the right, logo stays left */
+}
+.brand-logo { 
+  height: 36px; 
+  width: auto; 
+  /* No filter — keep original colors, logo text will be dark/black */
+}
 
 /* Desktop Nav */
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-left: auto;
+  gap: 4px;
 }
 .nav-link {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(240,244,255,0.8);
+  color: #1E293B;
   transition: color 0.2s ease, background 0.2s ease;
   cursor: pointer;
   background: none;
   border: none;
   font-family: var(--font);
+  white-space: nowrap;
 }
 .nav-link:hover, .nav-link--dd:hover {
-  color: #fff;
-  background: rgba(255,255,255,0.08);
+  color: #000;
+  background: rgba(0,0,0,0.04);
 }
 .chevron {
   transition: transform 0.2s ease;
@@ -145,13 +205,7 @@ const products = [
   transform: rotate(180deg);
 }
 
-/* Header Actions */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: 8px;
-}
+/* Header Actions — removed "Request Demo" */
 
 /* Dropdown */
 .nav-item { position: relative; }
@@ -161,16 +215,35 @@ const products = [
   top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(8, 15, 30, 0.97);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #ffffff;
+  border: 1px solid #E8EEF5;
   border-radius: var(--radius-md);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.12);
   animation: fadeUp 0.2s ease forwards;
   z-index: 100;
 }
 .dd-menu.open { display: block; }
+
+/* About Dropdown */
+.about-menu {
+  width: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+}
+.dd-link {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1E293B;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.dd-link:hover {
+  background: #F1F5F9;
+  color: #000;
+}
 
 /* Mega Menu */
 .mega-menu {
@@ -202,20 +275,20 @@ const products = [
   transition: background 0.2s ease;
   margin-bottom: 2px;
 }
-.mega-item:hover { background: rgba(255,255,255,0.05); }
+.mega-item:hover { background: #F1F5F9; }
 .mega-item-name {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #F0F4FF;
+  color: #1E293B;
   margin-bottom: 2px;
 }
 .mega-item-desc {
-  font-size: 0.75rem;
-  color: var(--clr-muted);
+  font-size: 0.82rem;
+  color: #6B7280;
   line-height: 1.4;
 }
 .mega-footer {
-  border-top: 1px solid rgba(255,255,255,0.07);
+  border-top: 1px solid #E8EEF5;
   padding: 12px 24px;
 }
 .mega-footer-link {
@@ -226,8 +299,55 @@ const products = [
 }
 .mega-footer-link:hover { color: var(--clr-secondary); }
 
-@media (max-width: 900px) {
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #1E293B;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.mobile-toggle.open span:nth-child(2) { opacity: 0; }
+.mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--header-h);
+  left: 0; right: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #E8EEF5;
+  padding: 16px 24px;
+  z-index: 999;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+.mobile-menu.open { display: flex; }
+.mobile-link {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1E293B;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.mobile-link:hover { background: #F1F5F9; }
+
+@media (max-width: 1100px) {
   .nav-desktop { display: none; }
-  .header-actions .btn { display: none; }
+  .mobile-toggle { display: none; }
 }
 </style>

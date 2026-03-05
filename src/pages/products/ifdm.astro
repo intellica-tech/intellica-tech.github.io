@@ -1,0 +1,412 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const siteUrl = "https://intellica-tech.github.io";
+const breadcrumbs = [
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "IFDM", url: `${siteUrl}/products/ifdm` }
+];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "IFDM — Intellica Finance Data Model",
+  "description": "A standard data model approach for finance analytics that provides core assets, KPI frameworks, and analytical layers for rapid data warehouse transformation.",
+  "applicationCategory": "BusinessApplication, DataModel",
+  "operatingSystem": "Platform independent",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
+---
+
+<Layout title="IFDM — Intellica Finance Data Model | Intellica" description="IFDM: Standard data model approach for finance analytics; fast mapping/discovery, KPI framework and wave-based reporting rollout." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label anim-fade-up">Data Models</div>
+      <h1 class="anim-fade-up">IFDM — Finance <span class="grad-text">Data Model</span></h1>
+      <p class="anim-fade-up">Rapidly deploy your enterprise finance data model. Establish a common financial language and accelerate your data warehouse transformation.</p>
+      <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">CONTACT US</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 48px; align-items: start;">
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px;">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">What does it <span class="grad-text">solve?</span></h2>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Problem</p>
+            <p style="color: var(--clr-light-muted);">When finance data (GL, AP/AR, budget, profitability, etc.) remains fragmented across different sources, it becomes difficult to establish a common KPI language and create sustainable reporting.</p>
+          </div>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Approach</p>
+            <p style="color: var(--clr-light-muted);">IFDM provides core finance assets and an analytical layer within a standard framework. It accelerates the transition from source systems to the enterprise model with mapping templates.</p>
+          </div>
+          <div>
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Business Value</p>
+            <p style="color: var(--clr-light-muted);">Faster reporting expansion, more consistent finance KPIs, and lower analysis/integration effort.</p>
+          </div>
+        </div>
+
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px; background: #f8fafc;">
+          <h3 style="color: var(--clr-light-text); margin-bottom: 24px;">When is it <span class="grad-text">preferred?</span></h3>
+          <ul class="check-list">
+            <li>When the enterprise finance model needs to be standardized during a new ERP/DWH/BI transition</li>
+            <li>When there are inconsistencies between GL, AP/AR, budget, and profitability reports</li>
+            <li>During Semantic model/Power BI transformation</li>
+            <li>When consolidation and management reporting need to be made sustainable</li>
+            <li>When a common dictionary and governance are targeted for finance KPIs</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--clr-light-muted); margin-top: 24px; font-style: italic;">Note: Scope and priorities are clarified during discovery meetings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Capabilities</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Finance-Specific<span class="grad-text">Capabilities</span></h2>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Core Model</h3>
+          <p>Provides finance assets and relationships in a standard framework.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>KPI & Metric Framework</h3>
+          <p>Provides a starting set for common finance metrics.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Analytical Layer Alignment</h3>
+          <p>Tiering suitable for Power BI / semantic model designs.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Mapping & Adaptation</h3>
+          <p>Rapid mapping approach for source system fields numbered to the model.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Governance & Standardization</h3>
+          <p>Provides a foundation for versioning and standardization.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Extensible Architecture</h3>
+          <p>Can be grown with new domains according to organizational needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Image Section -->
+  <section class="section section--dark noise">
+    <div class="container">
+      <div class="product-grid anim-fade-up">
+        <div class="anim-fade-up">
+          <h2 style="color: #fff; margin-bottom: 24px;">Layered <span class="grad-text">Architecture</span> Approach</h2>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px; font-size: 1.1rem; line-height: 1.7;">
+            IFDM structures fragmented finance data into business-meaningful subject areas. Our Foundation (3NF) and Analysis (Dimensional) layers ensure both enterprise data integrity and high-performance reporting infrastructure.
+          </p>
+          <div class="cap-card-modern" style="padding: 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-weight: 700; color: #fff; margin-bottom: 8px;">Standardized Methodology</p>
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.95rem;">Rapid mapping approach for source systems to a unified enterprise data language.</p>
+          </div>
+        </div>
+        <div class="anim-fade-up">
+          <div class="img-frame">
+            <img src="/assets/images/ifdm-architecture.png" alt="IFDM Architecture Approach" class="product-screenshot" />
+          </div>
+          <p style="text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 16px; font-style: italic;">
+            IFDM Architecture: Enterprise data standardization with Foundation and Analysis layers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Cases Section -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <h2 class="section-title" style="color: var(--clr-light-text);">Business Value & <span class="grad-text">Impact</span></h2>
+        <p class="section-sub" style="margin-inline: auto;">Discover the value of IFDM in enterprise reporting and data management processes.</p>
+      </div>
+
+      <div class="grid-2 anim-fade-up" style="gap: 30px;">
+        <div class="value-card">
+          <h4>Accelerating Enterprise BI Transformation</h4>
+          <p class="scenario">In a new data warehouse project, designing the model from scratch extends the timeline, creates scope uncertainty, and increases redesign risk.</p>
+          <div class="val-contribution">
+            <h5>IFDM CONTRIBUTION</h5>
+            <ul>
+              <li>Ready subject-oriented foundation model for the finance sector.</li>
+              <li>Covers core domains like Party, Contract, Accounting, Product.</li>
+              <li>Integrated 3NF structure according to Inmon principles.</li>
+              <li>Ready metric and dimension structure for the analysis layer.</li>
+            </ul>
+          </div>
+          <div class="val-gain">
+            <h5>GAIN</h5>
+            <ul>
+              <li>Project time is shortened.</li>
+              <li>Modeling risk is reduced.</li>
+              <li>Common data language between Business and IT.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="value-card">
+          <h4>Creating a Single Version of Truth</h4>
+          <p class="scenario">Different reporting teams using different data definitions lead to KPI inconsistencies and executive decision errors.</p>
+          <div class="val-contribution">
+            <h5>IFDM CONTRIBUTION</h5>
+            <ul>
+              <li>Baseline business definitions and mapping structures.</li>
+              <li>Integrated and normalized structure in the Foundation layer.</li>
+              <li>Standard KPI and dimensional model in the Analysis layer.</li>
+              <li>Conformed dimension approach for report consistency.</li>
+            </ul>
+          </div>
+          <div class="val-gain">
+            <h5>GAIN</h5>
+            <ul>
+              <li>Single source of truth created across the organization.</li>
+              <li>KPI inconsistencies eliminated.</li>
+              <li>Increased executive reporting trust.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation & Ecosystem -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <h2 class="section-title" style="color: var(--clr-light-text);">Deployment & <span class="grad-text">Ecosystem</span> Integration</h2>
+        <p class="section-sub" style="margin-inline: auto;">A standardized approach to ensure rapid value realization and seamless organizational fit.</p>
+      </div>
+      <div class="grid-2" style="gap: 60px;">
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 32px;">Implementation <span class="grad-text">Journey</span></h2>
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-num">01</span>
+              <div>
+                <h6>Scoping</h6>
+                <p>Target reports, KPIs, and source systems are clarified.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">02</span>
+              <div>
+                <h6>Adaptation</h6>
+                <p>Model adaptation is performed with mapping; the foundation layer is established.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">03</span>
+              <div>
+                <h6>Wave-based Rollout</h6>
+                <p>Semantic layer and reports are deployed wave by wave.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">Integration & <span class="grad-text">Synergy</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 24px;">Our products are adapted to work seamlessly within your existing ecosystem. Typical integration areas include:</p>
+          <ul class="bullet-list">
+            <li>ERP/Finance systems (SAP, Oracle, etc.)</li>
+            <li>Databases & DWH layers</li>
+            <li>ETL/ELT and orchestration tools</li>
+            <li>BI and reporting platforms (Power BI, etc.)</li>
+            <li>Identity and Access (SSO/LDAP) with role-based security</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>Accelerate Your <span class="grad-text">Data Model</span> Journey</h2>
+        <p>Talk to our experts to learn how our industry-standard models can reduce your modeling time by over 50%.</p>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">CONTACT US</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.check-list, .bullet-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.check-list li, .bullet-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: var(--clr-light-muted);
+  font-size: 0.95rem;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--clr-primary); font-weight: bold;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clr-primary);
+}
+
+.cap-card-modern {
+  padding: 32px;
+  background: #fff;
+  border: 1px solid #e8eef5;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.cap-card-modern:hover {
+  transform: translateY(-5px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.cap-icon-box {
+  width: 80px;
+  height: 80px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+.cap-icon-box img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.cap-card-modern h3 {
+  font-size: 1.1rem;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+.cap-card-modern p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+
+.img-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.img-card img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+.img-caption {
+  margin-top: 16px; font-size: 0.9rem;
+  color: var(--clr-light-muted); font-style: italic;
+}
+
+.value-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #e8eef5;
+}
+.value-card h4 {
+  font-size: 1.25rem;
+  color: var(--clr-light-text);
+  margin-bottom: 20px;
+}
+.value-card .scenario {
+  font-size: 0.95rem;
+  color: var(--clr-light-muted);
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+.val-contribution h5, .val-gain h5 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+.val-contribution h5 { color: var(--clr-primary); }
+.val-gain h5 { color: #10b981; }
+.val-contribution ul, .val-gain ul {
+  list-style: none; padding: 0; margin-bottom: 24px;
+}
+.val-contribution li, .val-gain li {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+.val-contribution li::before, .val-gain li::before {
+  content: "•"; position: absolute; left: 0;
+}
+.val-contribution li::before { color: var(--clr-primary); }
+.val-gain li::before { color: #10b981; }
+
+.step-list { display: flex; flex-direction: column; gap: 32px; }
+.step-item { display: flex; gap: 24px; align-items: flex-start; }
+.step-num {
+  font-size: 2rem; font-weight: 800;
+  color: rgba(0,200,150,0.15);
+  line-height: 1;
+}
+.step-item h6 {
+  font-size: 1.1rem; color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+.step-item p { font-size: 0.95rem; color: var(--clr-light-muted); }
+
+.delivery-step {
+  background: rgba(255,255,255,0.05);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.delivery-step h6 { color: #fff; margin-bottom: 8px; font-size: 1rem; }
+.delivery-step p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>

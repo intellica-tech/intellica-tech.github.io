@@ -1,0 +1,384 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: 'About', url: '/about' },
+  { name: 'Academy', url: '/academy' }
+];
+
+const stats = [
+  { value: '11+', label: 'Years of Experience' },
+  { value: '240+', label: 'Graduates' },
+  { value: '3', label: 'Week Camp Program' }
+];
+
+const modules = [
+  {
+    title: 'Module 1 — Fundamentals & Modeling',
+    items: [
+      'Foundations of the data world',
+      'Data modeling and integration strategies',
+      'Building models inspired by real-world projects'
+    ]
+  },
+  {
+    title: 'Module 2 — Processing & ETL',
+    items: [
+      'ETL (Extract, Transform, Load) processes',
+      'Optimizing data flows with practical examples',
+      'Mastering data processing skills through workshops'
+    ],
+    highlight: [
+      'Basic and advanced data technology knowledge',
+      'Competitive advantage in the business world',
+      'Practical skill development through workshops'
+    ]
+  },
+  {
+    title: 'Module 3 — Data Visualization',
+    items: [
+      'Transforming data into valuable business insights',
+      'Advanced data presentation and reporting techniques'
+    ]
+  }
+];
+
+const universities = [
+  'Alaaddin University', 'Istanbul Technical University', 'Dokuz Eylul University',
+  'Ege University', 'Bahcesehir University', 'Kocaeli University',
+  'Istanbul University', 'Marmara University', 'Gebze University', 'Yildiz Technical University'
+];
+
+const testimonials = [
+  {
+    quote: "I've been working at Intellica for eight years. Participating as an instructor in the camp program where I once joined as a student is very special to me. I believe Intellica Academy offers a perfect opportunity for those starting their careers.",
+    author: "Emre Usta",
+    role: "BI Team Leader"
+  },
+  {
+    quote: "Our annual camp program for new graduates opens doors to the business world. Focused on data warehousing, business intelligence, and software development, we provide a wide range of knowledge from concepts to practical training.",
+    author: "Turgay Burgaz",
+    role: "BI Team Leader"
+  },
+  {
+    quote: "The 2023 camp was a turning point for my experience. The sincere atmosphere and the instructors' helpfulness were most impressive. I believe the BI training I received formed a solid foundation for the first steps of my career.",
+    author: "Berkay Boz",
+    role: "BI Consultant"
+  }
+];
+
+const faqs = [
+  { q: 'Who is the training for?', a: '4th-year students, master\'s or doctoral students, or new graduates with up to 1 year of experience are prioritized.' },
+  { q: 'How long is the program?', a: 'Our training program lasts approximately 3 weeks, varying by session.' },
+  { q: 'Is there a fee?', a: 'The program is provided free of charge to new graduates.' },
+  { q: 'What documents are required?', a: 'In addition to the application form, your graduation certificate (if available) and CV should be attached.' },
+  { q: 'Are there job opportunities?', a: 'Successful graduates may be offered internships, part-time, or full-time roles, though this is not guaranteed.' },
+  { q: 'Where does it take place?', a: 'Training sessions are held at the Intellica Ataşehir office.' },
+  { q: 'What does the content cover?', a: 'It covers business world experiences, practical application through concrete examples, and solving sectoral problems.' },
+  { q: 'Is everyone accepted?', a: 'We evaluate every application, but since quotas are limited, we cannot accept everyone.' },
+  { q: 'Is a certificate provided?', a: 'Yes, participants who successfully complete the program receive a certificate.' },
+  { q: 'Is accommodation provided?', a: 'Participants handle their own accommodation during the training period.' }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+---
+
+<Layout 
+  title="Academy | Intellica" 
+  description="Intellica Academy offers high-level training and career opportunities in Data & AI technologies."
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  
+  <!-- HERO -->
+  <section class="hero noise" id="academy-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content anim-fade-up">
+          <div class="section-label">ACADEMY</div>
+          <h1 class="hero__title">Empowering Future <br /><span class="grad-text">Data Leaders</span></h1>
+          <span class="hero__accent"></span>
+          <p class="hero__desc">For 11 years, we have been nurturing the next generation of data technology leaders through our hands-on camp programs. Join the world of Intellica, filled with knowledge and experience.</p>
+          
+          <div class="hero-stats">
+            {stats.map(stat => (
+              <div class="stat-item">
+                <div class="stat-value">{stat.value}</div>
+                <div class="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="hero__actions">
+            <a href="/contact" class="btn btn-primary btn-pill btn-lg">Contact Us</a>
+          </div>
+        </div>
+        
+        <div class="hero__visual anim-fade-up">
+          <img src="/assets/img/academy_hero.png" alt="Intellica Academy Training" class="hero__shape-new" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <h2 class="section-title">About <span class="grad-text">Intellica Academy</span></h2>
+        <p class="section-sub">
+          Intellica Academy brings together knowledge and experience with its years of success, taking a pioneering role in university-industry collaboration. Our Summer and Winter Camps are designed to develop future data leaders.
+        </p>
+      </div>
+
+      <div class="grid-2 anim-fade-up" style="margin-top: 60px;">
+        <div class="card-light luxury-card">
+          <div class="icon-box">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>Master-Apprentice Approach</h3>
+          <p>Graduates start working alongside Intellica’s experienced team. Through this relationship, experience is transferred to the next generation as they become part of the family.</p>
+        </div>
+        <div class="card-light luxury-card">
+          <div class="icon-box">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>Workshop Support</h3>
+          <p>The camp is supplemented with practical workshops throughout the term. Participants transform theoretical knowledge into practice, gaining real-world skills.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVITATION -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="card-glass text-center anim-fade-up" style="padding: 80px 40px; border-radius: 48px;">
+        <h2 class="hero__title" style="font-size: 2.5rem; margin-inline: auto;">You are invited to the <span class="grad-text">3-week Academy Camp</span></h2>
+        <p class="hero__desc" style="margin-inline: auto; max-width: 800px;">
+          If you are ready to transform your life with the power of data, we are waiting for you at the 3-week Intellica Academy Camp. Here is what awaits you:
+        </p>
+        <div class="hero__actions" style="justify-content: center;">
+          <a href="/contact" class="btn btn-primary btn-pill btn-lg">Reserve Your Spot</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMP CONTENT -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">Curriculum</div>
+        <h2 class="section-title">Camp <span class="grad-text">Content</span></h2>
+        <p class="section-sub">The program is structured in 3 modules, from foundations to practical application.</p>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="margin-top: 60px;">
+        {modules.map(mod => (
+          <div class="card-light curriculum-card">
+            <h3 style="color: var(--clr-primary); margin-bottom: 24px;">{mod.title}</h3>
+            <ul class="curriculum-list">
+              {mod.items.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {mod.highlight && (
+              <div class="highlight-box">
+                <div class="divider"></div>
+                <ul>
+                  {mod.highlight.map(h => <li>{h}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="grid-2 anim-fade-up" style="margin-top: 40px;">
+        <div class="card-light promo-card">
+          <h4>Why should you join?</h4>
+          <p>4th-year, master's, or doctoral students; new graduates or those with up to 1 year of experience are prioritised in applications.</p>
+        </div>
+        <div class="card-light promo-card">
+          <h4>Who should join?</h4>
+          <p>Content and quota information may be updated sessionally. Contact us for details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIVERSITIES -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <h2 class="section-title">University <span class="grad-text">Collaborations</span></h2>
+        <p class="section-sub">We thank the universities that have been part of Intellica Academy for over a decade, helping new graduates accelerate their entry into the professional world.</p>
+      </div>
+
+      <div class="uni-grid anim-fade-up">
+        {universities.map(uni => (
+          <div class="uni-tile">
+            <b>{uni}</b>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <h2 class="section-title">Participant <span class="grad-text">Insights</span></h2>
+        <p class="section-sub">Notes from our graduates and instructors.</p>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="margin-top: 60px;">
+        {testimonials.map(t => (
+          <div class="card-light testimonial-card">
+            <div class="quote-icon">“</div>
+            <p class="quote-text">{t.quote}</p>
+            <div class="author-info">
+              <div class="author-avatar">{t.author[0]}</div>
+              <div class="author-meta">
+                <div class="author-name">{t.author}</div>
+                <div class="author-role">{t.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <h2 class="section-title">Frequently Asked <span class="grad-text">Questions</span></h2>
+        <p class="section-sub">Everything you need to know about the Academy.</p>
+      </div>
+
+      <div class="grid-2 anim-fade-up" style="margin-top: 60px; gap: 24px;">
+        {faqs.map(item => (
+          <div class="card-light faq-item">
+            <h4>{item.q}</h4>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip text-center anim-fade-up">
+        <h3>Apply / Detailed Information</h3>
+        <p>Contact us for any questions regarding the program.</p>
+        <div class="hero__actions" style="justify-content: center; margin-top: 32px;">
+          <a href="/contact" class="btn btn-primary btn-pill btn-lg">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+/* HERO: STANDARDIZED */
+.hero { 
+  min-height: 800px; display: flex; align-items: center; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+}
+.hero__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
+.hero__content-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 40px; width: 100%; }
+.hero__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+.hero__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+.hero__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+.hero__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero__visual { display: flex; justify-content: center; align-items: center; }
+.hero__shape-new { 
+  width: 100%; max-width: 600px; 
+  animation: float 8s ease-in-out infinite; 
+  filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3)); 
+  border-radius: 40px;
+}
+
+.hero-stats { display: flex; gap: 40px; margin-bottom: 48px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
+.stat-value { font-size: 2.5rem; font-weight: 900; color: var(--clr-primary); line-height: 1; }
+.stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+@media (max-width: 1100px) {
+  .hero__content-wrap { grid-template-columns: 1fr; text-align: center; }
+  .hero__content { align-items: center; }
+  .hero__desc { margin-inline: auto; }
+  .hero__actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero__visual { display: none; }
+}
+
+/* Luxury Cards */
+.luxury-card { transition: all 0.4s; }
+.luxury-card:hover { transform: translateY(-8px); border-color: var(--clr-primary); }
+
+/* Curriculum */
+.curriculum-card { display: flex; flex-direction: column; height: 100%; }
+.curriculum-list { list-style: none; padding: 0; margin: 0; }
+.curriculum-list li { position: relative; padding-left: 24px; margin-bottom: 12px; font-size: 0.95rem; color: #475569; }
+.curriculum-list li::before { content: "→"; position: absolute; left: 0; color: var(--clr-primary); font-weight: 700; }
+.highlight-box { margin-top: auto; padding-top: 24px; }
+.divider { height: 1px; background: #E2E8F0; margin-bottom: 20px; }
+.highlight-box ul { list-style: none; padding: 0; }
+.highlight-box li { font-size: 0.85rem; font-weight: 600; color: #1E293B; margin-bottom: 8px; }
+
+/* Uni Grid */
+.uni-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 48px; }
+.uni-tile { background: #FFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 24px; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 80px; }
+.uni-tile b { font-size: 0.85rem; color: #1E293B; }
+
+@media (max-width: 1024px) { .uni-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .uni-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Testimonials */
+.testimonial-card { display: flex; flex-direction: column; background: #FFF; border: 1px solid #E2E8F0; }
+.quote-icon { font-size: 4rem; color: var(--clr-primary); line-height: 1; height: 3rem; margin-top: -10px; opacity: 0.2; }
+.quote-text { font-size: 1rem; color: #475569; font-style: italic; line-height: 1.6; margin-bottom: 32px; flex: 1; }
+.author-info { display: flex; align-items: center; gap: 16px; border-top: 1px solid #F1F5F9; padding-top: 20px; }
+.author-avatar { width: 44px; height: 44px; background: var(--grad-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFF; font-weight: 800; }
+.author-name { font-weight: 750; color: #1E293B; font-size: 0.95rem; }
+.author-role { font-size: 0.8rem; color: #64748B; }
+
+/* FAQ */
+.faq-item h4 { font-size: 1.1rem; font-weight: 800; color: #1E293B; margin-bottom: 12px; }
+.faq-item p { font-size: 0.95rem; color: #64748B; }
+
+/* CTA Banner */
+.cta-banner { background: #FFF; border: 1px solid #E2E8F0; border-radius: 24px; padding: 40px; display: flex; align-items: center; justify-content: space-between; margin-top: 80px; box-shadow: 0 20px 50px rgba(0,0,0,0.03); }
+.cta-banner-content h3 { font-size: 1.5rem; font-weight: 900; color: #1E293B; margin-bottom: 8px; }
+.cta-banner-content p { color: #64748B; }
+.cta-banner-actions { display: flex; gap: 16px; }
+
+@media (max-width: 768px) {
+  .cta-banner { flex-direction: column; text-align: center; gap: 32px; }
+  .cta-banner-actions { width: 100%; flex-direction: column; }
+}
+</style>

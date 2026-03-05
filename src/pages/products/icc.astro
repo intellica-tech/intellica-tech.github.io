@@ -1,0 +1,539 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const siteUrl = "https://intellica-tech.github.io";
+const breadcrumbs = [
+  { name: "Products", url: `${siteUrl}/products` },
+  { name: "ICC", url: `${siteUrl}/products/icc` }
+];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ICC — Intellica Consistency Controller",
+  "description": "Central data consistency management, reconciliation, and quality control platform for enterprise data integrity.",
+  "applicationCategory": "BusinessApplication, DataGovernance",
+  "operatingSystem": "Web-based",
+  "author": { "@id": `${siteUrl}/#organization` },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD"
+  }
+};
+---
+
+<Layout title="ICC — Intellica Consistency Controller | Intellica" description="ICC: Automated data reconciliation and consistency management; ensuring trust across source systems and reporting layers with real-time drift alerts." breadcrumbs={breadcrumbs}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label anim-fade-up">Data Platform & Governance</div>
+      <h1 class="anim-fade-up">ICC — Consistency <span class="grad-text">Controller</span></h1>
+      <p class="anim-fade-up">Ensure total data consistency across your enterprise. Eliminate discrepancies with automated reconciliation, quality gates, and real-time drift alerts. Trust your data from source to report.</p>
+      <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">CONTACT US</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 48px; align-items: start;">
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px;">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">What does it <span class="grad-text">solve?</span></h2>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Problem</p>
+            <p style="color: var(--clr-light-muted);">Data often differs between source systems and the data warehouse, leading to conflicting reports, loss of executive trust, and regulatory risks.</p>
+          </div>
+          <div style="margin-bottom: 24px;">
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Approach</p>
+            <p style="color: var(--clr-light-muted);">ICC automates the reconciliation process between multiple data points, flagging inconsistencies at the record level before they impact your business decisions.</p>
+          </div>
+          <div>
+            <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">Business Value</p>
+            <p style="color: var(--clr-light-muted);">90% reduction in manual reconciliation effort. Immediate detection of data integration failures. Higher audit readiness.</p>
+          </div>
+        </div>
+
+        <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px; background: #f8fafc;">
+          <h3 style="color: var(--clr-light-text); margin-bottom: 24px;">When is it <span class="grad-text">preferred?</span></h3>
+          <ul class="check-list">
+            <li>When financial reports show different numbers for the same period</li>
+            <li>To implement automated "Quality Gates" in your ETL/ELT pipelines</li>
+            <li>For regulatory compliance that requires formal reconciliation logs</li>
+            <li>During complex data migrations to ensure 1:1 data parity</li>
+            <li>To reduce the operational burden on IT and Accounting teams</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--clr-light-muted); margin-top: 24px; font-style: italic;">Note: ICC scales to hundreds of reconciliation rules across millions of records.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities Section -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Capabilities</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Core <span class="grad-text">Capabilities</span></h2>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Auto-Reconciliation</h3>
+          <p>Cross-system data matching without writing custom, fragile audit scripts.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Quality Gates</h3>
+          <p>Define criteria to block faulty data from reaching production reports.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Drift Alerting</h3>
+          <p>Get notified instantly when data drift between systems exceeds thresholds.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Audit Logging</h3>
+          <p>Full history of reconciliation results, perfect for regulatory compliance.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Rule Engine</h3>
+          <p>Define complex consistency rules visually without deep SQL expertise.</p>
+        </div>
+        <div class="cap-card-modern">
+          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" /></div>
+          <h3>Health Dashboard</h3>
+          <p>High-level view of data health and consistency status across the organization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section (Centralized Management) -->
+  <section class="section section--dark noise">
+    <div class="container">
+      <div class="product-grid anim-fade-up">
+        <div class="anim-fade-up">
+          <h2 style="color: #fff; margin-bottom: 24px;">Configurable <span class="grad-text">Quality Rules</span></h2>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px; font-size: 1.1rem; line-height: 1.7;">
+            ICC empowers data stewards to build complex validation rules through an intuitive, visual interface. Transform manual data auditing into a production-grade automated engine.
+          </p>
+          <div class="cap-card-modern" style="padding: 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-weight: 700; color: #fff; margin-bottom: 8px;">Visual Rule Logic</p>
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.95rem;">Drag-and-drop complexity into standardized data quality signals.</p>
+          </div>
+        </div>
+        <div class="anim-fade-up">
+          <div class="img-frame">
+            <img src="/assets/images/icc_rule.png" alt="ICC Rule Design Interface" class="product-screenshot" />
+          </div>
+          <p style="text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 16px; font-style: italic;">
+            ICC Interface: Visual configuration of complex data validation flows.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Use Cases -->
+  <section class="section section--light" id="use-cases">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <div class="section-label" style="margin-inline: auto;">Solutions</div>
+        <h2 class="section-title" style="color: var(--clr-light-text);">Strategic <span class="grad-text">Use Cases</span></h2>
+        <p class="section-sub">See how ICC resolves data consistency challenges across Telecom, Finance, and Insurance.</p>
+      </div>
+
+      <div class="tabs-container anim-fade-up">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="telecom">Telecom</button>
+          <button class="tab-btn" data-tab="finance">Finance</button>
+          <button class="tab-btn" data-tab="insurance">Insurance</button>
+        </div>
+
+        <!-- Telecom Tab -->
+        <div id="telecom" class="tab-content active">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <h4>CRM – Billing Revenue Consistency</h4>
+              <p class="scenario">Discrepancies between CRM and billing records lead to revenue leakage, billing errors, and operational risks.</p>
+              <div class="uc-section">
+                <p class="uc-label">ICC INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Automatic cross-validation of CRM and billing data.</li>
+                  <li>Identification of missing or mismatched subscriptions.</li>
+                  <li>Real-time alerting for revenue assurance teams.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Mitigated revenue loss risks.</li>
+                  <li>Improved billing accuracy & customer trust.</li>
+                  <li>Strengthened revenue assurance processes.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <h4>Provisioning – Activation Integrity</h4>
+              <p class="scenario">Gaps between CRM, provisioning, and network systems cause failed activations and customer dissatisfaction.</p>
+              <div class="uc-section">
+                <p class="uc-label">ICC INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Cross-checks active CRM subscriptions with network data.</li>
+                  <li>Automatically flags failed or incomplete activations.</li>
+                  <li>Triggers immediate operational remediation.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Early detection of activation errors.</li>
+                  <li>Reduced customer complaints & support load.</li>
+                  <li>Minimized operational delays.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Finance Tab (Hidden by default) -->
+        <div id="finance" class="tab-content">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <h4>Financial Reporting & Reconciliation</h4>
+              <p class="scenario">Inconsistencies between core banking, ERP, and accounting systems lead to regulatory risks and reporting errors.</p>
+              <div class="uc-section">
+                <p class="uc-label">ICC INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Cross-validates account balances across all systems.</li>
+                  <li>Automatically identifies reconciliation variances.</li>
+                  <li>Ensures end-to-end data integrity.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Increased reporting precision.</li>
+                  <li>Lowered audit and regulatory risks.</li>
+                  <li>Significant reduction in manual effort.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <h4>Credit Limit & Risk Consistency</h4>
+              <p class="scenario">Customer credit limits, risk scores, and segment info are inconsistent across systems, leading to faulty credit decisions.</p>
+              <div class="uc-section">
+                <p class="uc-label">ICC INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Cross-validates credit limits, segments, and risk scores.</li>
+                  <li>Generates automatic alerts for threshold-based sapma/drifts.</li>
+                  <li>Ensures alignment of customer risk profiles in real-time.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Minimized risky credit decisions.</li>
+                  <li>Strengthened compliance and regulatory adherence.</li>
+                  <li>Increased operational control over risk exposure.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insurance Tab (Hidden by default) -->
+        <div id="insurance" class="tab-content">
+          <div class="grid-2" style="gap: 32px;">
+            <div class="use-case-card-alt">
+              <h4>Policy – Claims – Accounting Parity</h4>
+              <p class="scenario">Mismatches between policy production and claims records cause incorrect financial provisioning and audit failures.</p>
+              <div class="uc-section">
+                <p class="uc-label">ICC INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Cross-checks policy, claims, and accounting records.</li>
+                  <li>Validates collected premiums against active policies.</li>
+                  <li>Ensures correct reflection of claim payments.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Unified financial truth across the organization.</li>
+                  <li>Reliable technical profit calculations.</li>
+                  <li>Enhanced compliance and audit posture.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="use-case-card-alt">
+              <h4>Premium – Commission – Reinsurance</h4>
+              <p class="scenario">Inconsistencies between agency commissions, reinsurance shares, and collected premiums cause revenue leakage.</p>
+              <div class="uc-section">
+                <p class="uc-label">ICC INTERVENTION</p>
+                <ul class="uc-list">
+                  <li>Compares collected premiums with commission calculations.</li>
+                  <li>Validates reinsurance shares per policy.</li>
+                  <li>Checks compliance with contract and commission parameters.</li>
+                </ul>
+              </div>
+              <div class="uc-section">
+                <p class="uc-label uc-label--impact">BUSINESS IMPACT</p>
+                <ul class="uc-list">
+                  <li>Reduced revenue leakage and overpayment risk.</li>
+                  <li>Accelerated reinsurance reconciliation processes.</li>
+                  <li>Stronger overall revenue assurance.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2" style="gap: 60px;">
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 32px;">Operational <span class="grad-text">Model</span></h2>
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-num">01</span>
+              <div>
+                <h6>Rule Definition</h6>
+                <p>Establishing comparison points and tolerance thresholds for critical data assets.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">02</span>
+              <div>
+                <h6>Automated Execution</h6>
+                <p>ICC runs comparisons as part of your scheduled data pipelines or in real-time.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">03</span>
+              <div>
+                <h6>Incident Resolution</h6>
+                <p>Drift is flagged, alerts are sent, and the reconciliation log is updated for review.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">Enterprise <span class="grad-text">Ready</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 24px;">ICC is built for mission-critical enterprise environments requiring high reliability:</p>
+          <ul class="bullet-list">
+            <li>Supports structured and semi-structured data sources</li>
+            <li>Connects to Cloud DWH, SQL Databases, and File Systems</li>
+            <li>Scalable processing for millions of record-level checks</li>
+            <li>Rest API for integration with CI/CD and pipeline orchestrators</li>
+            <li>Detailed incident management and approval workflows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>Restore Trust in Your <span class="grad-text">Data</span></h2>
+        <p>Talk to our experts to learn how ICC can automate your reconciliation and eliminate discrepancies.</p>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">CONTACT US</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.check-list, .bullet-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.check-list li, .bullet-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: var(--clr-light-muted);
+  font-size: 0.95rem;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--clr-primary); font-weight: bold;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clr-primary);
+}
+
+.cap-card-modern {
+  padding: 32px;
+  background: #fff;
+  border: 1px solid #e8eef5;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.cap-card-modern:hover {
+  transform: translateY(-5px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.cap-icon-box {
+  width: 80px;
+  height: 80px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+.cap-icon-box img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.cap-card-modern h3 {
+  font-size: 1.1rem;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+.cap-card-modern p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+
+/* Use Case Tabs */
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 12px 24px;
+  border-radius: 99px;
+  border: 1px solid #E2E8F0;
+  background: #fff;
+  color: #64748B;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn.active {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 200, 150, 0.25);
+}
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Use Case Cards Alt */
+.use-case-card-alt {
+  background: #fff;
+  border: 1px solid #E8EEF5;
+  border-radius: 24px;
+  padding: 40px;
+  transition: all 0.3s ease;
+}
+.use-case-card-alt:hover {
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+.use-case-card-alt h4 {
+  font-size: 1.25rem;
+  color: var(--clr-light-text);
+  margin-bottom: 20px;
+}
+.use-case-card-alt .scenario {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+.uc-section { margin-bottom: 24px; }
+.uc-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--clr-primary);
+  margin-bottom: 16px;
+}
+.uc-label--impact { color: #10B981; }
+.uc-list { list-style: none; padding: 0; }
+.uc-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--clr-light-muted);
+}
+.uc-list li::before {
+  content: '•';
+  position: absolute; left: 0; color: var(--clr-primary);
+}
+
+.step-list { display: flex; flex-direction: column; gap: 32px; }
+.step-item { display: flex; gap: 24px; align-items: flex-start; }
+.step-num {
+  font-size: 2rem; font-weight: 800;
+  color: rgba(0,200,150,0.15);
+  line-height: 1;
+}
+.step-item h6 {
+  font-size: 1.1rem; color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+.step-item p { font-size: 0.95rem; color: var(--clr-light-muted); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>
+
+<script is:inline>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.tabs-container');
+      const target = btn.dataset.tab;
+      
+      parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
