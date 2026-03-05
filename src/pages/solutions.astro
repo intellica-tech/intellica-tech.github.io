@@ -1,277 +1,1082 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-const siteUrl = "https://intellica-tech.github.io";
-const breadcrumbs = [{ name: "Solutions", url: `${siteUrl}/solutions` }];
-
-const solutionsSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Enterprise Solutions | Intellica",
-  "description": "Enterprise data & AI solutions — from modern data platforms and analytics to production-grade AI systems.",
-  "url": `${siteUrl}/solutions`,
-  "provider": { "@id": `${siteUrl}/#organization` },
-  "about": [
-    { "@type": "Service", "name": "Modern Data Platforms", "description": "Cloud-native data platform architecture, DWH modernization, data lake and lakehouse implementations." },
-    { "@type": "Service", "name": "BI & Advanced Analytics", "description": "Enterprise dashboarding, self-service analytics, semantic layer design and KPI governance." },
-    { "@type": "Service", "name": "AI & Machine Learning", "description": "GenAI, LLM integration, predictive models, NLP and computer vision solutions — from PoC to production with MLOps." },
-    { "@type": "Service", "name": "Data Governance", "description": "Data quality, lineage, cataloging, master data management and regulatory compliance frameworks." },
-    { "@type": "Service", "name": "Data Integration", "description": "ETL/ELT orchestration, real-time streaming, data mesh patterns and observability." },
-    { "@type": "Service", "name": "Consulting & Managed Services", "description": "Strategy workshops, GAP analysis, architecture assessments, team augmentation and managed services." }
-  ]
-};
+const breadcrumbs = [
+  { name: 'Solutions', url: '/solutions' }
+];
 ---
 
-<Layout title="Solutions | Intellica" description="Enterprise data & AI solutions — from modern data platforms and analytics to production-grade AI systems." breadcrumbs={breadcrumbs}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(solutionsSchema)} />
+<Layout title="AI Solutions | Intellica" description="Enterprise-grade AI blueprints, modern analytical frameworks, and data platform strategies." breadcrumbs={breadcrumbs}>
+  
+  <Header />
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-label anim-fade-up">Solutions & Services</div>
-      <h1 class="anim-fade-up">Enterprise <span class="grad-text">Solutions</span></h1>
-      <p class="anim-fade-up">Capabilities, services and AI portfolio designed for enterprise-scale data & AI transformation.</p>
-    </div>
-  </section>
-
-  <!-- CAPABILITIES -->
-  <section class="section section--white" id="capabilities">
-    <div class="container">
-      <div class="text-center anim-fade-up">
-        <div class="section-label" style="margin-inline:auto;">What We Do</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);">Core <span class="grad-text">Capabilities</span></h2>
-        <p class="section-sub">End-to-end data & AI competencies that we bring to every engagement.</p>
-      </div>
-      <div class="grid-3 anim-fade-up">
-        <div class="solution-card">
-          <div class="icon-box"><span>📊</span></div>
-          <h3 style="color:var(--clr-light-text);">Modern Data Platforms</h3>
-          <p style="color:var(--clr-light-muted);">Cloud-native data platform architecture, DWH modernization, data lake and lakehouse implementations across all major cloud providers.</p>
-        </div>
-        <div class="solution-card">
-          <div class="icon-box"><span>📈</span></div>
-          <h3 style="color:var(--clr-light-text);">BI & Advanced Analytics</h3>
-          <p style="color:var(--clr-light-muted);">Enterprise dashboarding, self-service analytics, semantic layer design and KPI governance for data-driven decisions.</p>
-        </div>
-        <div class="solution-card">
-          <div class="icon-box"><span>🤖</span></div>
-          <h3 style="color:var(--clr-light-text);">AI & Machine Learning</h3>
-          <p style="color:var(--clr-light-muted);">GenAI, LLM integration, predictive models, NLP and computer vision solutions — from PoC to production with MLOps.</p>
-        </div>
-        <div class="solution-card">
-          <div class="icon-box"><span>🔒</span></div>
-          <h3 style="color:var(--clr-light-text);">Data Governance</h3>
-          <p style="color:var(--clr-light-muted);">Data quality, lineage, cataloging, master data management and regulatory compliance frameworks for enterprises.</p>
-        </div>
-        <div class="solution-card">
-          <div class="icon-box"><span>🔗</span></div>
-          <h3 style="color:var(--clr-light-text);">Data Integration</h3>
-          <p style="color:var(--clr-light-muted);">ETL/ELT orchestration, real-time streaming, data mesh patterns and observability for reliable data pipelines.</p>
-        </div>
-        <div class="solution-card">
-          <div class="icon-box"><span>🎯</span></div>
-          <h3 style="color:var(--clr-light-text);">Consulting & Managed Services</h3>
-          <p style="color:var(--clr-light-muted);">Strategy workshops, GAP analysis, architecture assessments, team augmentation and end-to-end managed services.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section section--light" id="services">
-    <div class="container">
-      <div class="text-center anim-fade-up">
-        <div class="section-label" style="margin-inline:auto;">Services</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);">How We <span class="grad-text">Deliver</span></h2>
-        <p class="section-sub">Engagement models and service areas tailored to your organization's needs.</p>
-      </div>
-      <div class="grid-2 anim-fade-up" style="gap:32px;">
-        <div class="card-light service-card">
-          <h3 style="color:var(--clr-light-text);margin-bottom:16px;">🏗️ Project Delivery</h3>
-          <p style="color:var(--clr-light-muted);margin-bottom:16px;">Fixed-scope projects with clear milestones, deliverables and acceptance criteria. From architecture design to production deployment.</p>
-          <ul class="service-list">
-            <li>DWH/Data Platform Build</li>
-            <li>BI & Analytics Implementation</li>
-            <li>AI/ML Model Development</li>
-            <li>Data Migration & Modernization</li>
-          </ul>
-        </div>
-        <div class="card-light service-card">
-          <h3 style="color:var(--clr-light-text);margin-bottom:16px;">⚙️ Managed Services</h3>
-          <p style="color:var(--clr-light-muted);margin-bottom:16px;">Ongoing operational support with SLA-driven service levels. We operate, monitor and continuously improve your data infrastructure.</p>
-          <ul class="service-list">
-            <li>Platform Operations & Maintenance</li>
-            <li>Data Quality Monitoring</li>
-            <li>Performance Optimization</li>
-            <li>Expert Team Augmentation</li>
-          </ul>
-        </div>
-        <div class="card-light service-card">
-          <h3 style="color:var(--clr-light-text);margin-bottom:16px;">🗺️ Strategy & Advisory</h3>
-          <p style="color:var(--clr-light-muted);margin-bottom:16px;">Strategic advisory services to define your data & AI vision, assess current state and build actionable roadmaps.</p>
-          <ul class="service-list">
-            <li>Data Strategy Workshops</li>
-            <li>Architecture Assessment</li>
-            <li>Technology Selection</li>
-            <li>Governance Framework Design</li>
-          </ul>
-        </div>
-        <div class="card-light service-card">
-          <h3 style="color:var(--clr-light-text);margin-bottom:16px;">🎓 Training & Enablement</h3>
-          <p style="color:var(--clr-light-muted);margin-bottom:16px;">Knowledge transfer and capability building to ensure your teams can independently operate and evolve the solutions we build together.</p>
-          <ul class="service-list">
-            <li>Technical Training Programs</li>
-            <li>Hands-on Workshops</li>
-            <li>Best Practice Documentation</li>
-            <li>Ongoing Coaching & Support</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AI PORTFOLIO -->
-  <section class="section section--white" id="ai-portfolio">
-    <div class="container">
-      <div class="text-center anim-fade-up">
-        <div class="section-label" style="margin-inline:auto;">AI Portfolio</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);">Enterprise <span class="grad-text">AI Solutions</span></h2>
-        <p class="section-sub">Production-grade AI scenarios deployed across banking, telecom, manufacturing and retail enterprises.</p>
-      </div>
-      <div class="grid-3 anim-fade-up">
-        <a href="/products/talk-to-your-data" class="ai-portfolio-card card-light" style="text-decoration: none;">
-          <div class="ai-portfolio-card__badge">Conversational AI</div>
-          <h3 style="color:var(--clr-light-text);">Talk To Your Data</h3>
-          <p style="color:var(--clr-light-muted);">Natural language interface to enterprise databases. No SQL required — governed, auditable, production-ready.</p>
-          <div class="product-card__tags"><span class="tag tag-ai">GenAI</span><span class="tag tag-data">NL2SQL</span></div>
-        </a>
-        <div class="ai-portfolio-card card-light">
-          <div class="ai-portfolio-card__badge">Customer Intelligence</div>
-          <h3 style="color:var(--clr-light-text);">Customer 360</h3>
-          <p style="color:var(--clr-light-muted);">AI-powered unified customer view with next best action, cross-sell and churn prediction capabilities.</p>
-          <div class="product-card__tags"><span class="tag tag-ai">Agentic AI</span><span class="tag tag-data">CRM</span></div>
-        </div>
-        <div class="ai-portfolio-card card-light">
-          <div class="ai-portfolio-card__badge">Demand Intelligence</div>
-          <h3 style="color:var(--clr-light-text);">Demand Prediction</h3>
-          <p style="color:var(--clr-light-muted);">ML-powered demand forecasting with seasonality, external factors and supply chain optimization.</p>
-          <div class="product-card__tags"><span class="tag tag-ai">ML/DL</span><span class="tag tag-data">Forecasting</span></div>
-        </div>
-        <div class="ai-portfolio-card card-light">
-          <div class="ai-portfolio-card__badge">Knowledge AI</div>
-          <h3 style="color:var(--clr-light-text);">Document Answers</h3>
-          <p style="color:var(--clr-light-muted);">RAG-powered enterprise document assistant — source-grounded, context-aware answers from internal knowledge bases.</p>
-          <div class="product-card__tags"><span class="tag tag-ai">RAG</span><span class="tag tag-security">Governed</span></div>
-        </div>
-        <div class="ai-portfolio-card card-light">
-          <div class="ai-portfolio-card__badge">Code Intelligence</div>
-          <h3 style="color:var(--clr-light-text);">AI Defect Solver</h3>
-          <p style="color:var(--clr-light-muted);">Analyzes codebases, diagnoses bugs and suggests fixes — agentic AI for software engineering teams.</p>
-          <div class="product-card__tags"><span class="tag tag-ai">Agentic AI</span><span class="tag tag-data">DevOps</span></div>
-        </div>
-        <div class="ai-portfolio-card card-light">
-          <div class="ai-portfolio-card__badge">Industrial AI</div>
-          <h3 style="color:var(--clr-light-text);">Predictive Maintenance</h3>
-          <p style="color:var(--clr-light-muted);">Sensor-driven failure prediction for manufacturing — minimize unplanned downtime and optimize throughput.</p>
-          <div class="product-card__tags"><span class="tag tag-ai">IoT</span><span class="tag tag-security">Industry 4.0</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DWH Section -->
-  <section class="section section--light" id="dwh">
-    <div class="container">
-      <div class="text-center anim-fade-up">
-        <div class="section-label" style="margin-inline:auto;">Data Platforms</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);">Data Platform <span class="grad-text">Transformation</span></h2>
-        <p class="section-sub">End-to-end DWH modernization, cloud migration and data operations expertise.</p>
-      </div>
-      <div class="grid-3 anim-fade-up">
-        <div class="dwh-card" style="background:linear-gradient(145deg,#F0FDF9,#EFF6FF);border:1px solid rgba(16,185,129,0.15);">
-          <div class="dwh-card__icon" style="border:1px solid rgba(16,185,129,0.25);">
-            <img src="/assets/img/intellica_camlogo_icibos.png" alt="" />
+  <!-- HERO: DARK (UPGRADED TO MATCH HOMEPAGE) -->
+  <section class="hero noise" id="solutions-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content">
+          <div class="section-label anim-fade-up">SOLUTIONS</div>
+          <h1 class="hero__title anim-fade-up">Production-Ready <br /><span class="grad-text">AI Blueprints</span></h1>
+          <span class="hero__accent anim-fade-up"></span>
+          <p class="hero__desc anim-fade-up">We bridge the gap between AI pilots and enterprise reality with battle-tested architectures and agentic frameworks.</p>
+          <div class="hero__actions anim-fade-up">
+            <a class="btn btn-primary btn-pill btn-lg" href="/contact">CONTACT US</a>
           </div>
-          <h3>Cloud Modernization</h3>
-          <p>Migration from on-premise to cloud-native architectures. Technology-agnostic approach across AWS, Azure, GCP.</p>
-          <ul class="dwh-card__list">
-            <li>Assessment & target architecture</li>
-            <li>Phased migration approach</li>
-            <li>Performance benchmarking</li>
-          </ul>
         </div>
-        <div class="dwh-card" style="background:linear-gradient(145deg,#EFF6FF,#F0FDF9);border:1px solid rgba(59,130,246,0.15);">
-          <div class="dwh-card__icon" style="border:1px solid rgba(59,130,246,0.25);">
-            <img src="/assets/img/intellica_camlogo_icibos.png" alt="" />
-          </div>
-          <h3>Data Operations</h3>
-          <p>Reliable data pipelines with quality gates, orchestration and observability.</p>
-          <ul class="dwh-card__list">
-            <li>ETL/ELT automation</li>
-            <li>Data quality monitoring</li>
-            <li>Alert & incident management</li>
-          </ul>
-        </div>
-        <div class="dwh-card" style="background:linear-gradient(145deg,#F5F3FF,#EFF6FF);border:1px solid rgba(99,102,241,0.15);">
-          <div class="dwh-card__icon" style="border:1px solid rgba(99,102,241,0.25);">
-            <img src="/assets/img/intellica_camlogo_icibos.png" alt="" />
-          </div>
-          <h3>Semantic Layer</h3>
-          <p>Standardized business metrics, KPI governance and self-service BI enablement.</p>
-          <ul class="dwh-card__list">
-            <li>Metric standardization</li>
-            <li>Self-service enablement</li>
-            <li>Governed analytics</li>
-          </ul>
+        <div class="hero__visual anim-fade-up">
+           <img class="hero__shape-new" src="/assets/img/ai_blueprints_hero.png" alt="AI Blueprints" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section section--dark">
-    <div class="container">
-      <div class="cta-strip anim-fade-up">
-        <h2>Ready to <span class="grad-text">Transform</span>?</h2>
-        <p>Let's discuss how our solutions can accelerate your data & AI maturity.</p>
-        <a class="btn btn-primary btn-pill btn-lg" href="/contact">Schedule a Consultation</a>
+  <!-- AI SOLUTIONS OVERVIEW: MODERN DARK THEME -->
+  <section class="ai-solutions">
+    <style>
+      .ai-solutions{
+        --bg1:#FFFFFF;
+        --bg2:#FBFCFE;
+        --card:rgba(15,23,42,0.03);
+        --card2:rgba(15,23,42,0.05);
+        --line:rgba(15,23,42,0.08);
+        --text:#0F172A;
+        --muted:#64748B;
+        --accent:#00C896;
+        --radius:20px;
+        padding:72px 0;
+        background:
+          radial-gradient(900px 300px at 20% 10%, rgba(0,200,150,0.05), transparent 60%),
+          radial-gradient(700px 260px at 80% 0%, rgba(0,159,227,0.03), transparent 55%),
+          linear-gradient(180deg, var(--bg1), var(--bg2));
+      }
+      .ai-solutions *{box-sizing:border-box}
+      .ai-wrap{
+        width:min(1120px, 92vw);
+        margin:0 auto;
+        color:var(--text);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      .ai-top{
+        display:grid;
+        grid-template-columns: 1.05fr 1.35fr;
+        gap:28px;
+        align-items:start;
+      }
+      @media(max-width:960px){
+        .ai-top{grid-template-columns:1fr; gap:18px;}
+      }
+
+      .ai-kicker{
+        display:inline-flex;
+        gap:10px;
+        align-items:center;
+        padding:8px 12px;
+        border:1px solid var(--line);
+        border-radius:999px;
+        background:rgba(0,0,0,0.02);
+        color:var(--muted);
+        font-size:12px;
+        letter-spacing:.08em;
+        text-transform:uppercase;
+      }
+      .ai-kicker i{
+        width:8px; height:8px; border-radius:999px;
+        background:var(--accent);
+        box-shadow:0 0 0 6px rgba(0,200,150,.1);
+        display:inline-block;
+      }
+      .ai-title{
+        margin:14px 0 10px;
+        font-size:40px;
+        line-height:1.08;
+        letter-spacing:-.02em;
+        font-weight:750;
+        color: #0F172A;
+      }
+      @media(max-width:560px){ .ai-title{font-size:32px;} }
+      .ai-lead{
+        margin:0 0 18px;
+        color:var(--muted);
+        font-size:16px;
+        line-height:1.6;
+        max-width:52ch;
+      }
+
+      .ai-bullets{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px 18px;
+        padding:18px;
+        border:1px solid var(--line);
+        border-radius:var(--radius);
+        background:rgba(0,0,0,0.01);
+      }
+      @media(max-width:560px){ .ai-bullets{grid-template-columns:1fr;} }
+      .ai-bullets .h{
+        grid-column:1/-1;
+        font-weight:650;
+        letter-spacing:-.01em;
+        margin-bottom:4px;
+        color: #0F172A;
+      }
+      .ai-bullets li{
+        list-style:none;
+        margin:0;
+        padding:0 0 0 14px;
+        position:relative;
+        color:var(--muted);
+        font-size:14px;
+        line-height:1.5;
+      }
+      .ai-bullets li:before{
+        content:"";
+        position:absolute;
+        left:0; top:.55em;
+        width:6px; height:6px;
+        border-radius:999px;
+        background:var(--accent);
+        opacity:.9;
+      }
+
+      .ai-grid{
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap:14px;
+      }
+      @media(max-width:560px){ .ai-grid{grid-template-columns:1fr;} }
+
+      .ai-card{
+        border:1px solid var(--line);
+        border-radius:var(--radius);
+        background: #FFF;
+        padding:16px 16px 14px;
+        min-height:110px;
+        position:relative;
+        overflow:hidden;
+        transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      }
+      .ai-card:after{
+        content:"";
+        position:absolute;
+        inset:-1px;
+        background:radial-gradient(260px 140px at 20% 10%, rgba(0,200,150,.1), transparent 55%);
+        opacity:0;
+        transition:opacity .18s ease;
+        pointer-events:none;
+      }
+      .ai-card:hover{
+        transform:translateY(-2px);
+        border-color:var(--accent);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+      }
+      .ai-card:hover:after{opacity:1}
+
+      .ai-card .top{
+        display:flex;
+        align-items:flex-start;
+        gap:10px;
+        margin-bottom:8px;
+      }
+      .ai-ico{
+        width:36px; height:36px;
+        border-radius:12px;
+        border:1px solid var(--line);
+        background:rgba(0,0,0,0.02);
+        display:grid;
+        place-items:center;
+        flex:0 0 auto;
+        color: var(--accent);
+      }
+      .ai-ico svg{width:18px; height:18px;}
+      .ai-card h3{
+        margin:0;
+        font-size:15px;
+        letter-spacing:-.01em;
+        font-weight:700;
+        color: #0F172A;
+      }
+      .ai-card p{
+        margin:0;
+        color:var(--muted);
+        font-size:13.5px;
+        line-height:1.55;
+      }
+      .ai-tag{
+        display:inline-flex;
+        gap:8px;
+        align-items:center;
+        margin-top:10px;
+        color:var(--muted);
+        font-size:11px;
+      }
+      .ai-tag span{
+        border:1px solid var(--line);
+        border-radius:999px;
+        padding:4px 8px;
+        background:rgba(0,0,0,0.02);
+        white-space:nowrap;
+      }
+
+      .ai-divider{
+        height:1px;
+        background:var(--line);
+        margin:28px 0 18px;
+      }
+
+      .ai-subhead{
+        display:flex;
+        align-items:flex-end;
+        justify-content:space-between;
+        gap:16px;
+        margin:0 0 12px;
+      }
+      .ai-subhead h2{
+        margin:0;
+        font-size:20px;
+        letter-spacing:-.01em;
+        font-weight:750;
+        color: #0F172A;
+      }
+      .ai-subhead p{
+        margin:0;
+        color:var(--muted);
+        font-size:13.5px;
+        line-height:1.5;
+        max-width:54ch;
+      }
+
+      .ai-usecases{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:12px;
+      }
+      @media(max-width:960px){ .ai-usecases{grid-template-columns:repeat(2, 1fr);} }
+      @media(max-width:560px){ .ai-usecases{grid-template-columns:1fr;} }
+
+      .ai-mini{
+        border:1px solid var(--line);
+        border-radius:16px;
+        padding:14px 14px 12px;
+        background:#FFF;
+        transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+        min-height:96px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      }
+      .ai-mini:hover{transform:translateY(-2px); border-color:var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.05);}
+      .ai-mini h4{
+        margin:0 0 6px;
+        font-size:14px;
+        font-weight:750;
+        letter-spacing:-.01em;
+        color: #0F172A;
+      }
+      .ai-mini p{
+        margin:0;
+        color:var(--muted);
+        font-size:13px;
+        line-height:1.5;
+      }
+    </style>
+
+    <div class="ai-wrap">
+
+      <!-- TOP -->
+      <div class="ai-top">
+        <div>
+          <div class="ai-kicker"><i></i> AI Solutions</div>
+          <h2 class="ai-title">Turn Data Into Intelligent Systems</h2>
+          <p class="ai-lead">
+            We design AI capabilities that power prediction, automation, and enterprise-grade
+            decision-making—built on reliable data foundations.
+          </p>
+
+          <ul class="ai-bullets">
+            <div class="h">What we deliver</div>
+            <li>Domain-specific fine-tuning</li>
+            <li>RAG-ready knowledge systems</li>
+            <li>High-performance inference</li>
+            <li>API & data integrations</li>
+            <li>Goal-driven autonomous workflows</li>
+            <li>Multi-agent orchestration</li>
+          </ul>
+        </div>
+
+        <div class="ai-grid">
+          <!-- 1 -->
+          <div class="ai-card">
+            <div class="top">
+              <div class="ai-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-6"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Machine Learning</h3>
+                <p>Predictive models and anomaly detection for smarter decisions.</p>
+                <div class="ai-tag"><span>Forecasting</span><span>Anomaly</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="ai-card">
+            <div class="top">
+              <div class="ai-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/>
+                  <path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/>
+                  <path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Deep Learning</h3>
+                <p>Advanced neural architectures including transformers and custom networks.</p>
+                <div class="ai-tag"><span>Transformers</span><span>Vision/NLP</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="ai-card">
+            <div class="top">
+              <div class="ai-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 8h10"/><path d="M7 12h6"/><path d="M7 16h10"/>
+                  <path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Large Language Models</h3>
+                <p>Enterprise LLM systems with RAG and domain fine-tuning.</p>
+                <div class="ai-tag"><span>RAG</span><span>Fine-tune</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="ai-card">
+            <div class="top">
+              <div class="ai-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 6v6l4 2"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>AI Agents</h3>
+                <p>Autonomous agents that execute workflows across tools and systems.</p>
+                <div class="ai-tag"><span>Orchestration</span><span>Automation</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="ai-card">
+            <div class="top">
+              <div class="ai-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3l9 4.5-9 4.5L3 7.5 12 3z"/><path d="M3 12l9 4.5 9-4.5"/>
+                  <path d="M3 16.5l9 4.5 9-4.5"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Generative AI</h3>
+                <p>Content, code, and knowledge generation aligned with your governance.</p>
+                <div class="ai-tag"><span>Assistants</span><span>Content</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="ai-card">
+            <div class="top">
+              <div class="ai-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16v6H4z"/><path d="M4 14h10v6H4z"/><path d="M16 14h4v6h-4z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>MLOps & Deployment</h3>
+                <p>Monitoring, versioning, CI/CD, and scalable production deployments.</p>
+                <div class="ai-tag"><span>Monitoring</span><span>CI/CD</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-divider"></div>
+
+      <!-- USE CASES -->
+      <div class="ai-subhead">
+        <h2>AI Use Cases</h2>
+        <p>Customer-facing outcomes that we deliver—adaptable across banking, telecom, retail, and industry.</p>
+      </div>
+
+      <div class="ai-usecases">
+        <div class="ai-mini">
+          <h4>Predictive Analytics</h4>
+          <p>Forecast demand, risk, and customer behavior with measurable accuracy.</p>
+        </div>
+        <div class="ai-mini">
+          <h4>Intelligent Automation</h4>
+          <p>Automate decisions and operations with agentic workflows.</p>
+        </div>
+        <div class="ai-mini">
+          <h4>Document Intelligence</h4>
+          <p>RAG-powered search, summarization, and compliance Q&A on enterprise docs.</p>
+        </div>
+        <div class="ai-mini">
+          <h4>Detection & Monitoring</h4>
+          <p>Detect anomalies, fraud patterns, and operational risks in real time.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PORTFOLIO: LIGHT BACKGROUND (#F8FAFC) -->
+  <section class="section section--light blueprint-section" id="portfolio">
+    <div class="container container--wide-xl">
+      <div class="text-center anim-fade-up" style="margin-bottom: 80px;">
+        <div class="section-label" style="margin-inline:auto;">Solution Portfolio</div>
+        <h2 class="section-title">Validated <span class="grad-text">Production Scenarios</span></h2>
+        <p class="section-sub">Standardized AI architectures designed for immediate enterprise integration and measurable ROI.</p>
+      </div>
+
+      <!-- THE PREMIUM BROWSER FRAME -->
+      <div class="bp-browser-frame anim-fade-up">
+        <div class="bp-browser-grid">
+          
+          <!-- LEFT & CENTER: Groups & Solution Strips -->
+          <div class="bp-content-col">
+            
+            <!-- GROUP: CONVERSATIONAL -->
+            <div class="bp-group">
+              <div class="bp-group__label">Conversational & Copilot</div>
+              <div class="bp-group__sidebar">
+                <div class="bp-group__image">
+                  <img src="/assets/img/ai_conversational_abstract_1772397463623.png" alt="Conversational" />
+                </div>
+              </div>
+              <div class="bp-group__list">
+                <div class="bp-strip" data-id="customer-360">
+                  <div class="bp-strip__data">
+                    <h3>AI-Assisted Customer 360</h3>
+                    <p>Integrates CRM, complaints, and demographic data to offer intelligent assistant (copilot) support for call center and field teams.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GROUP: PREDICTIVE -->
+            <div class="bp-group">
+              <div class="bp-group__label">Predictive & Decision</div>
+              <div class="bp-group__sidebar">
+                <div class="bp-group__image">
+                  <img src="/assets/img/ai_predictive_abstract_1772397483613.png" alt="Predictive" />
+                </div>
+              </div>
+              <div class="bp-group__list">
+                <div class="bp-strip" data-id="demand-prediction">
+                  <div class="bp-strip__data">
+                    <h3>Demand Prediction</h3>
+                    <p>Predicts call volume using time series and ML; reduces wait times and overtime with accurate shift planning.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+                <div class="bp-strip" data-id="procurement-analytics">
+                  <div class="bp-strip__data">
+                    <h3>Procurement Analytics</h3>
+                    <p>Predicts raw material and commodity prices with historical and external data to strengthen budget and negotiation timing.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+                <div class="bp-strip" data-id="likelihood-to-buy">
+                  <div class="bp-strip__data">
+                    <h3>Likelihood to Buy</h3>
+                    <p>Scores purchase propensities from past behaviors of existing or potential customers to optimize sales focus.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GROUP: KNOWLEDGE -->
+            <div class="bp-group">
+              <div class="bp-group__label">Knowledge Automation</div>
+              <div class="bp-group__sidebar">
+                <div class="bp-group__image">
+                  <img src="/assets/img/ai_knowledge_abstract_1772398712333.png" alt="Knowledge" />
+                </div>
+              </div>
+              <div class="bp-group__list">
+                <div class="bp-strip" data-id="document-answers">
+                  <div class="bp-strip__data">
+                    <h3>Document Answers</h3>
+                    <p>Intelligent search and summarization from corporate document pools (RFP, contracts) providing instant answers.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- GROUP: OPERATIONAL -->
+            <div class="bp-group">
+              <div class="bp-group__label">Operational & Agentic</div>
+              <div class="bp-group__sidebar">
+                <div class="bp-group__image">
+                  <img src="/assets/img/ai_agentic_abstract_1772397503700.png" alt="Operational" />
+                </div>
+              </div>
+              <div class="bp-group__list">
+                <div class="bp-strip" data-id="defect-solver">
+                  <div class="bp-strip__data">
+                    <h3>AI Defect Solver</h3>
+                    <p>Predicts failures hours in advance by analyzing sensor data to reduce unplanned downtime and increase production efficiency.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+                <div class="bp-strip" data-id="rolling-force">
+                  <div class="bp-strip__data">
+                    <h3>Rolling Force Optimization</h3>
+                    <p>Predicts optimal rolling force using chemical and mechanical properties to reduce passes and energy consumption.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+                <div class="bp-strip" data-id="energy-optimization">
+                  <div class="bp-strip__data">
+                    <h3>Real-Time Energy Optimization</h3>
+                    <p>Monitors consumption in production and detects anomalies in real-time to reduce excess consumption.</p>
+                  </div>
+                  <div class="bp-strip__arrow">
+                    <span class="view-lbl">VIEW DETAILS</span>
+                    <div class="arrow-circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Detail Pane (Sticky & Wider) -->
+          <aside class="bp-detail-col">
+            <div class="bp-detail-widget" id="bp-detail-widget">
+              <!-- Close Button for Mobile -->
+              <button class="bp-detail-close" id="bp-close-detail" aria-label="Close details">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+              <div id="bp-detail-inner">
+                <!-- Content injected here -->
+              </div>
+            </div>
+          </aside>
+
+        </div>
       </div>
     </div>
   </section>
+
+  <Footer />
 
 </Layout>
 
 <style>
-.service-list {
-  list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 10px;
+/* Global Constants & Sectioning */
+.container--wide-xl { max-width: 1840px; margin-inline: auto; padding-inline: 40px; }
+
+/* REFINED HERO (HOMEPAGE SYNC) */
+.hero { 
+  min-height: 700px; display: flex; align-items: center; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
 }
-.service-list li {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.88rem; color: #374151;
+.hero__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; }
+.hero__content-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 40px; width: 100%; }
+.hero__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+.hero__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+.hero__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+.hero__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero__visual { display: flex; justify-content: center; align-items: center; }
+.hero__shape-new { 
+  width: 100%; max-width: 600px; 
+  animation: float 8s ease-in-out infinite; 
+  filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3)); 
+  border-radius: 40px;
 }
-.service-list li::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--grad-brand);
-  flex-shrink: 0;
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+@media (max-width: 1024px) {
+  .hero__content-wrap { 
+    grid-template-columns: 1fr; 
+    text-align: left; 
+    position: relative;
+    padding-top: 20px;
+  }
+  .hero__content { align-items: flex-start; }
+  .hero__visual { 
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 100px;
+    justify-content: flex-end;
+    margin: 0;
+    z-index: 10;
+  }
+  .hero__shape-new { max-width: 100%; opacity: 0.9; }
 }
-.ai-portfolio-card__badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: rgba(0,200,150,0.1);
-  color: var(--clr-primary);
-  border: 1px solid rgba(0,200,150,0.2);
-  margin-bottom: 16px;
+
+/* Capabilities Section (New) */
+.capabilities-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; align-items: stretch; margin-top: 48px; }
+.cap-card { background: #FFF; border: 1px solid #E2E8F0; border-radius: 32px; padding: 48px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
+.cap-card__title { font-size: 2rem; font-weight: 950; color: #0F172A; margin-bottom: 32px; letter-spacing: -0.02em; line-height: 1.1; min-height: 4.4rem; display: flex; align-items: flex-start; }
+.cap-card__desc { font-size: 1.1rem; color: #64748B; line-height: 1.6; margin-bottom: 40px; min-height: 4.8rem; }
+
+/* Analytics Card Layout */
+.cap-card__row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.cap-block__title { color: var(--clr-primary); font-size: 1.1rem; font-weight: 950; margin-bottom: 12px; }
+.cap-block__text { font-size: 1rem; color: #475569; line-height: 1.6; }
+
+/* AI Card Layout */
+.cap-ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+.cap-ai-item { background: #F8FAFC; border: 1px solid #E2E8F0; padding: 24px; border-radius: 20px; }
+.cap-ai-item h5 { font-size: 1rem; font-weight: 950; color: #0F172A; margin-bottom: 8px; }
+.cap-ai-item p { font-size: 0.85rem; color: #64748B; margin: 0; line-height: 1.5; }
+
+.cap-expertise-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: auto; border-top: 1px solid #F1F5F9; pt-32px; padding-top: 32px; }
+.cap-expertise h6 { font-size: 1rem; font-weight: 950; color: #0F172A; margin-bottom: 16px; }
+.cap-list { list-style: none; padding: 0; margin: 0; }
+.cap-list li { font-size: 0.9rem; color: #475569; margin-bottom: 10px; padding-left: 20px; position: relative; line-height: 1.4; }
+.cap-list li::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--clr-primary); border-radius: 50%; }
+
+@media (max-width: 1200px) { 
+  .capabilities-grid { grid-template-columns: 1fr; } 
+  .cap-card__title, .cap-card__desc { min-height: auto; }
+  .cap-card__row { grid-template-columns: 1fr; }
 }
-.ai-portfolio-card h3 { margin-bottom: 12px; }
-.ai-portfolio-card p { margin-bottom: 20px; }
-.service-card { display: flex; flex-direction: column; }
+
+/* PORTFOLIO BROWSER (LIGHT THEME MATCHING HOMEPAGE) */
+.blueprint-section { 
+  background-color: var(--clr-light-bg);
+  border-top: 1px solid #E2E8F0;
+}
+.blueprint-section .section-title { color: var(--clr-light-text); }
+.blueprint-section .section-sub { color: var(--clr-light-muted); }
+.blueprint-section .section-label { color: var(--clr-primary); }
+
+.bp-browser-frame { 
+  background: #FFF; 
+  border: 1px solid #E2E8F0; 
+  border-radius: 64px; 
+  padding: 64px; 
+  box-shadow: 0 40px 120px rgba(15,23,42,0.06); 
+}
+
+@media (max-width: 1200px) {
+  .bp-browser-frame { padding: 40px 24px; border-radius: 40px; }
+}
+
+.bp-browser-grid { display: grid; grid-template-columns: 1fr 540px; gap: 40px; align-items: flex-start; }
+
+@media (max-width: 1400px) {
+  .bp-browser-grid { grid-template-columns: 1fr; }
+}
+
+/* Alignment Logic */
+.bp-content-col { display: flex; flex-direction: column; gap: 80px; }
+
+@media (max-width: 768px) {
+  .bp-content-col { gap: 64px; }
+}
+
+.bp-group { 
+  display: grid; 
+  grid-template-columns: 40px 220px 1fr; 
+  gap: 32px; 
+  align-items: stretch; 
+}
+
+@media (max-width: 1200px) {
+  .bp-group { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.bp-group__label { 
+  writing-mode: vertical-rl; 
+  transform: rotate(180deg);
+  font-size: 0.75rem; 
+  font-weight: 950; 
+  color: var(--clr-primary); 
+  text-transform: uppercase; 
+  letter-spacing: 0.25em; 
+  opacity: 0.5; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  border-right: 1px solid #F1F5F9;
+  padding-right: 20px;
+}
+
+@media (max-width: 1200px) {
+  .bp-group__label { 
+    writing-mode: horizontal-tb; 
+    transform: none; 
+    border-right: none; 
+    border-bottom: 2px solid #F1F5F9; 
+    padding: 0 0 12px; 
+    justify-content: flex-start;
+  }
+}
+
+.bp-group__sidebar { position: relative; }
+.bp-group__image { width: 100%; height: 100%; border-radius: 32px; overflow: hidden; border: 1px solid #E2E8F0; background: #EEE; }
+
+@media (max-width: 1200px) {
+  .bp-group__image { height: 240px; }
+}
+
+.bp-group__image img { width: 100%; height: 100%; object-fit: cover; transition: all 0.7s; }
+.bp-group:hover .bp-group__image img { transform: scale(1.08); filter: brightness(1.05); }
+
+/* The Expanded Strips */
+.bp-group__list { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+.bp-strip { 
+  display: flex; align-items: center; justify-content: space-between; 
+  padding: 48px; background: #F8FAFC; border: 1px solid #F1F5F9; border-radius: 48px; 
+  cursor: pointer; transition: all 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .bp-strip { padding: 32px 24px; border-radius: 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+
+.bp-strip:hover { transform: translateX(12px); background: #FFF; border-color: #CBD5E1; box-shadow: 0 20px 50px rgba(15,23,42,0.08); }
+
+@media (max-width: 768px) {
+  .bp-strip:hover { transform: translateY(-4px); }
+}
+
+.bp-strip.active { background: #FFF; border-color: var(--clr-primary); box-shadow: 0 20px 40px rgba(0,200,150,0.1); }
+
+.bp-strip__data { flex: 1; }
+.bp-strip__data h3 { font-size: 1.8rem; font-weight: 950; color: #1E293B; margin-bottom: 12px; letter-spacing: -0.02em; }
+
+@media (max-width: 768px) {
+  .bp-strip__data h3 { font-size: 1.4rem; }
+}
+
+.bp-strip__data p { font-size: 1.15rem; color: #64748B; margin: 0; line-height: 1.6; width: 100%; }
+
+@media (max-width: 768px) {
+  .bp-strip__data p { font-size: 1rem; }
+}
+
+.bp-strip__arrow { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-left: 32px; color: #94A3B8; }
+
+@media (max-width: 768px) {
+  .bp-strip__arrow { margin-left: 0; flex-direction: row; width: 100%; justify-content: space-between; border-top: 1px solid #F1F5F9; pt: 20px; padding-top: 20px; }
+}
+
+.view-lbl { font-size: 0.65rem; font-weight: 950; letter-spacing: 0.1em; opacity: 0; transition: 0.3s; white-space: nowrap; }
+.bp-strip:hover .view-lbl { opacity: 1; color: var(--clr-primary); }
+
+@media (max-width: 768px) {
+  .view-lbl { opacity: 1; }
+}
+
+.arrow-circ { width: 36px; height: 36px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; transition: 0.3s; color: #94A3B8; }
+.bp-strip:hover .arrow-circ { background: var(--grad-brand); color: #FFF; transform: translateX(6px); }
+
+@media (max-width: 768px) {
+  .bp-strip:hover .arrow-circ { transform: none; }
+}
+
+/* THE DYNAMIC DETAIL PANE */
+.bp-detail-col { position: relative; height: 100%; z-index: 100; transition: 0.3s; opacity: 0; pointer-events: none; visibility: hidden; }
+.bp-detail-col.active { opacity: 1; pointer-events: auto; visibility: visible; }
+
+.bp-detail-widget { 
+  position: absolute; 
+  top: 0; right: 0; left: 0;
+  background: #FFF; border: 1px solid #E2E8F0; border-radius: 48px;
+  padding: 40px; width: 100%; height: fit-content;
+  opacity: 0; pointer-events: none; transform: translateY(40px) scale(0.97);
+  transition: opacity 0.4s, transform 0.4s, top 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+  box-shadow: 0 40px 150px rgba(15,23,42,0.1);
+  z-index: 10;
+}
+.bp-detail-widget.active { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+
+/* Detail Content Styles */
+.dt-label { font-size: 0.75rem; font-weight: 950; color: #00C896; text-transform: uppercase; letter-spacing: 0.25em; border-bottom: 2px solid #F1F5F9; padding-bottom: 12px; margin-bottom: 24px; display: block; }
+.dt-title { font-size: 2.2rem; font-weight: 950; color: #111827; margin-bottom: 20px; letter-spacing: -0.05em; line-height: 1.1; }
+.dt-desc { font-size: 1.05rem; color: #475569; line-height: 1.6; margin-bottom: 32px; }
+.dt-sec { margin-bottom: 32px; }
+.dt-h { font-size: 0.8rem; font-weight: 950; color: #111827; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; padding-left: 12px; border-left: 3px solid #00C896; }
+.dt-list { list-style: none; padding: 0; margin: 0; }
+.dt-list li { font-size: 1.05rem; color: #1E293B; margin-bottom: 12px; display: flex !important; align-items: flex-start !important; gap: 12px !important; line-height: 1.5; }
+.dt-list li::before { content: "✔" !important; color: #00C896 !important; font-weight: 950 !important; flex-shrink: 0; display: inline-block !important; }
+.dt-meta { display: grid; gap: 20px; border-top: 2px solid #F1F5F9; padding-top: 24px; margin-top: 10px; }
+.dt-meta-i b { display: block; font-size: 0.8rem; font-weight: 950; color: #111827; margin-bottom: 6px; text-transform: uppercase; }
+.dt-meta-i p { font-size: 1rem; color: #64748B; margin: 0; line-height: 1.5; }
+
+/* Mobile detail close button */
+.bp-detail-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #F1F5F9; color: #1E293B;
+  display: none; align-items: center; justify-content: center;
+  transition: 0.3s; z-index: 100; border: 1px solid #E2E8F0;
+  cursor: pointer;
+}
+.bp-detail-close svg { width: 22px; height: 22px; pointer-events: none; stroke-width: 3; }
+.bp-detail-close:hover { background: #00C896; color: #FFF; border-color: #00C896; }
+
+@media (max-width: 1200px) {
+  .bp-browser-grid { grid-template-columns: 1fr; gap: 48px; }
+  
+  /* CRITICAL: Disable parent transforms when detail is active on tablets/mobile */
+  .bp-browser-frame.detail-active { transform: none !important; animation: none !important; }
+
+  .bp-detail-col { 
+     position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important;
+     z-index: 9999999 !important; background: rgba(15,23,42,0.92) !important; 
+     backdrop-filter: blur(12px) !important; display: flex !important;
+     align-items: center !important; justify-content: center !important; padding: 20px !important;
+  }
+  .bp-detail-col.active { opacity: 1 !important; pointer-events: auto !important; visibility: visible !important; }
+
+  .bp-detail-widget { 
+    position: relative !important; top: auto !important; left: auto !important; right: auto !important;
+    width: 100% !important; max-width: 600px !important; height: auto !important; 
+    max-height: 85vh !important; overflow-y: auto !important;
+    border-radius: 32px !important; padding: 56px 24px 32px !important;
+    transform: translateY(20px) !important;
+    opacity: 1 !important; pointer-events: auto !important;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6) !important;
+  }
+  .bp-detail-col.active .bp-detail-widget { transform: translateY(0) !important; }
+  .bp-detail-close { display: flex !important; }
+  
+  .dt-title { font-size: 1.7rem !important; line-height: 1.1 !important; }
+  .dt-desc { font-size: 1rem !important; margin-bottom: 24px !important; }
+  .dt-meta { grid-template-columns: 1fr !important; gap: 12px; }
+}
 </style>
+
+<script>
+  const blueprintData = {
+    "customer-360": {
+      title: "AI-Assisted Customer 360",
+      description: "Combines CRM, complaint, and demographic data to offer intelligent assistant (copilot) support for call center and field teams.",
+      useCases: ["Predicting call reason before the call", "Billing resolution with proactive plan offers", "Personalized card blockage support offers"],
+      metrics: ["↑ Sales/conversion per call", "↓ Average Handle Time (AHT)", "↑ Customer satisfaction score (NPS/CSAT)"],
+      complexity: "High. Real-time data synthesis (CRM, logs) and intelligent assistant integration.",
+      users: "Service Reps, Campaign Managers, Ops Teams, Management",
+      tech: "LLM + ML/DL, Data Orchestration, Assistant Interfaces"
+    },
+    "demand-prediction": {
+      title: "Demand Prediction",
+      description: "Predicts call volume using time series and ML; optimizes shift planning to reduce wait times and overtime.",
+      useCases: ["Forecasting call volume during maintenance/outages", "Planning support load for campaign periods", "Predicting call spikes after new product launches"],
+      metrics: ["↑ Staffing accuracy", "↓ Waiting time", "↓ Overtime & idle time", "↑ Event preparedness", "↑ Service consistency"],
+      complexity: "Medium. Rare event/imbalance modeling and external signal integration.",
+      users: "Call Center Managers, Workforce Planners, IT Teams, Quality Teams",
+      tech: "Time Series + ML, Feature Engineering, Anomaly Techniques"
+    },
+    "procurement-analytics": {
+      title: "Procurement Analytics",
+      description: "Predicts raw material and commodity prices using historical and external market data to strengthen negotiation windows.",
+      useCases: ["Steel/Copper/Plastics price forecasting", "Packaging cost (oil/sugar) prediction", "Equipment cost tracking based on global indices"],
+      metrics: ["↑ Prediction accuracy", "↓ Cost variance", "↑ Negotiation power", "↑ Budget reliability", "↑ Strategic planning efficiency"],
+      complexity: "Medium. Non-linear relationships, multivariate time series, and lagged macro signals.",
+      users: "Procurement Managers, Category Buyers, Finance Teams",
+      tech: "Multivariate Time Series, ML Forecasting, Macro Signal Processing"
+    },
+    "likelihood-to-buy": {
+      title: "Likelihood to Buy",
+      description: "Scores purchase propensities from past behaviors of existing or potential customers to optimize sales focus.",
+      useCases: ["Prioritizing high-potential leads", "Increasing campaign targeting accuracy", "Proactive action with churn risk prediction"],
+      metrics: ["↑ Campaign conversion rate", "↓ Cost-per-acquisition (CPA)", "↑ Customer Lifetime Value (CLTV)"],
+      complexity: "Medium. Feature engineering, classification models, and regular scoring pipelines.",
+      users: "Marketing Teams, Sales Managers, Growth Teams, Analysts",
+      tech: "ML Classification (XGBoost, LightGBM), Feature Engineering"
+    },
+    "document-answers": {
+      title: "Document Answers",
+      description: "Performs intelligent search and summarization from corporate document pools (RFP, contracts, instructions) to provide instant answers.",
+      useCases: ["Internal policy/procedure queries", "Extracting info from technical documents", "Contract comparison and summarization"],
+      metrics: ["↓ Time to reach information", "↑ Response accuracy", "↓ Error rate in operations", "↑ Employee productivity", "↑ Information consistency"],
+      complexity: "Medium-High. RAG (Retrieval-Augmented Generation) architecture and Vector DB.",
+      users: "Ops Support, Legal/Compliance, HR, Technical Support, All Employees",
+      tech: "LLM (GPT/OpenSource), Vector DB (Pinecone/Chroma), LangChain"
+    },
+    "defect-solver": {
+      title: "AI Defect Solver",
+      description: "Predicts failures hours in advance by analyzing sensor data to reduce unplanned downtime and increase production efficiency.",
+      useCases: ["Predicting downtime in high-speed lines", "Failure prediction in robotic assembly/paint lines", "Early warning in temperature-sensitive processes"],
+      metrics: ["↑ Prediction accuracy", "↑ Warning lead time", "↓ Annual cost", "↓ Downtime", "↑ Maintenance efficiency"],
+      complexity: "High. Sensor data cleaning, time series features, and real-time inference.",
+      users: "Maintenance Managers, Production Planning, Factory Management",
+      tech: "ML Classification, Time Series Features, DL (LSTM/CNN), Ensemble"
+    },
+    "rolling-force": {
+      title: "Rolling Force Optimization",
+      description: "Predicts optimal rolling force using chemical composition, temperature, and mechanical properties to reduce passes and energy.",
+      useCases: ["Optimal force prediction for each pass", "Reaching target thickness with minimum passes", "Scheduling based on steel grades"],
+      metrics: ["↓ Number of passes (e.g., 15% reduction)", "↑ Rolling efficiency", "↓ Energy consumption", "↑ Throughput", "↓ Scrap & rework"],
+      complexity: "Medium-High. Non-linear process modeling and control system integration.",
+      users: "Production Engineers, Rolling Operators, Process Ops, Managers",
+      tech: "ML/DL Regression, Physics-Informed Features, Optimization"
+    },
+    "energy-optimization": {
+      title: "Real-Time Energy Optimization",
+      description: "Monitors energy consumption in production, detects anomalies in real-time, and reduces excess consumption with parameter adjustments.",
+      useCases: ["Optimizing furnace/dryer settings", "Efficiency optimization in high-consumption machines", "Temperature-pressure optimization in painting/test rooms"],
+      metrics: ["↓ Energy expense", "↓ CO2 emissions", "↓ Detection time", "↑ System efficiency", "↑ Scalability"],
+      complexity: "Medium-High. Multivariate time series anomaly + optimization + dashboard integration.",
+      users: "Factory Engineers, Energy Managers, Production Managers",
+      tech: "Unsupervised Anomaly Detection, Time Series (Drift), Sensor Fusion"
+    }
+  };
+
+  function initBlueprintBrowser() {
+    const strips = document.querySelectorAll('.bp-strip');
+    const detailWidget = document.getElementById('bp-detail-widget');
+    const detailInner = document.getElementById('bp-detail-inner');
+    const detailCol = document.querySelector('.bp-detail-col');
+    const closeBtn = document.getElementById('bp-close-detail');
+    const browserFrame = document.querySelector('.bp-browser-frame');
+
+    if (!strips.length || !detailWidget || !detailInner || !detailCol) return;
+
+    function updateDetail(id) {
+      const data = blueprintData[id];
+      if (!data) return;
+
+      detailInner.innerHTML = `
+        <span class="dt-label">Detailed Solution</span>
+        <h3 class="dt-title">${data.title}</h3>
+        <p class="dt-desc">${data.description}</p>
+        
+        <div class="dt-sec">
+          <div class="dt-h">Core Use Cases</div>
+          <ul class="dt-list">
+            ${data.useCases.map(uc => `<li>${uc}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="dt-sec">
+          <div class="dt-h">Success Metrics</div>
+          <ul class="dt-list">
+            ${data.metrics.map(m => `<li>${m}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="dt-meta">
+          <div class="dt-meta-i"><b>Complexity:</b> <p>${data.complexity}</p></div>
+          <div class="dt-meta-i"><b>Users:</b> <p>${data.users}</p></div>
+          <div class="dt-meta-i"><b>Tech Stack:</b> <p>${data.tech}</p></div>
+        </div>
+      `;
+    }
+
+    function closeDetail() {
+      strips.forEach(s => s.classList.remove('active'));
+      detailCol.classList.remove('active');
+      detailWidget.classList.remove('active');
+      if (browserFrame) browserFrame.classList.remove('detail-active');
+      document.body.style.overflow = '';
+    }
+
+    strips.forEach(strip => {
+      strip.addEventListener('click', (e) => {
+        const id = strip.getAttribute('data-id');
+        const isActive = strip.classList.contains('active');
+        
+        if (isActive) {
+          closeDetail();
+        } else {
+          strips.forEach(s => s.classList.remove('active'));
+          strip.classList.add('active');
+          updateDetail(id);
+          
+          detailCol.classList.add('active');
+          detailWidget.classList.add('active');
+          if (browserFrame) browserFrame.classList.add('detail-active');
+          
+          if (window.innerWidth <= 1200) {
+            document.body.style.overflow = 'hidden'; 
+          } else {
+            const originalGrid = document.querySelector('.bp-browser-grid');
+            if (originalGrid) {
+               let targetTop = strip.offsetTop;
+               const widgetHeight = detailWidget.offsetHeight;
+               const gridHeight = originalGrid.offsetHeight;
+               if (targetTop + widgetHeight > gridHeight) targetTop = gridHeight - widgetHeight;
+               detailWidget.style.top = `${Math.max(0, targetTop)}px`;
+            }
+          }
+        }
+        e.stopPropagation();
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.onclick = (e) => {
+        closeDetail();
+        e.stopPropagation();
+      };
+    }
+
+    detailCol.onclick = (e) => {
+      if (e.target === detailCol) closeDetail();
+    };
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDetail();
+    });
+
+    // Auto-open from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoId = urlParams.get('id');
+    if (autoId) {
+      const targetStrip = document.querySelector(`.bp-strip[data-id="${autoId}"]`) as HTMLElement;
+      if (targetStrip) {
+        setTimeout(() => {
+          targetStrip.click();
+          targetStrip.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300); // 300ms delay to ensure everything is rendered
+      }
+    }
+  }
+
+  initBlueprintBrowser();
+  document.addEventListener('astro:swap', initBlueprintBrowser);
+  document.addEventListener('astro:after-swap', initBlueprintBrowser);
+</script>

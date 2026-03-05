@@ -6,7 +6,7 @@ const breadcrumbs = [{ name: "Insights", url: `${siteUrl}/insights` }];
 
 const insights = [
   {
-    title: "Why Trust Diminishes as Dashboard Numbers Rise",
+    title: "Why Trust Declines as the Number of Dashboards Increases",
     desc: "Why does dashboard inflation hurt trust? A practical framework through definition drift, loss of lineage, and maintenance obesity.",
     slug: "dashboard-guven",
     time: "6 min",
@@ -61,12 +61,43 @@ const allTopics = Array.from(new Set(insights.flatMap(i => i.topics))).sort();
 <Layout title="Insights | Intellica" description="Actionable insights, technical guides, and methodology notes for data & AI transformation." breadcrumbs={breadcrumbs}>
   <!-- HERO -->
   <section class="page-hero">
-    <div class="container">
-      <div class="section-label anim-fade-up">Insights & Perspectives</div>
+    <div class="container--hero anim-fade-up">
+      <div class="section-label">Insights & Perspectives</div>
       <h1 class="anim-fade-up">Intellica <span class="grad-text">Insights</span></h1>
       <p class="anim-fade-up">Actionable guides, technical deep-dives, and methodology notes from our data & AI engagements.</p>
     </div>
   </section>
+
+<style>
+.page-hero {
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--header-h);
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+  margin-bottom: 0;
+}
+.container--hero {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  width: 100%;
+}
+.page-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.page-hero p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.25rem;
+  max-width: 600px;
+}
+</style>
 
   <!-- FEATURED -->
   <section class="section section--white">
@@ -129,7 +160,7 @@ const allTopics = Array.from(new Set(insights.flatMap(i => i.topics))).sort();
         <div class="cta-card__content">
           <h3>Have an insight to share?</h3>
           <p>Let's collaborate on framing a problem and turning it into a practical guide for your organization.</p>
-          <a href="/contact" class="btn btn-primary btn-pill">Get in Touch</a>
+          <a href="/contact" class="btn btn-primary btn-pill">CONTACT US</a>
         </div>
       </div>
     </div>

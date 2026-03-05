@@ -29,12 +29,43 @@ const productsSchema = {
 
   <!-- Page Hero -->
   <section class="page-hero">
-    <div class="container">
-      <div class="section-label anim-fade-up">Product Ecosystem</div>
-      <h1 class="anim-fade-up">Our <span class="grad-text">Products</span></h1>
-      <p class="anim-fade-up">End-to-end product architecture spanning industry data models, governance platforms, and AI-powered tools.</p>
+    <div class="container--hero anim-fade-up">
+      <div class="section-label">Product Ecosystem</div>
+      <h1>Our <span class="grad-text">Products</span></h1>
+      <p>End-to-end product architecture spanning industry data models, governance platforms, and AI-powered tools.</p>
     </div>
   </section>
+
+<style>
+.page-hero {
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--header-h);
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+  margin-bottom: 0;
+}
+.container--hero {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  width: 100%;
+}
+.page-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.page-hero p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.25rem;
+  max-width: 600px;
+}
+</style>
 
   <!-- Data Models -->
   <section class="section section--white" id="data-models">
@@ -189,7 +220,7 @@ const productsSchema = {
       <div class="cta-strip anim-fade-up">
         <h2>Find the Right <span class="grad-text">Product</span></h2>
         <p>Talk to our team to discover how Intellica products can accelerate your data & AI journey.</p>
-        <a class="btn btn-primary btn-pill btn-lg" href="/contact">Request a Demo</a>
+        <a class="btn btn-primary btn-pill btn-lg" href="/contact">CONTACT US</a>
       </div>
     </div>
   </section>

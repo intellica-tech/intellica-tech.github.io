@@ -675,7 +675,7 @@ p {
   align-items: center;
   overflow: hidden;
   padding-top: var(--header-h);
-  background: radial-gradient(circle at 10% 20%, #0E1F3D 0%, #030B16 100%);
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
 }
 
 .hero::before {
@@ -1396,13 +1396,25 @@ textarea.form-input {
 
 /* ── Page Hero (Inner Pages) ─────────────────────── */
 .page-hero {
-  padding: calc(var(--header-h) + 60px) 0 60px;
-  background: var(--clr-dark);
+  padding: calc(var(--header-h) + 60px) 0 100px;
+  background: linear-gradient(135deg, #162a4d 0%, #030B16 100%);
   position: relative;
   overflow: hidden;
 }
 
+/* Noise overlay for page hero */
 .page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Top Right Blob */
+.page-hero::after {
   content: '';
   position: absolute;
   top: -200px;
@@ -1410,11 +1422,18 @@ textarea.form-input {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 200, 150, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 200, 150, 0.07) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
 }
 
-.page-hero::after {
+/* Bottom Left Blob */
+.page-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-hero .container::after {
   content: '';
   position: absolute;
   bottom: -150px;
@@ -1422,8 +1441,9 @@ textarea.form-input {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 159, 227, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 159, 227, 0.05) 0%, transparent 70%);
   pointer-events: none;
+  z-index: -1;
 }
 
 .page-hero h1 {
@@ -1439,9 +1459,71 @@ textarea.form-input {
   max-width: 640px;
 }
 
+/* ── Product Screenshot Framing ───────────────────── */
+.img-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  /* Removed padding to eliminate internal gaps as requested */
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E8EEF5;
+  margin-inline: auto;
+  overflow: hidden;
+  /* Ensure image doesn't bleed out of rounded corners */
+}
+
+.product-screenshot {
+  width: 100%;
+  max-width: 1100px;
+  /* Slightly increased for better visibility */
+  height: auto;
+  filter: brightness(0.98);
+  transition: var(--transition);
+  display: block;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  /* 45/55 split to give image more space */
+  gap: 40px;
+  /* Reduced gap from 60px to remove 'empty' feeling */
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Mobile Bottom Nav spacing ───────────────────── */
 @media (max-width: 900px) {
   body {
     padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+}
+/* Ensure Page Hero stays left-aligned on mobile */
+@media (max-width: 900px) {
+  .page-hero {
+    text-align: left !important;
+  }
+  .page-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .page-hero .section-label {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+  .page-hero p {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    text-align: left !important;
   }
 }

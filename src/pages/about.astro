@@ -8,58 +8,164 @@ const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About Intellica",
-  "description": "Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 450+ technical experts.",
+  "description": "Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 100+ Data & AI professionals.",
   "url": `${siteUrl}/about`,
   "mainEntity": { "@id": `${siteUrl}/#organization` }
 };
 ---
 
-<Layout title="About | Intellica" description="Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 450+ technical experts." breadcrumbs={breadcrumbs}>
+<Layout title="About | Intellica" description="Learn about Intellica — a Data & AI company founded in 2006, active in 20+ countries with 100+ Data & AI professionals." breadcrumbs={breadcrumbs}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
 
   <!-- Page Hero -->
   <section class="page-hero">
-    <div class="container">
-      <div class="section-label anim-fade-up">About Us</div>
-      <h1 class="anim-fade-up">About <span class="grad-text">Intellica</span></h1>
-      <p class="anim-fade-up">A Data & AI company founded in 2006, leading enterprises on their data transformation journey.</p>
+    <div class="container container--hero">
+      <div class="hero-flex-layout" style="display: flex; align-items: center; justify-content: space-between; gap: 60px;">
+        <div class="hero__content-inner anim-fade-up" style="flex: 1; text-align: left;">
+          <div class="section-label">Our Company</div>
+          <h1>About <span class="grad-text">Intellica</span></h1>
+          <p>A Data & AI company founded in 2006, leading enterprises through the infinite complexity of modern data transformations.</p>
+          <div class="hero-actions" style="margin-top: 32px;">
+            <a href="/contact" class="btn btn-primary btn-pill btn-lg">CONTACT US</a>
+          </div>
+        </div>
+        
+        <div class="hero-visual-logo anim-fade-up" style="flex: 0.8; display: flex; justify-content: flex-end;">
+          <img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" style="width:100%; max-width:380px; filter: drop-shadow(0 0 50px rgba(0,196,204,0.25)); animation: float 6s ease-in-out infinite;" />
+        </div>
+      </div>
     </div>
   </section>
 
+<style>
+.page-hero {
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--header-h);
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 200, 150, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero__content-inner h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.hero__content-inner p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.25rem;
+  max-width: 600px;
+}
+</style>
+
   <!-- Who We Are -->
-  <section class="section section--white">
+  <section class="section section--white" id="team">
     <div class="container">
       <div class="about-intro anim-fade-up">
         <div class="about-intro__content">
-          <div class="section-label">Who We Are</div>
-          <h2 style="color:var(--clr-light-text);margin-bottom:24px;">Empowering Enterprises Through <span class="grad-text">Data & AI</span></h2>
-          <p style="color:var(--clr-light-muted);font-size:1.05rem;line-height:1.8;margin-bottom:20px;">
-            Intellica is a global Data & AI company that has been transforming how enterprises leverage their data since 2006. With a team of 450+ technical experts, we deliver modern data platforms, analytics solutions and production-grade AI systems to over 100 enterprise clients across 20+ countries.
+          <div class="section-label">Global Presence</div>
+          <h2 style="color:var(--clr-light-text);margin-bottom:24px;">Empowering Enterprises Through <span class="grad-text">Digital Intelligence</span></h2>
+          <p style="color:var(--clr-light-muted);font-size:1.15rem;line-height:1.8;margin-bottom:24px;">
+            Intellica is a leading global Data & AI company. Since 2006, we have been at the forefront of the data revolution, helping enterprises transform raw information into a powerful strategic asset.
           </p>
           <p style="color:var(--clr-light-muted);font-size:1.05rem;line-height:1.8;margin-bottom:32px;">
-            Our mission is simple: help organizations unlock the infinite value hidden in their data. We do this through our proprietary products, deep industry expertise and a relentless commitment to delivering measurable business outcomes.
+            With a multidisciplinary team of 100+ Data Engineers, AI Specialists, and Solution Architects, we deliver end-to-end solutions — from platform engineering to agentic AI systems — across 20+ countries.
           </p>
-          <div class="about-stats">
-            <div class="about-stat">
-              <span class="about-stat__number grad-text">2006</span>
-              <span class="about-stat__label">Founded</span>
-            </div>
+          
+          <div class="about-stats" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 100%;">
             <div class="about-stat">
               <span class="about-stat__number grad-text">20+</span>
-              <span class="about-stat__label">Countries</span>
+              <span class="about-stat__label">Countries with <br/> Successful Delivery</span>
             </div>
             <div class="about-stat">
-              <span class="about-stat__number grad-text">450+</span>
-              <span class="about-stat__label">Experts</span>
+              <span class="about-stat__number grad-text">50+</span>
+              <span class="about-stat__label">Enterprise Data <br/> & AI Projects</span>
             </div>
             <div class="about-stat">
-              <span class="about-stat__number grad-text">200+</span>
-              <span class="about-stat__label">Projects</span>
+              <span class="about-stat__number grad-text">100+</span>
+              <span class="about-stat__label">Data & AI <br/> Professionals</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat__number grad-text">30+</span>
+              <span class="about-stat__label">Enterprise Data <br/> Platforms Delivered</span>
             </div>
           </div>
         </div>
         <div class="about-intro__visual anim-fade-up">
-          <img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica" style="width:100%;max-width:400px;filter:drop-shadow(0 20px 50px rgba(0,159,227,0.2));animation:float 8s ease-in-out infinite;" />
+          <div class="img-frame" style="border-radius: 32px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
+            <img src="/assets/img/global_data_ai_abstract_presence.png" alt="Global Data Intelligence" style="width:100%; height: auto; display: block;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities & Expertise (The Refactored "Following HTML" pattern) -->
+  <section class="section section--light" id="capabilities">
+    <div class="container">
+      <div class="grid-2 anim-fade-up" style="gap: 60px; align-items: center; margin-bottom: 80px;">
+        <div>
+          <div class="section-label">Expertise</div>
+          <h2 style="color:var(--clr-light-text); margin-bottom: 24px;">Core <span class="grad-text">Capabilities</span></h2>
+          <p style="color:var(--clr-light-muted); font-size: 1.1rem; line-height: 1.7;">
+            We bridge the gap between complex data infrastructure and business intelligence. Our approach is purely results-driven, ensuring absolute data consistency and action-oriented AI.
+          </p>
+        </div>
+        <div class="grid-2" style="gap: 20px;">
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">Data Platform</h4>
+            <p style="font-size: 0.9rem; color: var(--clr-light-muted);">Lakehouse modernization, DWH design, and high-performance integration layers.</p>
+          </div>
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">AI & agents</h4>
+            <p style="font-size: 0.9rem; color: var(--clr-light-muted);">Production-grade LLMs, RAG applications, and multi-agent autonomous systems.</p>
+          </div>
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">Governance</h4>
+            <p style="font-size: 0.9rem; color: var(--clr-light-muted);">Data consistency monitoring, quality gates, and automated reconciliation.</p>
+          </div>
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">Scale</h4>
+            <p style="font-size: 0.9rem; color: var(--clr-light-muted);">Supporting massive telemetry and high-concurrency analytical workloads.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Service Models -->
+  <section class="section section--white" id="services">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <h2 style="color:var(--clr-light-text);">Our <span class="grad-text">Service Models</span></h2>
+      </div>
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern" style="background: #f8fafc; border-top: 4px solid var(--clr-primary);">
+          <h3>Assessment</h3>
+          <p>Technical evaluation of data maturity and target architecture design for AI readiness.</p>
+        </div>
+        <div class="cap-card-modern" style="background: #f8fafc; border-top: 4px solid #9333ea;">
+          <h3>Migration</h3>
+          <p>End-to-end data relocation and system modernization with zero data loss guarantee.</p>
+        </div>
+        <div class="cap-card-modern" style="background: #f8fafc; border-top: 4px solid #06b6d4;">
+          <h3>Management</h3>
+          <p>SLA-based monitoring, routine maintenance, and managed AI orchestration services.</p>
         </div>
       </div>
     </div>
@@ -75,22 +181,30 @@ const aboutSchema = {
       </div>
       <div class="grid-4 anim-fade-up">
         <div class="value-card card-light">
-          <div class="value-card__icon">🎯</div>
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica" style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" />
+          </div>
           <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Measurable Impact</h3>
           <p style="color:var(--clr-light-muted);font-size:0.88rem;">Every project we deliver is designed to create tangible, measurable business value.</p>
         </div>
         <div class="value-card card-light">
-          <div class="value-card__icon">🔬</div>
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica" style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" />
+          </div>
           <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Technical Excellence</h3>
           <p style="color:var(--clr-light-muted);font-size:0.88rem;">Deep technical expertise combined with industry knowledge to deliver production-grade solutions.</p>
         </div>
         <div class="value-card card-light">
-          <div class="value-card__icon">🤝</div>
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica" style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" />
+          </div>
           <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Long-term Partnership</h3>
-          <p style="color:var(--clr-light-muted);font-size:0.88rem;">We build lasting relationships — 80% of our revenue comes from recurring engagements.</p>
+          <p style="color:var(--clr-light-muted);font-size:0.88rem;">We build lasting relationships and support our clients beyond go-live with continuous improvement and ongoing collaboration.</p>
         </div>
         <div class="value-card card-light">
-          <div class="value-card__icon">🚀</div>
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica" style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" />
+          </div>
           <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">Innovation Culture</h3>
           <p style="color:var(--clr-light-muted);font-size:0.88rem;">Continuously investing in R&D, proprietary products and emerging technologies to stay ahead.</p>
         </div>
@@ -98,72 +212,202 @@ const aboutSchema = {
     </div>
   </section>
 
-  <!-- Timeline -->
-  <section class="section section--white" id="tarihce">
-    <div class="container">
+  <!-- Timeline Horizontal Grid (Strict 2 Rows) -->
+  <section class="section section--dark history-section" id="tarihce">
+    <div class="history-bg">
+      <img src="/assets/img/history_background.png" alt="" aria-hidden="true" style="opacity: 0.2;" />
+    </div>
+    <div class="container container--wide">
       <div class="text-center anim-fade-up">
-        <div class="section-label" style="margin-inline:auto;">Our Journey</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);">Company <span class="grad-text">Timeline</span></h2>
-        <p class="section-sub">Key milestones in our 19+ year journey of delivering data excellence.</p>
+        <div class="section-label" style="margin-inline:auto; color: #00f0ff; border-color: rgba(0,240,255,0.3);">Our Journey</div>
+        <h2 class="section-title">Company <span class="grad-text">History</span></h2>
+        <p class="section-sub" style="color: rgba(255,255,255,0.6);">Key milestones in our 19+ year journey of delivering global data excellence.</p>
       </div>
-      <div class="timeline-container anim-fade-up">
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-year">2006</div>
-            <h3 style="color:var(--clr-light-text);">Foundation</h3>
-            <p>Intellica founded in Istanbul with a vision to transform enterprise data management in emerging markets.</p>
+
+      <div class="timeline-grid-v3 anim-fade-up">
+        <!-- Row 1: 2006-2015 -->
+        <div class="timeline-row">
+          <div class="timeline-row-line"></div>
+          <div class="timeline-row-items">
+            <!-- 2006 -->
+            <div class="timeline-node org">
+              <div class="node-year">2006</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Intellica Foundation</h3>
+                <p>Dr. Kemal Unaltuna <br/> and Can Alhas</p>
+              </div>
+            </div>
+            <!-- 2009 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2009</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>EVAM</h3>
+                <p>First Product <br/> Development</p>
+              </div>
+            </div>
+            <!-- 2011 -->
+            <div class="timeline-node intl">
+              <div class="node-year">2011</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Zagrebacka Bank</h3>
+                <p>First major international project in Croatia</p>
+              </div>
+            </div>
+            <!-- 2012 -->
+            <div class="timeline-node org">
+              <div class="node-year">2012</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Organizational</h3>
+                <p>Major Re-structuring</p>
+              </div>
+            </div>
+            <!-- 2014 -->
+            <div class="timeline-node intl">
+              <div class="node-year">2014</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Zain Group</h3>
+                <p>Projects Abroad in Telecommunication</p>
+              </div>
+            </div>
+            <!-- 2015-1 -->
+            <div class="timeline-node org">
+              <div class="node-year">2015</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>EVAM A.Ş.</h3>
+                <p>Spin-off Company</p>
+              </div>
+            </div>
+            <!-- 2015-2 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2015</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>ITDM</h3>
+                <p>Launch of Data Products</p>
+              </div>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2009</div>
-            <h3 style="color:var(--clr-light-text);">Industry Data Models</h3>
-            <p>Launch of IFDM (Finance) and ITDM (Telecom) — proprietary industry data models that become market standards.</p>
+        </div>
+
+        <!-- Row 2: 2016-2025 -->
+        <div class="timeline-row" style="margin-top: 80px;">
+          <div class="timeline-row-line"></div>
+          <div class="timeline-row-items">
+            <!-- 2016 -->
+            <div class="timeline-node org">
+              <div class="node-year">2016</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Merger with PiA</h3>
+                <p>Opens R&D Center <br/> 80 Employee</p>
+              </div>
+            </div>
+            <!-- 2019 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2019</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>IFDM — ICC</h3>
+                <p>Data Products <br/> Market Growth</p>
+              </div>
+            </div>
+            <!-- 2020 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2020</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Retouch</h3>
+                <p>Data Management <br/> Product</p>
+              </div>
+            </div>
+            <!-- 2021 -->
+            <div class="timeline-node intl">
+              <div class="node-year">2021</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>UK Foundation</h3>
+                <p>Expansion to UK — Maidenhead</p>
+              </div>
+            </div>
+            <!-- 2022 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2022</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>Blue Octopus</h3>
+                <p>Ministry of Interior Security Projects</p>
+              </div>
+            </div>
+            <!-- 2023 -->
+            <div class="timeline-node org">
+              <div class="node-year">2023</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>100+ Employee</h3>
+                <p>Intellica Growth</p>
+              </div>
+            </div>
+            <!-- 2025 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2025</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>AI</h3>
+                <p>Merge Group AI team with Intellica</p>
+              </div>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2012</div>
-            <h3 style="color:var(--clr-light-text);">Regional Expansion</h3>
-            <p>First international projects in the Middle East and Central Asia. Client base grows beyond 50 enterprises.</p>
+        </div>
+      </div>
+
+      <!-- Legend (Dark Version) -->
+      <div class="timeline-legend-v3 anim-fade-up">
+        <div class="legend-item"><span class="dot org"></span> Organization</div>
+        <div class="legend-item"><span class="dot intl"></span> International Expansions</div>
+        <div class="legend-item"><span class="dot prod"></span> Products</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Section -->
+  <section class="section section--light" id="clients">
+    <div class="container">
+      <div class="grid-2 anim-fade-up" style="gap: 60px; align-items: center;">
+        <div>
+          <div class="section-label">Our Network</div>
+          <h2 class="section-title" style="color:var(--clr-light-text);">Trusted by <span class="grad-text">Global Leaders</span></h2>
+          <p class="section-sub" style="text-align: left; margin-inline: 0; max-width: 100%;">
+            We collaborate with 100+ enterprise-scale organizations across banking, telecom, and manufacturing to deliver measurable Data & AI impact.
+          </p>
+          <div style="margin-top: 32px;">
+            <a href="/clients" class="btn btn-primary btn-pill">Explore Our Clients →</a>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2015</div>
-            <h3 style="color:var(--clr-light-text);">Product Portfolio Growth</h3>
-            <p>ICC and ReTouch products launched, completing the data governance product suite. Team exceeds 200 professionals.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2018</div>
-            <h3 style="color:var(--clr-light-text);">AI Practice Launch</h3>
-            <p>Establishment of AI & Machine Learning practice. First production ML models deployed for banking and telecom clients.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2020</div>
-            <h3 style="color:var(--clr-light-text);">Global Reach</h3>
-            <p>Active delivery in 20+ countries. Launch of Talk To and BlueOctopus AI products. 100+ enterprise references achieved.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2022</div>
-            <h3 style="color:var(--clr-light-text);">GenAI & Scale</h3>
-            <p>Generative AI and LLM capabilities integrated into product portfolio. Team grows to 450+ professionals with 40% annual growth.</p>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2025</div>
-            <h3 style="color:var(--clr-light-text);">Agentic AI Era</h3>
-            <p>Pioneering agentic AI solutions for enterprises. Expanding into new markets with a vision to become the leading Data & AI partner globally.</p>
-          </div>
+        </div>
+        <div class="clients-preview-visual">
+          <img src="/assets/img/global_data_ai_abstract_presence.png" alt="Global Network" style="width: 100%; max-width: 480px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));" />
         </div>
       </div>
     </div>
   </section>
 
+
+
   <!-- CTA -->
-  <section class="section section--dark">
+  <section class="section section--dark" id="careers">
     <div class="container">
       <div class="cta-strip anim-fade-up">
         <h2>Join Our <span class="grad-text">Journey</span></h2>
         <p>Whether as a client, partner or team member — let's build the future of data together.</p>
-        <a class="btn btn-primary btn-pill btn-lg" href="/contact">Get in Touch</a>
+        <a class="btn btn-primary btn-pill btn-lg" href="/contact">CONTACT US</a>
       </div>
     </div>
   </section>
-
 </Layout>
 
 <style>
@@ -193,10 +437,11 @@ const aboutSchema = {
   line-height: 1;
 }
 .about-stat__label {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--clr-light-muted);
-  font-weight: 500;
-  margin-top: 6px;
+  font-weight: 600;
+  margin-top: 10px;
+  line-height: 1.4;
 }
 .value-card {
   text-align: center;
@@ -206,16 +451,184 @@ const aboutSchema = {
   font-size: 2rem;
   margin-bottom: 16px;
 }
-.timeline-container {
-  max-width: 720px;
-  margin-inline: auto;
+/* V3 Timeline Styles (Strict 2 Rows) */
+.history-section {
+  position: relative;
+  overflow: hidden;
+  background: #020810;
+  padding: 100px 0;
 }
+.history-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.history-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-grid-v3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 60px;
+}
+
+.timeline-row {
+  position: relative;
+  padding: 40px 0;
+}
+
+.timeline-row-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,240,255,0.4), var(--clr-primary), rgba(0,240,255,0.4), transparent);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-row-items {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  padding: 0 40px;
+}
+
+.timeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  position: relative;
+}
+
+.node-year {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00f0ff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,240,255,0.3);
+}
+
+.node-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #fff;
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  z-index: 3;
+}
+
+.timeline-node.org .node-dot { background: #2563eb; border-color: #2563eb; box-shadow: 0 0 15px rgba(37,99,235,0.6); }
+.timeline-node.intl .node-dot { background: #9333ea; border-color: #9333ea; box-shadow: 0 0 15px rgba(147,51,234,0.6); }
+.timeline-node.prod .node-dot { background: #06b6d4; border-color: #06b6d4; box-shadow: 0 0 15px rgba(6,182,212,0.6); }
+
+.node-content {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.node-content h3 {
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.node-content p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+}
+
+.timeline-legend-v3 {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 60px;
+}
+.timeline-legend-v3 .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.timeline-legend-v3 .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.timeline-legend-v3 .dot.org { background: #2563eb; }
+.timeline-legend-v3 .dot.intl { background: #9333ea; }
+.timeline-legend-v3 .dot.prod { background: #06b6d4; }
+
+@media (max-width: 1100px) {
+  .timeline-row-line { display: none; }
+  .timeline-row-items { 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 40px; 
+  }
+  .timeline-node { width: 160px; }
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.logo-tile {
+  background: #fff;
+  border: 1px solid #eef2f6;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  transition: all 0.3s ease;
+}
+.logo-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-color: var(--clr-primary);
+}
+.logo-tile img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 @media (max-width: 900px) {
+  .timeline-v2__line { left: 30px; }
+  .timeline-v2__item {
+    width: 100%;
+    left: 0 !important;
+    padding-left: 70px;
+    padding-right: 20px;
+    text-align: left !important;
+  }
+  .timeline-v2__marker {
+    left: 20px !important;
+    right: auto !important;
+  }
   .about-intro {
     grid-template-columns: 1fr;
     gap: 40px;
   }
   .about-intro__visual { order: -1; }
   .about-stats { gap: 24px; }
+  .logo-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .logo-tile { height: 100px; padding: 20px; }
 }
 </style>
