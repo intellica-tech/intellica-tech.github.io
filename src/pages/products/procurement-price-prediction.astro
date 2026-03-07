@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../../layouts/Layout.astro';
 
 const breadcrumbs = [
@@ -7,7 +7,7 @@ const breadcrumbs = [
 ];
 ---
 
-<Layout title="Procurement Price Prediction — AI Solutions | Intellica" description="Procurement Price Prediction: AI-powered price forecasting and anomaly detection for strategic procurement, optimizing purchasing decisions with market intelligence." breadcrumbs={breadcrumbs}>
+<Layout title="Procurement Price Prediction — AI Solutions | Intellica" description="Procurement Price Prediction: AI-powered price forecasting and anomaly detection for strategic procurement, optimizing purchasing decisions with market intelligence." breadcrumbs={breadcrumbs} hideCta={true}>
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="container">
@@ -102,9 +102,12 @@ const breadcrumbs = [
   <section class="section section--dark">
     <div class="container">
       <div class="cta-strip anim-fade-up">
-        <h2>Optimize Your <span class="grad-text">Spend</span> with AI</h2>
-        <p>Talk to our experts to learn how predictive intelligence can transform your procurement strategy.</p>
-        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">CONTACT US</a>
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
       </div>
     </div>
   </section>

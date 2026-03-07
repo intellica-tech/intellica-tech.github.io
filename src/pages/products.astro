@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 
 const siteUrl = "https://intellica-tech.github.io";
@@ -24,7 +24,7 @@ const productsSchema = {
 };
 ---
 
-<Layout title="Products | Intellica" description="Explore Intellica's licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools." breadcrumbs={breadcrumbs}>
+<Layout title="Products | Intellica" description="Explore Intellica's licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools." breadcrumbs={breadcrumbs} hideCta={true}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productsSchema)} />
 
   <!-- Page Hero -->
@@ -214,13 +214,16 @@ const productsSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
+<!-- ===== CTA STRIP ===== -->
   <section class="section section--dark">
     <div class="container">
       <div class="cta-strip anim-fade-up">
-        <h2>Find the Right <span class="grad-text">Product</span></h2>
-        <p>Talk to our team to discover how Intellica products can accelerate your data & AI journey.</p>
-        <a class="btn btn-primary btn-pill btn-lg" href="/contact">CONTACT US</a>
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
       </div>
     </div>
   </section>

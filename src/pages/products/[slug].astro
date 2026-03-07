@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../../layouts/Layout.astro';
 
 export function getStaticPaths() {
@@ -99,7 +99,7 @@ const breadcrumbs = [
 ];
 ---
 
-<Layout title={`${product.name} | Intellica Product`} description={product.desc} breadcrumbs={breadcrumbs}>
+<Layout title={`${product.name} | Intellica Product`} description={product.desc} breadcrumbs={breadcrumbs} hideCta={true}>
   <section class="page-hero">
     <div class="container">
       <div class="section-label anim-fade-up">{product.category}</div>

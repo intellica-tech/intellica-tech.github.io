@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../../layouts/Layout.astro';
 
 const siteUrl = "https://intellica-tech.github.io";
@@ -23,7 +23,7 @@ const productSchema = {
 };
 ---
 
-<Layout title="Retable AI — No-Code Data Application Platform | Intellica" description="Retable AI: Collaborative cloud-based no-code platform; transform spreadsheets into powerful databases with AI-driven automations and seamless integrations." breadcrumbs={breadcrumbs}>
+<Layout title="Retable AI — No-Code Data Application Platform | Intellica" description="Retable AI: Collaborative cloud-based no-code platform; transform spreadsheets into powerful databases with AI-driven automations and seamless integrations." breadcrumbs={breadcrumbs} hideCta={true}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
@@ -32,7 +32,7 @@ const productSchema = {
       <h1 class="anim-fade-up">Retable AI — No-Code <span class="grad-text">Platform</span></h1>
       <p class="anim-fade-up">Build data-driven applications without writing code. Collaborative, cloud-based platform for modern teams. Transform your data into powerful internal tools with built-in AI.</p>
       <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
-        <a href="https://www.retable.io" target="_blank" rel="noopener" class="btn btn-primary btn-pill btn-lg">Explore Retable AI</a>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">CONTACT US</a>
       </div>
     </div>
   </section>
@@ -199,9 +199,12 @@ const productSchema = {
   <section class="section section--dark">
     <div class="container">
       <div class="cta-strip anim-fade-up">
-        <h2>Start Your <span class="grad-text">No-Code</span> Journey</h2>
-        <p>Discover how Retable AI can transform your team's productivity. Free trial available.</p>
-        <a href="https://www.retable.io" target="_blank" rel="noopener" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">Try for Free</a>
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
       </div>
     </div>
   </section>

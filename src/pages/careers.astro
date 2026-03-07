@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 
 const breadcrumbs = [
@@ -46,11 +46,11 @@ const values = [
 ];
 
 const whyStats = [
-  { label: '20+ years of data & AI expertise', value: true },
-  { label: '500+ successful enterprise projects', value: true },
-  { label: 'Active in 20+ countries globally', value: true },
-  { label: '10+ proprietary products', value: true },
-  { label: '450+ expert professionals', value: true },
+  { label: '20+ years of Data & AI expertise', value: true },
+  { label: '50+ Enterprise Data & AI projects delivered', value: true },
+  { label: 'Active in 20+ countries', value: true },
+  { label: '100+ Data & AI professionals', value: true },
+  { label: '30+ Enterprise Data Platforms delivered', value: true },
 ];
 ---
 
@@ -193,6 +193,20 @@ const whyStats = [
     </div>
   </section>
 
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
@@ -309,33 +323,25 @@ const whyStats = [
 .apply-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .sub-email { color: var(--clr-light-muted); font-size: 0.9rem; font-weight: 500; opacity: 0.7; }
 
-@media (max-width: 1200px) {
-  .hero__content-wrap { grid-template-columns: 1fr; }
-  .hero__visual { justify-content: flex-start; }
-}
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
+  .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 40px !important; height: auto; align-items: center; }
+  .hero__inner { padding-top: 0; }
+  .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
+  .hero__content { align-items: flex-start; padding-block: 0px; }
+  /* Careers page: why-card goes below instead of corner icon */
   .hero__visual { 
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    width: auto;
-    z-index: 10;
+    position: relative; top: auto; right: auto; 
+    width: 100%; height: auto;
+    display: flex; justify-content: stretch; align-items: stretch;
+    margin-top: 24px;
   }
-  .why-card { 
-    padding: 24px;
-    max-width: 320px;
-    border-radius: 20px;
-  }
-  .why-card h3 { font-size: 1.2rem; margin-bottom: 20px; }
-  .why-list li { font-size: 0.85rem; gap: 10px; }
-  .check-circ { width: 18px; height: 18px; }
-  .check-circ svg { width: 10px; height: 10px; }
-}
-@media (max-width: 768px) {
-  .apply-box { flex-direction: column; gap: 32px; margin-top: 32px; text-align: center; }
-  .apply-info { text-align: center; gap: 24px; }
-  .info-item { margin-bottom: 16px; }
-  .card-glass { padding: 40px 20px !important; border-radius: 32px !important; }
-  .hero__visual { display: none; } /* Hide the float card on mobile to avoid title cover */
+  .why-card { width: 100%; }
+  .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
+  .hero__title { font-size: 2.22rem; margin-bottom: 16px; line-height: 1.15; }
+  .hero__actions { margin-bottom: 24px; }
+  /* Apply box stacks vertically */
+  .apply-box { flex-direction: column; gap: 32px; align-items: center; }
+  .apply-info { max-width: 100%; }
+  .card-glass { padding: 40px 20px !important; border-radius: 24px !important; }
 }
 </style>

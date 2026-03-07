@@ -11,11 +11,11 @@ const { hideCta = false } = Astro.props;
     <div class="ix-container ix-footer__ctaWrap">
       <div class="ix-footer__ctaText">
         <h3>Ready to Transform Your Data?</h3>
-        <p>From data platforms to AI products—let’s turn your infrastructure into a strategic asset.</p>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
       </div>
       <div class="ix-footer__ctaActions">
-        <a class="ix-btn ix-btn--primary" href="/contact">Talk to an Expert</a>
-        <a class="ix-btn ix-btn--ghost" href="/clients">View Clients</a>
+        <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+        <a class="btn btn-ghost-dark btn-pill btn-lg" href="/clients">View Clients</a>
       </div>
     </div>
   </section>
@@ -31,7 +31,7 @@ const { hideCta = false } = Astro.props;
             <img src="/assets/img/intellica-logo.png" alt="Intellica" height="34" />
           </a>
         </div>
-        <p class="ix-footer__tagline">Unlock the infinite value of data.</p>
+        <p class="ix-footer__tagline">Unleashing Value From Data</p>
         <p class="ix-footer__meta">Data & AI • Since 2006</p>
         <div class="ix-footer__social">
           <a href="https://www.linkedin.com/company/intellica" target="_blank" rel="noopener" aria-label="LinkedIn" class="ix-footer__icon">
@@ -42,26 +42,29 @@ const { hideCta = false } = Astro.props;
 
       <!-- PRODUCTS -->
       <div class="ix-footer__col ix-footer__products">
-        <h4 class="text-center">Products</h4>
+        <h4>Products</h4>
         <div class="ix-footer__subgrid">
           <div class="ix-footer__group">
-            <h5>Data Models</h5>
-            <a href="/products/ifdm">IFDM</a>
-            <a href="/products/itdm">ITDM</a>
-            <a href="/products/hrdm">HRDM</a>
+            <div class="ix-footer__vertical-list">
+              <a href="/products/ifdm">IFDM</a>
+              <a href="/products/itdm">ITDM</a>
+              <a href="/products/hrdm">HRDM</a>
+            </div>
           </div>
           <div class="ix-footer__group">
-            <h5>Data Governance</h5>
-            <a href="/products/icc">ICC</a>
-            <a href="/products/retouch">ReTouch</a>
-            <a href="/products/retable">Retable</a>
-            <a href="/products/orqenta">Orqenta</a>
+            <div class="ix-footer__vertical-list">
+              <a href="/products/icc">ICC</a>
+              <a href="/products/retouch">ReTouch</a>
+              <a href="/products/retable">Retable</a>
+              <a href="/products/orqenta">Orqenta</a>
+            </div>
           </div>
           <div class="ix-footer__group">
-            <h5>AI Products</h5>
-            <a href="/products/talk-to-your-data">Talk To</a>
-            <a href="/products/blue-octopus">Blue Octopus</a>
-            <a href="/products/var">VAR</a>
+            <div class="ix-footer__vertical-list">
+              <a href="/products/talk-to-your-data">Talk To</a>
+              <a href="/products/blue-octopus">Blue Octopus</a>
+              <a href="/products/var">VAR</a>
+            </div>
           </div>
         </div>
       </div>
@@ -147,38 +150,15 @@ const { hideCta = false } = Astro.props;
   .ix-footer__ctaText p { margin: 0; color: #64748B; font-size: 15px; line-height: 1.5; }
   .ix-footer__ctaActions { display: flex; gap: 12px; }
 
-  .ix-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    padding: 12px 20px;
-    font-weight: 700;
-    font-size: 14px;
-    transition: 0.2s ease;
+  /* Standardized buttons already in global.css */
+  @media (max-width: 768px) {
+    .ix-footer__ctaActions { flex-direction: column; width: 100%; }
+    .ix-footer__ctaActions .btn { width: 100%; }
   }
-  .ix-btn--primary{
-    background: linear-gradient(135deg, #00C896, #009FE3);
-    color: #fff !important;
-    box-shadow: 0 8px 25px rgba(0, 200, 150, 0.4);
-    border: none;
-  }
-  .ix-btn--primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 200, 150, 0.5);
-    color: #fff !important;
-  }
-
-  .ix-btn--ghost {
-    border: 1px solid #E2E8F0;
-    background: #fff;
-    color: #0F172A;
-  }
-  .ix-btn--ghost:hover { border-color: var(--clr-primary); background: #F8FAFC; }
 
   /* MAIN GRID */
   .ix-footer__main { padding: 64px 0 48px; }
-  .ix-footer__grid { display: grid; grid-template-columns: 1.2fr 2fr 1fr 1fr; gap: 48px; }
+  .ix-footer__grid { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 48px; }
   
   .text-center { text-align: center; }
   .ix-footer__col h4 {
@@ -212,8 +192,16 @@ const { hideCta = false } = Astro.props;
   .ix-footer__icon:hover { background: #FFFFFF; border-color: var(--clr-primary); color: var(--clr-primary); }
 
   /* Products subgrid */
-  .ix-footer__subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; }
-  .ix-footer__group h5 { margin: 0 0 12px; font-size: 12px; color: #0F172A; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+  .ix-footer__subgrid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+  }
+  .ix-footer__vertical-list { display: flex; flex-direction: column; gap: 4px; }
+  .ix-footer__vertical-list a { font-size: 14px; color: #64748B; font-weight: 500; }
+  
+  /* Remove old row styles */
+  /* Remove old group h5 styles */
 
   /* Bottom */
   .ix-footer__bottom { padding: 24px 0; border-top: 1px solid #F1F5F9; background: #F8FAFC; }

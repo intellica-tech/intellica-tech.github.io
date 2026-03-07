@@ -223,8 +223,19 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
       if (btn && menu) {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          menu.classList.toggle('open');
-          btn.setAttribute('aria-expanded', String(menu.classList.contains('open')));
+          const wasOpen = menu.classList.contains('open');
+          
+          // Close all open dropdowns
+          document.querySelectorAll('.dd-menu.open').forEach(m => {
+            m.classList.remove('open');
+            (m.previousElementSibling as HTMLElement)?.setAttribute('aria-expanded', 'false');
+          });
+
+          // Toggle clicked one
+          if (!wasOpen) {
+            menu.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
         });
       }
     });

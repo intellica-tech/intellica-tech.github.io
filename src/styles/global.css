@@ -195,11 +195,17 @@ p {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
   border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-family: var(--font);
+  /* Added to ensure Inter font is used */
+  font-size: 0.85rem;
+  /* Slightly smaller but bolder and tracked out */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   transition: var(--transition);
   cursor: pointer;
   text-decoration: none;
@@ -208,8 +214,9 @@ p {
 
 .btn-primary {
   background: var(--grad-brand);
-  color: #fff;
-  box-shadow: 0 4px 24px rgba(0, 200, 150, 0.3);
+  color: #fff !important;
+  box-shadow: 0 10px 30px rgba(0, 200, 150, 0.35);
+  /* More pronounced glow */
 }
 
 .btn-primary:hover {
@@ -250,8 +257,8 @@ p {
 }
 
 .btn-lg {
-  padding: 16px 36px;
-  font-size: 1.05rem;
+  padding: 18px 42px;
+  font-size: 0.9rem;
 }
 
 /* ── Cards ───────────────────────────────────────── */
@@ -1495,35 +1502,95 @@ textarea.form-input {
   align-items: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .product-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* ── Mobile Bottom Nav spacing ───────────────────── */
-@media (max-width: 900px) {
+/* ── Mobile Layout Locks (All Pages) ───────────────────── */
+@media (max-width: 1100px) {
   body {
-    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important;
+  }
+
+  main {
+    padding-top: var(--header-h) !important;
+    padding-bottom: 20px !important;
+    /* Some inner breathing room */
+  }
+
+  .site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #fff !important;
+    z-index: 1100 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   }
 }
+
 /* Ensure Page Hero stays left-aligned on mobile */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .page-hero {
     text-align: left !important;
   }
+
   .page-hero .container {
     display: flex;
     flex-direction: column;
     align-items: flex-start !important;
   }
+
   .page-hero .section-label {
     margin-left: 0 !important;
     margin-right: auto !important;
   }
+
   .page-hero p {
     margin-left: 0 !important;
     margin-right: auto !important;
     text-align: left !important;
+  }
+}
+
+/* ── Hero Visual Effects (Shared) ───────────────────────── */
+.tech-glow-box {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-glow-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 200, 150, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+}
+
+.hero__shape-new {
+  image-rendering: -webkit-optimize-contrast;
+  object-fit: contain;
+}
+
+@media (max-width: 1100px) {
+  .hero__visual .tech-glow-box {
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .hero__shape-new {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    opacity: 1 !important;
+    filter: none !important;
+    image-rendering: -webkit-optimize-contrast !important;
   }
 }
