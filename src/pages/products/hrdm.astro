@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../../layouts/Layout.astro';
 
 const siteUrl = "https://intellica-tech.github.io";
@@ -23,7 +23,7 @@ const productSchema = {
 };
 ---
 
-<Layout title="HRDM — Human Resources Data Model | Intellica" description="HRDM: Comprehensive data warehouse model for HR analytics; covering talent management, employee lifecycle, and workforce optimization." breadcrumbs={breadcrumbs}>
+<Layout title="HRDM — Human Resources Data Model | Intellica" description="HRDM: Comprehensive data warehouse model for HR analytics; covering talent management, employee lifecycle, and workforce optimization." breadcrumbs={breadcrumbs} hideCta={true}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
@@ -195,9 +195,12 @@ const productSchema = {
   <section class="section section--dark">
     <div class="container">
       <div class="cta-strip anim-fade-up">
-        <h2>Accelerate Your <span class="grad-text">Data Model</span> Journey</h2>
-        <p>Talk to our experts to learn how our industry-standard models can reduce your modeling time by over 50%.</p>
-        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">CONTACT US</a>
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
       </div>
     </div>
   </section>

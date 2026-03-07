@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../../layouts/Layout.astro';
 
 const siteUrl = "https://intellica-tech.github.io";
@@ -23,7 +23,7 @@ const productSchema = {
 };
 ---
 
-<Layout title="ORQENTA — Deterministic Workflow Orchestration | Intellica" description="ORQENTA: Bank-grade workflow orchestration engine. Safe, deterministic, and auditable execution for mission-critical enterprise processes." breadcrumbs={breadcrumbs}>
+<Layout title="ORQENTA — Deterministic Workflow Orchestration | Intellica" description="ORQENTA: Bank-grade workflow orchestration engine. Safe, deterministic, and auditable execution for mission-critical enterprise processes." breadcrumbs={breadcrumbs} hideCta={true}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
@@ -349,9 +349,12 @@ const productSchema = {
   <section class="section section--dark">
     <div class="container">
       <div class="cta-strip anim-fade-up">
-        <h2>Correctness is <span class="grad-text">Not Optional</span></h2>
-        <p>Orqenta is designed for high-stakes workloads. Secure your enterprise workflows with deterministic execution and crash-safe architecture.</p>
-        <a href="/contact" class="btn btn-primary btn-pill btn-lg" style="margin-top: 40px;">CONTACT US</a>
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
       </div>
     </div>
   </section>
@@ -440,6 +443,25 @@ const productSchema = {
   gap: 12px;
   margin-bottom: 40px;
   flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .tabs-nav {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 4px 10px 12px;
+    margin-bottom: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 }
 .tab-btn {
   padding: 12px 24px;

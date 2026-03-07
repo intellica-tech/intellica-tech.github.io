@@ -166,7 +166,7 @@ const faqSchema = {
   <section class="section section--dark">
     <div class="container">
       <div class="card-glass text-center anim-fade-up" style="padding: 80px 40px; border-radius: 48px;">
-        <h2 class="hero__title" style="font-size: 2.5rem; margin-inline: auto;">You are invited to the <span class="grad-text">3-week Academy Camp</span></h2>
+        <h2 class="hero__title" style="font-size: 2.5rem; margin-inline: auto; text-align: center;">You are invited to the <span class="grad-text">3-week Academy Camp</span></h2>
         <p class="hero__desc" style="margin-inline: auto; max-width: 800px;">
           If you are ready to transform your life with the power of data, we are waiting for you at the 3-week Intellica Academy Camp. Here is what awaits you:
         </p>
@@ -328,12 +328,18 @@ const faqSchema = {
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
 @media (max-width: 1100px) {
-  .hero__content-wrap { grid-template-columns: 1fr; text-align: center; }
-  .hero__content { align-items: center; }
-  .hero__desc { margin-inline: auto; }
-  .hero__actions { justify-content: center; }
-  .hero-stats { justify-content: center; }
-  .hero__visual { display: none; }
+  .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 50px !important; height: auto; }
+  .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; }
+  .hero__content { align-items: flex-start; padding-block: 10px; }
+  .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; }
+  .hero__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
+  .hero__visual { 
+    position: absolute; top: 5px; right: 5px; width: 80px; height: 80px; 
+    z-index: 10; display: flex; justify-content: flex-end; align-items: flex-start;
+  }
+  .hero__shape-new { width: 100%; height: auto; opacity: 1; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
+  .hero__actions { margin-bottom: 24px; }
+  .hero-stats { justify-content: flex-start; flex-wrap: wrap; gap: 20px; }
 }
 
 /* Luxury Cards */

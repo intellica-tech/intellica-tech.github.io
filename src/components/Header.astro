@@ -77,11 +77,6 @@ const aboutMenu = [
               </div>
             ))}
           </div>
-          <div class="mega-footer">
-            <a href="/products" class="mega-footer-link">
-              View All Products →
-            </a>
-          </div>
         </div>
       </div>
 
@@ -148,6 +143,14 @@ const aboutMenu = [
   background: #ffffff;
   border-bottom: 1px solid #E8EEF5;
   transition: box-shadow 0.3s ease;
+}
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--grad-brand);
+  z-index: 1001;
 }
 .site-header.scrolled {
   box-shadow: 0 2px 20px rgba(0,0,0,0.08);
@@ -247,7 +250,7 @@ const aboutMenu = [
 
 /* Mega Menu */
 .mega-menu {
-  width: 680px;
+  width: 900px;
   left: 0;
   transform: none;
 }
@@ -348,6 +351,6 @@ const aboutMenu = [
 
 @media (max-width: 1100px) {
   .nav-desktop { display: none; }
-  .mobile-toggle { display: none; }
+  .mobile-toggle { display: none !important; }
 }
 </style>

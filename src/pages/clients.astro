@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 
 const breadcrumbs = [{ name: "Clients", url: "/clients" }];
@@ -105,7 +105,7 @@ const sectors = [
 const allLogos = sectors.flatMap(s => s.logos);
 ---
 
-<Layout title="Clients | Intellica" description="Trusted by leading enterprises across banking, telecom, public sector, and manufacturing." breadcrumbs={breadcrumbs}>
+<Layout title="Clients | Intellica" description="Trusted by leading enterprises across banking, telecom, public sector, and manufacturing." breadcrumbs={breadcrumbs} hideCta={true}>
   
   <!-- SECTION 1 — HERO -->
   <section class="hero noise" id="clients-hero">
@@ -249,14 +249,15 @@ const allLogos = sectors.flatMap(s => s.logos);
     </div>
   </section>
 
-  <!-- SECTION 6 — CTA -->
+<!-- ===== CTA STRIP ===== -->
   <section class="section section--dark">
     <div class="container">
       <div class="cta-strip anim-fade-up">
-        <h2>Work With <span class="grad-text">Intellica</span></h2>
-        <p>Let's explore how Intellica can help your organization unlock the value of data and build scalable analytics and AI capabilities.</p>
-        <div class="cta-actions" style="margin-top: 32px;">
-          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Contact Us</a>
+        <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
+        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
         </div>
       </div>
     </div>
@@ -454,27 +455,19 @@ const allLogos = sectors.flatMap(s => s.logos);
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 1024px) {
-  .hero { min-height: 650px !important; }
-  .hero__content-wrap {
-    grid-template-columns: 1fr;
-    text-align: left;
-    position: relative;
-    padding-top: 20px;
+@media (max-width: 1100px) {
+  .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 50px !important; height: auto; align-items: center; }
+  .hero__inner { padding-top: 0; }
+  .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
+  .hero__content { align-items: flex-start; padding-block: 0px; }
+  .hero__visual { 
+    position: absolute; top: 5px; right: 5px; width: 80px; height: 80px; 
+    z-index: 10; display: flex; justify-content: flex-end; align-items: flex-start;
   }
-  .hero__content { align-items: flex-start; }
-  .hero__visual {
-    position: absolute;
-    top: 10px; 
-    right: 15px;
-    width: 90px;
-    justify-content: flex-end;
-    margin: 0;
-    z-index: 10;
-  }
-  .hero__shape-new { max-width: 100%; opacity: 0.9; }
-  .hero__desc { font-size: 1.15rem; max-width: 100%; margin-bottom: 24px; }
-  .hero__title { font-size: clamp(2.2rem, 8vw, 3.5rem); margin-bottom: 16px; }
+  .hero__shape-new { width: 100%; height: auto; opacity: 1; border-radius: 16px; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
+  .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
+  .hero__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
+  .hero__actions { margin-bottom: 24px; }
   .logo-wall { grid-template-columns: repeat(4, 1fr); }
   .sector-logos { grid-template-columns: repeat(4, 1fr); }
   .outcomes-grid { grid-template-columns: 1fr; }

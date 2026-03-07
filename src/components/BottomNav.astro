@@ -54,6 +54,7 @@ const productGroups = [
       { name: 'ICC', desc: 'Data consistency & quality control', href: '/products/icc' },
       { name: 'ReTouch', desc: 'Validated data entry & RDM', href: '/products/retouch' },
       { name: 'Retable', desc: 'No-code apps & data tables', href: '/products/retable' },
+      { name: 'Orqenta', desc: 'Deterministic workflow orchestration', href: '/products/orqenta' },
     ]
   },
   {
@@ -136,18 +137,19 @@ const moreGroups = [
     </button>
   </div>
   <div class="sheet-body">
-    {productGroups.map(group => (
-      <div class="sheet-group">
-        <div class="sheet-group-title">{group.category}</div>
-        {group.items.map(item => (
-          <a href={item.href} class="sheet-item">
-            <div class="sheet-item-name">{item.name}</div>
-            <div class="sheet-item-desc">{item.desc}</div>
-          </a>
-        ))}
-      </div>
-    ))}
-    <a href="/products" class="sheet-cta">View All Products →</a>
+    <div class="sheet-groups-wrap">
+      {productGroups.map(group => (
+        <div class="sheet-group">
+          <div class="sheet-group-title">{group.category}</div>
+          {group.items.map(item => (
+            <a href={item.href} class="sheet-item">
+              <div class="sheet-item-name">{item.name}</div>
+              <div class="sheet-item-desc">{item.desc}</div>
+            </a>
+          ))}
+        </div>
+      ))}
+    </div>
   </div>
 </div>
 
@@ -175,7 +177,7 @@ const moreGroups = [
   </div>
 </div>
 
-<style>
+<style is:global>
 /* ============================
    BOTTOM NAVIGATION BAR
    ============================ */
@@ -185,13 +187,15 @@ const moreGroups = [
   bottom: 0; left: 0; right: 0;
   height: calc(64px + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  background: rgba(3, 11, 22, 0.92);
+  background: rgba(10, 20, 38, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  z-index: 990;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  z-index: 9999;
   align-items: stretch;
   padding-inline: 6px;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .bnav-item {
@@ -280,9 +284,9 @@ const moreGroups = [
   bottom: calc(-100% - 64px);
   left: 0; right: 0;
   max-height: 82vh;
-  background: rgba(8, 15, 30, 0.98);
+  background: rgba(15, 25, 45, 0.95);
   border-radius: 20px 20px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255,255,255,0.18);
   z-index: 1000;
   overflow: hidden;
   display: flex;
@@ -396,8 +400,8 @@ const moreGroups = [
 /* ============================
    RESPONSIVE — mobile only
    ============================ */
-@media (max-width: 900px) {
-  .bottom-nav { display: flex; }
+@media (max-width: 1100px) {
+  .bottom-nav { display: flex !important; }
 }
 </style>
 
