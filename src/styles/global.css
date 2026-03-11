@@ -626,15 +626,19 @@ p {
   background: #F8FAFC;
   border: 1px solid #E8EEF5;
   border-radius: var(--radius-sm);
-  transition: var(--transition);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 80px;
 }
 
 .logo-tile:hover {
   background: #fff;
-  border-color: rgba(0, 159, 227, 0.25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  border-color: #22d3ee;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px) scale(1.05);
+}
+
+.logo-tile:hover img {
+  filter: brightness(1.1);
 }
 
 .logo-tile img {
@@ -642,7 +646,7 @@ p {
   width: auto;
   max-width: 110px;
   object-fit: contain;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  transition: filter 0.2s ease, transform 0.2s ease;
 }
 
 /* ── Metric Strip ────────────────────────────────── */
@@ -651,13 +655,13 @@ p {
 }
 
 .metric-number {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 900;
+  font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+  font-weight: 800;
   background: var(--grad-brand);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1;
+  line-height: 1.2;
   display: block;
 }
 

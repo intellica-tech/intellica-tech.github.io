@@ -26,7 +26,7 @@ const breadcrumbs = [
           </p>
 
           <div class="hero__actions">
-            <a class="btn btn-primary btn-pill btn-lg" href="/contact">Contact Us</a>
+            <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
           </div>
 
 
@@ -302,7 +302,7 @@ const breadcrumbs = [
         </a>
         <a href="/products/talk-to-your-data" class="card-link">
           <div class="card-light prod-card">
-            <h4>TalkTo</h4>
+            <h4>Talk To</h4>
             <p>Conversational analytics powered by natural language interaction with your data.</p>
           </div>
         </a>
@@ -852,17 +852,21 @@ const breadcrumbs = [
   .card-link {
     text-decoration: none;
     display: block;
-    transition: var(--transition);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .card-link:hover .prod-card {
-    border-color: var(--clr-primary);
-    transform: translateY(-4px);
+    transform: translateY(-8px) scale(1.01);
+    border-color: #22d3ee;
     background: #fff;
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
   }
   .prod-card {
     height: 100%;
-    transition: var(--transition);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 1px solid #E2E8F0;
+    border-radius: 24px;
+    background: #fff;
   }
   .prod-card h4 {
     color: var(--clr-primary);

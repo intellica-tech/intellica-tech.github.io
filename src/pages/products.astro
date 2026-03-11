@@ -7,9 +7,9 @@ const breadcrumbs = [{ name: "Products", url: `${siteUrl}/products` }];
 const productsSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Intellica Product Ecosystem",
-  "description": "Licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools.",
-  "numberOfItems": 9,
+  "name": "Intellica Enterprise Product Portfolio",
+  "description": "Enterprise Product Portfolio — industry data models, data governance platforms, and AI-powered tools.",
+  "numberOfItems": 10,
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "IFDM", "description": "International standard data warehouse model for the finance industry — pre-modeled for regulatory reporting, risk, CRM.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud", "offers": { "@type": "Offer", "availability": "https://schema.org/InStock" } } },
     { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "ITDM", "description": "Industry-specific data warehouse model for telecom operators — network, billing, CRM dimensioning.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
@@ -17,54 +17,80 @@ const productsSchema = {
     { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "ICC", "description": "Central data consistency management, reconciliation, and quality control platform.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
     { "@type": "ListItem", "position": 5, "item": { "@type": "SoftwareApplication", "name": "ReTouch", "description": "Data entry management platform that validates and imports external data with approval workflows and audit trails.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
     { "@type": "ListItem", "position": 6, "item": { "@type": "SoftwareApplication", "name": "Retable", "description": "Cloud-based, collaborative no-code data and application development platform.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
-    { "@type": "ListItem", "position": 7, "item": { "@type": "SoftwareApplication", "name": "Talk To", "description": "AI data analyst — natural language to SQL for enterprise data, generating instant insights without coding.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
-    { "@type": "ListItem", "position": 8, "item": { "@type": "SoftwareApplication", "name": "BlueOctopus", "description": "AI-powered centralized analytics and surveillance platform for critical data monitoring.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
-    { "@type": "ListItem", "position": 9, "item": { "@type": "SoftwareApplication", "name": "VAR", "description": "AI-powered voice signature creation, speaker matching and identity extraction tool.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } }
+    { "@type": "ListItem", "position": 7, "item": { "@type": "SoftwareApplication", "name": "Orqenta", "description": "Workflow orchestration and automation for regulated environments.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 8, "item": { "@type": "SoftwareApplication", "name": "Talk To", "description": "AI data analyst — natural language to SQL for enterprise data, generating instant insights without coding.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 9, "item": { "@type": "SoftwareApplication", "name": "Blue Octopus", "description": "AI-powered centralized analytics and surveillance platform for critical data monitoring.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 10, "item": { "@type": "SoftwareApplication", "name": "VAR", "description": "AI-powered voice signature creation, speaker matching and identity extraction tool.", "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } }
   ]
 };
 ---
 
-<Layout title="Products | Intellica" description="Explore Intellica's licensed product ecosystem — industry data models, data governance platforms, and AI-powered tools." breadcrumbs={breadcrumbs} hideCta={true}>
+<Layout title="Products | Intellica" description="Explore Intellica's Enterprise Product Portfolio — industry data models, data governance platforms, and AI-powered tools." breadcrumbs={breadcrumbs} hideCta={true}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productsSchema)} />
 
   <!-- Page Hero -->
-  <section class="page-hero">
-    <div class="container--hero anim-fade-up">
-      <div class="section-label">Product Ecosystem</div>
-      <h1>Our <span class="grad-text">Products</span></h1>
-      <p>End-to-end product architecture spanning industry data models, governance platforms, and AI-powered tools.</p>
+  <section class="hero noise" id="products-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content">
+          <div class="section-label anim-fade-up">ENTERPRISE PRODUCT PORTFOLIO</div>
+          <h1 class="hero__title anim-fade-up">Our <span class="grad-text">Enterprise Product Portfolio</span></h1>
+          <span class="hero__accent anim-fade-up"></span>
+          <p class="hero__desc anim-fade-up">End-to-end product architecture spanning industry data models, governance platforms, and AI-powered tools.</p>
+          <div class="hero__actions anim-fade-up">
+            <a href="/contact" class="btn btn-primary btn-pill btn-lg">Talk to an Expert</a>
+          </div>
+        </div>
+        <div class="hero__visual anim-fade-up">
+           <img class="hero__shape-new" src="/assets/img/products-hero.png" alt="Enterprise Product Portfolio" />
+        </div>
+      </div>
     </div>
   </section>
 
 <style>
-.page-hero {
-  position: relative;
-  min-height: 450px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  padding-top: var(--header-h);
-  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
-  margin-bottom: 0;
-}
-.container--hero {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 24px;
-  width: 100%;
-}
-.page-hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  color: #fff;
-  margin-bottom: 24px;
-}
-.page-hero p {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.25rem;
-  max-width: 600px;
-}
+  /* Standardized Hero matching AI Solutions */
+  .hero {
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+  }
+  .hero__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; }
+  .hero__content-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 40px; width: 100%; }
+  .hero__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+  .hero__title { font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+  .hero__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+  .hero__desc { font-size: 1.2rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 40px; }
+  .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero__visual { display: flex; justify-content: center; align-items: center; }
+  .hero__shape-new { 
+    width: 100%; max-width: 500px; 
+    animation: float 8s ease-in-out infinite; 
+    filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3)); 
+    border-radius: 40px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+  @media (max-width: 1100px) {
+    .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 50px !important; height: auto; align-items: center; }
+    .hero__inner { padding-top: 0; }
+    .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
+    .hero__content { align-items: flex-start; padding-block: 0px; }
+    .hero__visual { 
+      position: absolute; top: -5px; right: 5px; width: 80px; height: 80px; 
+      z-index: 10; display: flex; justify-content: flex-end; align-items: flex-start;
+    }
+    .hero__shape-new { width: 100%; height: auto; opacity: 1; border-radius: 16px; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
+    .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
+    .hero__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
+    .hero__actions { margin-bottom: 24px; }
+  }
 </style>
 
   <!-- Data Models -->
@@ -75,42 +101,51 @@ const productsSchema = {
         <h2 class="section-title" style="color:var(--clr-light-text);text-align:left;">Industry <span class="grad-text">Data Models</span></h2>
         <p class="section-sub" style="text-align:left;margin:0 0 48px;">Licensed, pre-built data warehouse models designed for specific industry verticals — accelerating your data platform delivery.</p>
       </div>
-      <div class="grid-3 anim-fade-up">
+      <div class="product-list anim-fade-up">
         <a href="/products/ifdm" class="product-card card-light" id="ifdm">
           <div class="product-card__logo">
             <img src="/assets/images/logos/IFDM_logo.png" alt="IFDM" />
           </div>
-          <h3>IFDM</h3>
-          <p class="product-card__tagline">Intellica Finance Data Model</p>
-          <p>International standard data warehouse model for the finance industry. Pre-modeled with regulatory reporting, risk, CRM and more — ready to deploy.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-model">Data Model</span>
-            <span class="tag tag-data">Banking</span>
+          <div class="product-card__content">
+            <h3>IFDM</h3>
+            <p class="product-card__tagline">Intellica Finance Data Model</p>
+            <p>International standard data warehouse model for the finance industry. Pre-modeled with regulatory reporting, risk, CRM and more — ready to deploy.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-model">Data Model</span>
+              <span class="tag tag-data">Banking</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
         <a href="/products/itdm" class="product-card card-light" id="itdm">
           <div class="product-card__logo">
             <img src="/assets/images/logos/ITDM_logo.png" alt="ITDM" />
           </div>
-          <h3>ITDM</h3>
-          <p class="product-card__tagline">Intellica Telecom Data Model</p>
-          <p>Industry-specific data warehouse model for telecom operators. Network, billing, CRM dimensioning — pre-built and tested globally.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-model">Data Model</span>
-            <span class="tag tag-data">Telecom</span>
+          <div class="product-card__content">
+            <h3>ITDM</h3>
+            <p class="product-card__tagline">Intellica Telecom Data Model</p>
+            <p>Industry-specific data warehouse model for telecom operators. Network, billing, CRM dimensioning — pre-built and tested globally.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-model">Data Model</span>
+              <span class="tag tag-data">Telecom</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
         <a href="/products/hrdm" class="product-card card-light" id="hrdm">
           <div class="product-card__logo">
             <img src="/assets/images/logos/hrdm.png" alt="HRDM" />
           </div>
-          <h3>HRDM</h3>
-          <p class="product-card__tagline">Human Resources Data Model</p>
-          <p>Optimized data warehouse model for HR processes — workforce analytics, payroll, talent management ready from day one.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-model">Data Model</span>
-            <span class="tag tag-security">HR Analytics</span>
+          <div class="product-card__content">
+            <h3>HRDM</h3>
+            <p class="product-card__tagline">Human Resources Data Model</p>
+            <p>Optimized data warehouse model for HR processes — workforce analytics, payroll, talent management ready from day one.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-model">Data Model</span>
+              <span class="tag tag-security">HR Analytics</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
       </div>
     </div>
@@ -121,45 +156,69 @@ const productsSchema = {
     <div class="container">
       <div class="anim-fade-up">
         <div class="section-label">02 · Data Platform & Governance</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);text-align:left;">Data <span class="grad-text">Governance</span> Tools</h2>
+        <h2 class="section-title" style="color:var(--clr-light-text);text-align:left;">Platform & <span class="grad-text">Governance</span></h2>
         <p class="section-sub" style="text-align:left;margin:0 0 48px;">Enterprise-grade tools for data consistency, quality, entry management and no-code application development.</p>
       </div>
-      <div class="grid-3 anim-fade-up">
+      <div class="product-list anim-fade-up">
         <a href="/products/icc" class="product-card card-light" id="icc">
           <div class="product-card__logo">
             <img src="/assets/images/logos/ıcc.png" alt="ICC" />
           </div>
-          <h3>ICC</h3>
-          <p class="product-card__tagline">Intellica Consistency Controller</p>
-          <p>Central data consistency management platform. Define reconciliation rules, monitor quality gates, and get automated alerts on data drift.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-data">Data Quality</span>
-            <span class="tag tag-security">Reconciliation</span>
+          <div class="product-card__content">
+            <h3>ICC</h3>
+            <p class="product-card__tagline">Intellica Consistency Controller</p>
+            <p>Central data consistency management platform. Define reconciliation rules, monitor quality gates, and get automated alerts on data drift.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-data">Data Quality</span>
+              <span class="tag tag-security">Reconciliation</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
         <a href="/products/retouch" class="product-card card-light" id="retouch">
           <div class="product-card__logo">
             <img src="/assets/images/logos/retouch.svg" alt="ReTouch" />
           </div>
-          <h3>ReTouch</h3>
-          <p class="product-card__tagline">Reference Data & Entry Management</p>
-          <p>Validate, cleanse and import external data into your core systems with approval workflows, audit trails and version control.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-data">Data Entry</span>
-            <span class="tag tag-security">Validation</span>
+          <div class="product-card__content">
+            <h3>ReTouch</h3>
+            <p class="product-card__tagline">Reference Data & Entry Management</p>
+            <p>Validate, cleanse and import external data into your core systems with approval workflows, audit trails and version control.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-data">Data Entry</span>
+              <span class="tag tag-security">Validation</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
         <a href="/products/retable" class="product-card card-light" id="retable">
           <div class="product-card__logo">
             <img src="/assets/images/logos/retable.png" alt="Retable" />
           </div>
-          <h3>Retable</h3>
-          <p class="product-card__tagline">No-Code Data Application Platform</p>
-          <p>Build flexible apps and data tables without code. Collaborative, cloud-based platform with automations, integrations and AI capabilities.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-ai">No-Code</span>
-            <span class="tag tag-data">Cloud Platform</span>
+          <div class="product-card__content">
+            <h3>Retable</h3>
+            <p class="product-card__tagline">No-Code Data Application Platform</p>
+            <p>Build flexible apps and data tables without code. Collaborative, cloud-based platform with automations, integrations and AI capabilities.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-ai">No-Code</span>
+              <span class="tag tag-data">Cloud Platform</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
+        </a>
+        <a href="/products/orqenta" class="product-card card-light" id="orqenta" target="_blank">
+          <div class="product-card__logo">
+            <img src="/assets/img/intellica-shape.png" alt="Orqenta" style="opacity:0.3;" />
+          </div>
+          <div class="product-card__content">
+            <h3>Orqenta</h3>
+            <p class="product-card__tagline">Workflow Orchestration</p>
+            <p>Workflow orchestration and automation for regulated environments. Manage complex data pipelines with precision and auditability.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-data">Orchestration</span>
+              <span class="tag tag-security">Regulated</span>
+            </div>
+          </div>
+          <div class="product-card__arrow">→</div>
         </a>
       </div>
     </div>
@@ -170,45 +229,54 @@ const productsSchema = {
     <div class="container">
       <div class="anim-fade-up">
         <div class="section-label">03 · AI Products</div>
-        <h2 class="section-title" style="color:var(--clr-light-text);text-align:left;"><span class="grad-text">AI-Powered</span> Products</h2>
-        <p class="section-sub" style="text-align:left;margin:0 0 48px;">Production-grade AI tools that integrate seamlessly into your enterprise ecosystem.</p>
+        <h2 class="section-title" style="color:var(--clr-light-text);text-align:left;">Enterprise <span class="grad-text">AI Products</span></h2>
+        <p class="section-sub" style="text-align:left;margin:0 0 48px;">Enterprise AI applications for analytics, automation and decision intelligence.</p>
       </div>
-      <div class="grid-3 anim-fade-up">
+      <div class="product-list anim-fade-up">
         <a href="/products/talk-to-your-data" class="product-card card-light" id="talkto">
           <div class="product-card__logo">
             <img src="/assets/images/logos/talkto.png" alt="Talk To" />
           </div>
-          <h3>Talk To</h3>
-          <p class="product-card__tagline">Natural Language Data Interaction</p>
-          <p>Ask your enterprise data questions in natural language. Get instant SQL queries, visualizations and insights — completely governed and auditable.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-ai">Generative AI</span>
-            <span class="tag tag-data">NL2SQL</span>
+          <div class="product-card__content">
+            <h3>Talk To</h3>
+            <p class="product-card__tagline">Natural Language Data Interaction</p>
+            <p>Ask your enterprise data questions in natural language. Get instant SQL queries, visualizations and insights — completely governed and auditable.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-ai">Generative AI</span>
+              <span class="tag tag-data">NL2SQL</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
-        <a href="/products/blueoctopus" class="product-card card-light" id="blueoctopus">
+        <a href="/products/blue-octopus" class="product-card card-light" id="blueoctopus">
           <div class="product-card__logo">
-            <img src="/assets/images/logos/BLUEOCT_logo.png" alt="BlueOctopus" />
+            <img src="/assets/images/logos/BLUEOCT_logo.png" alt="Blue Octopus" />
           </div>
-          <h3>Blue Octopus</h3>
-          <p class="product-card__tagline">AI Surveillance & Action Platform</p>
-          <p>Monitor critical data from a single center with AI-powered analytics. Event detection, alerting and action management across systems.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-ai">AI Analytics</span>
-            <span class="tag tag-security">Monitoring</span>
+          <div class="product-card__content">
+            <h3>Blue Octopus</h3>
+            <p class="product-card__tagline">AI Surveillance & Action Platform</p>
+            <p>Monitor critical data from a single center with AI-powered analytics. Event detection, alerting and action management across systems.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-ai">AI Analytics</span>
+              <span class="tag tag-security">Monitoring</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
         <a href="/products/var" class="product-card card-light" id="var">
           <div class="product-card__logo">
             <img src="/assets/images/logos/VAR_logo.png" alt="VAR" />
           </div>
-          <h3>VAR</h3>
-          <p class="product-card__tagline">Voice AI Recognition</p>
-          <p>AI-powered voice signature creation, speaker matching and identity extraction. Built for security, call center and compliance use cases.</p>
-          <div class="product-card__tags">
-            <span class="tag tag-ai">Voice AI</span>
-            <span class="tag tag-security">Security</span>
+          <div class="product-card__content">
+            <h3>VAR</h3>
+            <p class="product-card__tagline">Voice AI Recognition</p>
+            <p>AI-powered voice signature creation, speaker matching and identity extraction. Built for security, call center and compliance use cases.</p>
+            <div class="product-card__tags">
+              <span class="tag tag-ai">Voice AI</span>
+              <span class="tag tag-security">Security</span>
+            </div>
           </div>
+          <div class="product-card__arrow">→</div>
         </a>
       </div>
     </div>
@@ -231,45 +299,112 @@ const productsSchema = {
 </Layout>
 
 <style>
-.product-card {
+.product-list {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
+
+.product-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  padding: 32px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  border: 1px solid #E2E8F0;
+  border-radius: 24px;
+}
+
 .product-card__logo {
-  width: 72px; height: 72px;
-  border-radius: var(--radius-md);
+  width: 100px; height: 100px;
+  border-radius: 16px;
   display: flex; align-items: center; justify-content: center;
   background: #F8FAFC;
   border: 1px solid #E8EEF5;
-  padding: 12px;
-  margin-bottom: 20px;
-  overflow: hidden;
+  padding: 8px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
 }
+
+.product-card:hover .product-card__logo {
+  transform: scale(1.05);
+  border-color: var(--clr-primary);
+  background: #fff;
+}
+
 .product-card__logo img {
   max-width: 100%; max-height: 100%;
   object-fit: contain;
 }
+
+.product-card__content {
+  flex: 1;
+}
+
 .product-card h3 {
   color: var(--clr-light-text);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 4px;
 }
+
 .product-card__tagline {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--clr-primary);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
+
 .product-card p {
   color: var(--clr-light-muted);
-  font-size: 0.92rem;
-  flex-grow: 1;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 800px;
 }
+
 .product-card__tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: auto;
+}
+
+.product-card__arrow {
+  font-size: 1.5rem;
+  color: #22d3ee;
+  opacity: 0.3;
+  transition: all 0.25s ease;
+  transform: translateX(0);
+}
+
+.product-card:hover .product-card__arrow {
+  opacity: 1;
+  transform: translateX(8px);
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: #22d3ee;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  .product-card__arrow {
+    display: none;
+  }
 }
 </style>

@@ -23,3 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# backup files
+*.bak
+
+# claude code
+.claude/
+
