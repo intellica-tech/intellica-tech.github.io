@@ -4,13 +4,13 @@ import Layout from '../../layouts/Layout.astro';
 const siteUrl = "https://intellica-tech.github.io";
 const breadcrumbs = [
   { name: "Products", url: `${siteUrl}/products` },
-  { name: "Talk To Your Data", url: `${siteUrl}/products/talk-to-your-data` }
+  { name: "Talk To", url: `${siteUrl}/products/talk-to-your-data` }
 ];
 
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Talk To Your Data",
+  "name": "Talk To",
   "description": "AI-powered data analyst that allows users to query enterprise data using natural language. Translates questions into SQL and provides instant insights.",
   "applicationCategory": "BusinessApplication, Analytics",
   "operatingSystem": "Web-based",
@@ -25,7 +25,7 @@ const productSchema = {
 };
 ---
 
-<Layout title="Talk To Your Data — AI Data Analytics | Intellica" description="Talk To Your Data: Query your enterprise data using natural language. AI-powered insights, visualization, and tool orchestration." breadcrumbs={breadcrumbs} hideCta={true}>
+<Layout title="Talk To — AI Data Analytics | Intellica" description="Talk To: Query your enterprise data using natural language. AI-powered insights, visualization, and tool orchestration." breadcrumbs={breadcrumbs} hideCta={true}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <!-- Page Hero -->
   <section class="page-hero">
@@ -34,7 +34,7 @@ const productSchema = {
       <h1 class="anim-fade-up">Talk To — <span class="grad-text">Natural Query</span></h1>
       <p class="anim-fade-up">Interact with your enterprise data using natural language. Talk To acts as an AI data analyst, translating your questions into precise queries and delivering instant insights.</p>
       <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
-        <a href="/contact" class="btn btn-primary btn-pill btn-lg">CONTACT US</a>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg">Talk to an Expert</a>
       </div>
     </div>
   </section>
@@ -124,7 +124,7 @@ const productSchema = {
         <div class="anim-fade-up">
           <h2 style="color: #fff; margin-bottom: 24px;">Interact with Data. <span class="grad-text">Get Instant Insights.</span></h2>
           <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px; font-size: 1.1rem; line-height: 1.7;">
-            Talk to Your Data enables you to interact with your corporate data by converting natural language questions into database queries. Get insights through a single conversation interface without writing SQL or navigating complex BI tools.
+            Talk To enables you to interact with your corporate data by converting natural language questions into database queries. Get insights through a single conversation interface without writing SQL or navigating complex BI tools.
           </p>
           <div class="cap-card-modern" style="padding: 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
             <p style="font-weight: 700; color: #fff; margin-bottom: 8px;">Intelligent Analyst Assistant</p>
@@ -133,10 +133,10 @@ const productSchema = {
         </div>
         <div class="anim-fade-up">
           <div class="img-frame">
-            <img src="/assets/images/talktoekrangoruntusu.png" alt="Talk To Your Data Interface" class="product-screenshot" />
+            <img src="/assets/images/talktoekrangoruntusu.png" alt="Talk To Interface" class="product-screenshot" />
           </div>
           <p style="text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 16px; font-style: italic;">
-            Talk To Your Data: Natural language data analysis and intelligent insight platform.
+            Talk To: Natural language data analysis and intelligent insight platform.
           </p>
         </div>
       </div>
@@ -149,7 +149,7 @@ const productSchema = {
       <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
         <div class="section-label" style="margin-inline: auto;">Solutions</div>
         <h2 class="section-title" style="color: var(--clr-light-text);">Strategic <span class="grad-text">Use Cases</span></h2>
-        <p class="section-sub">Discover the operational and strategic value created by Talk To Your Data across different departments.</p>
+        <p class="section-sub">Discover the operational and strategic value created by Talk To across different departments.</p>
       </div>
 
       <div class="tabs-container anim-fade-up">
@@ -170,7 +170,7 @@ const productSchema = {
               <h4>Reducing SQL and BI Complexity</h4>
               <p class="scenario">Business units being dependent on IT teams for data analysis or navigating complex BI tools can slow down decision-making.</p>
               <div class="uc-section">
-                <p class="uc-label">TALK TO INTERVENTION</p>
+                <p class="uc-label">Talk To Intervention</p>
                 <ul class="uc-list">
                   <li>Automatically converts natural language questions into SQL queries.</li>
                   <li>Integrates seamlessly with databases and reporting tools.</li>
@@ -194,7 +194,7 @@ const productSchema = {
               <h4>Ad-hoc Reporting Automation</h4>
               <p class="scenario">Teams spend excessive hours manually compiling reports for one-off vertical analysis requests.</p>
               <div class="uc-section">
-                <p class="uc-label">TALK TO INTERVENTION</p>
+                <p class="uc-label">Talk To Intervention</p>
                 <ul class="uc-list">
                   <li>Standardize semantic layers for consistent field definitions.</li>
                   <li>Allow business users to generate on-the-fly reports via chat.</li>
@@ -224,7 +224,7 @@ const productSchema = {
               <h4>360° Customer View & Rapid Support</h4>
               <p class="scenario">Support agents searching for data across CRM, billing, and interaction systems leads to time loss and incomplete context.</p>
               <div class="uc-section">
-                <p class="uc-label">TALK TO INTERVENTION</p>
+                <p class="uc-label">Talk To Intervention</p>
                 <ul class="uc-list">
                   <li>Analyzes CRM and transaction history in an integrated way.</li>
                   <li>Provides contextual customer summaries to representatives.</li>
@@ -254,7 +254,7 @@ const productSchema = {
               <h4>Instant KPI Querying for Management</h4>
               <p class="scenario">Senior management often depends on dashboard updates or technical teams to access real-time KPI performance.</p>
               <div class="uc-section">
-                <p class="uc-label">TALK TO INTERVENTION</p>
+                <p class="uc-label">Talk To Intervention</p>
                 <ul class="uc-list">
                   <li>Enables natural language querying of high-level KPIs.</li>
                   <li>Supports contextual filtering and seamless drill-down.</li>
