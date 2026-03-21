@@ -673,25 +673,28 @@ const websiteSchema = {
   .hero__content {
     align-items: flex-start;
     padding-block: 10px;
-    padding-top: 30px; /* Biraz aşağı indirildi */
+    padding-top: 30px;
+  }
+  .hero__content .section-label {
+    padding-right: 125px; /* Prevent overlap with absolute-positioned crystal */
   }
   .hero__visual {
     position: absolute;
-    top: 15px; /* Biraz aşağı indirildi (Eskisi -10px) */
-    right: 5px;
-    width: 120px; /* Increased from 90px to match 'About' feel better */
-    height: 120px;
+    top: 10px;
+    right: -10px; /* Extend into container padding so crystal fills the dark right corner */
+    width: 150px;
+    height: 150px;
     justify-content: flex-end;
     align-items: flex-start;
     margin: 0;
     z-index: 10;
   }
-  .hero__title { 
-    font-size: 2.4rem; 
-    margin-bottom: 16px; 
-    padding-right: 80px; 
+  .hero__title {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    padding-right: 105px; /* Increased from 80px to account for larger 150px crystal */
     line-height: 1.2;
-    min-height: 2.4em; 
+    min-height: 2.4em;
   }
   .hero__desc { 
     font-size: 1.1rem; 
@@ -700,6 +703,13 @@ const websiteSchema = {
     min-height: 4.8em; 
   }
   .hero__actions { margin-bottom: 24px; }
+}
+
+@media (max-width: 768px) {
+  .hero__subactions {
+    flex-wrap: wrap;
+    gap: 10px 24px;
+  }
 }
 
 /* Map */
