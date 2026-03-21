@@ -675,12 +675,9 @@ const websiteSchema = {
     padding-block: 10px;
     padding-top: 30px;
   }
-  .hero__content .section-label {
-    padding-right: 125px; /* Prevent overlap with absolute-positioned crystal */
-  }
   .hero__visual {
     position: absolute;
-    top: 10px;
+    top: 95px; /* Align with title (label ends ~92px, title starts ~104px from wrap) */
     right: -10px; /* Extend into container padding so crystal fills the dark right corner */
     width: 150px;
     height: 150px;
@@ -895,6 +892,8 @@ const websiteSchema = {
 }
 @media (max-width: 640px) {
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-tile--lg { min-height: 80px; }
+  .logo-tile--lg img { height: 36px; max-width: 110px; }
 }
 
 .logo-tile--lg {

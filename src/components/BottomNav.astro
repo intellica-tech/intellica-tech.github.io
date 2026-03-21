@@ -196,6 +196,11 @@ const moreGroups = [
   padding-inline: 6px;
   visibility: visible !important;
   opacity: 1 !important;
+  transition: transform 0.3s ease;
+}
+
+.bottom-nav.nav--hidden {
+  transform: translateY(100%);
 }
 
 .bnav-item {
@@ -484,4 +489,17 @@ const moreGroups = [
       link.addEventListener('click', closeAllSheets);
     });
   });
+
+  // Hide on scroll down, show on scroll up
+  const bnavEl = document.querySelector('.bottom-nav') as HTMLElement | null;
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastY + 8 && y > 80) {
+      bnavEl?.classList.add('nav--hidden');
+    } else if (y < lastY - 8) {
+      bnavEl?.classList.remove('nav--hidden');
+    }
+    lastY = y;
+  }, { passive: true });
 </script>
