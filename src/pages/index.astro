@@ -677,35 +677,34 @@ const websiteSchema = {
   }
   .hero__visual {
     position: absolute;
-    top: 95px; /* Align with title (label ends ~92px, title starts ~104px from wrap) */
-    right: -10px; /* Extend into container padding so crystal fills the dark right corner */
-    width: 150px;
-    height: 150px;
+    top: 82px;
+    right: 0;
+    width: 115px;
+    height: 115px;
     justify-content: flex-end;
     align-items: flex-start;
-    margin: 0;
     z-index: 10;
   }
   .hero__title {
     font-size: 2.4rem;
     margin-bottom: 16px;
-    padding-right: 155px; /* Crystal starts at ~195px, text must end before that */
+    padding-right: 120px; /* crystal width(115px) + 5px gap */
     line-height: 1.2;
     min-height: 2.4em;
   }
-  .hero__desc { 
-    font-size: 1.1rem; 
-    max-width: 100%; 
-    margin-bottom: 24px; 
-    min-height: 4.8em; 
+  .hero__desc {
+    font-size: 1.1rem;
+    max-width: 100%;
+    margin-bottom: 24px;
+    min-height: 4.8em;
   }
   .hero__actions { margin-bottom: 24px; }
 }
 
 @media (max-width: 768px) {
   .hero__subactions {
-    flex-wrap: wrap;
-    gap: 10px 24px;
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
@@ -887,6 +886,13 @@ const websiteSchema = {
   grid-template-columns: repeat(6, 1fr);
   gap: 16px;
 }
+.logo-tile--lg {
+  min-height: 110px;
+}
+.logo-tile--lg img {
+  height: 52px;
+  max-width: 160px;
+}
 @media (max-width: 1024px) {
   .logo-grid { grid-template-columns: repeat(4, 1fr); }
 }
@@ -894,14 +900,6 @@ const websiteSchema = {
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .logo-tile--lg { min-height: 80px; }
   .logo-tile--lg img { height: 36px; max-width: 110px; }
-}
-
-.logo-tile--lg {
-  min-height: 110px;
-}
-.logo-tile--lg img {
-  height: 52px;
-  max-width: 160px;
 }
 
 /* Eco grid */
