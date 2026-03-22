@@ -213,9 +213,13 @@ const breadcrumbs = [
 ];
 
 const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3);
+
+const titleWords = article.title.split(' ');
+const titleLastWord = titleWords.pop();
+const titleStart = titleWords.join(' ');
 ---
 
-<Layout title={`${article.title} | Intellica Insights`} description={article.desc} breadcrumbs={breadcrumbs}>
+<Layout title={`${article.title} | Intellica Insights`} description={article.desc} breadcrumbs={breadcrumbs} hideCta={true}>
   <!-- HERO SECTION (Dark & Impactful) -->
   <section class="insight-hero noise">
     <div class="insight-hero-bg"></div>
@@ -228,7 +232,7 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
         <span class="insight-time">{article.time} read</span>
       </div>
       
-      <h1 class="insight-title anim-fade-up">{article.title}</h1>
+      <h1 class="insight-title anim-fade-up">{titleStart} <span class="grad-text">{titleLastWord}</span></h1>
       
       <div class="insight-header-tags anim-fade-up">
         {article.topics.map(t => <span class="header-tag">{t}</span>)}
@@ -274,15 +278,22 @@ const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3
             <a href="/insights" class="btn btn-ghost-dark btn-pill btn-full" style="margin-top: 32px;">EXPLORE LIBRARY</a>
           </div>
           
-          <div class="sidebar-card cta-card">
-            <h3 class="sidebar-title">Adapting this insight</h3>
-            <p class="cta-p">
-              Want to apply this methodology to your organization? Let's discuss your specific challenges and build a roadmap together.
-            </p>
-            <a href="/contact" class="btn btn-primary btn-pill btn-full">Talk to an Expert</a>
-          </div>
         </aside>
         
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>Have an insight to <span class="grad-text">share?</span></h2>
+        <p>Let's collaborate on framing a problem and turning it into a practical guide for your organization.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href="/clients">View Clients</a>
+        </div>
       </div>
     </div>
   </section>

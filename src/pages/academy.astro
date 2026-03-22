@@ -165,8 +165,8 @@ const faqSchema = {
   <!-- INVITATION -->
   <section class="section section--dark">
     <div class="container">
-      <div class="card-glass text-center anim-fade-up" style="padding: 80px 40px; border-radius: 48px;">
-        <h2 class="hero__title" style="font-size: 2.5rem; margin-inline: auto; text-align: center;">You are invited to the <span class="grad-text">3-week Academy Camp</span></h2>
+      <div class="card-glass text-center anim-fade-up invite-card">
+        <h2 class="hero__title invite-heading">You are invited to the <span class="grad-text">3-week Academy Camp</span></h2>
         <p class="hero__desc" style="margin-inline: auto; max-width: 800px;">
           If you are ready to transform your life with the power of data, we are waiting for you at the 3-week Intellica Academy Camp. Here is what awaits you:
         </p>
@@ -209,11 +209,11 @@ const faqSchema = {
 
       <div class="grid-2 anim-fade-up" style="margin-top: 40px;">
         <div class="card-light promo-card">
-          <h4>Why should you join?</h4>
+          <h4>Who should join?</h4>
           <p>4th-year, master's, or doctoral students; new graduates or those with up to 1 year of experience are prioritised in applications.</p>
         </div>
         <div class="card-light promo-card">
-          <h4>Who should join?</h4>
+          <h4>Why should you join?</h4>
           <p>Content and quota information may be updated sessionally. Contact us for details.</p>
         </div>
       </div>
@@ -302,19 +302,19 @@ const faqSchema = {
 
 <style>
 /* HERO: STANDARDIZED */
-.hero { 
+.hero-disabled { 
   min-height: 800px; display: flex; align-items: center; position: relative; overflow: hidden;
   background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
 }
-.hero__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
-.hero__content-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 40px; width: 100%; }
-.hero__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
-.hero__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
-.hero__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
-.hero__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
-.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero__visual { display: flex; justify-content: center; align-items: center; }
-.hero__shape-new { 
+.hero-disabled__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
+.hero-disabled__content-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 40px; width: 100%; }
+.hero-disabled__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+.hero-disabled__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+.hero-disabled__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+.hero-disabled__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
+.hero-disabled__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-disabled__visual { display: flex; justify-content: center; align-items: center; }
+.hero-disabled__shape-new { 
   width: 100%; max-width: 600px; 
   animation: float 8s ease-in-out infinite; 
   filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3)); 
@@ -328,18 +328,39 @@ const faqSchema = {
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
 @media (max-width: 1100px) {
-  .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 50px !important; height: auto; }
-  .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; }
-  .hero__content { align-items: flex-start; padding-block: 10px; }
-  .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; }
-  .hero__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
-  .hero__visual { 
+  .hero-disabled { min-height: auto !important; padding-top: 5px !important; padding-bottom: 25px !important; height: auto; }
+  .hero-disabled__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; }
+  .hero-disabled__content { align-items: flex-start; padding-block: 10px; }
+  .hero-disabled__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; }
+  .hero-disabled__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
+  .hero-disabled__visual { 
     position: absolute; top: 5px; right: 5px; width: 80px; height: 80px; 
     z-index: 10; display: flex; justify-content: flex-end; align-items: flex-start;
   }
-  .hero__shape-new { width: 100%; height: auto; opacity: 1; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
-  .hero__actions { margin-bottom: 24px; }
+  .hero-disabled__shape-new { width: 100%; height: auto; opacity: 1; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
+  .hero-disabled__actions { margin-bottom: 24px; }
   .hero-stats { justify-content: flex-start; flex-wrap: wrap; gap: 20px; }
+}
+
+/* Invite Card */
+.invite-card {
+  padding: 80px 40px;
+  border-radius: 48px;
+}
+.invite-heading {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-inline: auto;
+  text-align: center;
+  line-height: 1.2;
+}
+@media (max-width: 768px) {
+  .invite-card {
+    padding: 48px 24px;
+    border-radius: 28px;
+  }
+  .invite-heading {
+    font-size: 1.5rem;
+  }
 }
 
 /* Luxury Cards */

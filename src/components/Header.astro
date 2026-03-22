@@ -28,7 +28,7 @@ const products = [
     category: 'AI Products',
     items: [
       { name: 'Talk To', desc: 'Natural language data analyst', href: '/products/talk-to-your-data' },
-      { name: 'Blue Octopus', desc: 'Event monitoring & action management', href: '/products/blue-octopus' },
+      { name: 'Blue Octopus', desc: 'Event intelligence & automated response', href: '/products/blue-octopus' },
       { name: 'VAR', desc: 'AI voice analytics & recognition', href: '/products/var' },
     ]
   }
@@ -90,14 +90,14 @@ const aboutMenu = [
       <a href="/partners" class="nav-link">Partners</a>
 
       <!-- About Mega Menu -->
-      <div class="nav-item" data-dropdown>
+      <div class="nav-item about-dropdown-container" data-dropdown>
         <button type="button" aria-haspopup="true" aria-expanded="false" class="nav-link nav-link--dd">
           About
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="chevron">
             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="dd-menu mega-menu" style="width: 320px;">
+        <div class="dd-menu about-menu">
           <div class="mega-inner" style="grid-template-columns: 1fr;">
             {aboutMenu.map(group => (
               <div class="mega-col">
@@ -230,11 +230,14 @@ const aboutMenu = [
 }
 .dd-menu.open { display: block; }
 
-/* About Dropdown */
+/* About Dropdown - Anchor to Right for safety on tablet */
+.about-dropdown-container { position: relative; }
+
 .about-menu {
-  width: 220px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 280px;
+  left: auto;
+  right: 0;
+  transform: none;
   padding: 8px;
 }
 .dd-link {
@@ -251,11 +254,16 @@ const aboutMenu = [
   color: #000;
 }
 
-/* Mega Menu */
+/* Mega Menu (Products) - Force Viewport Centering */
+.nav-desktop:has(.mega-menu) { position: static; }
+.nav-item:has(.mega-menu) { position: static; }
+
 .mega-menu {
-  width: 900px;
-  left: 0;
-  transform: none;
+  width: min(1100px, calc(100vw - 40px));
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  top: var(--header-h); /* Align exactly to bottom of header */
 }
 .mega-inner {
   display: grid;

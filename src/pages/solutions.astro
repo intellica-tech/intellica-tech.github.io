@@ -13,10 +13,10 @@ const breadcrumbs = [
     <div class="container hero__inner">
       <div class="hero__content-wrap">
         <div class="hero__content">
-          <div class="section-label anim-fade-up">SOLUTIONS</div>
-          <h1 class="hero__title anim-fade-up">Production-Ready <br /><span class="grad-text">AI Blueprints</span></h1>
+          <div class="section-label anim-fade-up">AI SOLUTIONS</div>
+          <h1 class="hero__title anim-fade-up">AI That Works in <br /><span class="grad-text">Production</span></h1>
           <span class="hero__accent anim-fade-up"></span>
-          <p class="hero__desc anim-fade-up">We bridge the gap between AI pilots and enterprise reality with battle-tested architectures and agentic frameworks.</p>
+          <p class="hero__desc anim-fade-up">Build scalable, enterprise-grade AI solutions on a trusted data foundation — from use case to real business impact.</p>
             <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
         </div>
         <div class="hero__visual anim-fade-up">
@@ -29,9 +29,9 @@ const breadcrumbs = [
   <!-- AI SOLUTIONS OVERVIEW: MODERN DARK THEME -->
   <section class="ai-solutions" id="framework">
     <style>
-      .ai-solutions{
-        --bg1:#FFFFFF;
-        --bg2:#FBFCFE;
+      .ai-solutions, .ai-architecture {
+        --bg1:#F8FAFC;
+        --bg2:#F8FAFC;
         --card:rgba(15,23,42,0.03);
         --card2:rgba(15,23,42,0.05);
         --line:rgba(15,23,42,0.08);
@@ -39,14 +39,16 @@ const breadcrumbs = [
         --muted:#64748B;
         --accent:#00C896;
         --radius:20px;
-        padding:72px 0;
+        padding: 100px 0 80px 0;
         overflow-x: hidden;
-        background:
-          radial-gradient(900px 300px at 20% 10%, rgba(0,200,150,0.05), transparent 60%),
-          radial-gradient(700px 260px at 80% 0%, rgba(0,159,227,0.03), transparent 55%),
-          linear-gradient(180deg, var(--bg1), var(--bg2));
       }
-      .ai-solutions *{box-sizing:border-box}
+      .ai-solutions {
+        background: #F8FAFC;
+      }
+      .ai-architecture {
+        background: #FFFFFF;
+      }
+      .ai-solutions *, .ai-architecture *{box-sizing:border-box}
       .ai-wrap{
         width:min(1120px, 92vw);
         margin:0 auto;
@@ -406,156 +408,239 @@ const breadcrumbs = [
           padding: 12px 14px;
         }
       }
+      /* Enterprise AI Solutions Cards */
+      .ai-sol-grid {
+        display:grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap:24px;
+        margin-bottom: 40px;
+      }
+      .ai-sol-card {
+        background:#ffffff;
+        padding:34px;
+        border-radius:24px;
+        border:1px solid #e5e7eb;
+        transition: all 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+        position:relative;
+        overflow:hidden;
+        display:flex;
+        flex-direction:column;
+        box-shadow: 0 4px 12px rgba(15,23,42,0.02);
+      }
+      .ai-sol-card::before {
+        content:"";
+        position:absolute;
+        inset:0;
+        background: radial-gradient(400px circle at top left, rgba(0,200,150,0.08), transparent 60%);
+        opacity:0;
+        transition:opacity 0.4s ease;
+        pointer-events:none;
+      }
+      .ai-sol-card:hover::before { opacity:1; }
+      .ai-sol-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        border-color: #22d3ee;
+      }
+      .ai-sol-icon {
+        width: 54px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(15,23,42,0.04);
+      }
+      .ai-sol-icon img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+      .ai-sol-card h3 {
+        margin:0 0 12px 0;
+        font-size:20px;
+        font-weight:750;
+        color: #0F172A;
+        letter-spacing: -0.01em;
+      }
+      .ai-sol-card p {
+        color:var(--muted);
+        font-size:15px;
+        line-height:1.6;
+        margin:0 0 20px 0;
+        flex-grow:1;
+      }
+      .ai-sol-tags {
+        font-size:13px;
+        color:var(--accent);
+        font-weight:750;
+        letter-spacing:0.02em;
+        padding-top:16px;
+        border-top:1px solid #f1f5f9;
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+      }
+      @media (max-width: 1200px) {
+        .ai-sol-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 768px) {
+        .ai-sol-grid { grid-template-columns: 1fr; }
+      }
     </style>
 
     <div class="ai-wrap">
 
       <!-- TOP -->
-      <div class="ai-top">
-        <div>
-          <div class="ai-kicker"><i></i> AI Solutions</div>
-          <h2 class="ai-title">Turn Data Into Intelligent Systems</h2>
-          <p class="ai-lead">
-            We design AI capabilities that power prediction, automation, and enterprise-grade
-            decision-making—built on reliable data foundations.
-          </p>
+      <div class="ai-sol-header text-center anim-fade-up" style="margin-bottom:60px; padding-top:20px;">
+        <div class="section-label" style="margin-inline:auto;">
+          AI Solutions
+        </div>
+        <h2 class="section-title">
+          Enterprise <span class="grad-text">AI Solutions</span>
+        </h2>
+        <p class="section-sub" style="max-width:700px; margin-inline:auto;">
+          Production-grade AI solutions designed to improve decisions, automate operations and unlock business value.
+        </p>
+      </div>
 
-          <ul class="ai-bullets">
-            <div class="h">What we deliver</div>
-            <li>Domain-specific fine-tuning</li>
-            <li>RAG-ready knowledge systems</li>
-            <li>High-performance inference</li>
-            <li>API & data integrations</li>
-            <li>Goal-driven autonomous workflows</li>
-            <li>Multi-agent orchestration</li>
-          </ul>
+      <div class="ai-sol-grid">
+        <!-- CARD 1 -->
+        <div class="ai-sol-card">
+          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <h3>Customer Intelligence AI</h3>
+          <p>Natural language access to enterprise data through intelligent AI assistants.</p>
+          <div class="ai-sol-tags">LLM • RAG • Assistants</div>
         </div>
 
-        <div class="ai-grid">
-          <!-- 1 -->
-          <div class="ai-card">
-            <div class="top">
-              <div class="ai-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-6"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Machine Learning</h3>
-                <p>Predictive models and anomaly detection for smarter decisions.</p>
-                <div class="ai-tag"><span>Forecasting</span><span>Anomaly</span></div>
-              </div>
-            </div>
-          </div>
+        <!-- CARD 2 -->
+        <div class="ai-sol-card">
+          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <h3>Predictive Decisioning AI</h3>
+          <p>Forecasting, scoring and optimization models that improve decision-making.</p>
+          <div class="ai-sol-tags">Forecasting • Scoring • Optimization</div>
+        </div>
 
-          <!-- 2 -->
-          <div class="ai-card">
-            <div class="top">
-              <div class="ai-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/>
-                  <path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/>
-                  <path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Deep Learning</h3>
-                <p>Advanced neural architectures including transformers and custom networks.</p>
-                <div class="ai-tag"><span>Transformers</span><span>Vision/NLP</span></div>
-              </div>
-            </div>
-          </div>
+        <!-- CARD 3 -->
+        <div class="ai-sol-card">
+          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <h3>Knowledge Automation</h3>
+          <p>AI-powered search, summarization and document intelligence for enterprise knowledge.</p>
+          <div class="ai-sol-tags">RAG • Search • Summarization</div>
+        </div>
 
-          <!-- 3 -->
-          <div class="ai-card">
-            <div class="top">
-              <div class="ai-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 8h10"/><path d="M7 12h6"/><path d="M7 16h10"/>
-                  <path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Large Language Models</h3>
-                <p>Enterprise LLM systems with RAG and domain fine-tuning.</p>
-                <div class="ai-tag"><span>RAG</span><span>Fine-tune</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4 -->
-          <div class="ai-card">
-            <div class="top">
-              <div class="ai-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 6v6l4 2"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
-                </svg>
-              </div>
-              <div>
-                <h3>AI Agents</h3>
-                <p>Autonomous agents that execute workflows across tools and systems.</p>
-                <div class="ai-tag"><span>Orchestration</span><span>Automation</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5 -->
-          <div class="ai-card">
-            <div class="top">
-              <div class="ai-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 3l9 4.5-9 4.5L3 7.5 12 3z"/><path d="M3 12l9 4.5 9-4.5"/>
-                  <path d="M3 16.5l9 4.5 9-4.5"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Generative AI</h3>
-                <p>Content, code, and knowledge generation aligned with your governance.</p>
-                <div class="ai-tag"><span>Assistants</span><span>Content</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 6 -->
-          <div class="ai-card">
-            <div class="top">
-              <div class="ai-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16v6H4z"/><path d="M4 14h10v6H4z"/><path d="M16 14h4v6h-4z"/>
-                </svg>
-              </div>
-              <div>
-                <h3>MLOps & Deployment</h3>
-                <p>Monitoring, versioning, CI/CD, and scalable production deployments.</p>
-                <div class="ai-tag"><span>Monitoring</span><span>CI/CD</span></div>
-              </div>
-            </div>
-          </div>
+        <!-- CARD 4 -->
+        <div class="ai-sol-card">
+          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <h3>Operational & Agentic AI</h3>
+          <p>Autonomous AI systems that execute workflows and optimize operations in real time.</p>
+          <div class="ai-sol-tags">Agents • Automation • Orchestration</div>
         </div>
       </div>
 
-      <div class="ai-divider"></div>
+    </div>
+  </section>
 
-      <!-- ===== AI ARCHITECTURE ===== -->
-      <div class="ai-subhead anim-fade-up">
-        <h2>Enterprise AI <span class="grad-text">Architecture</span></h2>
-        <p>A battle-tested framework for moving AI from POC to production-grade enterprise reality.</p>
+
+  <!-- ===== HOW OUR AI SOLUTIONS WORK ===== -->
+  <section class="section section--light" id="how-it-works">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom:60px;">
+        <div class="section-label" style="margin-inline:auto;">Our Approach</div>
+        <h2 class="section-title" style="color:#0F172A;">How Our AI <span class="grad-text">Solutions Work</span></h2>
+        <p class="section-sub" style="max-width:680px; margin-inline:auto; color:#64748B;">
+          From raw data to real-time decisions — our AI solutions follow a consistent and scalable approach.
+        </p>
+      </div>
+
+      <div class="hiw-steps anim-fade-up">
+
+        <div class="hiw-step">
+          <div class="hiw-number">01</div>
+          <div class="hiw-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+              <ellipse cx="12" cy="12" rx="10" ry="3"/>
+              <path d="M2 12c0 3.5 4.5 6.5 10 6.5s10-3 10-6.5"/>
+              <path d="M2 7c0 3.5 4.5 6.5 10 6.5S22 10.5 22 7"/>
+              <line x1="12" y1="2" x2="12" y2="22"/>
+            </svg>
+          </div>
+          <h3 class="hiw-title">Data Collection</h3>
+          <p class="hiw-desc">Collect data from enterprise systems, sensors, and operational sources.</p>
+        </div>
+
+        <div class="hiw-connector"></div>
+
+        <div class="hiw-step">
+          <div class="hiw-number">02</div>
+          <div class="hiw-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </div>
+          <h3 class="hiw-title">AI Analysis</h3>
+          <p class="hiw-desc">Apply machine learning models to detect patterns, anomalies, and inefficiencies.</p>
+        </div>
+
+        <div class="hiw-connector"></div>
+
+        <div class="hiw-step">
+          <div class="hiw-number">03</div>
+          <div class="hiw-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+              <path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-6"/>
+            </svg>
+          </div>
+          <h3 class="hiw-title">Insights & Decisions</h3>
+          <p class="hiw-desc">Generate actionable insights and recommendations for optimization.</p>
+        </div>
+
+        <div class="hiw-connector"></div>
+
+        <div class="hiw-step">
+          <div class="hiw-number">04</div>
+          <div class="hiw-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+              <path d="M7 8h2v5H7zM11 10h2v3h-2zM15 6h2v7h-2z"/>
+            </svg>
+          </div>
+          <h3 class="hiw-title">Action & Monitoring</h3>
+          <p class="hiw-desc">Enable real-time actions, alerts, and continuous monitoring through dashboards.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AI ARCHITECTURE ===== -->
+  <section class="ai-architecture section--white" id="architecture">
+    <div class="ai-wrap">
+      <div class="ai-subhead anim-fade-up" style="display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:50px;">
+        <h2 class="section-title" style="margin:0; font-size:40px;">How We Build Production-Ready <span class="grad-text">AI Systems</span></h2>
+        <p class="section-sub" style="max-width:700px; margin:16px auto 0;">A proven architecture that transforms raw data into intelligent, scalable AI systems.</p>
       </div>
 
       <div class="archi-card-modern anim-fade-up">
         <div class="archi-layers-grid">
           <div class="archi-layer-col">
-            <div class="layer-title">FOUNDATION</div>
-            <div class="layer-chip">Vector Database</div>
-            <div class="layer-chip">Graph DB</div>
+            <div class="layer-title">DATA FOUNDATION</div>
             <div class="layer-chip">SQL / DWH</div>
+            <div class="layer-chip">Graph DB</div>
+            <div class="layer-chip">Vector DB</div>
+            <p style="font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 8px; line-height: 1.4;">Trusted, governed and high-quality data sources</p>
           </div>
-          <div class="archi-arrow">→</div>
+          <div class="archi-arrow" style="font-size: 1.8rem; color: var(--accent); font-weight: 700; opacity: 0.8;">→</div>
           <div class="archi-layer-col main-layer">
-            <div class="layer-title">INTELLIGENCE ENGINE</div>
-            <div class="platform-box">
+            <div class="layer-title" style="color: var(--accent); font-weight: 900;">AI INTELLIGENCE LAYER</div>
+            <div class="platform-box" style="box-shadow: 0 0 40px rgba(0, 200, 150, 0.15); border-color: rgba(0, 200, 150, 0.3);">
               <div class="platform-row">
-                <div class="platform-segment destaque">LLM / SLM (RAG)</div>
+                <div class="platform-segment destaque" style="font-size: 0.85rem;">LLM / RAG</div>
               </div>
               <div class="platform-row">
                 <div class="platform-segment">PROMPT OPS</div>
@@ -565,46 +650,23 @@ const breadcrumbs = [
                 <div class="platform-segment destaque">AGENTIC WORKFLOWS</div>
               </div>
             </div>
+            <p style="font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 8px; line-height: 1.4;">Where models, logic and automation come together</p>
           </div>
-          <div class="archi-arrow">→</div>
+          <div class="archi-arrow" style="font-size: 1.8rem; color: var(--accent); font-weight: 700; opacity: 0.8;">→</div>
           <div class="archi-layer-col">
-            <div class="layer-title">INTERFACE</div>
+            <div class="layer-title">BUSINESS APPLICATIONS</div>
             <div class="layer-chip highlight">API / SDK</div>
             <div class="layer-chip highlight">Custom UI</div>
-            <div class="layer-chip highlight">Talk To Hub</div>
+            <div class="layer-chip highlight">TalkTo Hub</div>
+            <p style="font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 8px; line-height: 1.4;">Delivering AI into real business processes</p>
           </div>
         </div>
-        <div class="archi-note" style="background: rgba(15,23,42,0.02); border-top: 1px solid rgba(15,23,42,0.08);">
-          <p style="color: #64748B;">Standardized AI architectures designed for immediate enterprise integration and measurable ROI.</p>
+        <div class="archi-note" style="background: rgba(15,23,42,0.02); border-top: 1px solid rgba(15,23,42,0.08); text-align: center;">
+          <p style="color: #0F172A; font-weight: 600; font-size: 1.05rem;">From data to decision — a unified architecture that enables scalable, secure and production-grade AI.</p>
         </div>
       </div>
 
-      <div class="ai-divider"></div>
 
-      <!-- USE CASES -->
-      <div class="ai-subhead">
-        <h2>AI Use Cases</h2>
-        <p>Customer-facing outcomes that we deliver—adaptable across banking, telecom, retail, and industry.</p>
-      </div>
-
-      <div class="ai-usecases">
-        <div class="ai-mini">
-          <h4>Predictive Analytics</h4>
-          <p>Forecast demand, risk, and customer behavior with measurable accuracy.</p>
-        </div>
-        <div class="ai-mini">
-          <h4>Intelligent Automation</h4>
-          <p>Automate decisions and operations with agentic workflows.</p>
-        </div>
-        <div class="ai-mini">
-          <h4>Document Intelligence</h4>
-          <p>RAG-powered search, summarization, and compliance Q&A on enterprise docs.</p>
-        </div>
-        <div class="ai-mini">
-          <h4>Detection & Monitoring</h4>
-          <p>Detect anomalies, fraud patterns, and operational risks in real time.</p>
-        </div>
-      </div>
 
     </div>
   </section>
@@ -614,8 +676,8 @@ const breadcrumbs = [
     <div class="container container--wide-xl">
       <div class="text-center anim-fade-up" style="margin-bottom: 80px;">
         <div class="section-label" style="margin-inline:auto;">Solution Portfolio</div>
-        <h2 class="section-title">Validated <span class="grad-text">Production Scenarios</span></h2>
-        <p class="section-sub">Standardized AI architectures designed for immediate enterprise integration and measurable ROI.</p>
+        <h2 class="section-title">Production-Ready <span class="grad-text">AI Scenarios</span></h2>
+        <p class="section-sub" style="max-width:700px; margin-inline:auto;">Proven AI solutions designed to deliver measurable business outcomes across customer, decision, knowledge and operational use cases.</p>
       </div>
 
       <!-- THE PREMIUM BROWSER FRAME -->
@@ -627,7 +689,7 @@ const breadcrumbs = [
             
             <!-- GROUP: CONVERSATIONAL -->
             <div class="bp-group">
-              <div class="bp-group__label">Conversational & Copilot</div>
+              <div class="bp-group__label">Customer Intelligence</div>
               <div class="bp-group__sidebar">
                 <div class="bp-group__image">
                   <img src="/assets/img/ai_conversational_abstract_1772397463623.png" alt="Conversational" />
@@ -637,7 +699,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="customer-360">
                   <div class="bp-strip__data">
                     <h3>AI-Assisted Customer 360</h3>
-                    <p>Integrates CRM, complaints, and demographic data to offer intelligent assistant (copilot) support for call center and field teams.</p>
+                    <p>Unifies CRM, complaints and behavioral data to enable smarter customer interactions and personalized service.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -649,7 +711,7 @@ const breadcrumbs = [
 
             <!-- GROUP: PREDICTIVE -->
             <div class="bp-group">
-              <div class="bp-group__label">Predictive & Decision</div>
+              <div class="bp-group__label">Predictive Decisioning</div>
               <div class="bp-group__sidebar">
                 <div class="bp-group__image">
                   <img src="/assets/img/ai_predictive_abstract_1772397483613.png" alt="Predictive" />
@@ -659,7 +721,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="demand-prediction">
                   <div class="bp-strip__data">
                     <h3>Demand Prediction</h3>
-                    <p>Predicts call volume using time series and ML; reduces wait times and overtime with accurate shift planning.</p>
+                    <p>Forecasts demand patterns to optimize staffing, reduce wait times and improve operational efficiency.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -669,7 +731,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="procurement-analytics">
                   <div class="bp-strip__data">
                     <h3>Procurement Analytics</h3>
-                    <p>Predicts raw material and commodity prices with historical and external data to strengthen budget and negotiation timing.</p>
+                    <p>Predicts material and commodity price movements to improve purchasing decisions and budget planning.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -679,7 +741,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="likelihood-to-buy">
                   <div class="bp-strip__data">
                     <h3>Likelihood to Buy</h3>
-                    <p>Scores purchase propensities from past behaviors of existing or potential customers to optimize sales focus.</p>
+                    <p>Identifies high-potential customers to improve targeting, conversion and campaign performance.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -701,7 +763,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="document-answers">
                   <div class="bp-strip__data">
                     <h3>Document Answers</h3>
-                    <p>Intelligent search and summarization from corporate document pools (RFP, contracts) providing instant answers.</p>
+                    <p>Searches and summarizes enterprise documents to provide fast and accurate answers.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -713,7 +775,7 @@ const breadcrumbs = [
 
             <!-- GROUP: OPERATIONAL -->
             <div class="bp-group">
-              <div class="bp-group__label">Operational & Agentic</div>
+              <div class="bp-group__label">Operational AI</div>
               <div class="bp-group__sidebar">
                 <div class="bp-group__image">
                   <img src="/assets/img/ai_agentic_abstract_1772397503700.png" alt="Operational" />
@@ -723,7 +785,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="defect-solver">
                   <div class="bp-strip__data">
                     <h3>AI Defect Solver</h3>
-                    <p>Predicts failures hours in advance by analyzing sensor data to reduce unplanned downtime and increase production efficiency.</p>
+                    <p>Predicts failures in advance to reduce downtime and improve production efficiency.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -733,7 +795,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="rolling-force">
                   <div class="bp-strip__data">
                     <h3>Rolling Force Optimization</h3>
-                    <p>Predicts optimal rolling force using chemical and mechanical properties to reduce passes and energy consumption.</p>
+                    <p>Optimizes production parameters to reduce passes, energy use and improve output quality.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -743,7 +805,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="energy-optimization">
                   <div class="bp-strip__data">
                     <h3>Real-Time Energy Optimization</h3>
-                    <p>Monitors consumption in production and detects anomalies in real-time to reduce excess consumption.</p>
+                    <p>Monitors and optimizes energy usage in real time to reduce cost and emissions.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
@@ -794,19 +856,19 @@ const breadcrumbs = [
 .container--wide-xl { max-width: 1840px; margin-inline: auto; padding-inline: 40px; }
 
 /* REFINED HERO (HOMEPAGE SYNC) */
-.hero { 
+.hero-disabled { 
   min-height: 700px; display: flex; align-items: center; position: relative; overflow: hidden;
   background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
 }
-.hero__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; }
-.hero__content-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 40px; width: 100%; }
-.hero__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
-.hero__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
-.hero__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
-.hero__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
-.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero__visual { display: flex; justify-content: center; align-items: center; }
-.hero__shape-new { 
+.hero-disabled__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; }
+.hero-disabled__content-wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; align-items: center; gap: 40px; width: 100%; }
+.hero-disabled__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+.hero-disabled__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+.hero-disabled__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+.hero-disabled__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
+.hero-disabled__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-disabled__visual { display: flex; justify-content: center; align-items: center; }
+.hero-disabled__shape-new { 
   width: 100%; max-width: 600px; 
   animation: float 8s ease-in-out infinite; 
   filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3)); 
@@ -816,21 +878,107 @@ const breadcrumbs = [
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
 @media (max-width: 1100px) {
-  .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 50px !important; height: auto; align-items: center; }
-  .hero__inner { padding-top: 0; }
-  .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
-  .hero__content { align-items: flex-start; padding-block: 0px; }
-  .hero__visual { 
+  .hero-disabled { min-height: auto !important; padding-top: 5px !important; padding-bottom: 25px !important; height: auto; align-items: center; }
+  .hero-disabled__inner { padding-top: 0; }
+  .hero-disabled__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
+  .hero-disabled__content { align-items: flex-start; padding-block: 0px; }
+  .hero-disabled__visual { 
     position: absolute; top: -5px; right: 5px; width: 80px; height: 80px; 
     z-index: 10; display: flex; justify-content: flex-end; align-items: flex-start;
   }
-  .hero__shape-new { width: 100%; height: auto; opacity: 1; border-radius: 16px; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
-  .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
-  .hero__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
-  .hero__actions { margin-bottom: 24px; }
+  .hero-disabled__shape-new { width: 100%; height: auto; opacity: 1; border-radius: 16px; filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25)); }
+  .hero-disabled__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
+  .hero-disabled__title { font-size: 2.22rem; margin-bottom: 16px; padding-right: 80px; line-height: 1.15; }
+  .hero-disabled__actions { margin-bottom: 24px; }
+}
+
+
+/* ===== HOW IT WORKS STEPS ===== */
+.hiw-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+.hiw-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 28px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 28px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.03);
+}
+.hiw-step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,200,150,0.08);
+  border-color: rgba(0,200,150,0.25);
+}
+.hiw-number {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--clr-primary, #00C896);
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+.hiw-icon {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0,200,150,0.08), rgba(0,159,227,0.06));
+  border: 1px solid rgba(0,200,150,0.2);
+  border-radius: 18px;
+  color: #00C896;
+}
+.hiw-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+}
+.hiw-desc {
+  font-size: 0.95rem;
+  color: #64748B;
+  line-height: 1.6;
+  margin: 0;
+}
+.hiw-connector {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, #00C896, rgba(0,200,150,0.2));
+  flex-shrink: 0;
+  position: relative;
+}
+.hiw-connector::after {
+  content: '→';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00C896;
+  font-size: 1rem;
+  line-height: 1;
+}
+@media (max-width: 1024px) {
+  .hiw-steps { flex-direction: column; align-items: stretch; gap: 8px; }
+  .hiw-connector { width: 2px; height: 32px; margin: 0 auto; background: linear-gradient(180deg, #00C896, rgba(0,200,150,0.2)); }
+  .hiw-connector::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -14px; transform: translateX(-50%); }
 }
 
 /* Capabilities Section (New) */
+
 .capabilities-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; align-items: stretch; margin-top: 48px; }
 .cap-card { background: #FFF; border: 1px solid #E2E8F0; border-radius: 32px; padding: 48px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
 .cap-card__title { font-size: 2rem; font-weight: 950; color: #0F172A; margin-bottom: 32px; letter-spacing: -0.02em; line-height: 1.1; min-height: 4.4rem; display: flex; align-items: flex-start; }
@@ -913,16 +1061,16 @@ const breadcrumbs = [
 .bp-group__label { 
   writing-mode: vertical-rl; 
   transform: rotate(180deg);
-  font-size: 0.75rem; 
-  font-weight: 950; 
-  color: var(--clr-primary); 
+  font-size: 0.85rem; 
+  font-weight: 900; 
+  color: var(--accent, #00C896); 
   text-transform: uppercase; 
-  letter-spacing: 0.25em; 
-  opacity: 0.5; 
+  letter-spacing: 0.2em; 
+  opacity: 1; 
   display: flex; 
   align-items: center; 
   justify-content: center;
-  border-right: 1px solid #F1F5F9;
+  border-right: 2px solid rgba(0,200,150,0.15);
   padding-right: 20px;
 }
 
@@ -931,7 +1079,7 @@ const breadcrumbs = [
     writing-mode: horizontal-tb; 
     transform: none; 
     border-right: none; 
-    border-bottom: 2px solid #F1F5F9; 
+    border-bottom: 2px solid rgba(0,200,150,0.15); 
     padding: 0 0 12px; 
     justify-content: flex-start;
   }
@@ -1059,12 +1207,13 @@ const breadcrumbs = [
   .bp-detail-widget { 
     position: relative !important; top: auto !important; left: auto !important; right: auto !important;
     width: 100% !important; max-width: 600px !important; height: auto !important; 
-    max-height: 85vh !important; overflow-y: auto !important;
-    border-radius: 32px !important; padding: 56px 24px 32px !important;
+    max-height: 85vh !important; overflow: hidden !important; display: flex !important; flex-direction: column !important;
+    border-radius: 32px !important; padding: 24px !important;
     transform: translateY(20px) !important;
     opacity: 1 !important; pointer-events: auto !important;
     box-shadow: 0 40px 100px rgba(0,0,0,0.6) !important;
   }
+  #bp-detail-inner { overflow-y: auto !important; flex-grow: 1; padding-top: 48px; padding-bottom: 8px; margin-top: -32px; }
   .bp-detail-col.active .bp-detail-widget { transform: translateY(0) !important; }
   .bp-detail-close { display: flex !important; }
   
@@ -1078,75 +1227,59 @@ const breadcrumbs = [
   const blueprintData = {
     "customer-360": {
       title: "AI-Assisted Customer 360",
-      description: "Combines CRM, complaint, and demographic data to offer intelligent assistant (copilot) support for call center and field teams.",
-      useCases: ["Predicting call reason before the call", "Billing resolution with proactive plan offers", "Personalized card blockage support offers"],
-      metrics: ["↑ Sales/conversion per call", "↓ Average Handle Time (AHT)", "↑ Customer satisfaction score (NPS/CSAT)"],
-      complexity: "High. Real-time data synthesis (CRM, logs) and intelligent assistant integration.",
-      users: "Service Reps, Campaign Managers, Ops Teams, Management",
-      tech: "LLM + ML/DL, Data Orchestration, Assistant Interfaces"
+      description: "Combines customer data sources to support intelligent decision-making for call center and field teams.",
+      useCases: ["Predicting customer intent before interaction", "Personalized service recommendations", "Proactive issue resolution"],
+      metrics: ["↑ Conversion per interaction", "↓ Average handle time", "↑ Customer satisfaction"],
+      users: "Call Center Teams, Campaign Managers, Field Operations"
     },
     "demand-prediction": {
       title: "Demand Prediction",
-      description: "Predicts call volume using time series and ML; optimizes shift planning to reduce wait times and overtime.",
-      useCases: ["Forecasting call volume during maintenance/outages", "Planning support load for campaign periods", "Predicting call spikes after new product launches"],
-      metrics: ["↑ Staffing accuracy", "↓ Waiting time", "↓ Overtime & idle time", "↑ Event preparedness", "↑ Service consistency"],
-      complexity: "Medium. Rare event/imbalance modeling and external signal integration.",
-      users: "Call Center Managers, Workforce Planners, IT Teams, Quality Teams",
-      tech: "Time Series + ML, Feature Engineering, Anomaly Techniques"
+      description: "Predicts demand patterns using time series and machine learning to improve workforce planning and service levels.",
+      useCases: ["Forecasting call volumes and peak periods", "Planning staffing for campaigns", "Detecting demand spikes"],
+      metrics: ["↑ Staffing accuracy", "↓ Waiting times", "↓ Overtime costs"],
+      users: "Operations Teams, Workforce Planners, Call Center Managers"
     },
     "procurement-analytics": {
       title: "Procurement Analytics",
-      description: "Predicts raw material and commodity prices using historical and external market data to strengthen negotiation windows.",
-      useCases: ["Steel/Copper/Plastics price forecasting", "Packaging cost (oil/sugar) prediction", "Equipment cost tracking based on global indices"],
-      metrics: ["↑ Prediction accuracy", "↓ Cost variance", "↑ Negotiation power", "↑ Budget reliability", "↑ Strategic planning efficiency"],
-      complexity: "Medium. Non-linear relationships, multivariate time series, and lagged macro signals.",
-      users: "Procurement Managers, Category Buyers, Finance Teams",
-      tech: "Multivariate Time Series, ML Forecasting, Macro Signal Processing"
+      description: "Predicts material and commodity price movements to improve purchasing timing, cost control and budget planning.",
+      useCases: ["Raw material price forecasting", "Market-based purchasing optimization", "Budget planning and cost tracking"],
+      metrics: ["↑ Prediction accuracy", "↓ Cost variance", "↑ Budget reliability"],
+      users: "Procurement Teams, Category Managers, Finance Teams"
     },
     "likelihood-to-buy": {
       title: "Likelihood to Buy",
-      description: "Scores purchase propensities from past behaviors of existing or potential customers to optimize sales focus.",
-      useCases: ["Prioritizing high-potential leads", "Increasing campaign targeting accuracy", "Proactive action with churn risk prediction"],
-      metrics: ["↑ Campaign conversion rate", "↓ Cost-per-acquisition (CPA)", "↑ Customer Lifetime Value (CLTV)"],
-      complexity: "Medium. Feature engineering, classification models, and regular scoring pipelines.",
-      users: "Marketing Teams, Sales Managers, Growth Teams, Analysts",
-      tech: "ML Classification (XGBoost, LightGBM), Feature Engineering"
+      description: "Identifies high-potential customers to improve targeting, conversion and campaign performance.",
+      useCases: ["Lead prioritization", "Campaign targeting optimization", "Churn and upsell prediction"],
+      metrics: ["↑ Campaign conversion rate", "↓ Cost per acquisition", "↑ Customer lifetime value"],
+      users: "Marketing Teams, Sales Teams, Growth Teams"
     },
     "document-answers": {
       title: "Document Answers",
-      description: "Performs intelligent search and summarization from corporate document pools (RFP, contracts, instructions) to provide instant answers.",
-      useCases: ["Internal policy/procedure queries", "Extracting info from technical documents", "Contract comparison and summarization"],
-      metrics: ["↓ Time to reach information", "↑ Response accuracy", "↓ Error rate in operations", "↑ Employee productivity", "↑ Information consistency"],
-      complexity: "Medium-High. RAG (Retrieval-Augmented Generation) architecture and Vector DB.",
-      users: "Ops Support, Legal/Compliance, HR, Technical Support, All Employees",
-      tech: "LLM (GPT/OpenSource), Vector DB (Pinecone/Chroma), LangChain"
+      description: "Enables intelligent search and summarization across enterprise documents such as contracts, policies and reports.",
+      useCases: ["Policy and procedure queries", "Contract analysis and summarization", "Technical document search"],
+      metrics: ["↓ Time to access information", "↑ Response accuracy", "↑ Employee productivity"],
+      users: "Operations, Legal, HR, Customer Support Teams"
     },
     "defect-solver": {
       title: "AI Defect Solver",
-      description: "Predicts failures hours in advance by analyzing sensor data to reduce unplanned downtime and increase production efficiency.",
-      useCases: ["Predicting downtime in high-speed lines", "Failure prediction in robotic assembly/paint lines", "Early warning in temperature-sensitive processes"],
-      metrics: ["↑ Prediction accuracy", "↑ Warning lead time", "↓ Annual cost", "↓ Downtime", "↑ Maintenance efficiency"],
-      complexity: "High. Sensor data cleaning, time series features, and real-time inference.",
-      users: "Maintenance Managers, Production Planning, Factory Management",
-      tech: "ML Classification, Time Series Features, DL (LSTM/CNN), Ensemble"
+      description: "Predicts failures in advance by analyzing sensor data to reduce downtime and improve production efficiency.",
+      useCases: ["Failure prediction in production lines", "Early warning for critical equipment", "Maintenance optimization"],
+      metrics: ["↑ Prediction accuracy", "↓ Downtime", "↓ Maintenance cost"],
+      users: "Maintenance Teams, Production Managers, Plant Operations"
     },
     "rolling-force": {
       title: "Rolling Force Optimization",
-      description: "Predicts optimal rolling force using chemical composition, temperature, and mechanical properties to reduce passes and energy.",
-      useCases: ["Optimal force prediction for each pass", "Reaching target thickness with minimum passes", "Scheduling based on steel grades"],
-      metrics: ["↓ Number of passes (e.g., 15% reduction)", "↑ Rolling efficiency", "↓ Energy consumption", "↑ Throughput", "↓ Scrap & rework"],
-      complexity: "Medium-High. Non-linear process modeling and control system integration.",
-      users: "Production Engineers, Rolling Operators, Process Ops, Managers",
-      tech: "ML/DL Regression, Physics-Informed Features, Optimization"
+      description: "Optimizes production parameters to reduce passes, lower energy consumption and improve output quality.",
+      useCases: ["Optimal force prediction per production step", "Production parameter tuning", "Efficiency optimization"],
+      metrics: ["↓ Number of passes", "↑ Production efficiency", "↓ Energy consumption"],
+      users: "Production Engineers, Process Teams, Operations Managers"
     },
     "energy-optimization": {
       title: "Real-Time Energy Optimization",
-      description: "Monitors energy consumption in production, detects anomalies in real-time, and reduces excess consumption with parameter adjustments.",
-      useCases: ["Optimizing furnace/dryer settings", "Efficiency optimization in high-consumption machines", "Temperature-pressure optimization in painting/test rooms"],
-      metrics: ["↓ Energy expense", "↓ CO2 emissions", "↓ Detection time", "↑ System efficiency", "↑ Scalability"],
-      complexity: "Medium-High. Multivariate time series anomaly + optimization + dashboard integration.",
-      users: "Factory Engineers, Energy Managers, Production Managers",
-      tech: "Unsupervised Anomaly Detection, Time Series (Drift), Sensor Fusion"
+      description: "Monitors and optimizes energy usage in real time to reduce cost, emissions and operational inefficiencies.",
+      useCases: ["Real-time consumption monitoring", "Anomaly detection in energy usage", "Optimization of production parameters"],
+      metrics: ["↓ Energy costs", "↓ CO2 emissions", "↑ System efficiency"],
+      users: "Energy Managers, Production Teams, Plant Operations"
     }
   };
 
@@ -1165,28 +1298,29 @@ const breadcrumbs = [
       if (!data) return;
 
       detailInner.innerHTML = `
-        <span class="dt-label">Detailed Solution</span>
+        <span class="dt-label" style="font-size:12px; letter-spacing:1px; color:var(--accent); margin-bottom:10px; display:block;">DETAILED SOLUTION</span>
         <h3 class="dt-title">${data.title}</h3>
         <p class="dt-desc">${data.description}</p>
         
         <div class="dt-sec">
-          <div class="dt-h">Core Use Cases</div>
+          <div class="dt-h" style="font-weight:750; color:var(--text); margin-bottom:12px;">Key Use Cases</div>
           <ul class="dt-list">
             ${data.useCases.map(uc => `<li>${uc}</li>`).join('')}
           </ul>
         </div>
 
         <div class="dt-sec">
-          <div class="dt-h">Success Metrics</div>
+          <div class="dt-h" style="font-weight:750; color:var(--text); margin-bottom:12px;">Business Impact</div>
           <ul class="dt-list">
             ${data.metrics.map(m => `<li>${m}</li>`).join('')}
           </ul>
         </div>
 
-        <div class="dt-meta">
-          <div class="dt-meta-i"><b>Complexity:</b> <p>${data.complexity}</p></div>
-          <div class="dt-meta-i"><b>Users:</b> <p>${data.users}</p></div>
-          <div class="dt-meta-i"><b>Tech Stack:</b> <p>${data.tech}</p></div>
+        <div class="dt-meta" style="margin-top:24px; padding-top:24px; border-top:1px solid #F1F5F9;">
+          <div class="dt-meta-i">
+            <div style="font-weight:750; color:var(--text); margin-bottom:8px;">Primary Users</div>
+            <p>${data.users}</p>
+          </div>
         </div>
       `;
     }

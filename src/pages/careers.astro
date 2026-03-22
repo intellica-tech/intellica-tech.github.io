@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
 
 const breadcrumbs = [
@@ -78,7 +78,7 @@ const whyStats = [
           </div>
         </div>
 
-        <div class="hero__visual anim-fade-up">
+        <div class="hero-visual-custom anim-fade-up">
           <div class="why-card">
             <h3>Why Join Intellica?</h3>
             <ul class="why-list">
@@ -211,18 +211,18 @@ const whyStats = [
 
 <style>
 /* HERO: STANDARDIZED */
-.hero { 
+.hero-disabled { 
   min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden;
   background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
 }
-.hero__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
-.hero__content-wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; gap: 40px; width: 100%; }
-.hero__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
-.hero__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
-.hero__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
-.hero__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
-.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero__visual { display: flex; justify-content: flex-end; align-items: center; }
+.hero-disabled__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
+.hero-disabled__content-wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; gap: 40px; width: 100%; }
+.hero-disabled__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+.hero-disabled__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+.hero-disabled__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+.hero-disabled__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
+.hero-disabled__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-visual-custom { display: flex; justify-content: flex-end; align-items: center; }
 
 /* Why Card Styling (Step 1005 Fix) */
 .why-card {
@@ -324,21 +324,21 @@ const whyStats = [
 .sub-email { color: var(--clr-light-muted); font-size: 0.9rem; font-weight: 500; opacity: 0.7; }
 
 @media (max-width: 1100px) {
-  .hero { min-height: auto !important; padding-top: 85px !important; padding-bottom: 40px !important; height: auto; align-items: center; }
-  .hero__inner { padding-top: 0; }
-  .hero__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
-  .hero__content { align-items: flex-start; padding-block: 0px; }
+  .hero-disabled { min-height: auto !important; padding-top: 5px !important; padding-bottom: 25px !important; height: auto; align-items: center; }
+  .hero-disabled__inner { padding-top: 0; }
+  .hero-disabled__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
+  .hero-disabled__content { align-items: flex-start; padding-block: 0px; }
   /* Careers page: why-card goes below instead of corner icon */
-  .hero__visual { 
+  .hero-visual-custom { 
     position: relative; top: auto; right: auto; 
     width: 100%; height: auto;
     display: flex; justify-content: stretch; align-items: stretch;
     margin-top: 24px;
   }
   .why-card { width: 100%; }
-  .hero__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
-  .hero__title { font-size: 2.22rem; margin-bottom: 16px; line-height: 1.15; }
-  .hero__actions { margin-bottom: 24px; }
+  .hero-disabled__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
+  .hero-disabled__title { font-size: 2.22rem; margin-bottom: 16px; line-height: 1.15; }
+  .hero-disabled__actions { margin-bottom: 24px; }
   /* Apply box stacks vertically */
   .apply-box { flex-direction: column; gap: 32px; align-items: center; }
   .apply-info { max-width: 100%; }
