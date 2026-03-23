@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: 'Cookie Policy', url: '/cookies' }
+];
+---
+
+<Layout
+  title="Cookie Policy | Intellica"
+  description="Information about how Intellica uses cookies on this website."
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+>
+  <section class="section section--white">
+    <div class="container legal-page">
+      <div class="legal-header">
+        <div class="section-label">COOKIES</div>
+        <h1 class="section-title">Cookie <span class="grad-text">Policy</span></h1>
+        <p class="section-sub">
+          This page explains how cookies may be used on the Intellica website.
+        </p>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-block">
+          <h2>What Are Cookies?</h2>
+          <p>
+            Cookies are small text files stored on your device when you visit a website. They help websites function properly, remember preferences, and understand how visitors interact with content.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>How We Use Cookies</h2>
+          <p>
+            Intellica may use cookies to support essential website functionality, improve performance, and better understand how visitors use the website.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Analytics and Performance</h2>
+          <p>
+            Cookies may be used to collect aggregated information such as page visits, traffic sources, and general usage patterns. This helps us improve website usability and content effectiveness.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Managing Cookies</h2>
+          <p>
+            You can control, disable, or delete cookies through your browser settings. Please note that disabling some cookies may affect the functionality of certain parts of the website.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Updates</h2>
+          <p>
+            Intellica may update this Cookie Policy from time to time to reflect website changes or regulatory requirements.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .legal-header {
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .legal-block {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  }
+
+  .legal-block h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--clr-light-text);
+  }
+
+  .legal-block p {
+    color: var(--clr-light-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>

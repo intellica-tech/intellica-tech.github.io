@@ -23,7 +23,7 @@ const sectors = [
       { name: 'Yapı Kredi', src: '/assets/images/logos/Yapı_kredi_logo.png' },
       { name: 'DenizBank', src: '/assets/images/logos/DenizBank_logo.svg (1).png' },
       { name: 'VakıfBank', src: '/assets/images/logos/Vakıfbank_logo.svg' },
-      { name: 'QNB Finansbank', src: '/assets/images/logos/Finansbank_logo.svg' }, // Updated
+      { name: 'QNB Finansbank', src: '/assets/images/logos/Qnb-finansbank.png' }, // Updated
       { name: 'Kuveyt Türk', src: '/assets/images/logos/kuveytturk.jpg' }, // Updated
       { name: 'Albaraka', src: '/assets/images/logos/Al_Baraka_Banking_Group_Logo.svg' },
       { name: 'Anadolubank', src: '/assets/images/logos/Anadolubank_logo.svg' }, // Added
@@ -98,7 +98,12 @@ const sectors = [
   }
 ];
 
-const allLogos = sectors.flatMap(s => s.logos);
+const sortedSectors = sectors.map(sector => ({
+  ...sector,
+  logos: [...sector.logos].sort((a, b) => a.name.localeCompare(b.name, 'tr', { sensitivity: 'base' }))
+}));
+
+const allLogos = sortedSectors.flatMap(s => s.logos);
 ---
 
 <Layout title="Clients | Intellica" description="Trusted by leading enterprises across banking, telecom, public sector, and manufacturing." breadcrumbs={breadcrumbs} hideCta={true}>
@@ -109,16 +114,21 @@ const allLogos = sectors.flatMap(s => s.logos);
       <div class="hero__content-wrap">
         <div class="hero__content anim-fade-up">
           <div class="section-label">OUR CLIENTS</div>
-          <h1 class="hero__title">Trusted by Enterprises <br /><span class="grad-text">Across Industries</span></h1>
+          <h1 class="hero__title">
+            Our <span class="grad-text">Clients</span>
+          </h1>
           <span class="hero__accent"></span>
-          <p class="hero__desc">We help organizations build modern data platforms, deliver advanced analytics and deploy AI at scale.</p>
+          <p class="hero__desc">
+            Trusted by leading organizations across industries. <br /><br />
+            We have worked with leading organizations across banking, telecom, insurance, retail, and public sector — delivering data and AI solutions at scale.
+          </p>
           <div class="hero__actions">
-            <a href="/contact" class="btn btn-primary btn-pill btn-lg">Talk to an Expert</a>
+            <a href="/contact" class="btn btn-primary btn-pill btn-lg">Get in Touch</a>
           </div>
         </div>
         
         <div class="hero__visual anim-fade-up">
-          <img src="/assets/img/index_hero_data_abstract_1772742957116.png" alt="Intellica Data & AI" class="hero__shape-new" />
+          <img src="/assets/img/clients_hero_business_meeting.png" alt="Intellica Data & AI" class="hero__shape-new" />
         </div>
       </div>
     </div>
@@ -135,13 +145,13 @@ const allLogos = sectors.flatMap(s => s.logos);
       <div class="tabs-container anim-fade-up">
         <div class="tabs-nav" role="tablist">
           <button class="tab-btn active" data-target="all" role="tab" aria-selected="true">All</button>
-          {sectors.map(sector => (
+          {sortedSectors.map(sector => (
             <button class="tab-btn" data-target={sector.id} role="tab" aria-selected="false">{sector.title}</button>
           ))}
         </div>
 
         <div class="tabs-content">
-          {sectors.map(sector => (
+          {sortedSectors.map(sector => (
             <div class="tab-pane active" id={sector.id} role="tabpanel">
               <div class="sector-header" data-sector-name={sector.title}>
                 <div class="outcomes-grid">
@@ -301,7 +311,7 @@ const allLogos = sectors.flatMap(s => s.logos);
         <h2>Ready to Transform Your <span class="grad-text">Data?</span></h2>
         <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
         <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
-          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Talk to an Expert</a>
+          <a class="btn btn-primary btn-pill btn-lg" href="/contact">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -523,6 +533,7 @@ const allLogos = sectors.flatMap(s => s.logos);
   object-fit: contain; 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.logo-tile img[alt="Avivasa"] { transform: scale(1.4); }
 .logo-tile:hover {
   border-color: var(--clr-primary);
   transform: translateY(-4px);
