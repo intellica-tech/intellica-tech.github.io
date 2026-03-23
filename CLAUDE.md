@@ -1,4 +1,11 @@
-# Intellica Tech Website — Claude Project Instructions
+Products
+AI Solutions
+Data Platforms
+Clients
+About   ← biraz öne al
+Insights
+Partners
+Contact# Intellica Tech Website — Claude Project Instructions
 
 Bu proje Intellica Tech'in kurumsal web sitesidir. Astro framework ile geliştirilmiştir.
 

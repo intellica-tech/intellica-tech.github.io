@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: 'Terms of Use', url: '/terms' }
+];
+---
+
+<Layout
+  title="Terms of Use | Intellica"
+  description="Terms and conditions governing the use of the Intellica website."
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+>
+  <section class="section section--white">
+    <div class="container--hero anim-fade-up legal-page">
+      <div class="legal-header">
+        <div class="section-label">TERMS</div>
+        <h1 class="section-title" style="color:var(--clr-light-text);">Terms of <span class="grad-text">Use</span></h1>
+        <p class="section-sub">
+          These terms govern your access to and use of the Intellica website.
+        </p>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-block">
+          <h2>Website Use</h2>
+          <p>
+            By accessing this website, you agree to use it only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit the use of this website by any third party.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Intellectual Property</h2>
+          <p>
+            Unless otherwise stated, all content on this website, including text, graphics, branding, layouts, and visual assets, is the property of Intellica and may not be copied, reproduced, or distributed without prior written permission.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Accuracy of Information</h2>
+          <p>
+            Intellica aims to keep the information on this website accurate and up to date. However, we do not guarantee that all content is complete, current, or error-free at all times.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Limitation of Liability</h2>
+          <p>
+            Intellica is not liable for any direct or indirect damages arising from the use of this website or reliance on its content, to the extent permitted by applicable law.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Third-Party Links</h2>
+          <p>
+            This website may contain links to third-party websites. Intellica is not responsible for the content, security, or privacy practices of those external sites.
+          </p>
+        </div>
+
+        <div class="legal-block">
+          <h2>Changes to These Terms</h2>
+          <p>
+            Intellica reserves the right to update these Terms of Use at any time. Continued use of the website after updates are published means you accept the revised terms.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .legal-header {
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .legal-block {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  .legal-block h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--clr-light-text);
+  }
+
+  .legal-block p {
+    color: var(--clr-light-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>
