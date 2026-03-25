@@ -99,7 +99,6 @@ const aboutMenu = [
           <div class="mega-inner" style="grid-template-columns: 1fr;">
             {aboutMenu.map(group => (
               <div class="mega-col">
-                <div class="mega-col-title">{group.category}</div>
                 {group.items.map(item => (
                   <a href={item.href} class="mega-item">
                     <div class="mega-item-name">{item.name}</div>

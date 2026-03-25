@@ -514,9 +514,9 @@ const aboutSchema = {
   justify-content: center;
 }
 .about-stats {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 60px;
 }
 .about-stat {
   display: flex;
