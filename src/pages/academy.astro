@@ -45,16 +45,16 @@ const modules = [
 ];
 
 const universities = [
-  'Alaaddin University',
-  'Istanbul Technical University',
-  'Dokuz Eylul University',
-  'Ege University',
-  'Bahcesehir University',
-  'Kocaeli University',
-  'Istanbul University',
-  'Marmara University',
-  'Gebze University',
-  'Yildiz Technical University'
+  { name: 'Alaaddin Keykubat University', logo: '/assets/images/logos/universities/alku.png' },
+  { name: 'Bahcesehir University', logo: '/assets/images/logos/universities/bau.png' },
+  { name: 'Dokuz Eylul University', logo: '/assets/images/logos/universities/deu.png' },
+  { name: 'Ege University', logo: '/assets/images/logos/universities/ege.png' },
+  { name: 'Gebze Technical University', logo: '/assets/images/logos/universities/gtu.png' },
+  { name: 'Istanbul Technical University', logo: '/assets/images/logos/universities/itu.png' },
+  { name: 'Istanbul University', logo: '/assets/images/logos/universities/istanbul.png' },
+  { name: 'Kocaeli University', logo: '/assets/images/logos/universities/kou.png' },
+  { name: 'Marmara University', logo: '/assets/images/logos/universities/marmara.png' },
+  { name: 'Yildiz Technical University', logo: '/assets/images/logos/universities/ytu.png' }
 ];
 
 const testimonials = [
@@ -304,8 +304,8 @@ const faqSchema = {
 
       <div class="uni-grid anim-fade-up">
         {universities.map(uni => (
-          <div class="uni-tile">
-            <b>{uni}</b>
+          <div class="uni-tile" title={uni.name}>
+            <img src={uni.logo} alt={uni.name} class="uni-logo" />
           </div>
         ))}
       </div>
@@ -604,16 +604,30 @@ const faqSchema = {
   background: #FFF;
   border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 24px;
+  padding: 16px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80px;
+  min-height: 120px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.uni-tile b {
-  font-size: 0.85rem;
-  color: #1E293B;
+.uni-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  border-color: var(--clr-primary);
+}
+.uni-logo {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+.uni-tile:hover .uni-logo {
+  filter: grayscale(0);
+  opacity: 1;
 }
 
 @media (max-width: 1024px) {

@@ -442,12 +442,18 @@ const breadcrumbs = [
         box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         border-color: #22d3ee;
       }
-      .ai-sol-icon {
-        width: 54px;
-        height: 54px;
+      .cap-icon-box {
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 200, 150, 0.1);
+        color: var(--clr-primary);
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: 24px;
+      }
+      .cap-icon-box svg { width: 26px; height: 26px; }
         background: #ffffff;
         border: 1px solid var(--line);
         border-radius: 14px;
@@ -508,33 +514,41 @@ const breadcrumbs = [
       </div>
 
       <div class="ai-sol-grid">
-        <!-- CARD 1 -->
+        {/* CARD 1 */}
         <div class="ai-sol-card">
-          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </div>
           <h3>Customer Intelligence AI</h3>
           <p>Natural language access to enterprise data through intelligent AI assistants.</p>
           <div class="ai-sol-tags">LLM • RAG • Assistants</div>
         </div>
 
-        <!-- CARD 2 -->
+        {/* CARD 2 */}
         <div class="ai-sol-card">
-          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"/></svg>
+          </div>
           <h3>Predictive Decisioning AI</h3>
           <p>Forecasting, scoring and optimization models that improve decision-making.</p>
           <div class="ai-sol-tags">Forecasting • Scoring • Optimization</div>
         </div>
 
-        <!-- CARD 3 -->
+        {/* CARD 3 */}
         <div class="ai-sol-card">
-          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20M4 19.5V5A2.5 2.5 0 016.5 2.5H20M14 6h6m-6 4h6m-6 4h6"/></svg>
+          </div>
           <h3>Knowledge Automation</h3>
           <p>AI-powered search, summarization and document intelligence for enterprise knowledge.</p>
           <div class="ai-sol-tags">RAG • Search • Summarization</div>
         </div>
 
-        <!-- CARD 4 -->
+        {/* CARD 4 */}
         <div class="ai-sol-card">
-          <div class="ai-sol-icon"><img src="/assets/img/intellica_camlogo_icibos.png" alt="Intellica Logo" /></div>
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 14 15 20 9"/><polyline points="14 9 20 9 20 15"/></svg>
+          </div>
           <h3>Operational & Agentic AI</h3>
           <p>Autonomous AI systems that execute workflows and optimize operations in real time.</p>
           <div class="ai-sol-tags">Agents • Automation • Orchestration</div>
@@ -662,7 +676,7 @@ const breadcrumbs = [
           </div>
         </div>
         <div class="archi-note" style="background: rgba(15,23,42,0.02); border-top: 1px solid rgba(15,23,42,0.08); text-align: center;">
-          <p style="color: #0F172A; font-weight: 600; font-size: 1.05rem;">From data to decision — a unified architecture that enables scalable, secure and production-grade AI.</p>
+          <p style="color: #0F172A; font-weight: 600; font-size: 1.05rem;">From data to decision — an integrated architecture that enables scalable, secure and production-grade AI.</p>
         </div>
       </div>
 
@@ -699,7 +713,7 @@ const breadcrumbs = [
                 <div class="bp-strip" data-id="customer-360">
                   <div class="bp-strip__data">
                     <h3>AI-Assisted Customer 360</h3>
-                    <p>Unifies CRM, complaints and behavioral data to enable smarter customer interactions and personalized service.</p>
+                    <p>Integrates CRM, complaints and behavioral data to enable smarter customer interactions and personalized service.</p>
                   </div>
                   <div class="bp-strip__arrow">
                     <span class="view-lbl">VIEW DETAILS</span>
