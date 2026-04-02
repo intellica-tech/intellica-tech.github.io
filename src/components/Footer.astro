@@ -82,6 +82,17 @@ const { hideCta = false } = Astro.props;
     </div>
   </section>
 
+  <!-- PIA GROUP BAND -->
+  <section class="ix-footer__pia">
+    <div class="ix-container ix-footer__piaWrap">
+      <span class="ix-footer__pia-label">A</span>
+      <a href="https://www.pia-group.net/" target="_blank" rel="noopener noreferrer" class="ix-footer__pia-link" aria-label="PiA Group website">
+        <img src="/assets/img/Pia.png" alt="PiA Group" class="ix-footer__pia-logo" />
+      </a>
+      <span class="ix-footer__pia-label">Company</span>
+    </div>
+  </section>
+
   <!-- BOTTOM BAR -->
   <section class="ix-footer__bottom">
     <div class="ix-container ix-footer__bottomWrap">
@@ -189,6 +200,41 @@ const { hideCta = false } = Astro.props;
   
   /* Remove old row styles */
   /* Remove old group h5 styles */
+
+  /* PiA Group band */
+  .ix-footer__pia {
+    padding: 20px 0;
+    border-top: 1px solid #E2E8F0;
+    background: #FFFFFF;
+  }
+  .ix-footer__piaWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .ix-footer__pia-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94A3B8;
+  }
+  .ix-footer__pia-link {
+    display: flex;
+    align-items: center;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .ix-footer__pia-link:hover {
+    opacity: 1;
+    transform: translateY(-1px) !important;
+  }
+  .ix-footer__pia-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
 
   /* Bottom */
   .ix-footer__bottom { padding: 24px 0; border-top: 1px solid #F1F5F9; background: #F8FAFC; }
