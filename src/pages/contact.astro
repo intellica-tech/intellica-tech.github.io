@@ -59,7 +59,6 @@ const contactSchema = {
             <input type="hidden" name="access_key" value="fe9f6fd8-4cca-4e1d-82e0-e0b10f76fa81" />
             <input type="hidden" name="subject" value="New Contact Form Submission — Intellica" />
             <input type="hidden" name="from_name" value="Intellica Website" />
-            <input type="hidden" name="cc" value="info@intellica.net" />
             <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
             <div class="form-row">
               <div class="form-group">
@@ -316,21 +315,20 @@ select.form-input {
         });
         const data = await res.json();
 
-        if (!data.success) throw new Error(data.message || 'Submission failed');
-
-        // Hide header and form and show success message
-        const formHeader = document.getElementById('form-header');
-        if (formHeader) formHeader.style.display = 'none';
-
-        contactForm.style.display = 'none';
-        successMessage.style.display = 'block';
-
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (res.ok && data.success) {
+          const formHeader = document.getElementById('form-header');
+          if (formHeader) formHeader.style.display = 'none';
+          contactForm.style.display = 'none';
+          successMessage.style.display = 'block';
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
       } catch (err) {
+        alert('Something went wrong. Please try again or email us at info@intellica.net');
+      } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
-        alert('Something went wrong. Please try again or email us at info@intellica.net');
       }
     });
   }
