@@ -1,13 +1,71 @@
-Products
-AI Solutions
-Data Platforms
-Clients
-About   ← biraz öne al
-Insights
-Partners
-Contact# Intellica Tech Website — Claude Project Instructions
+# Intellica Tech Website — Claude Project Instructions
 
 Bu proje Intellica Tech'in kurumsal web sitesidir. Astro framework ile geliştirilmiştir.
+GitHub Pages üzerinde statik olarak yayınlanmaktadır.
+
+---
+
+## Branch & Workflow
+
+### Branch Yapısı
+
+| Branch | Amaç |
+|---|---|
+| `main` | Aktif geliştirme — **her zaman buradan çalış** |
+| `release/vX.Y.Z` | Deploy branch'i — sadece release için oluştur, doğrudan commit atma |
+
+### Çalışma Akışı
+
+1. Her oturuma `main`'de başla: `git checkout main && git pull origin main`
+2. Değişiklikleri `main`'e commit et
+3. Kullanıcı **"release oluştur"** dediğinde → Adım A
+4. Kullanıcı **"yayınla"** dediğinde → Adım B
+
+---
+
+#### Adım A — "release oluştur" komutu
+
+> Versiyon numarasını artır ve commit et. Branch oluşturma.
+
+1. `package.json` içindeki `"version"` alanını artır (patch: `1.0.11` → `1.0.12`)
+2. `chore: bump version to X.Y.Z` mesajıyla commit et (`main` branch'inde)
+3. Kullanıcıya yeni versiyonu bildir: *"Release v1.0.12 hazır, yayınlamak için 'yayınla' de."*
+
+**Versiyon artırma kuralı:**
+- `patch` (1.0.X): hata düzeltme veya küçük içerik güncellemesi
+- `minor` (1.X.0): yeni sayfa veya önemli yeni özellik
+- `major` (X.0.0): büyük yeniden yapılanma (nadiren)
+
+---
+
+#### Adım B — "yayınla" komutu
+
+> `package.json`'daki mevcut versiyona göre release branch oluştur ve push et.
+
+1. `package.json`'dan mevcut versiyonu oku
+2. `main`'den `release/vX.Y.Z` branch'i oluştur
+3. `origin/release/vX.Y.Z`'ye push et
+4. `main`'e geri dön
+5. Kullanıcıya bildir: *"release/vX.Y.Z push edildi, GitHub Actions deploy başlatıldı."*
+
+```bash
+# Örnek komut dizisi (v1.0.12 için)
+git checkout main
+git checkout -b release/v1.0.12
+git push origin release/v1.0.12
+git checkout main
+```
+
+### Commit Formatı (Conventional Commits)
+
+`feat:` · `fix:` · `chore:` · `content:` · `style:`
+
+### Kritik Kurallar
+
+- `release/*` branch'ine **doğrudan commit atma**
+- `git push --force` **asla kullanma**
+- Geçici dosyalar (`*Kopya*`, `*.cjs` scriptler, `temp_*`, `diff.txt`) commit'e girmesin — `.gitignore`'a ekle
+- `.claude/` dizini `.gitignore`'da — worktree branch'leri otomatik temizlenir
 
 ---
 
@@ -36,10 +94,7 @@ Bu projede çalışırken aşağıdaki üç uzmanlık alanını birlikte uygula:
 - `public/` altındaki assets statik olarak serve ediliyor. Yeni görseller `public/assets/img/` veya `public/assets/images/` altına gitmeli.
 - Sitemap `@astrojs/sitemap` ile otomatik üretiliyor (`astro.config.mjs`).
 - GitHub Pages deploy: `release/vX.Y.Z` branch push edildiğinde otomatik tetikleniyor.
-- Versiyon: `package.json` > `CLAUDE.md` > release branch sırasıyla güncelle.
 - `.gitignore`'da `.claude/` ve `*.bak` exclude edilmiş — bu dosyaları commit'e ekleme.
-- Geçici dosyalar (`diff.txt`, `temp_*.txt` vb.) repo'ya commit'lenmesin, gerekirse `.gitignore`'a ekle.
-- `diff.txt`, `header-diff.txt`, `old.txt`, `temp_diff.txt` repo'da mevcut — bir sonraki temizlik commit'inde silinecek.
 
 ---
 
@@ -70,10 +125,8 @@ public/
   assets/images/→ Logo ve ek görseller
 ```
 
-## Önemli Kurallar
+## Genel Kurallar
 
 - Değişiklik yapmadan önce ilgili dosyayı oku.
 - Yeni component eklemeden önce mevcut pattern'lere bak.
 - Her deploy öncesi versiyon `package.json`'da artırılmalı.
-- Commit mesajları Conventional Commits formatında olmalı (`feat:`, `fix:`, `chore:` vb.).
-- PR `update-*` veya feature branch'ten açılır, `main`'e merge edilir, ardından `release/vX.Y.Z` branch'i oluşturulur.
