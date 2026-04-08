@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import BottomNav from '../components/BottomNav.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import EasterEggTerminal from '../components/gamification/EasterEggTerminal.astro';
+import LanguageBanner from '../components/LanguageBanner.astro';
 import { languages, defaultLang, type Lang } from '../i18n/config';
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
 
@@ -152,6 +153,7 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
 </head>
 <body>
   <Header lang={lang} />
+  <LanguageBanner lang={lang} />
   <main role="main">
     <slot />
   </main>
