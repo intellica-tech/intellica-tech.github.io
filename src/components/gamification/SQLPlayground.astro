@@ -225,38 +225,10 @@ const mappingsJson = JSON.stringify(queryMappings);
             <pre class="sql-pg__code"><code id="sql-pg-code"></code></pre>
           </div>
 
-          <!-- View Toggle -->
-          <div class="sql-pg__toggle" role="tablist" aria-label="Result view toggle">
-            <button
-              class="sql-pg__toggle-btn sql-pg__toggle-btn--active"
-              id="sql-pg-tab-table"
-              role="tab"
-              aria-selected="true"
-              aria-controls="sql-pg-view-table"
-              type="button"
-            >
-              Table
-            </button>
-            <button
-              class="sql-pg__toggle-btn"
-              id="sql-pg-tab-chart"
-              role="tab"
-              aria-selected="false"
-              aria-controls="sql-pg-view-chart"
-              type="button"
-            >
-              Chart
-            </button>
-          </div>
-
-          <!-- Table View -->
-          <div class="sql-pg__view" id="sql-pg-view-table" role="tabpanel" aria-labelledby="sql-pg-tab-table">
+          <!-- Results: table + charts shown simultaneously -->
+          <div class="sql-pg__results-grid" id="sql-pg-results-grid" hidden>
             <div class="sql-pg__table-wrap" id="sql-pg-table-wrap"></div>
-          </div>
-
-          <!-- Chart View -->
-          <div class="sql-pg__view" id="sql-pg-view-chart" role="tabpanel" aria-labelledby="sql-pg-tab-chart" hidden>
-            <div class="sql-pg__chart-wrap" id="sql-pg-chart-wrap"></div>
+            <div class="sql-pg__charts-row" id="sql-pg-charts-row"></div>
           </div>
 
           <!-- No Match -->
@@ -455,81 +427,81 @@ const mappingsJson = JSON.stringify(queryMappings);
     margin: 0;
   }
 
-  /* ── SQL Syntax Colors ── */
-  .sql-pg__code .sql-kw {
+  /* ── SQL Syntax Colors (JS-generated spans need :global) ── */
+  .sql-pg__code :global(.sql-kw) {
     color: var(--clr-primary);
     font-weight: 700;
   }
 
-  .sql-pg__code .sql-str {
+  .sql-pg__code :global(.sql-str) {
     color: #f0a060;
   }
 
-  .sql-pg__code .sql-num {
+  .sql-pg__code :global(.sql-num) {
     color: #60a0f0;
   }
 
-  .sql-pg__code .sql-fn {
+  .sql-pg__code :global(.sql-fn) {
     color: #c0a0f0;
   }
 
-  .sql-pg__code .sql-op {
+  .sql-pg__code :global(.sql-op) {
     color: #e0e0e0;
   }
 
-  /* ── Toggle ── */
-  .sql-pg__toggle {
-    display: inline-flex;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--clr-border);
-    border-radius: 999px;
-    padding: 4px;
-    margin-bottom: 16px;
+  /* ── Results Grid ── */
+  .sql-pg__results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
-  .sql-pg__toggle-btn {
-    padding: 6px 20px;
-    font-size: 0.78rem;
+  .sql-pg__charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .sql-pg__charts-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Chart Cards (JS-generated, need :global) ── */
+  .sql-pg__charts-row :global(.sql-pg__chart-card) {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+
+  .sql-pg__charts-row :global(.sql-pg__chart-card__title) {
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--clr-muted);
-    border-radius: 999px;
-    transition: var(--transition);
-    font-family: var(--font);
-    cursor: pointer;
-    background: none;
-    border: none;
+    color: var(--clr-primary);
+    margin-bottom: 12px;
   }
 
-  .sql-pg__toggle-btn:hover {
-    color: var(--clr-text);
+  .sql-pg__charts-row :global(.sql-pg__chart-card--full) {
+    grid-column: 1 / -1;
   }
 
-  .sql-pg__toggle-btn--active {
-    background: var(--grad-brand);
-    color: #fff;
-  }
-
-  .sql-pg__toggle-btn:focus-visible {
-    outline: 2px solid var(--clr-primary);
-    outline-offset: 2px;
-  }
-
-  /* ── Table ── */
+  /* ── Table (JS-generated elements need :global) ── */
   .sql-pg__table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  .sql-pg__table-wrap table {
+  .sql-pg__table-wrap :global(table) {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.85rem;
   }
 
-  .sql-pg__table-wrap th {
+  .sql-pg__table-wrap :global(th) {
     text-align: left;
     padding: 10px 14px;
     font-size: 0.72rem;
@@ -542,27 +514,23 @@ const mappingsJson = JSON.stringify(queryMappings);
     white-space: nowrap;
   }
 
-  .sql-pg__table-wrap td {
+  .sql-pg__table-wrap :global(td) {
     padding: 10px 14px;
     color: var(--clr-text);
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     white-space: nowrap;
   }
 
-  .sql-pg__table-wrap tr:last-child td {
+  .sql-pg__table-wrap :global(tr:last-child td) {
     border-bottom: none;
   }
 
-  .sql-pg__table-wrap tr:hover td {
+  .sql-pg__table-wrap :global(tr:hover td) {
     background: rgba(255, 255, 255, 0.02);
   }
 
-  /* ── Chart ── */
-  .sql-pg__chart-wrap {
-    padding: 8px 0;
-  }
-
-  .sql-pg__chart-wrap svg {
+  /* ── Chart SVG (JS-generated, need :global) ── */
+  .sql-pg__charts-row :global(svg) {
     width: 100%;
     display: block;
   }
@@ -632,7 +600,6 @@ const mappingsJson = JSON.stringify(queryMappings);
 
   // ── State ──
   let typewriterTimer = null;
-  let currentActiveView = "table";
 
   // ── DOM Elements ──
   function getEl(id) {
@@ -643,8 +610,6 @@ const mappingsJson = JSON.stringify(queryMappings);
     const textarea = getEl("sql-pg-textarea");
     const askBtn = getEl("sql-pg-ask");
     const chips = document.querySelectorAll(".sql-pg__chip");
-    const tabTable = getEl("sql-pg-tab-table");
-    const tabChart = getEl("sql-pg-tab-chart");
 
     if (!textarea || !askBtn) return;
 
@@ -669,18 +634,6 @@ const mappingsJson = JSON.stringify(queryMappings);
         handleQuery(query);
       });
     });
-
-    // View toggle
-    if (tabTable) {
-      tabTable.addEventListener("click", function () {
-        switchView("table");
-      });
-    }
-    if (tabChart) {
-      tabChart.addEventListener("click", function () {
-        switchView("chart");
-      });
-    }
   }
 
   // ── Query Handler ──
@@ -695,19 +648,15 @@ const mappingsJson = JSON.stringify(queryMappings);
     var noMatchEl = getEl("sql-pg-no-match");
     var codeEl = getEl("sql-pg-code");
     var statusEl = getEl("sql-pg-status");
+    var resultsGrid = getEl("sql-pg-results-grid");
     var tableWrap = getEl("sql-pg-table-wrap");
-    var chartWrap = getEl("sql-pg-chart-wrap");
-    var toggleEl = document.querySelector(".sql-pg__toggle");
-    var viewTable = getEl("sql-pg-view-table");
-    var viewChart = getEl("sql-pg-view-chart");
+    var chartsRow = getEl("sql-pg-charts-row");
 
     // Show active, hide empty
     if (emptyEl) emptyEl.hidden = true;
     if (activeEl) activeEl.hidden = false;
     if (noMatchEl) noMatchEl.hidden = true;
-    if (toggleEl) toggleEl.style.display = "none";
-    if (viewTable) viewTable.hidden = true;
-    if (viewChart) viewChart.hidden = true;
+    if (resultsGrid) resultsGrid.hidden = true;
 
     // Clear previous
     if (codeEl) {
@@ -716,8 +665,8 @@ const mappingsJson = JSON.stringify(queryMappings);
     if (tableWrap) {
       while (tableWrap.firstChild) tableWrap.removeChild(tableWrap.firstChild);
     }
-    if (chartWrap) {
-      while (chartWrap.firstChild) chartWrap.removeChild(chartWrap.firstChild);
+    if (chartsRow) {
+      while (chartsRow.firstChild) chartsRow.removeChild(chartsRow.firstChild);
     }
 
     // Update status
@@ -735,7 +684,7 @@ const mappingsJson = JSON.stringify(queryMappings);
       if (statusEl) {
         statusEl.textContent = "No match found";
       }
-      // Hide SQL block and toggle
+      // Hide SQL block
       var sqlBlock = document.querySelector(".sql-pg__sql-block");
       if (sqlBlock) sqlBlock.style.display = "none";
       return;
@@ -755,7 +704,7 @@ const mappingsJson = JSON.stringify(queryMappings);
         statusEl.textContent = "Query generated";
         statusEl.setAttribute("data-done", "true");
       }
-      showResults(match, tableWrap, chartWrap, toggleEl, viewTable, viewChart);
+      showResults(match, tableWrap, chartsRow, resultsGrid);
     } else {
       typewriterReveal(codeEl, match.sql, function () {
         highlightSQL(codeEl, match.sql);
@@ -763,7 +712,7 @@ const mappingsJson = JSON.stringify(queryMappings);
           statusEl.textContent = "Query generated";
           statusEl.setAttribute("data-done", "true");
         }
-        showResults(match, tableWrap, chartWrap, toggleEl, viewTable, viewChart);
+        showResults(match, tableWrap, chartsRow, resultsGrid);
       });
     }
   }
@@ -886,25 +835,88 @@ const mappingsJson = JSON.stringify(queryMappings);
     }
   }
 
+  // ── Chart Colors ──
+  var CHART_COLORS = ["#00C896", "#009FE3", "#0073B6", "#8B5CF6", "#F59E0B", "#EF4444"];
+
+  // ── Parse Chart Data (shared helper) ──
+  function parseChartData(match) {
+    if (!match.chartLabel || !match.chartKey) return [];
+
+    var labelIdx = match.columns.indexOf(match.chartKey);
+    var valueIdx = match.columns.indexOf(match.chartLabel);
+    if (labelIdx === -1 || valueIdx === -1) return [];
+
+    var data = [];
+    for (var i = 0; i < match.rows.length; i++) {
+      var rawVal = match.rows[i][valueIdx].replace(/[$,%\u2014]/g, "").replace(/,/g, "");
+      var numVal = Math.abs(parseFloat(rawVal));
+      if (!isNaN(numVal)) {
+        data.push({
+          label: match.rows[i][labelIdx],
+          value: numVal,
+          display: match.rows[i][valueIdx]
+        });
+      }
+    }
+    return data;
+  }
+
+  // ── Detect time-series keys ──
+  function hasDateKeys(match) {
+    if (!match.chartKey) return false;
+    var labelIdx = match.columns.indexOf(match.chartKey);
+    if (labelIdx === -1) return false;
+    // Check if keys look like dates (contain "-" like "2025-01")
+    var dateCount = 0;
+    for (var i = 0; i < match.rows.length; i++) {
+      if (/\d{4}-\d{2}/.test(match.rows[i][labelIdx])) dateCount++;
+    }
+    return dateCount >= 2;
+  }
+
+  // ── Create Chart Card Wrapper ──
+  function createChartCard(title, fullWidth) {
+    var card = document.createElement("div");
+    card.className = "sql-pg__chart-card" + (fullWidth ? " sql-pg__chart-card--full" : "");
+    var cardTitle = document.createElement("div");
+    cardTitle.className = "sql-pg__chart-card__title";
+    cardTitle.textContent = title;
+    card.appendChild(cardTitle);
+    return card;
+  }
+
   // ── Show Results ──
-  function showResults(match, tableWrap, chartWrap, toggleEl, viewTable, viewChart) {
+  function showResults(match, tableWrap, chartsRow, resultsGrid) {
     // Build table
     buildTable(match, tableWrap);
 
-    // Determine if chart is available
-    var hasChart = match.chartLabel !== null && match.rows.length > 1;
+    // Show results grid
+    if (resultsGrid) resultsGrid.hidden = false;
+
+    // Parse data for charts
+    var data = parseChartData(match);
+    var hasChart = data.length > 1;
 
     if (hasChart) {
-      buildChart(match, chartWrap);
-      if (toggleEl) toggleEl.style.display = "";
+      // Always show bar chart
+      var barCard = createChartCard("Bar Chart", false);
+      buildBarChart(data, match, barCard);
+      chartsRow.appendChild(barCard);
+
+      // Donut chart for few categorical rows (2-6 rows), non-date keys
+      if (data.length >= 2 && data.length <= 6 && !hasDateKeys(match)) {
+        var donutCard = createChartCard("Distribution", false);
+        buildDonutChart(data, match, donutCard);
+        chartsRow.appendChild(donutCard);
+      }
+
+      // Line chart for time-series data
+      if (hasDateKeys(match) && data.length >= 2) {
+        var lineCard = createChartCard("Trend", true);
+        buildLineChart(data, match, lineCard);
+        chartsRow.appendChild(lineCard);
+      }
     }
-
-    // Reset to table view
-    currentActiveView = "table";
-    if (viewTable) viewTable.hidden = false;
-    if (viewChart) viewChart.hidden = true;
-
-    updateToggleState();
   }
 
   // ── Build Table ──
@@ -942,29 +954,9 @@ const mappingsJson = JSON.stringify(queryMappings);
     container.appendChild(table);
   }
 
-  // ── Build Chart (SVG bar chart) ──
-  function buildChart(match, container) {
-    if (!container || !match.chartLabel || !match.chartKey) return;
-
-    var labelIdx = match.columns.indexOf(match.chartKey);
-    var valueIdx = match.columns.indexOf(match.chartLabel);
-    if (labelIdx === -1 || valueIdx === -1) return;
-
-    // Parse numeric values
-    var data = [];
-    for (var i = 0; i < match.rows.length; i++) {
-      var rawVal = match.rows[i][valueIdx].replace(/[$,%]/g, "").replace(/,/g, "");
-      var numVal = Math.abs(parseFloat(rawVal));
-      if (!isNaN(numVal)) {
-        data.push({
-          label: match.rows[i][labelIdx],
-          value: numVal,
-          display: match.rows[i][valueIdx]
-        });
-      }
-    }
-
-    if (data.length === 0) return;
+  // ── Build Bar Chart (SVG horizontal bars) ──
+  function buildBarChart(data, match, container) {
+    if (!container || data.length === 0) return;
 
     var maxVal = 0;
     for (var d = 0; d < data.length; d++) {
@@ -1005,7 +997,7 @@ const mappingsJson = JSON.stringify(queryMappings);
       svg.appendChild(labelText);
 
       // Gradient bar
-      var defsId = "sql-pg-grad-" + b;
+      var defsId = "sql-pg-bar-grad-" + b;
       var defs = document.createElementNS(NS, "defs");
       var grad = document.createElementNS(NS, "linearGradient");
       grad.setAttribute("id", defsId);
@@ -1045,31 +1037,224 @@ const mappingsJson = JSON.stringify(queryMappings);
     container.appendChild(svg);
   }
 
-  // ── View Toggle ──
-  function switchView(view) {
-    currentActiveView = view;
+  // ── Build Donut Chart (SVG) ──
+  function buildDonutChart(data, match, container) {
+    if (!container || data.length === 0) return;
 
-    var viewTable = getEl("sql-pg-view-table");
-    var viewChart = getEl("sql-pg-view-chart");
+    var NS = "http://www.w3.org/2000/svg";
+    var cx = 100;
+    var cy = 100;
+    var radius = 70;
+    var strokeW = 30;
+    var circumference = 2 * Math.PI * radius;
 
-    if (viewTable) viewTable.hidden = view !== "table";
-    if (viewChart) viewChart.hidden = view !== "chart";
+    // Calculate total
+    var total = 0;
+    for (var i = 0; i < data.length; i++) {
+      total += data[i].value;
+    }
+    if (total === 0) return;
 
-    updateToggleState();
+    var svgSize = 200;
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + svgSize + " " + svgSize);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Donut chart showing distribution of " + match.chartLabel);
+    svg.style.maxWidth = "200px";
+    svg.style.margin = "0 auto";
+
+    var offset = 0;
+    for (var s = 0; s < data.length; s++) {
+      var sliceLen = (data[s].value / total) * circumference;
+      var color = CHART_COLORS[s % CHART_COLORS.length];
+
+      var circle = document.createElementNS(NS, "circle");
+      circle.setAttribute("cx", String(cx));
+      circle.setAttribute("cy", String(cy));
+      circle.setAttribute("r", String(radius));
+      circle.setAttribute("fill", "none");
+      circle.setAttribute("stroke", color);
+      circle.setAttribute("stroke-width", String(strokeW));
+      // dasharray: segment length, then rest of circumference
+      circle.setAttribute("stroke-dasharray", sliceLen + " " + (circumference - sliceLen));
+      // dashoffset rotates the segment start; negate for clockwise
+      circle.setAttribute("stroke-dashoffset", String(-offset));
+      // Rotate -90deg so first slice starts at top
+      circle.setAttribute("transform", "rotate(-90 " + cx + " " + cy + ")");
+
+      svg.appendChild(circle);
+      offset += sliceLen;
+    }
+
+    // Center text: total
+    var centerText = document.createElementNS(NS, "text");
+    centerText.setAttribute("x", String(cx));
+    centerText.setAttribute("y", String(cy + 5));
+    centerText.setAttribute("text-anchor", "middle");
+    centerText.setAttribute("fill", "#F0F4FF");
+    centerText.setAttribute("font-size", "16");
+    centerText.setAttribute("font-weight", "700");
+    centerText.setAttribute("font-family", "Inter, sans-serif");
+    centerText.textContent = data.length + " items";
+    svg.appendChild(centerText);
+
+    container.appendChild(svg);
+
+    // Legend below
+    var legend = document.createElement("div");
+    legend.style.cssText = "display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;justify-content:center;";
+
+    for (var lg = 0; lg < data.length; lg++) {
+      var item = document.createElement("div");
+      item.style.cssText = "display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#8A99B3;";
+
+      var dot = document.createElement("span");
+      dot.style.cssText = "width:8px;height:8px;border-radius:50%;flex-shrink:0;background:" + CHART_COLORS[lg % CHART_COLORS.length] + ";";
+
+      var label = document.createElement("span");
+      label.textContent = data[lg].label + " (" + data[lg].display + ")";
+
+      item.appendChild(dot);
+      item.appendChild(label);
+      legend.appendChild(item);
+    }
+
+    container.appendChild(legend);
   }
 
-  function updateToggleState() {
-    var tabTable = getEl("sql-pg-tab-table");
-    var tabChart = getEl("sql-pg-tab-chart");
+  // ── Build Line Chart (SVG) ──
+  function buildLineChart(data, match, container) {
+    if (!container || data.length < 2) return;
 
-    if (tabTable) {
-      tabTable.classList.toggle("sql-pg__toggle-btn--active", currentActiveView === "table");
-      tabTable.setAttribute("aria-selected", String(currentActiveView === "table"));
+    var NS = "http://www.w3.org/2000/svg";
+    var padding = { top: 20, right: 20, bottom: 40, left: 50 };
+    var width = 500;
+    var height = 220;
+    var plotW = width - padding.left - padding.right;
+    var plotH = height - padding.top - padding.bottom;
+
+    var maxVal = 0;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].value > maxVal) maxVal = data[i].value;
     }
-    if (tabChart) {
-      tabChart.classList.toggle("sql-pg__toggle-btn--active", currentActiveView === "chart");
-      tabChart.setAttribute("aria-selected", String(currentActiveView === "chart"));
+    if (maxVal === 0) maxVal = 1;
+    // Add 10% headroom
+    maxVal = maxVal * 1.1;
+
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Line chart showing " + match.chartLabel + " over time");
+
+    // Defs: area gradient
+    var defs = document.createElementNS(NS, "defs");
+    var areaGrad = document.createElementNS(NS, "linearGradient");
+    areaGrad.setAttribute("id", "sql-pg-line-area-grad");
+    areaGrad.setAttribute("x1", "0");
+    areaGrad.setAttribute("y1", "0");
+    areaGrad.setAttribute("x2", "0");
+    areaGrad.setAttribute("y2", "1");
+    var gs1 = document.createElementNS(NS, "stop");
+    gs1.setAttribute("offset", "0%");
+    gs1.setAttribute("stop-color", "#00C896");
+    gs1.setAttribute("stop-opacity", "0.3");
+    var gs2 = document.createElementNS(NS, "stop");
+    gs2.setAttribute("offset", "100%");
+    gs2.setAttribute("stop-color", "#00C896");
+    gs2.setAttribute("stop-opacity", "0.02");
+    areaGrad.appendChild(gs1);
+    areaGrad.appendChild(gs2);
+    defs.appendChild(areaGrad);
+    svg.appendChild(defs);
+
+    // Grid lines (3 horizontal)
+    for (var g = 0; g <= 3; g++) {
+      var gy = padding.top + (plotH / 3) * g;
+      var gridLine = document.createElementNS(NS, "line");
+      gridLine.setAttribute("x1", String(padding.left));
+      gridLine.setAttribute("y1", String(gy));
+      gridLine.setAttribute("x2", String(padding.left + plotW));
+      gridLine.setAttribute("y2", String(gy));
+      gridLine.setAttribute("stroke", "rgba(255,255,255,0.06)");
+      gridLine.setAttribute("stroke-width", "1");
+      svg.appendChild(gridLine);
     }
+
+    // Calculate points
+    var points = [];
+    for (var p = 0; p < data.length; p++) {
+      var px = padding.left + (p / (data.length - 1)) * plotW;
+      var py = padding.top + plotH - (data[p].value / maxVal) * plotH;
+      points.push({ x: px, y: py });
+    }
+
+    // Area fill (polygon)
+    var areaPoints = "";
+    for (var a = 0; a < points.length; a++) {
+      areaPoints += points[a].x + "," + points[a].y + " ";
+    }
+    // Close the polygon at the bottom
+    areaPoints += points[points.length - 1].x + "," + (padding.top + plotH) + " ";
+    areaPoints += points[0].x + "," + (padding.top + plotH);
+
+    var polygon = document.createElementNS(NS, "polygon");
+    polygon.setAttribute("points", areaPoints);
+    polygon.setAttribute("fill", "url(#sql-pg-line-area-grad)");
+    svg.appendChild(polygon);
+
+    // Line (polyline)
+    var linePoints = "";
+    for (var l = 0; l < points.length; l++) {
+      linePoints += points[l].x + "," + points[l].y;
+      if (l < points.length - 1) linePoints += " ";
+    }
+
+    var polyline = document.createElementNS(NS, "polyline");
+    polyline.setAttribute("points", linePoints);
+    polyline.setAttribute("fill", "none");
+    polyline.setAttribute("stroke", "#00C896");
+    polyline.setAttribute("stroke-width", "2.5");
+    polyline.setAttribute("stroke-linejoin", "round");
+    polyline.setAttribute("stroke-linecap", "round");
+    svg.appendChild(polyline);
+
+    // Dots + value labels at each data point
+    for (var dt = 0; dt < points.length; dt++) {
+      // Dot
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", String(points[dt].x));
+      dot.setAttribute("cy", String(points[dt].y));
+      dot.setAttribute("r", "4");
+      dot.setAttribute("fill", "#00C896");
+      dot.setAttribute("stroke", "#0B1220");
+      dot.setAttribute("stroke-width", "2");
+      svg.appendChild(dot);
+
+      // Value above dot
+      var valLabel = document.createElementNS(NS, "text");
+      valLabel.setAttribute("x", String(points[dt].x));
+      valLabel.setAttribute("y", String(points[dt].y - 10));
+      valLabel.setAttribute("text-anchor", "middle");
+      valLabel.setAttribute("fill", "#F0F4FF");
+      valLabel.setAttribute("font-size", "9");
+      valLabel.setAttribute("font-weight", "600");
+      valLabel.setAttribute("font-family", "Inter, sans-serif");
+      valLabel.textContent = data[dt].display;
+      svg.appendChild(valLabel);
+
+      // X-axis label
+      var xLabel = document.createElementNS(NS, "text");
+      xLabel.setAttribute("x", String(points[dt].x));
+      xLabel.setAttribute("y", String(padding.top + plotH + 20));
+      xLabel.setAttribute("text-anchor", "middle");
+      xLabel.setAttribute("fill", "#8A99B3");
+      xLabel.setAttribute("font-size", "10");
+      xLabel.setAttribute("font-family", "Inter, sans-serif");
+      xLabel.textContent = data[dt].label;
+      svg.appendChild(xLabel);
+    }
+
+    container.appendChild(svg);
   }
 
   // ── Bootstrap ──
