@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import BottomNav from '../components/BottomNav.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import EasterEggTerminal from '../components/gamification/EasterEggTerminal.astro';
+import { languages, defaultLang, type Lang } from '../i18n/config';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
 
 export interface Props {
   title: string;
@@ -12,15 +14,24 @@ export interface Props {
   pageType?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
   hideCta?: boolean;
+  lang?: Lang;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "Intellica — Empowering enterprises to generate sustainable value from data through modern data platforms, analytics solutions, and production-grade AI systems, trusted since 2006.",
   pageType = "website",
   breadcrumbs = [],
-  hideCta = false
+  hideCta = false,
+  lang = defaultLang,
 } = Astro.props;
+
+const currentLocale = lang;
+const { dir } = languages[currentLocale];
+
+// Strip locale prefix to get base path for hreflang generation
+const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})/`);
+const basePath = Astro.url.pathname.replace(localePattern, '/').replace(/^\//, '');
 
 const siteUrl = "https://intellica.net";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -75,7 +86,7 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
 } : null;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={currentLocale} dir={dir}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -83,6 +94,12 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
   <meta name="author" content="Intellica" />
   <meta name="generator" content={Astro.generator} />
   <link rel="canonical" href={canonicalUrl} />
+
+  <!-- hreflang for all locales -->
+  {Object.keys(languages).map((l) => (
+    <link rel="alternate" hreflang={l} href={getAbsoluteLocaleUrl(l, basePath)} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(defaultLang, basePath)} />
 
   <!-- Preconnect hints -->
   <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -104,7 +121,12 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
   <meta property="og:description" content={description} />
   <meta property="og:type" content={pageType} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content={languages[currentLocale].locale.replace('-', '_')} />
+  {Object.entries(languages)
+    .filter(([code]) => code !== currentLocale)
+    .map(([, { locale }]) => (
+      <meta property="og:locale:alternate" content={locale.replace('-', '_')} />
+  ))}
   <meta property="og:image" content={ogImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -129,13 +151,13 @@ const breadcrumbSchema = breadcrumbs.length > 0 ? {
   <slot name="head" />
 </head>
 <body>
-  <Header />
+  <Header lang={lang} />
   <main role="main">
     <slot />
   </main>
-  <BottomNav />
-  <Footer hideCta={hideCta} />
-  <CookieConsent gaId="G-TJXJTG53PX" />
+  <BottomNav lang={lang} />
+  <Footer hideCta={hideCta} lang={lang} />
+  <CookieConsent gaId="G-TJXJTG53PX" lang={lang} />
   <EasterEggTerminal />
 
   <style is:global>
