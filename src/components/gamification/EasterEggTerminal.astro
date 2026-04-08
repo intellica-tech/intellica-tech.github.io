@@ -1,6 +1,6 @@
 ---
 // EasterEggTerminal.astro
-// Hidden retro terminal overlay activated via Konami code or Ctrl+Shift+T
+// Hidden retro terminal overlay activated via Konami code or Ctrl+Shift+K
 // Commands: help, about, ls products, cat <product>, ls team, ping ai, whoami, clear, exit
 ---
 
@@ -236,7 +236,7 @@
   }
 
   .terminal-output :global(.term-cmd) {
-    color: #8a99b3;
+    color: var(--clr-muted, #8a99b3);
   }
 
   .terminal-output :global(.term-highlight) {
@@ -244,11 +244,11 @@
   }
 
   .terminal-output :global(.term-dim) {
-    color: #5b6473;
+    color: var(--clr-light-muted, #5b6473);
   }
 
   .terminal-output :global(.term-accent) {
-    color: #009FE3;
+    color: var(--clr-secondary, #009FE3);
   }
 
   .terminal-output :global(.term-warn) {
@@ -293,6 +293,7 @@
     let isOpen = false;
     const commandHistory: string[] = [];
     let historyIndex = -1;
+    let activeTypewriterId = 0;
 
     // Product data
     const products: Record<string, { name: string; desc: string; url: string }> = {
@@ -327,9 +328,11 @@
     }
 
     function typewriterLines(lines: Array<{ text: string; className?: string }>, callback?: () => void) {
+      const myId = ++activeTypewriterId;
       let lineIndex = 0;
 
       function typeLine() {
+        if (activeTypewriterId !== myId) return;
         if (lineIndex >= lines.length) {
           if (callback) callback();
           return;
@@ -344,6 +347,7 @@
         const speed = Math.max(5, 20 - Math.floor(text.length / 10));
 
         function typeChar() {
+          if (activeTypewriterId !== myId) return;
           if (charIndex < text.length) {
             lineEl.textContent = text.substring(0, charIndex + 1);
             charIndex++;
@@ -595,6 +599,7 @@
     function closeTerminal() {
       if (!isOpen) return;
       isOpen = false;
+      activeTypewriterId++; // Cancel any running typewriter chains
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden', 'true');
     }
@@ -646,8 +651,8 @@
     let konamiIndex = 0;
 
     document.addEventListener('keydown', function (e: KeyboardEvent) {
-      // Ctrl+Shift+T shortcut
-      if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
+      // Ctrl+Shift+K shortcut
+      if (e.ctrlKey && e.shiftKey && e.code === 'KeyK') {
         e.preventDefault();
         if (isOpen) {
           closeTerminal();
