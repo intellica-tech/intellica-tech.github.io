@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SQLPlayground from '../../components/gamification/SQLPlayground.astro';
 
 const siteUrl = "https://intellica.net";
 const breadcrumbs = [
@@ -142,6 +143,9 @@ const productSchema = {
       </div>
     </div>
   </section>
+
+  <!-- Live SQL Playground Demo -->
+  <SQLPlayground />
 
   <!-- Strategic Use Cases (Updated for consistency) -->
   <section class="section section--light" id="use-cases">
