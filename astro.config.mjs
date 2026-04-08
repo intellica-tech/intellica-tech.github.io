@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://intellica-tech.github.io',
+    site: 'https://intellica.net',
     output: 'static',
     integrations: [sitemap()],
 });
