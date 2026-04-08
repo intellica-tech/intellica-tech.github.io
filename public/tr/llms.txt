@@ -1,0 +1,33 @@
+# Intellica — intellica.net
+
+> Intellica, veri modelleri, analitik platformları ve yapay zeka destekli
+> ürünler sunan kurumsal bir Veri & Yapay Zeka şirketidir. 2006'dan beri
+> 20'den fazla ülkede lider organizasyonlara hizmet vermektedir.
+
+## Diller
+
+- English: https://intellica.net/
+- Türkçe (varsayılan değil): https://intellica.net/tr/
+
+## Ana Sayfalar
+
+- Ürünler: https://intellica.net/tr/products
+- Yapay Zeka Çözümleri: https://intellica.net/tr/solutions
+- Veri Platformları: https://intellica.net/tr/data-platforms
+- Hakkımızda: https://intellica.net/tr/about
+- Kariyer: https://intellica.net/tr/careers
+- İletişim: https://intellica.net/tr/contact
+- İçgörüler: https://intellica.net/tr/insights
+
+## Ürünler
+
+- IFDM (Finansal Veri Modeli): https://intellica.net/tr/products/ifdm
+- ITDM (Telekom Veri Modeli): https://intellica.net/tr/products/itdm
+- HRDM (İK Veri Modeli): https://intellica.net/tr/products/hrdm
+- ICC (Veri Kalitesi): https://intellica.net/tr/products/icc
+- ReTouch (Veri Girişi): https://intellica.net/tr/products/retouch
+- Retable (Kodsuz): https://intellica.net/tr/products/retable
+- Orqenta (Orkestrasyon): https://intellica.net/tr/products/orqenta
+- Talk To (Doğal Dil Analitiği): https://intellica.net/tr/products/talk-to-your-data
+- Blue Octopus (Olay İstihbaratı): https://intellica.net/tr/products/blue-octopus
+- VAR (Ses Analitiği): https://intellica.net/tr/products/var
