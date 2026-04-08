@@ -1,0 +1,1452 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Lang } from '../i18n/config';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const siteUrl = "https://intellica.net";
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Intellica",
+  "url": siteUrl,
+  "description": t('meta.home.description'),
+  "publisher": { "@id": `${siteUrl}/#organization` }
+};
+---
+
+<Layout title={t('meta.home.title')} description={t('meta.home.description')} hideCta={true} lang={lang}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+  <!-- ===== HERO ===== -->
+  <section class="hero noise" id="index-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content">
+          <div class="section-label anim-fade-up">{t('home.hero.label')}</div>
+          <h1 class="hero__title anim-fade-up" id="heroTitle">{t('home.hero.titleLine1')}<br /><span class="grad-text">{t('home.hero.titleHighlight')}</span></h1>
+          <span class="hero__accent anim-fade-up"></span>
+          <p class="hero__desc anim-fade-up" id="heroDesc">{t('home.hero.desc')}</p>
+          <div class="hero__actions anim-fade-up">
+            <a class="btn btn-primary btn-pill btn-lg uppercase-never" href={tp('/contact')}>{t('home.hero.cta')}</a>
+          </div>
+          <div class="hero__subactions anim-fade-up">
+            <a href={tp('/solutions')} class="hero-sublink">{t('home.hero.sublinkSolutions')}</a>
+            <a href={tp('/products')} class="hero-sublink">{t('home.hero.sublinkProducts')}</a>
+          </div>
+        </div>
+        <div class="hero__visual anim-fade-up">
+           <img class="hero__shape-new" src="/assets/img/intellica_camlogo_icibos.png" alt={t('home.hero.imgAlt')} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HERO PROOF ===== -->
+  <section class="section section--white" style="padding-top: 36px; padding-bottom: 36px;">
+    <div class="container">
+      <div class="hero-proof anim-fade-up">
+        <p class="hero-proof__text">
+          {t('home.proof.text')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAPABILITIES ===== -->
+  <section class="section section--light" id="capabilities">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.capabilities.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">
+          {t('home.capabilities.title')}<span class="grad-text">{t('home.capabilities.titleHighlight')}</span>
+        </h2>
+        <p class="section-sub">
+          {t('home.capabilities.sub')}
+        </p>
+      </div>
+      <div class="cap-grid-custom anim-fade-up">
+        {/* Row 1: 3 cards */}
+        <a href={tp('/data-platforms')} class="cap-card-v2" style="text-decoration:none;">
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>{t('home.capabilities.card1.title')}</h3>
+          <p>{t('home.capabilities.card1.desc')}</p>
+        </a>
+
+        <a href={tp('/solutions#framework')} class="cap-card-v2" style="text-decoration:none;">
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <h3>{t('home.capabilities.card2.title')}</h3>
+          <p>{t('home.capabilities.card2.desc')}</p>
+        </a>
+
+        <a href={tp('/solutions#framework')} class="cap-card-v2" style="text-decoration:none;">
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+          </div>
+          <h3>{t('home.capabilities.card3.title')}</h3>
+          <p>{t('home.capabilities.card3.desc')}</p>
+        </a>
+
+        {/* Row 2: 2 cards centered */}
+        <div class="cap-grid-row-2">
+          <a href={tp('/products')} class="cap-card-v2" style="text-decoration:none;">
+            <div class="cap-icon-box">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <h3>{t('home.capabilities.card4.title')}</h3>
+            <p>{t('home.capabilities.card4.desc')}</p>
+          </a>
+
+          <a href={tp('/contact')} class="cap-card-v2" style="text-decoration:none;">
+            <div class="cap-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3>{t('home.capabilities.card5.title')}</h3>
+            <p>{t('home.capabilities.card5.desc')}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOBAL IMPACT ===== -->
+  <section class="section section--white" id="global-impact">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.globalImpact.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">
+          {t('home.globalImpact.title')}<span class="grad-text">{t('home.globalImpact.titleHighlight')}</span>
+        </h2>
+        <p class="section-sub">
+          {t('home.globalImpact.sub')}
+        </p>
+      </div>
+      <!-- MAP -->
+      <div class="map-wrap anim-fade-up">
+        <img alt={t('home.globalImpact.mapAlt')} class="map-image" src="/assets/images/map/world-impact-map.png" loading="lazy" />
+        <svg aria-hidden="true" class="map-overlay" preserveAspectRatio="none" viewBox="0 0 1200 520">
+          <path class="conn" d="M108,255 C300,180 400,140 500,137" />
+          <path class="conn" d="M500,137 C530,150 550,165 573,172" />
+          <path class="conn" d="M573,172 C600,185 620,195 645,208" />
+          <path class="conn" d="M645,208 C670,250 690,285 708,305" />
+          <path class="conn" d="M645,208 C700,230 730,245 748,260" />
+          <path class="conn" d="M645,208 C700,210 750,215 788,215" />
+          <g class="dot" style="--delay:0s"><circle cx="108" cy="255" r="5"/><circle class="ring" cx="108" cy="255" r="5"/></g>
+          <g class="dot" style="--delay:0.2s"><circle cx="500" cy="137" r="5"/><circle class="ring" cx="500" cy="137" r="5"/></g>
+          <g class="dot" style="--delay:0.35s"><circle cx="573" cy="172" r="5"/><circle class="ring" cx="573" cy="172" r="5"/></g>
+          <g class="dot" style="--delay:0.5s"><circle cx="645" cy="208" r="5"/><circle class="ring" cx="645" cy="208" r="5"/></g>
+          <g class="dot" style="--delay:0.65s"><circle cx="708" cy="305" r="5"/><circle class="ring" cx="708" cy="305" r="5"/></g>
+          <g class="dot" style="--delay:0.8s"><circle cx="748" cy="260" r="5"/><circle class="ring" cx="748" cy="260" r="5"/></g>
+          <g class="dot" style="--delay:0.95s"><circle cx="788" cy="215" r="5"/><circle class="ring" cx="788" cy="215" r="5"/></g>
+        </svg>
+      </div>
+      <!-- METRICS -->
+      <div class="grid-4 metrics-grid anim-fade-up">
+        <div class="metric-item">
+          <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric1.label')}</span>
+          <span class="metric-number"><span class="counter" data-target="20">0</span>{t('home.globalImpact.metric1.number')}</span>
+          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric1.desc')}</p>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric2.label')}</span>
+          <span class="metric-number"><span class="counter" data-target="80">0</span>{t('home.globalImpact.metric2.number')}</span>
+          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric2.desc')}</p>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric3.label')}</span>
+          <span class="metric-number"><span class="counter" data-target="100">0</span>{t('home.globalImpact.metric3.number')}</span>
+          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric3.desc')}</p>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric4.label')}</span>
+          <span class="metric-number"><span class="counter" data-target="30">0</span>{t('home.globalImpact.metric4.number')}</span>
+          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric4.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUSTED CLIENTS ===== -->
+  <section class="section section--light" id="trusted-clients">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.trustedClients.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">
+          {t('home.trustedClients.title')}<span class="grad-text">{t('home.trustedClients.titleHighlight')}</span>
+        </h2>
+        <p class="section-sub">
+          {t('home.trustedClients.sub')}
+        </p>
+      </div>
+      <div class="logo-grid anim-fade-up">
+        <a class="logo-tile logo-tile--lg" aria-label="Ministry of Interior"><img alt="Ministry of Interior" src="/assets/images/logos/InteriorMinistryTR.png" loading="lazy" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="EGM"><img alt="EGM" src="/assets/images/logos/egm_logo2.png" loading="lazy" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="SGK"><img alt="SGK" src="/assets/images/logos/SGKLOGOTYPE-RENKLI.svg" loading="lazy" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="TCDD"><img alt="TCDD" src="/assets/images/logos/TCDD_Taşımacılık_Logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Akbank"><img alt="Akbank" src="/assets/images/logos/Akbank_logo.svg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Fibabanka"><img alt="Fibabanka" src="/assets/images/logos/Fibabanka.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="ING"><img alt="ING" src="/assets/images/logos/ING.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Odeabank"><img alt="Odeabank" src="/assets/images/logos/Odeabank_logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="TEB"><img alt="TEB" src="/assets/images/logos/TEB_LOGO.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="DenizBank"><img alt="DenizBank" src="/assets/images/logos/DenizBank_logo.svg (1).png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="TBI Bank"><img alt="TBI Bank" src="/assets/images/logos/tbi-bank.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Birbank"><img alt="Birbank" src="/assets/images/logos/birbank..svg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Yapı Kredi"><img alt="Yapı Kredi" src="/assets/images/logos/Yapı_kredi_logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Vodafone"><img alt="Vodafone" src="/assets/images/logos/Vodafone_logo_2017.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Turkcell"><img alt="Turkcell" src="/assets/images/logos/Turkcell_logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Turk Telekom"><img alt="Turk Telekom" src="/assets/images/logos/TURKTELEKOM.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Zain"><img alt="Zain" src="/assets/images/logos/ZAINr.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="T-Mobile"><img alt="T-Mobile" src="/assets/images/logos/TMOBILE.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Boyner"><img alt="Boyner" src="/assets/images/logos/Boyner_Logo.jpg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="LC Waikiki"><img alt="LC Waikiki" src="/assets/images/logos/lcw.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Allianz"><img alt="Allianz" src="/assets/images/logos/Allianz.svg.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Anadolu Sigorta"><img alt="Anadolu Sigorta" src="/assets/images/logos/Anadolu_Sigorta_logo.svg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Hopi"><img alt="Hopi" src="/assets/images/logos/hopi.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Erciyes Anadolu Holding"><img alt="Erciyes Anadolu Holding" src="/assets/images/logos/Erciyes_Anadolu_Holding_logo.svg" loading="lazy" /></a>
+      </div>
+      <div class="text-center anim-fade-up" style="margin-top: 48px;">
+        <a href={tp('/clients')} class="btn btn-primary btn-pill btn-lg">{t('home.trustedClients.viewAll')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DWH / DATA PLATFORM TRANSFORMATION ===== -->
+  <section class="section section--white" id="dwh-transformation" style="overflow:hidden;">
+    <div class="deco-blob" aria-hidden="true" style="top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(16,185,129,0.06) 0%,transparent 70%);"></div>
+    <div class="deco-blob" aria-hidden="true" style="bottom:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(59,130,246,0.06) 0%,transparent 70%);"></div>
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.dwh.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">
+          {t('home.dwh.title')}<span class="grad-text">{t('home.dwh.titleHighlight')}</span>{t('home.dwh.titleSuffix')}
+        </h2>
+        <p class="section-sub">
+          {t('home.dwh.sub')}
+        </p>
+      </div>
+      <div class="grid-3 dwh-grid anim-fade-up">
+        <div class="dwh-card">
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>{t('home.dwh.card1.title')}</h3>
+          <p>{t('home.dwh.card1.desc')}</p>
+          <ul class="dwh-card__list">
+            <li>{t('home.dwh.card1.li1')}</li>
+            <li>{t('home.dwh.card1.li2')}</li>
+            <li>{t('home.dwh.card1.li3')}</li>
+          </ul>
+        </div>
+        <div class="dwh-card">
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>{t('home.dwh.card2.title')}</h3>
+          <p>{t('home.dwh.card2.desc')}</p>
+          <ul class="dwh-card__list">
+            <li>{t('home.dwh.card2.li1')}</li>
+            <li>{t('home.dwh.card2.li2')}</li>
+            <li>{t('home.dwh.card2.li3')}</li>
+          </ul>
+        </div>
+        <div class="dwh-card">
+          <div class="cap-icon-box">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          </div>
+          <h3>{t('home.dwh.card3.title')}</h3>
+          <p>{t('home.dwh.card3.desc')}</p>
+          <ul class="dwh-card__list">
+            <li>{t('home.dwh.card3.li1')}</li>
+            <li>{t('home.dwh.card3.li2')}</li>
+            <li>{t('home.dwh.card3.li3')}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center anim-fade-up" style="margin-top:24px;">
+        <a href={tp('/data-platforms')} class="btn btn-primary btn-pill btn-lg">{t('home.dwh.cta')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ENTERPRISE PRODUCT PORTFOLIO ===== -->
+  <section class="section section--light" id="products-ecosystem">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.products.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">{t('home.products.title')}<span class="grad-text">{t('home.products.titleHighlight')}</span></h2>
+        <p class="section-sub">{t('home.products.sub')}</p>
+      </div>
+
+      <div class="premium-products anim-fade-up">
+        <!-- Group 1: Data Models -->
+        <div class="product-shelf">
+          <div class="shelf-header">
+            <h3 class="shelf-title">{t('home.products.shelf1.title')}<span class="grad-text">{t('home.products.shelf1.titleHighlight')}</span></h3>
+            <p class="shelf-desc">{t('home.products.shelf1.desc')}</p>
+          </div>
+          <div class="shelf-grid">
+            <a href={tp('/products/ifdm')} class="premium-card">
+              <div class="card-p-logo"><img alt="IFDM" src="/assets/images/logos/IFDM_logo.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.ifdm.title')}</h4>
+                <p>{t('home.products.ifdm.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/itdm')} class="premium-card">
+              <div class="card-p-logo"><img alt="ITDM" src="/assets/images/logos/ITDM_logo.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.itdm.title')}</h4>
+                <p>{t('home.products.itdm.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/hrdm')} class="premium-card">
+              <div class="card-p-logo"><img alt="HRDM" src="/assets/images/logos/hrdm.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.hrdm.title')}</h4>
+                <p>{t('home.products.hrdm.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 2: Data Platform & Governance -->
+        <div class="product-shelf">
+          <div class="shelf-header">
+            <h3 class="shelf-title">{t('home.products.shelf2.title')}<span class="grad-text">{t('home.products.shelf2.titleHighlight')}</span></h3>
+            <p class="shelf-desc">{t('home.products.shelf2.desc')}</p>
+          </div>
+          <div class="shelf-grid">
+            <a href={tp('/products/icc')} class="premium-card">
+              <div class="card-p-logo"><img alt="ICC" src="/assets/images/logos/ıcc.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.icc.title')}</h4>
+                <p>{t('home.products.icc.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/retouch')} class="premium-card">
+              <div class="card-p-logo"><img alt="ReTouch" src="/assets/images/logos/retouch.svg" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.retouch.title')}</h4>
+                <p>{t('home.products.retouch.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/retable')} class="premium-card">
+              <div class="card-p-logo"><img alt="Retable" src="/assets/images/logos/retable.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.retable.title')}</h4>
+                <p>{t('home.products.retable.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/orqenta')} class="premium-card" target="_blank">
+              <div class="card-p-logo"><img alt="Orqenta" src="/assets/images/logos/orqenta_logo.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.orqenta.title')}</h4>
+                <p>{t('home.products.orqenta.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 3: AI Products -->
+        <div class="product-shelf">
+          <div class="shelf-header">
+            <h3 class="shelf-title">{t('home.products.shelf3.title')}<span class="grad-text">{t('home.products.shelf3.titleHighlight')}</span></h3>
+            <p class="shelf-desc">{t('home.products.shelf3.desc')}</p>
+          </div>
+          <div class="shelf-grid">
+            <a href={tp('/products/talk-to-your-data')} class="premium-card">
+              <div class="card-p-logo"><img alt="Talk To" src="/assets/images/logos/talkto.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.talkto.title')}</h4>
+                <p>{t('home.products.talkto.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/blue-octopus')} class="premium-card">
+              <div class="card-p-logo"><img alt="Blue Octopus" src="/assets/images/logos/BLUEOCT_logo.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.blueoctopus.title')}</h4>
+                <p>{t('home.products.blueoctopus.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/var')} class="premium-card">
+              <div class="card-p-logo"><img alt="VAR" src="/assets/images/logos/VAR_logo.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.var.title')}</h4>
+                <p>{t('home.products.var.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+          </div>
+        </div>
+        <div class="text-center anim-fade-up" style="margin-top: 48px;">
+          <a href={tp('/products')} class="btn btn-primary btn-pill btn-lg">{t('home.products.viewAll')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AI SOLUTIONS ===== -->
+  <section class="section section--white" id="ai-solutions">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.aiSolutions.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">
+          {t('home.aiSolutions.title')}
+        </h2>
+        <p class="section-sub">
+          {t('home.aiSolutions.sub')}
+        </p>
+      </div>
+
+      <div class="ai-summary-grid-4 anim-fade-up">
+        {/* Card 1: Customer Intelligence AI */}
+        <div class="ai-summary-card">
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </div>
+          <h3>{t('home.aiSolutions.card1.title')}</h3>
+          <p>{t('home.aiSolutions.card1.desc')}</p>
+          <div class="ai-card-tags">{t('home.aiSolutions.card1.tags')}</div>
+        </div>
+
+        {/* Card 2: Predictive Decisioning AI */}
+        <div class="ai-summary-card">
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"/></svg>
+          </div>
+          <h3>{t('home.aiSolutions.card2.title')}</h3>
+          <p>{t('home.aiSolutions.card2.desc')}</p>
+          <div class="ai-card-tags">{t('home.aiSolutions.card2.tags')}</div>
+        </div>
+
+        {/* Card 3: Knowledge Automation */}
+        <div class="ai-summary-card">
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20M4 19.5V5A2.5 2.5 0 016.5 2.5H20M14 6h6m-6 4h6m-6 4h6"/></svg>
+          </div>
+          <h3>{t('home.aiSolutions.card3.title')}</h3>
+          <p>{t('home.aiSolutions.card3.desc')}</p>
+          <div class="ai-card-tags">{t('home.aiSolutions.card3.tags')}</div>
+        </div>
+
+        {/* Card 4: Operational & Agentic AI */}
+        <div class="ai-summary-card">
+          <div class="cap-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 14 15 20 9"/><polyline points="14 9 20 9 20 15"/></svg>
+          </div>
+          <h3>{t('home.aiSolutions.card4.title')}</h3>
+          <p>{t('home.aiSolutions.card4.desc')}</p>
+          <div class="ai-card-tags">{t('home.aiSolutions.card4.tags')}</div>
+        </div>
+      </div>
+
+      <div class="text-center anim-fade-up" style="margin-top:48px;">
+        <a href={tp('/solutions')} class="btn btn-primary btn-pill btn-lg">{t('home.aiSolutions.cta')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUCCESS STORIES ===== -->
+  <section class="section section--light" id="success-stories">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.successStories.label')}</div>
+        <h2 class="section-title">{t('home.successStories.title')}<span class="grad-text">{t('home.successStories.titleHighlight')}</span></h2>
+        <p class="section-sub">
+          {t('home.successStories.sub')}
+        </p>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="margin-top: 56px;">
+        <div class="card-light impact-card">
+          <div class="impact-tag">&#x1F7E2; &nbsp;{t('home.successStories.card1.tag')}</div>
+          <p>
+            {t('home.successStories.card1.desc')}
+          </p>
+        </div>
+
+        <div class="card-light impact-card">
+          <div class="impact-tag">&#x1F7E2; &nbsp;{t('home.successStories.card2.tag')}</div>
+          <p>
+            {t('home.successStories.card2.desc')}
+          </p>
+        </div>
+
+        <div class="card-light impact-card">
+          <div class="impact-tag">&#x1F7E2; &nbsp;{t('home.successStories.card3.tag')}</div>
+          <p>
+            {t('home.successStories.card3.desc')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY INTELLICA ===== -->
+  <section class="section section--white" id="why-intellica">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.whyIntellica.label')}</div>
+        <h2 class="section-title">
+          {t('home.whyIntellica.title')}<span class="grad-text">{t('home.whyIntellica.titleHighlight')}</span>
+        </h2>
+        <p class="section-sub">
+          {t('home.whyIntellica.sub')}
+        </p>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="margin-top: 56px;">
+        <div class="card-light why-card">
+          <h3>{t('home.whyIntellica.card1.title')}</h3>
+          <p>
+            {t('home.whyIntellica.card1.desc')}
+          </p>
+        </div>
+
+        <div class="card-light why-card">
+          <h3>{t('home.whyIntellica.card2.title')}</h3>
+          <p>
+            {t('home.whyIntellica.card2.desc')}
+          </p>
+        </div>
+
+        <div class="card-light why-card">
+          <h3>{t('home.whyIntellica.card3.title')}</h3>
+          <p>
+            {t('home.whyIntellica.card3.desc')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK ===== -->
+  <section class="section section--light" id="how-we-work" style="overflow:hidden;">
+    <div class="deco-blob" aria-hidden="true" style="top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(16,185,129,0.05) 0%,transparent 70%);"></div>
+    <div class="deco-blob" aria-hidden="true" style="bottom:-100px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(59,130,246,0.05) 0%,transparent 70%);"></div>
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.howWeWork.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">
+          {t('home.howWeWork.title')}<span class="grad-text">{t('home.howWeWork.titleHighlight')}</span>
+        </h2>
+        <p class="section-sub">
+          {t('home.howWeWork.sub')}
+        </p>
+      </div>
+      <div class="grid-5 steps-grid anim-fade-up">
+        <div class="step-card" style="background:linear-gradient(160deg,#F0FDF9,#EFF6FF);border:1px solid rgba(16,185,129,0.15);">
+          <div class="step-card__num">01</div>
+          <h3>{t('home.howWeWork.step1.title')}</h3>
+          <p>{t('home.howWeWork.step1.desc')}</p>
+        </div>
+        <div class="step-card" style="background:linear-gradient(160deg,#EFF6FF,#F0FDF9);border:1px solid rgba(59,130,246,0.15);">
+          <div class="step-card__num" style="background:linear-gradient(135deg,#3B82F6,#10B981);-webkit-background-clip:text;background-clip:text;">02</div>
+          <h3>{t('home.howWeWork.step2.title')}</h3>
+          <p>{t('home.howWeWork.step2.desc')}</p>
+        </div>
+        <div class="step-card" style="background:linear-gradient(160deg,#F0FDF9,#F5F3FF);border:1px solid rgba(20,184,166,0.15);">
+          <div class="step-card__num" style="background:linear-gradient(135deg,#14B8A6,#6366F1);-webkit-background-clip:text;background-clip:text;">03</div>
+          <h3>{t('home.howWeWork.step3.title')}</h3>
+          <p>{t('home.howWeWork.step3.desc')}</p>
+        </div>
+        <div class="step-card" style="background:linear-gradient(160deg,#F5F3FF,#EFF6FF);border:1px solid rgba(99,102,241,0.15);">
+          <div class="step-card__num" style="background:linear-gradient(135deg,#6366F1,#3B82F6);-webkit-background-clip:text;background-clip:text;">04</div>
+          <h3>{t('home.howWeWork.step4.title')}</h3>
+          <p>{t('home.howWeWork.step4.desc')}</p>
+        </div>
+        <div class="step-card" style="background:linear-gradient(160deg,#EFF6FF,#F0FDF9);border:1px solid rgba(16,185,129,0.2);">
+          <div class="step-card__num" style="background:linear-gradient(135deg,#10B981,#14B8A6);-webkit-background-clip:text;background-clip:text;">05</div>
+          <h3>{t('home.howWeWork.step5.title')}</h3>
+          <p>{t('home.howWeWork.step5.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section section--white" id="testimonials">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('home.testimonials.label')}</div>
+        <h2 class="section-title">{t('home.testimonials.title')}</h2>
+        <p class="section-sub">
+          {t('home.testimonials.sub')}
+        </p>
+      </div>
+      <div class="grid-3 anim-fade-up">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-card__quote">&ldquo;{t('home.testimonials.t1.quote')}&rdquo;</p>
+          <div class="testimonial-card__person">
+            <div class="testimonial-card__avatar">{t('home.testimonials.t1.avatar')}</div>
+            <div>
+              <div class="testimonial-card__name">{t('home.testimonials.t1.name')}</div>
+              <div class="testimonial-card__role">{t('home.testimonials.t1.role')}</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-card__quote">&ldquo;{t('home.testimonials.t2.quote')}&rdquo;</p>
+          <div class="testimonial-card__person">
+            <div class="testimonial-card__avatar">{t('home.testimonials.t2.avatar')}</div>
+            <div>
+              <div class="testimonial-card__name">{t('home.testimonials.t2.name')}</div>
+              <div class="testimonial-card__role">{t('home.testimonials.t2.role')}</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-card__quote">&ldquo;{t('home.testimonials.t3.quote')}&rdquo;</p>
+          <div class="testimonial-card__person">
+            <div class="testimonial-card__avatar">{t('home.testimonials.t3.avatar')}</div>
+            <div>
+              <div class="testimonial-card__name">{t('home.testimonials.t3.name')}</div>
+              <div class="testimonial-card__role">{t('home.testimonials.t3.role')}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>{t('home.ctaStrip.title')}<span class="grad-text">{t('home.ctaStrip.titleHighlight')}</span></h2>
+        <p>{t('home.ctaStrip.desc')}</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('home.ctaStrip.cta')}</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href={tp('/clients')}>{t('home.ctaStrip.ctaSecondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+/* Hero mini link */
+.hero__mini-link {
+  display: inline-flex;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s ease;
+  margin-top: 8px;
+}
+.hero__mini-link:hover { color: #fff; }
+
+.hero__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.hero__content-wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.hero {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: 60px;
+}
+
+.hero__subactions {
+  display: flex;
+  gap: 32px;
+  margin-top: 4px;
+}
+
+.hero-sublink {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 2px;
+}
+
+.hero-sublink:hover {
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+.hero-sublink::after {
+  content: '\2192';
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.hero-sublink:hover::after {
+  transform: translateX(5px);
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 950;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+  transition: opacity 0.6s ease;
+  min-height: 2.2em;
+  display: block;
+}
+
+.hero__accent {
+  display: block;
+  width: 80px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--grad-brand);
+  margin-bottom: 24px;
+}
+
+.hero__desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 580px;
+  margin-bottom: 30px;
+  transition: opacity 0.6s ease;
+  min-height: 3.2em;
+}
+
+.hero__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__shape-new {
+  width: 100%;
+  max-width: 500px;
+  animation: float 8s ease-in-out infinite;
+  filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3));
+  image-rendering: -webkit-optimize-contrast;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    min-height: auto !important;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    height: auto;
+  }
+  .hero__inner { padding-top: 10px; }
+  .hero__content-wrap {
+    grid-template-columns: 1fr;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .hero__content {
+    align-items: flex-start;
+    padding-block: 10px;
+    padding-top: 30px;
+    width: 100%;
+  }
+  .hero__visual {
+    position: absolute;
+    top: 82px;
+    right: 0;
+    width: 115px;
+    height: 115px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 10;
+  }
+  .hero__title {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    padding-right: 120px;
+    line-height: 1.2;
+    min-height: 2.4em;
+  }
+  .hero__desc {
+    font-size: 1.1rem;
+    max-width: 100%;
+    margin-bottom: 24px;
+    min-height: 4.8em;
+  }
+  .hero__actions { margin-bottom: 24px; }
+}
+
+@media (max-width: 768px) {
+  .hero__subactions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Map */
+.map-wrap {
+  position: relative;
+  margin-bottom: 32px;
+}
+.map-image {
+  width: 100%;
+  filter: contrast(1.1);
+}
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.conn {
+  fill: none;
+  stroke: #F97316;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 4;
+  opacity: 0.45;
+}
+.dot circle {
+  fill: #F97316;
+  opacity: 0.1;
+}
+.dot .ring {
+  fill: none;
+  stroke: #F97316;
+  stroke-width: 2.5;
+  animation: pulse-ring 2.5s ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Premium Products Ecosystem */
+.premium-products {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 32px;
+}
+.product-shelf {
+  display: block;
+  margin-bottom: 40px;
+}
+.shelf-header {
+  text-align: center;
+  max-width: 800px;
+  margin-inline: auto;
+  margin-bottom: 24px;
+}
+.shelf-title {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  color: var(--clr-light-text);
+}
+
+/* Refined Step Cards */
+.step-card {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 200, 150, 0.1);
+  border-color: rgba(0, 200, 150, 0.3) !important;
+}
+.step-card__num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--clr-primary), #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.shelf-desc {
+  font-size: 1.1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+.shelf-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.premium-card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 32px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  width: 270px;
+  flex: 0 0 270px;
+  min-height: 340px;
+}
+.premium-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: #22d3ee;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+.card-p-logo {
+  flex-shrink: 0;
+  width: 140px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #F8FAFC;
+  border: 1px solid #E8EEF5;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+.premium-card:hover .card-p-logo {
+  background: #ffffff;
+  border-color: #22d3ee;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.15);
+}
+.card-p-logo img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+.card-p-content { flex: 1; }
+.card-p-content h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+.card-p-content p {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+.card-p-arrow {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-size: 1.2rem;
+  color: var(--clr-primary);
+  opacity: 0.3;
+  transition: all 0.25s ease;
+}
+.premium-card:hover .card-p-arrow {
+  opacity: 1;
+  transform: translateX(8px);
+  color: #22d3ee;
+}
+
+@media (max-width: 1024px) {
+  .product-shelf {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .shelf-info {
+    position: static;
+  }
+}
+
+/* Logo Grid */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.logo-tile--lg {
+  min-height: 110px;
+}
+.logo-tile--lg img {
+  height: 52px;
+  max-width: 160px;
+}
+@media (max-width: 1024px) {
+  .logo-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 640px) {
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-tile--lg { min-height: 80px; }
+  .logo-tile--lg img { height: 36px; max-width: 110px; }
+}
+
+
+/* Specific logo adjustments */
+img[alt="Hopi"] {
+  transform: scale(1.4);
+}
+
+.eco-grid { margin-top: 24px; }
+@media (max-width: 960px) {
+  .eco-grid { grid-template-columns: 1fr; }
+}
+
+/* DWH grid */
+@media (max-width: 900px) {
+  .dwh-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Steps grid */
+@media (max-width: 1024px) {
+  .steps-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 640px) {
+  .steps-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Cap grid */
+@media (max-width: 1100px) {
+  .cap-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .cap-grid { grid-template-columns: 1fr; }
+}
+
+/* Metrics grid */
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 32px;
+  }
+}
+
+/* AI Summary Grid (New) */
+.ai-summary-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.ai-summary-card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 32px 24px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.ai-summary-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+.ai-summary-card h3 {
+  font-size: 1.2rem;
+  font-weight: 850;
+  color: var(--clr-light-text);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.ai-summary-card p {
+  font-size: 0.9rem;
+  color: var(--clr-light-muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+.ai-card-tags {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  border-top: 1px solid #F1F5F9;
+  padding-top: 16px;
+  margin-top: auto;
+}
+@media (max-width: 1100px) {
+  .ai-summary-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .ai-summary-grid-4 { grid-template-columns: 1fr; }
+  .ai-summary-card { padding: 24px; }
+}
+
+.div-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(0, 200, 150, 0.08);
+  color: var(--clr-primary);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+/* Capabilities Re-style (Careers Style) */
+.cap-grid-custom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+.cap-grid-row-2 {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: repeat(2, 400px);
+  justify-content: center;
+  gap: 24px;
+}
+.cap-card-v2 {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+  min-height: 280px;
+}
+.cap-card-v2:hover {
+  transform: translateY(-8px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+.cap-icon-box {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 200, 150, 0.1);
+  color: var(--clr-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.cap-icon-box svg { width: 26px; height: 26px; }
+.cap-card-v2 h3 { font-size: 1.25rem; font-weight: 850; color: var(--clr-light-text); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
+.cap-card-v2 p { font-size: 0.95rem; color: var(--clr-light-muted); line-height: 1.6; margin: 0; }
+
+@media (max-width: 1200px) {
+  .cap-grid-row-2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .cap-grid-custom { grid-template-columns: repeat(2, 1fr); }
+  .cap-grid-row-2 { grid-template-columns: 1fr; grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .cap-grid-custom { grid-template-columns: 1fr; }
+  .cap-grid-row-2 { grid-column: span 1; }
+}
+
+/* DWH Cards */
+.dwh-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+.dwh-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+.dwh-card h3 { font-size: 1.4rem; font-weight: 800; color: var(--clr-light-text); margin-bottom: 16px; }
+.dwh-card p { font-size: 1rem; color: var(--clr-light-muted); line-height: 1.6; margin-bottom: 24px; }
+.dwh-card__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dwh-card__list li {
+  font-size: 0.95rem;
+  color: var(--clr-light-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dwh-card__list li::before {
+  content: "\2022";
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
+.ai-dive-header-wrap {
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+.ai-deep-dive {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  margin-top: 60px;
+}
+@media (max-width: 1100px) {
+  .ai-deep-dive { gap: 100px; }
+  .ai-dive-grid { gap: 40px !important; }
+}
+.dive-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--clr-light-text);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.dive-summary {
+  font-size: 1.1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+}
+.ai-dive-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.ai-dive-grid--rev {
+  direction: rtl;
+}
+.ai-dive-grid--rev > * {
+  direction: ltr;
+}
+.dive-visual {
+  width: 85%;
+  margin-inline: auto;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+  background: #020617;
+}
+.dive-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: transform 0.6s ease;
+}
+.ai-dive-block:hover .dive-visual img {
+  transform: scale(1.05);
+}
+.ai-dive-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.ai-product-tile {
+  background: #fff;
+  padding: 40px;
+  border-radius: 32px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+}
+.ai-product-tile:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: var(--clr-primary);
+  box-shadow: 0 30px 60px rgba(16, 185, 129, 0.1);
+}
+.tile-head h4 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+.tile-head h4 span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--clr-light-muted);
+  margin-left: 8px;
+}
+.tile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tile-tags span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  background: rgba(16, 185, 129, 0.08);
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+.ai-product-tile p {
+  font-size: 1.05rem;
+  color: var(--clr-light-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .ai-dive-grid { grid-template-columns: 1fr; }
+  .ai-dive-grid--rev { direction: ltr; }
+  .dive-title { font-size: 2.2rem; }
+  .dive-visual { width: 100%; margin-bottom: 20px; }
+}
+
+.hero-proof {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-proof__text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--clr-light-text);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .hero-proof__text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+}
+
+.impact-card {
+  height: 100%;
+  border-radius: 24px;
+}
+
+.impact-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0, 200, 150, 0.08);
+  color: var(--clr-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+
+.impact-card h3 {
+  font-size: 1.25rem;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+
+.impact-card p {
+  color: var(--clr-light-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.why-card {
+  height: 100%;
+  border-radius: 24px;
+}
+
+.why-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--clr-light-text);
+}
+
+.why-card p {
+  margin: 0;
+  color: var(--clr-light-muted);
+  line-height: 1.7;
+}
+</style>
+
+
+<script define:vars={{ lang }}>
+  // Rotating hero text — language-aware
+  // These are hardcoded string arrays used only for visual text rotation.
+  // They are NOT user-controlled input.
+  const rotatingTextsEN = [
+    { title: "Unleashing<br />Value From Data", description: "We design and deliver enterprise data platforms that enable reliable analytics and production-ready AI." },
+    { title: "Clear Decisions,<br />Faster", description: "Empower your organization with modern data platforms and trusted analytics." },
+    { title: "AI-Ready Data<br />Foundations", description: "Make your AI investments sustainable with modern and reliable data architecture." },
+    { title: "From Insight<br />to Action", description: "Turn data into real business impact with our consulting, platforms and AI solutions." }
+  ];
+  const highlightsEN = ["Value From Data", "Faster", "AI", "to Action"];
+
+  const rotatingTextsTR = [
+    { title: "Veriden<br />De\u011Fer \u00DCretmek", description: "G\u00FCvenilir analitik ve \u00fcretime haz\u0131r yapay zeka sa\u011Flayan kurumsal veri platformlar\u0131 tasar\u0131l\u0131yor ve sunuyoruz." },
+    { title: "Net Kararlar,<br />Daha H\u0131zl\u0131", description: "Modern veri platformlar\u0131 ve g\u00FCvenilir analitikle organizasyonunuzu g\u00FC\u00E7lendirin." },
+    { title: "YZ'ye Haz\u0131r Veri<br />Temelleri", description: "Yapay zeka yat\u0131r\u0131mlar\u0131n\u0131z\u0131 modern ve g\u00FCvenilir veri mimarisiyle s\u00FCrd\u00FCr\u00FClebilir k\u0131l\u0131n." },
+    { title: "\u0130\u00E7g\u00F6r\u00FCden<br />Eyleme", description: "Dan\u0131\u015Fmanl\u0131k, platformlar ve yapay zeka \u00E7\u00F6z\u00FCmlerimizle veriyi ger\u00E7ek i\u015F etkisine d\u00F6n\u00FC\u015Ft\u00FCr\u00FCn." }
+  ];
+  const highlightsTR = ["De\u011Fer \u00DCretmek", "Daha H\u0131zl\u0131", "YZ", "Eyleme"];
+
+  const rotatingTexts = lang === 'tr' ? rotatingTextsTR : rotatingTextsEN;
+  const highlights = lang === 'tr' ? highlightsTR : highlightsEN;
+
+  let currentTextIndex = 0;
+  function rotateText() {
+    const titleEl = document.getElementById('heroTitle');
+    const descEl = document.getElementById('heroDesc');
+    if (!titleEl || !descEl) return;
+    titleEl.style.opacity = '0';
+    descEl.style.opacity = '0';
+    setTimeout(function() {
+      currentTextIndex = (currentTextIndex + 1) % rotatingTexts.length;
+      const text = rotatingTexts[currentTextIndex];
+
+      let processedTitle = text.title;
+      highlights.forEach(function(h) {
+        if (processedTitle.indexOf(h) !== -1) {
+          processedTitle = processedTitle.replace(h, '<span class="grad-text">' + h + '</span>');
+        }
+      });
+
+      titleEl.innerHTML = processedTitle;
+      descEl.textContent = text.description;
+      titleEl.style.opacity = '1';
+      descEl.style.opacity = '1';
+    }, 600);
+  }
+  setInterval(rotateText, 4500);
+</script>
