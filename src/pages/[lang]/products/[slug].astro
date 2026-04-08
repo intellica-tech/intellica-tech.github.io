@@ -1,0 +1,15 @@
+---
+import ProductDetailPage from '../../../page-templates/ProductDetailPage.astro';
+import { languages, defaultLang, type Lang } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  const slugs = ['ifdm', 'itdm', 'hrdm', 'icc', 'retouch', 'retable', 'talkto', 'blueoctopus', 'var'];
+  const langs = Object.keys(languages).filter(l => l !== defaultLang);
+  return langs.flatMap(lang =>
+    slugs.map(slug => ({ params: { lang, slug } }))
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+---
+<ProductDetailPage lang={lang} slug={slug} />
