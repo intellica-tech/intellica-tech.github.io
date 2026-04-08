@@ -1,0 +1,64 @@
+---
+import { languages, defaultLang, type Lang } from '../i18n/config';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang: currentLang } = Astro.props;
+
+const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})/`);
+const currentPath = Astro.url.pathname.replace(localePattern, '/');
+---
+
+<div class="lang-picker">
+  {Object.entries(languages).map(([code, { name }]) => {
+    const href = code === defaultLang ? currentPath : `/${code}${currentPath}`;
+    const isActive = code === currentLang;
+    return (
+      <a
+        href={href}
+        class:list={['lang-option', { active: isActive }]}
+        hreflang={code}
+        aria-current={isActive ? 'true' : undefined}
+        aria-label={`Switch to ${name}`}
+      >
+        {code.toUpperCase()}
+      </a>
+    );
+  })}
+</div>
+
+<style>
+  .lang-picker {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: #F1F5F9;
+    border-radius: 8px;
+    padding: 2px;
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #64748B;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .lang-option:hover {
+    color: #1E293B;
+    background: rgba(0, 0, 0, 0.04);
+  }
+  .lang-option.active {
+    background: #FFFFFF;
+    color: #1E293B;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    pointer-events: none;
+  }
+</style>
