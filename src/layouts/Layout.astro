@@ -31,7 +31,8 @@ const currentLocale = lang;
 const { dir } = languages[currentLocale];
 
 // Strip locale prefix to get base path for hreflang generation
-const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})/`);
+// Matches both /tr/ (with trailing slash) and /tr (end of string)
+const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})(/|$)`);
 const basePath = Astro.url.pathname.replace(localePattern, '/').replace(/^\//, '');
 
 const siteUrl = "https://intellica.net";

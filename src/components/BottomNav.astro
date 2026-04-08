@@ -1,6 +1,9 @@
 ---
-import { defaultLang, type Lang } from '../i18n/config';
+import { languages, defaultLang, type Lang } from '../i18n/config';
 import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+// Build locale regex pattern for client-side script
+const localeRegex = Object.keys(languages).join('|');
 
 interface Props { lang?: Lang; }
 const { lang = defaultLang } = Astro.props;
@@ -106,7 +109,7 @@ const moreGroups = [
 ---
 
 <!-- Bottom Navigation Bar (mobile only) -->
-<nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation">
+<nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation" data-locales={localeRegex}>
   {navItems.map(item => (
     item.href !== null ? (
       <a
@@ -425,9 +428,10 @@ const moreGroups = [
 <script>
   // ─── Active page detection ──────────────────
   const path = window.location.pathname;
-  // Strip locale prefix for page matching
-  const localeMatch = path.match(/^\/(en|tr)\//);
-  const cleanPath = localeMatch ? path.replace(localeMatch[0], '/') : path;
+  // Strip locale prefix for page matching — reads supported locales from nav data attribute
+  const localeRegex = document.querySelector('.bottom-nav')?.getAttribute('data-locales') || 'en|tr';
+  const localeMatch = path.match(new RegExp(`^/(${localeRegex})(/|$)`));
+  const cleanPath = localeMatch ? path.replace(new RegExp(`^/(${localeRegex})(/|$)`), '/') : path;
 
   const pageMap: Record<string, string> = {
     '/': 'home',
