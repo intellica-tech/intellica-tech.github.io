@@ -426,5 +426,161 @@
   "about.cta.titleHighlight": "Data?",
   "about.cta.desc": "From data platforms to AI solutions, we help organizations turn data into measurable business value.",
   "about.cta.primary": "Get in Touch",
-  "about.cta.secondary": "View Clients"
+  "about.cta.secondary": "View Clients",
+
+  "meta.products.title": "Products | Intellica",
+  "meta.products.description": "Explore Intellica's Enterprise Product Portfolio — industry data models, data governance platforms, and AI-powered tools.",
+
+  "productsPage.breadcrumb": "Products",
+
+  "productsPage.schema.name": "Intellica Enterprise Product Portfolio",
+  "productsPage.schema.description": "Enterprise Product Portfolio — industry data models, data governance platforms, and AI-powered tools.",
+
+  "productsPage.hero.label": "ENTERPRISE PRODUCT PORTFOLIO",
+  "productsPage.hero.title": "Our ",
+  "productsPage.hero.titleHighlight": "Enterprise Product Portfolio",
+  "productsPage.hero.desc": "End-to-end product architecture spanning industry data models, governance platforms, and AI-powered tools.",
+  "productsPage.hero.cta": "Get in Touch",
+  "productsPage.hero.imgAlt": "Enterprise Product Portfolio",
+
+  "productsPage.dataModels.label": "01 · Data Models",
+  "productsPage.dataModels.title": "Industry ",
+  "productsPage.dataModels.titleHighlight": "Data Models",
+  "productsPage.dataModels.sub": "Licensed, pre-built data warehouse models designed for specific industry verticals — accelerating your data platform delivery.",
+
+  "productsPage.ifdm.tagline": "Intellica Finance Data Model",
+  "productsPage.ifdm.desc": "International standard data warehouse model for the finance industry. Pre-modeled with regulatory reporting, risk, CRM and more — ready to deploy.",
+  "productsPage.ifdm.tag1": "Data Model",
+  "productsPage.ifdm.tag2": "Banking",
+
+  "productsPage.itdm.tagline": "Intellica Telecom Data Model",
+  "productsPage.itdm.desc": "Industry-specific data warehouse model for telecom operators. Network, billing, CRM dimensioning — pre-built and tested globally.",
+  "productsPage.itdm.tag1": "Data Model",
+  "productsPage.itdm.tag2": "Telecom",
+
+  "productsPage.hrdm.tagline": "Human Resources Data Model",
+  "productsPage.hrdm.desc": "Optimized data warehouse model for HR processes — workforce analytics, payroll, talent management ready from day one.",
+  "productsPage.hrdm.tag1": "Data Model",
+  "productsPage.hrdm.tag2": "HR Analytics",
+
+  "productsPage.governance.label": "02 · Data Platform & Governance",
+  "productsPage.governance.title": "Platform & ",
+  "productsPage.governance.titleHighlight": "Governance",
+  "productsPage.governance.sub": "Enterprise-grade tools for data consistency, quality, entry management and no-code application development.",
+
+  "productsPage.icc.tagline": "INTELLIGENT CONSISTENCY CHECKER",
+  "productsPage.icc.desc": "Central data consistency management platform. Define reconciliation rules, monitor quality gates, and get automated alerts on data drift.",
+  "productsPage.icc.tag1": "Data Quality",
+  "productsPage.icc.tag2": "Reconciliation",
+
+  "productsPage.retouch.tagline": "Reference Data & Entry Management",
+  "productsPage.retouch.desc": "Validate, cleanse and import external data into your core systems with approval workflows, audit trails and version control.",
+  "productsPage.retouch.tag1": "Data Entry",
+  "productsPage.retouch.tag2": "Validation",
+
+  "productsPage.retable.tagline": "No-Code Data Application Platform",
+  "productsPage.retable.desc": "Build flexible apps and data tables without code. Collaborative, cloud-based platform with automations, integrations and AI capabilities.",
+  "productsPage.retable.tag1": "No-Code",
+  "productsPage.retable.tag2": "Cloud Platform",
+
+  "productsPage.orqenta.tagline": "WORKFLOW ORCHESTRATION & JOB SCHEDULING PLATFORM",
+  "productsPage.orqenta.desc": "High-reliability platform for workflow orchestration and distributed job scheduling. Orchestrate complex data pipelines with precision, automation and full control.",
+  "productsPage.orqenta.tag1": "Orchestration",
+  "productsPage.orqenta.tag2": "Enterprise Data",
+
+  "productsPage.ai.label": "03 · AI Products",
+  "productsPage.ai.title": "Enterprise ",
+  "productsPage.ai.titleHighlight": "AI Products",
+  "productsPage.ai.sub": "Enterprise AI applications for analytics, automation and decision intelligence.",
+
+  "productsPage.talkto.tagline": "Natural Language Data Interaction",
+  "productsPage.talkto.desc": "Ask your enterprise data questions in natural language. Get instant SQL queries, visualizations and insights — completely governed and auditable.",
+  "productsPage.talkto.tag1": "Generative AI",
+  "productsPage.talkto.tag2": "NL2SQL",
+
+  "productsPage.blueoctopus.tagline": "AI EVENT INTELLIGENCE PLATFORM",
+  "productsPage.blueoctopus.desc": "Detect, analyze and manage critical business events in real time with AI-powered event intelligence and automated response across systems.",
+  "productsPage.blueoctopus.tag1": "AI Analytics",
+  "productsPage.blueoctopus.tag2": "Monitoring",
+
+  "productsPage.var.tagline": "Voice AI Recognition",
+  "productsPage.var.desc": "AI-powered voice signature creation, speaker matching and identity extraction. Built for security, call center and compliance use cases.",
+  "productsPage.var.tag1": "Voice AI",
+  "productsPage.var.tag2": "Security",
+
+  "productsPage.cta.title": "Ready to Transform Your ",
+  "productsPage.cta.titleHighlight": "Data?",
+  "productsPage.cta.desc": "From data platforms to AI solutions, we help organizations turn data into measurable business value.",
+  "productsPage.cta.primary": "Get in Touch",
+  "productsPage.cta.secondary": "View Clients",
+
+  "productsDetail.breadcrumbProducts": "Products",
+  "productsDetail.overview": "Overview",
+  "productsDetail.keyFeatures": "Key Features",
+  "productsDetail.ctaTitle": "Ready to see {name} in action?",
+  "productsDetail.ctaDesc": "Schedule a personalized demo with our experts.",
+  "productsDetail.ctaButton": "Get in Touch",
+
+  "productsDetail.ifdm.tagline": "Intellica Finance Data Model",
+  "productsDetail.ifdm.category": "Data Models",
+  "productsDetail.ifdm.desc": "International standard data warehouse model for the finance industry. Pre-modeled with regulatory reporting, risk, CRM and more — ready to deploy.",
+  "productsDetail.ifdm.feature1": "Architecture assessment & target design",
+  "productsDetail.ifdm.feature2": "Phased migration plan",
+  "productsDetail.ifdm.feature3": "Security, performance, scalability",
+
+  "productsDetail.itdm.tagline": "Intellica Telecom Data Model",
+  "productsDetail.itdm.category": "Data Models",
+  "productsDetail.itdm.desc": "Industry-specific data warehouse model for telecom operators. Network, billing, CRM dimensioning — pre-built and tested globally.",
+  "productsDetail.itdm.feature1": "Network & Billing dimensioning",
+  "productsDetail.itdm.feature2": "CRM data integration",
+  "productsDetail.itdm.feature3": "Global industry standards",
+
+  "productsDetail.hrdm.tagline": "Human Resources Data Model",
+  "productsDetail.hrdm.category": "Data Models",
+  "productsDetail.hrdm.desc": "Optimized data warehouse model for HR processes — workforce analytics, payroll, talent management ready from day one.",
+  "productsDetail.hrdm.feature1": "Workforce analytics",
+  "productsDetail.hrdm.feature2": "Payroll integration",
+  "productsDetail.hrdm.feature3": "Talent management insights",
+
+  "productsDetail.icc.tagline": "Intellica Consistency Controller",
+  "productsDetail.icc.category": "Data Platform & Governance",
+  "productsDetail.icc.desc": "Central data consistency management platform. Define reconciliation rules, monitor quality gates, and get automated alerts on data drift.",
+  "productsDetail.icc.feature1": "Automated reconciliation",
+  "productsDetail.icc.feature2": "Quality gate monitoring",
+  "productsDetail.icc.feature3": "Drift alerts",
+
+  "productsDetail.retouch.tagline": "Reference Data & Entry Management",
+  "productsDetail.retouch.category": "Data Platform & Governance",
+  "productsDetail.retouch.desc": "Validate, cleanse and import external data into your core systems with approval workflows, audit trails and version control.",
+  "productsDetail.retouch.feature1": "Workflow approvals",
+  "productsDetail.retouch.feature2": "Audit trails",
+  "productsDetail.retouch.feature3": "Data validation",
+
+  "productsDetail.retable.tagline": "No-Code Data Application Platform",
+  "productsDetail.retable.category": "Data Platform & Governance",
+  "productsDetail.retable.desc": "Build flexible apps and data tables without code. Collaborative, cloud-based platform with automations, integrations and AI capabilities.",
+  "productsDetail.retable.feature1": "No-code builder",
+  "productsDetail.retable.feature2": "Real-time collaboration",
+  "productsDetail.retable.feature3": "AI integrations",
+
+  "productsDetail.talkto.tagline": "Natural Language Data Interaction",
+  "productsDetail.talkto.category": "AI Products",
+  "productsDetail.talkto.desc": "Ask your enterprise data questions in natural language. Get instant SQL queries, visualizations and insights — completely governed and auditable.",
+  "productsDetail.talkto.feature1": "NL2SQL technology",
+  "productsDetail.talkto.feature2": "Self-service analytics",
+  "productsDetail.talkto.feature3": "Full auditability",
+
+  "productsDetail.blueoctopus.tagline": "AI Surveillance & Action Platform",
+  "productsDetail.blueoctopus.category": "AI Products",
+  "productsDetail.blueoctopus.desc": "Monitor critical data from a single center with AI-powered analytics. Event detection, alerting and action management across systems.",
+  "productsDetail.blueoctopus.feature1": "Centralized monitoring",
+  "productsDetail.blueoctopus.feature2": "Real-time alerting",
+  "productsDetail.blueoctopus.feature3": "Action management",
+
+  "productsDetail.var.tagline": "Voice AI Recognition",
+  "productsDetail.var.category": "AI Products",
+  "productsDetail.var.desc": "AI-powered voice signature creation, speaker matching and identity extraction. Built for security, call center and compliance use cases.",
+  "productsDetail.var.feature1": "Voice biometrics",
+  "productsDetail.var.feature2": "Speaker identification",
+  "productsDetail.var.feature3": "Secure extraction"
 }

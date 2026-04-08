@@ -426,5 +426,161 @@
   "about.cta.titleHighlight": "Hazır mısınız?",
   "about.cta.desc": "Veri platformlarından yapay zeka çözümlerine kadar, kurumlara veriyi ölçülebilir iş değerine dönüştürme yolunda yardımcı oluyoruz.",
   "about.cta.primary": "İletişime Geçin",
-  "about.cta.secondary": "Müşterileri Gör"
+  "about.cta.secondary": "Müşterileri Gör",
+
+  "meta.products.title": "Ürünler | Intellica",
+  "meta.products.description": "Intellica'nın Kurumsal Ürün Portföyünü keşfedin — sektörel veri modelleri, veri yönetişim platformları ve yapay zeka destekli araçlar.",
+
+  "productsPage.breadcrumb": "Ürünler",
+
+  "productsPage.schema.name": "Intellica Kurumsal Ürün Portföyü",
+  "productsPage.schema.description": "Kurumsal Ürün Portföyü — sektörel veri modelleri, veri yönetişim platformları ve yapay zeka destekli araçlar.",
+
+  "productsPage.hero.label": "KURUMSAL ÜRÜN PORTFÖYÜ",
+  "productsPage.hero.title": "",
+  "productsPage.hero.titleHighlight": "Kurumsal Ürün Portföyümüz",
+  "productsPage.hero.desc": "Sektörel veri modellerinden yönetişim platformlarına ve yapay zeka destekli araçlara uzanan uçtan uca ürün mimarisi.",
+  "productsPage.hero.cta": "İletişime Geçin",
+  "productsPage.hero.imgAlt": "Kurumsal Ürün Portföyü",
+
+  "productsPage.dataModels.label": "01 · Veri Modelleri",
+  "productsPage.dataModels.title": "Sektörel ",
+  "productsPage.dataModels.titleHighlight": "Veri Modelleri",
+  "productsPage.dataModels.sub": "Belirli sektör dikeyleri için tasarlanmış lisanslı, hazır veri ambarı modelleri — veri platformu teslimatınızı hızlandırır.",
+
+  "productsPage.ifdm.tagline": "Intellica Finans Veri Modeli",
+  "productsPage.ifdm.desc": "Finans sektörü için uluslararası standart veri ambarı modeli. Düzenleyici raporlama, risk, CRM ve daha fazlası ile önceden modellenmiş — dağıtıma hazır.",
+  "productsPage.ifdm.tag1": "Veri Modeli",
+  "productsPage.ifdm.tag2": "Bankacılık",
+
+  "productsPage.itdm.tagline": "Intellica Telekom Veri Modeli",
+  "productsPage.itdm.desc": "Telekom operatörleri için sektöre özel veri ambarı modeli. Şebeke, faturalandırma, CRM boyutlandırma — küresel olarak önceden oluşturulmuş ve test edilmiş.",
+  "productsPage.itdm.tag1": "Veri Modeli",
+  "productsPage.itdm.tag2": "Telekom",
+
+  "productsPage.hrdm.tagline": "İnsan Kaynakları Veri Modeli",
+  "productsPage.hrdm.desc": "İK süreçleri için optimize edilmiş veri ambarı modeli — iş gücü analitiği, bordro, yetenek yönetimi birinci günden hazır.",
+  "productsPage.hrdm.tag1": "Veri Modeli",
+  "productsPage.hrdm.tag2": "İK Analitiği",
+
+  "productsPage.governance.label": "02 · Veri Platformu & Yönetişim",
+  "productsPage.governance.title": "Platform & ",
+  "productsPage.governance.titleHighlight": "Yönetişim",
+  "productsPage.governance.sub": "Veri tutarlılığı, kalite, giriş yönetimi ve kodsuz uygulama geliştirme için kurumsal düzeyde araçlar.",
+
+  "productsPage.icc.tagline": "AKILLI TUTARLILIK DENETLEYİCİSİ",
+  "productsPage.icc.desc": "Merkezi veri tutarlılığı yönetim platformu. Mutabakat kuralları tanımlayın, kalite kapılarını izleyin ve veri sapmaları hakkında otomatik uyarılar alın.",
+  "productsPage.icc.tag1": "Veri Kalitesi",
+  "productsPage.icc.tag2": "Mutabakat",
+
+  "productsPage.retouch.tagline": "Referans Veri ve Giriş Yönetimi",
+  "productsPage.retouch.desc": "Onay iş akışları, denetim izleri ve sürüm kontrolü ile harici verileri doğrulayın, temizleyin ve temel sistemlerinize aktarın.",
+  "productsPage.retouch.tag1": "Veri Girişi",
+  "productsPage.retouch.tag2": "Doğrulama",
+
+  "productsPage.retable.tagline": "Kodsuz Veri Uygulama Platformu",
+  "productsPage.retable.desc": "Kod yazmadan esnek uygulamalar ve veri tabloları oluşturun. Otomasyonlar, entegrasyonlar ve yapay zeka yetenekleriyle iş birliğine dayalı, bulut tabanlı platform.",
+  "productsPage.retable.tag1": "Kodsuz",
+  "productsPage.retable.tag2": "Bulut Platformu",
+
+  "productsPage.orqenta.tagline": "İŞ AKIŞI ORKESTRASYON VE İŞ ZAMANLAMA PLATFORMU",
+  "productsPage.orqenta.desc": "İş akışı orkestrasyonu ve dağıtık iş zamanlama için yüksek güvenilirlikli platform. Karmaşık veri pipeline'larını hassasiyet, otomasyon ve tam kontrol ile yönetin.",
+  "productsPage.orqenta.tag1": "Orkestrasyon",
+  "productsPage.orqenta.tag2": "Kurumsal Veri",
+
+  "productsPage.ai.label": "03 · Yapay Zeka Ürünleri",
+  "productsPage.ai.title": "Kurumsal ",
+  "productsPage.ai.titleHighlight": "Yapay Zeka Ürünleri",
+  "productsPage.ai.sub": "Analitik, otomasyon ve karar zekası için kurumsal yapay zeka uygulamaları.",
+
+  "productsPage.talkto.tagline": "Doğal Dil ile Veri Etkileşimi",
+  "productsPage.talkto.desc": "Kurumsal verilerinize doğal dilde sorular sorun. Anında SQL sorguları, görselleştirmeler ve içgörüler alın — tamamen yönetilen ve denetlenebilir.",
+  "productsPage.talkto.tag1": "Üretken YZ",
+  "productsPage.talkto.tag2": "NL2SQL",
+
+  "productsPage.blueoctopus.tagline": "YZ OLAY İSTİHBARAT PLATFORMU",
+  "productsPage.blueoctopus.desc": "Kritik iş olaylarını yapay zeka destekli olay istihbaratı ve sistemler arası otomatik yanıt ile gerçek zamanlı olarak tespit edin, analiz edin ve yönetin.",
+  "productsPage.blueoctopus.tag1": "YZ Analitiği",
+  "productsPage.blueoctopus.tag2": "İzleme",
+
+  "productsPage.var.tagline": "Ses Yapay Zekası Tanıma",
+  "productsPage.var.desc": "Yapay zeka destekli ses imzası oluşturma, konuşmacı eşleştirme ve kimlik çıkarma. Güvenlik, çağrı merkezi ve uyumluluk kullanım senaryoları için tasarlandı.",
+  "productsPage.var.tag1": "Ses YZ",
+  "productsPage.var.tag2": "Güvenlik",
+
+  "productsPage.cta.title": "Verilerinizi Dönüştürmeye ",
+  "productsPage.cta.titleHighlight": "Hazır mısınız?",
+  "productsPage.cta.desc": "Veri platformlarından yapay zeka çözümlerine kadar, kurumlara veriyi ölçülebilir iş değerine dönüştürme yolunda yardımcı oluyoruz.",
+  "productsPage.cta.primary": "İletişime Geçin",
+  "productsPage.cta.secondary": "Müşterileri Gör",
+
+  "productsDetail.breadcrumbProducts": "Ürünler",
+  "productsDetail.overview": "Genel Bakış",
+  "productsDetail.keyFeatures": "Temel Özellikler",
+  "productsDetail.ctaTitle": "{name} ürününü çalışırken görmek ister misiniz?",
+  "productsDetail.ctaDesc": "Uzmanlarımızla kişiselleştirilmiş bir demo planlayın.",
+  "productsDetail.ctaButton": "İletişime Geçin",
+
+  "productsDetail.ifdm.tagline": "Intellica Finans Veri Modeli",
+  "productsDetail.ifdm.category": "Veri Modelleri",
+  "productsDetail.ifdm.desc": "Finans sektörü için uluslararası standart veri ambarı modeli. Düzenleyici raporlama, risk, CRM ve daha fazlası ile önceden modellenmiş — dağıtıma hazır.",
+  "productsDetail.ifdm.feature1": "Mimari değerlendirme ve hedef tasarım",
+  "productsDetail.ifdm.feature2": "Aşamalı göç planı",
+  "productsDetail.ifdm.feature3": "Güvenlik, performans, ölçeklenebilirlik",
+
+  "productsDetail.itdm.tagline": "Intellica Telekom Veri Modeli",
+  "productsDetail.itdm.category": "Veri Modelleri",
+  "productsDetail.itdm.desc": "Telekom operatörleri için sektöre özel veri ambarı modeli. Şebeke, faturalandırma, CRM boyutlandırma — küresel olarak önceden oluşturulmuş ve test edilmiş.",
+  "productsDetail.itdm.feature1": "Şebeke ve Faturalandırma boyutlandırma",
+  "productsDetail.itdm.feature2": "CRM veri entegrasyonu",
+  "productsDetail.itdm.feature3": "Küresel sektör standartları",
+
+  "productsDetail.hrdm.tagline": "İnsan Kaynakları Veri Modeli",
+  "productsDetail.hrdm.category": "Veri Modelleri",
+  "productsDetail.hrdm.desc": "İK süreçleri için optimize edilmiş veri ambarı modeli — iş gücü analitiği, bordro, yetenek yönetimi birinci günden hazır.",
+  "productsDetail.hrdm.feature1": "İş gücü analitiği",
+  "productsDetail.hrdm.feature2": "Bordro entegrasyonu",
+  "productsDetail.hrdm.feature3": "Yetenek yönetimi içgörüleri",
+
+  "productsDetail.icc.tagline": "Intellica Tutarlılık Denetleyicisi",
+  "productsDetail.icc.category": "Veri Platformu & Yönetişim",
+  "productsDetail.icc.desc": "Merkezi veri tutarlılığı yönetim platformu. Mutabakat kuralları tanımlayın, kalite kapılarını izleyin ve veri sapmaları hakkında otomatik uyarılar alın.",
+  "productsDetail.icc.feature1": "Otomatik mutabakat",
+  "productsDetail.icc.feature2": "Kalite kapısı izleme",
+  "productsDetail.icc.feature3": "Sapma uyarıları",
+
+  "productsDetail.retouch.tagline": "Referans Veri ve Giriş Yönetimi",
+  "productsDetail.retouch.category": "Veri Platformu & Yönetişim",
+  "productsDetail.retouch.desc": "Onay iş akışları, denetim izleri ve sürüm kontrolü ile harici verileri doğrulayın, temizleyin ve temel sistemlerinize aktarın.",
+  "productsDetail.retouch.feature1": "İş akışı onayları",
+  "productsDetail.retouch.feature2": "Denetim izleri",
+  "productsDetail.retouch.feature3": "Veri doğrulama",
+
+  "productsDetail.retable.tagline": "Kodsuz Veri Uygulama Platformu",
+  "productsDetail.retable.category": "Veri Platformu & Yönetişim",
+  "productsDetail.retable.desc": "Kod yazmadan esnek uygulamalar ve veri tabloları oluşturun. Otomasyonlar, entegrasyonlar ve yapay zeka yetenekleriyle iş birliğine dayalı, bulut tabanlı platform.",
+  "productsDetail.retable.feature1": "Kodsuz oluşturucu",
+  "productsDetail.retable.feature2": "Gerçek zamanlı iş birliği",
+  "productsDetail.retable.feature3": "YZ entegrasyonları",
+
+  "productsDetail.talkto.tagline": "Doğal Dil ile Veri Etkileşimi",
+  "productsDetail.talkto.category": "Yapay Zeka Ürünleri",
+  "productsDetail.talkto.desc": "Kurumsal verilerinize doğal dilde sorular sorun. Anında SQL sorguları, görselleştirmeler ve içgörüler alın — tamamen yönetilen ve denetlenebilir.",
+  "productsDetail.talkto.feature1": "NL2SQL teknolojisi",
+  "productsDetail.talkto.feature2": "Self-servis analitik",
+  "productsDetail.talkto.feature3": "Tam denetlenebilirlik",
+
+  "productsDetail.blueoctopus.tagline": "YZ Gözetim ve Aksiyon Platformu",
+  "productsDetail.blueoctopus.category": "Yapay Zeka Ürünleri",
+  "productsDetail.blueoctopus.desc": "Yapay zeka destekli analitikle kritik verileri tek bir merkezden izleyin. Sistemler arası olay tespiti, uyarı ve aksiyon yönetimi.",
+  "productsDetail.blueoctopus.feature1": "Merkezi izleme",
+  "productsDetail.blueoctopus.feature2": "Gerçek zamanlı uyarılar",
+  "productsDetail.blueoctopus.feature3": "Aksiyon yönetimi",
+
+  "productsDetail.var.tagline": "Ses Yapay Zekası Tanıma",
+  "productsDetail.var.category": "Yapay Zeka Ürünleri",
+  "productsDetail.var.desc": "Yapay zeka destekli ses imzası oluşturma, konuşmacı eşleştirme ve kimlik çıkarma. Güvenlik, çağrı merkezi ve uyumluluk kullanım senaryoları için tasarlandı.",
+  "productsDetail.var.feature1": "Ses biyometriği",
+  "productsDetail.var.feature2": "Konuşmacı tanımlama",
+  "productsDetail.var.feature3": "Güvenli çıkarma"
 }
