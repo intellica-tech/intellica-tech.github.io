@@ -740,5 +740,74 @@
   "contact.cta.primary": "Get in Touch",
   "contact.cta.secondary": "View Clients",
 
-  "contact.error.alert": "Something went wrong. Please try again or email us at info@intellica.net"
+  "contact.error.alert": "Something went wrong. Please try again or email us at info@intellica.net",
+
+  "meta.careers.title": "Careers | Intellica",
+  "meta.careers.description": "Join the Intellica team and build the future of Data & AI. Explore opportunities in Data Engineering, BI, AI, and more.",
+
+  "careers.breadcrumb.about": "About",
+  "careers.breadcrumb.careers": "Careers",
+
+  "careers.hero.label": "JOIN OUR TEAM",
+  "careers.hero.title": "Innovate with ",
+  "careers.hero.titleHighlight": "Intellica",
+  "careers.hero.desc1": "We build enterprise data platforms and AI solutions that create measurable impact.",
+  "careers.hero.desc2": "Join Intellica and work on real-world projects in data engineering, BI, data quality, DWH and AI for global organizations across multiple industries.",
+  "careers.hero.cta": "Join Us",
+
+  "careers.why.title": "Why Join Intellica?",
+  "careers.why.stat1": "20+ Countries",
+  "careers.why.stat2": "80+ Enterprise Data & AI Projects Delivered",
+  "careers.why.stat3": "100+ Data & AI Professionals",
+  "careers.why.stat4": "30+ Enterprise Data Platforms Implemented",
+
+  "careers.impact.card1.title": "Impact-Oriented Projects",
+  "careers.impact.card1.desc": "Real business problems. Real impact.<br/>Projects that create measurable value.",
+  "careers.impact.card2.title": "Expertise Development",
+  "careers.impact.card2.desc": "Mentorship, a strong learning culture, and continuous knowledge sharing.",
+  "careers.impact.card3.title": "Product + Consulting",
+  "careers.impact.card3.desc": "Real-world consulting experience combined with strong product engineering.",
+
+  "careers.roles.label": "Opportunities",
+  "careers.roles.title": "Where Can You ",
+  "careers.roles.titleHighlight": "Make a Difference?",
+  "careers.roles.sub": "We are looking for talents in various domains of Data & AI. Opportunities are updated based on project needs.",
+
+  "careers.role1.title": "Data Engineering",
+  "careers.role1.desc": "ETL/ELT, data integration, pipeline design, data quality & observability.",
+  "careers.role2.title": "BI & Analytics",
+  "careers.role2.desc": "Semantic models, reporting, dashboard design, performance, and UX.",
+  "careers.role3.title": "Business / Data Analysis",
+  "careers.role3.desc": "Requirement analysis, business rule design, data dictionary, end-to-end process flow.",
+  "careers.role4.title": "Data Modeling",
+  "careers.role4.desc": "LDM/PDM, S2T mapping, dimensional modeling, layered architecture principles.",
+  "careers.role5.title": "Data Quality",
+  "careers.role5.desc": "Rule sets, monitoring, alerts & reporting, root cause analysis, and continuous improvement.",
+  "careers.role6.title": "AI / LLM Applications",
+  "careers.role6.desc": "Enterprise AI assistants, RAG, agentic workflows, security, and governance.",
+
+  "careers.values.title": "Our ",
+  "careers.values.titleHighlight": "Values",
+  "careers.values.sub": "The principles that guide our work and collaboration every day.",
+  "careers.value1.title": "Trust",
+  "careers.value1.desc": "We build long-term relationships through transparency, responsibility, and trust.",
+  "careers.value2.title": "Quality",
+  "careers.value2.desc": "We focus on measurable, reliable, and repeatable delivery standards.",
+  "careers.value3.title": "Innovation",
+  "careers.value3.desc": "We transform AI and modern data technologies into real business value.",
+
+  "careers.apply.title": "Join the ",
+  "careers.apply.titleHighlight": "Intellica Team",
+  "careers.apply.desc": "At Intellica, we work with talents who are open to learning, take responsibility, value teamwork, and \"own the work.\" Share your CV and a short introduction about yourself.",
+  "careers.apply.quickTitle": "Quick Application",
+  "careers.apply.quickDesc": "You can share your CV and a short note with us at hr@intellica.net.<br />We will reach out when a suitable position becomes available.",
+  "careers.apply.noteTitle": "Application Note",
+  "careers.apply.noteDesc": "Including the areas you want to work in, your experience level, and portfolio links (GitHub, LinkedIn) helps speed up the evaluation.",
+  "careers.apply.cta": "Apply via Email",
+
+  "careers.cta.title": "Ready to Join ",
+  "careers.cta.titleHighlight": "Intellica?",
+  "careers.cta.desc": "Explore opportunities and become part of a team building modern data platforms and AI solutions.",
+  "careers.cta.primary": "Get in Touch",
+  "careers.cta.secondary": "View Clients"
 }

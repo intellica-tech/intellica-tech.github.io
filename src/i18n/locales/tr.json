@@ -740,5 +740,74 @@
   "contact.cta.primary": "İletişime Geçin",
   "contact.cta.secondary": "Müşterileri Gör",
 
-  "contact.error.alert": "Bir hata oluştu. Lütfen tekrar deneyin veya info@intellica.net adresine e-posta gönderin."
+  "contact.error.alert": "Bir hata oluştu. Lütfen tekrar deneyin veya info@intellica.net adresine e-posta gönderin.",
+
+  "meta.careers.title": "Kariyer | Intellica",
+  "meta.careers.description": "Intellica ekibine katılın ve Veri & Yapay Zeka'nın geleceğini birlikte inşa edin. Veri Mühendisliği, İş Zekası, Yapay Zeka ve daha fazlasında fırsatları keşfedin.",
+
+  "careers.breadcrumb.about": "Hakkımızda",
+  "careers.breadcrumb.careers": "Kariyer",
+
+  "careers.hero.label": "EKİBİMİZE KATILIN",
+  "careers.hero.title": "Intellica ile ",
+  "careers.hero.titleHighlight": "İnovasyon",
+  "careers.hero.desc1": "Ölçülebilir etki yaratan kurumsal veri platformları ve yapay zeka çözümleri geliştiriyoruz.",
+  "careers.hero.desc2": "Intellica'ya katılın ve birden fazla sektörde küresel kuruluşlar için veri mühendisliği, iş zekası, veri kalitesi, DWH ve yapay zeka projelerinde çalışın.",
+  "careers.hero.cta": "Bize Katılın",
+
+  "careers.why.title": "Neden Intellica?",
+  "careers.why.stat1": "20+ Ülke",
+  "careers.why.stat2": "80+ Kurumsal Veri & Yapay Zeka Projesi",
+  "careers.why.stat3": "100+ Veri & Yapay Zeka Uzmanı",
+  "careers.why.stat4": "30+ Kurumsal Veri Platformu",
+
+  "careers.impact.card1.title": "Etki Odaklı Projeler",
+  "careers.impact.card1.desc": "Gerçek iş problemleri. Gerçek etki.<br/>Ölçülebilir değer yaratan projeler.",
+  "careers.impact.card2.title": "Uzmanlık Geliştirme",
+  "careers.impact.card2.desc": "Mentorluk, güçlü öğrenme kültürü ve sürekli bilgi paylaşımı.",
+  "careers.impact.card3.title": "Ürün + Danışmanlık",
+  "careers.impact.card3.desc": "Güçlü ürün mühendisliği ile birleşen gerçek dünya danışmanlık deneyimi.",
+
+  "careers.roles.label": "Fırsatlar",
+  "careers.roles.title": "Nerede ",
+  "careers.roles.titleHighlight": "Fark Yaratabilirsiniz?",
+  "careers.roles.sub": "Veri & Yapay Zeka'nın çeşitli alanlarında yetenekler arıyoruz. Fırsatlar proje ihtiyaçlarına göre güncellenmektedir.",
+
+  "careers.role1.title": "Veri Mühendisliği",
+  "careers.role1.desc": "ETL/ELT, veri entegrasyonu, pipeline tasarımı, veri kalitesi ve gözlemlenebilirlik.",
+  "careers.role2.title": "İş Zekası & Analitik",
+  "careers.role2.desc": "Semantik modeller, raporlama, dashboard tasarımı, performans ve kullanıcı deneyimi.",
+  "careers.role3.title": "İş / Veri Analizi",
+  "careers.role3.desc": "Gereksinim analizi, iş kuralı tasarımı, veri sözlüğü, uçtan uca süreç akışı.",
+  "careers.role4.title": "Veri Modelleme",
+  "careers.role4.desc": "LDM/PDM, S2T haritalama, boyutsal modelleme, katmanlı mimari prensipleri.",
+  "careers.role5.title": "Veri Kalitesi",
+  "careers.role5.desc": "Kural setleri, izleme, uyarılar ve raporlama, kök neden analizi ve sürekli iyileştirme.",
+  "careers.role6.title": "Yapay Zeka / LLM Uygulamaları",
+  "careers.role6.desc": "Kurumsal yapay zeka asistanları, RAG, agentic iş akışları, güvenlik ve yönetişim.",
+
+  "careers.values.title": "Bizim ",
+  "careers.values.titleHighlight": "Değerlerimiz",
+  "careers.values.sub": "Her gün çalışmamıza ve iş birliğimize yön veren ilkeler.",
+  "careers.value1.title": "Güven",
+  "careers.value1.desc": "Şeffaflık, sorumluluk ve güven ile uzun vadeli ilişkiler kuruyoruz.",
+  "careers.value2.title": "Kalite",
+  "careers.value2.desc": "Ölçülebilir, güvenilir ve tekrarlanabilir teslimat standartlarına odaklanıyoruz.",
+  "careers.value3.title": "İnovasyon",
+  "careers.value3.desc": "Yapay zeka ve modern veri teknolojilerini gerçek iş değerine dönüştürüyoruz.",
+
+  "careers.apply.title": "Intellica ",
+  "careers.apply.titleHighlight": "Ekibine Katılın",
+  "careers.apply.desc": "Intellica'da öğrenmeye açık, sorumluluk alan, takım çalışmasına değer veren ve \"işi sahiplenen\" yeteneklerle çalışıyoruz. CV'nizi ve kısa bir tanıtım metnini bizimle paylaşın.",
+  "careers.apply.quickTitle": "Hızlı Başvuru",
+  "careers.apply.quickDesc": "CV'nizi ve kısa bir notu hr@intellica.net adresine gönderin.<br />Uygun bir pozisyon olduğunda sizinle iletişime geçeceğiz.",
+  "careers.apply.noteTitle": "Başvuru Notu",
+  "careers.apply.noteDesc": "Çalışmak istediğiniz alanları, deneyim seviyenizi ve portföy bağlantılarınızı (GitHub, LinkedIn) eklemeniz değerlendirmeyi hızlandırır.",
+  "careers.apply.cta": "E-posta ile Başvurun",
+
+  "careers.cta.title": "Intellica'ya Katılmaya ",
+  "careers.cta.titleHighlight": "Hazır mısınız?",
+  "careers.cta.desc": "Fırsatları keşfedin ve modern veri platformları ve yapay zeka çözümleri geliştiren bir ekibin parçası olun.",
+  "careers.cta.primary": "İletişime Geçin",
+  "careers.cta.secondary": "Müşterileri Gör"
 }

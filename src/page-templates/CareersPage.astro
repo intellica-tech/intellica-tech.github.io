@@ -1,0 +1,330 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const siteUrl = "https://intellica.net";
+const breadcrumbs = [
+  { name: t('careers.breadcrumb.about'), url: `${siteUrl}${tp('/about')}` },
+  { name: t('careers.breadcrumb.careers'), url: `${siteUrl}${tp('/careers')}` }
+];
+
+const roles = [
+  { title: t('careers.role1.title'), desc: t('careers.role1.desc'), icon: 'gear' },
+  { title: t('careers.role2.title'), desc: t('careers.role2.desc'), icon: 'chart' },
+  { title: t('careers.role3.title'), desc: t('careers.role3.desc'), icon: 'document' },
+  { title: t('careers.role4.title'), desc: t('careers.role4.desc'), icon: 'layers' },
+  { title: t('careers.role5.title'), desc: t('careers.role5.desc'), icon: 'check' },
+  { title: t('careers.role6.title'), desc: t('careers.role6.desc'), icon: 'ai' },
+];
+
+const values = [
+  { title: t('careers.value1.title'), desc: t('careers.value1.desc') },
+  { title: t('careers.value2.title'), desc: t('careers.value2.desc') },
+  { title: t('careers.value3.title'), desc: t('careers.value3.desc') },
+];
+
+const whyStats = [
+  { label: t('careers.why.stat1') },
+  { label: t('careers.why.stat2') },
+  { label: t('careers.why.stat3') },
+  { label: t('careers.why.stat4') },
+];
+---
+
+<Layout
+  title={t('meta.careers.title')}
+  description={t('meta.careers.description')}
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+  lang={lang}
+>
+  <!-- ===== HERO ===== -->
+  <section class="hero noise" id="careers-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content anim-fade-up">
+          <div class="section-label">{t('careers.hero.label')}</div>
+          <h1 class="hero__title">{t('careers.hero.title')}<br /><span class="grad-text">{t('careers.hero.titleHighlight')}</span></h1>
+          <span class="hero__accent"></span>
+          <p class="hero__desc">
+            {t('careers.hero.desc1')}
+            <br /><br />
+            {t('careers.hero.desc2')}
+          </p>
+          <div class="hero__actions">
+            <a href="#apply" class="btn btn-primary btn-pill btn-lg">{t('careers.hero.cta')}</a>
+          </div>
+        </div>
+
+        <div class="hero-visual-custom anim-fade-up">
+          <div class="why-card">
+            <h3>{t('careers.why.title')}</h3>
+            <ul class="why-list">
+              {whyStats.map(stat => (
+                <li>
+                  <div class="check-circ">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>{stat.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMPACT AREAS ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-3 anim-fade-up">
+        <div class="luxury-card card-light">
+          <strong>{t('careers.impact.card1.title')}</strong>
+          <p class="sub" set:html={t('careers.impact.card1.desc')} />
+        </div>
+        <div class="luxury-card card-light">
+          <strong>{t('careers.impact.card2.title')}</strong>
+          <p class="sub">{t('careers.impact.card2.desc')}</p>
+        </div>
+        <div class="luxury-card card-light">
+          <strong>{t('careers.impact.card3.title')}</strong>
+          <p class="sub">{t('careers.impact.card3.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROLES ===== -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('careers.roles.label')}</div>
+        <h2 class="section-title">{t('careers.roles.title')}<span class="grad-text">{t('careers.roles.titleHighlight')}</span></h2>
+        <p class="section-sub">{t('careers.roles.sub')}</p>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="margin-top: 60px;">
+        {roles.map(role => (
+          <div class="role-card card-light">
+            <div class="role-icon">
+              {role.icon === 'gear' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>}
+              {role.icon === 'chart' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>}
+              {role.icon === 'document' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>}
+              {role.icon === 'layers' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>}
+              {role.icon === 'check' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>}
+              {role.icon === 'ai' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v12M6 12h12M7.5 7.5l9 9M7.5 16.5l9-9"/></svg>}
+            </div>
+            <h3>{role.title}</h3>
+            <p>{role.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <h2 class="section-title" style="color:var(--clr-light-text);">{t('careers.values.title')}<span class="grad-text">{t('careers.values.titleHighlight')}</span></h2>
+        <p class="section-sub">{t('careers.values.sub')}</p>
+      </div>
+      <div class="grid-3 anim-fade-up" style="margin-top: 60px;">
+        {values.map(v => (
+          <div class="value-card">
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPLY ===== -->
+  <section id="apply" class="section section--light">
+    <div class="container">
+      <div class="card-glass text-center anim-fade-up" style="padding: 80px 40px; border-radius: 48px; background: #fff; border: 1px solid #e2e8f0;">
+        <h2 class="section-title" style="margin-inline: auto; color: var(--clr-light-text);">{t('careers.apply.title')}<span class="grad-text">{t('careers.apply.titleHighlight')}</span></h2>
+        <p class="section-sub" style="margin-inline: auto; max-width: 800px; color: var(--clr-light-muted); margin-bottom: 24px;">
+          {t('careers.apply.desc')}
+        </p>
+
+        <div class="apply-box">
+          <div class="apply-info">
+            <div class="info-item">
+              <strong>{t('careers.apply.quickTitle')}</strong>
+              <p set:html={t('careers.apply.quickDesc')} />
+            </div>
+            <div class="info-item">
+              <strong>{t('careers.apply.noteTitle')}</strong>
+              <p>{t('careers.apply.noteDesc')}</p>
+            </div>
+          </div>
+
+          <div class="apply-cta" style="min-width: 220px;">
+            <a href="mailto:hr@intellica.net?subject=Intellica Career - General Application" class="btn btn-primary btn-pill btn-lg">{t('careers.apply.cta')}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>{t('careers.cta.title')}<span class="grad-text">{t('careers.cta.titleHighlight')}</span></h2>
+        <p>{t('careers.cta.desc')}</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('careers.cta.primary')}</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href={tp('/clients')}>{t('careers.cta.secondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+/* HERO: STANDARDIZED */
+.hero-disabled {
+  min-height: 750px; display: flex; align-items: center; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+}
+.hero-disabled__inner { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
+.hero-disabled__content-wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; gap: 40px; width: 100%; }
+.hero-disabled__content { display: flex; flex-direction: column; align-items: flex-start; padding-block: 60px; }
+.hero-disabled__title { font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 950; line-height: 1.05; color: #fff; margin-bottom: 24px; letter-spacing: -0.05em; }
+.hero-disabled__accent { display: block; width: 80px; height: 4px; border-radius: 4px; background: var(--grad-brand); margin-bottom: 32px; }
+.hero-disabled__desc { font-size: 1.25rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 600px; margin-bottom: 48px; }
+.hero-disabled__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-visual-custom { display: flex; justify-content: flex-end; align-items: center; }
+
+/* Why Card Styling (Step 1005 Fix) */
+.why-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  padding: 40px;
+  width: 100%;
+  max-width: 440px;
+}
+.why-card h3 {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+.why-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.why-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+.check-circ {
+  width: 24px;
+  height: 24px;
+  background: #00C896;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+.check-circ svg { width: 14px; height: 14px; }
+
+/* Luxury Card */
+.luxury-card { transition: all 0.4s; }
+.luxury-card:hover { transform: translateY(-8px); border-color: var(--clr-primary); }
+.luxury-card strong { display: block; font-size: 1.2rem; color: var(--clr-light-text); margin-bottom: 12px; }
+.luxury-card .sub { color: var(--clr-light-muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* Role Cards */
+.role-card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.role-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 200, 150, 0.1);
+  color: var(--clr-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.role-icon svg { width: 28px; height: 28px; }
+.role-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--clr-light-text); margin-bottom: 16px; }
+.role-card p { font-size: 1rem; color: var(--clr-light-muted); line-height: 1.6; }
+
+/* Value Cards */
+.value-card h3 { font-size: 1.4rem; color: var(--clr-light-text); margin-bottom: 16px; }
+.value-card p { font-size: 1.05rem; color: var(--clr-light-muted); line-height: 1.6; }
+
+/* Application Box */
+.apply-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-top: 60px;
+  text-align: left;
+}
+.apply-info {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.info-item strong { display: block; color: #111827; font-size: 1.1rem; margin-bottom: 8px; }
+.info-item p { color: #475569; font-size: 0.95rem; line-height: 1.6; }
+.apply-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.sub-email { color: var(--clr-light-muted); font-size: 0.9rem; font-weight: 500; opacity: 0.7; }
+
+@media (max-width: 1100px) {
+  .hero-disabled { min-height: auto !important; padding-top: 5px !important; padding-bottom: 25px !important; height: auto; align-items: center; }
+  .hero-disabled__inner { padding-top: 0; }
+  .hero-disabled__content-wrap { grid-template-columns: 1fr; text-align: left; position: relative; display: flex; flex-direction: column; padding-top: 0px; }
+  .hero-disabled__content { align-items: flex-start; padding-block: 0px; }
+  /* Careers page: why-card goes below instead of corner icon */
+  .hero-visual-custom {
+    position: relative; top: auto; right: auto;
+    width: 100%; height: auto;
+    display: flex; justify-content: stretch; align-items: stretch;
+    margin-top: 24px;
+  }
+  .why-card { width: 100%; }
+  .hero-disabled__desc { font-size: 1.1rem; max-width: 100%; margin-bottom: 24px; line-height: 1.5; }
+  .hero-disabled__title { font-size: 2.22rem; margin-bottom: 16px; line-height: 1.15; }
+  .hero-disabled__actions { margin-bottom: 24px; }
+  /* Apply box stacks vertically */
+  .apply-box { flex-direction: column; gap: 32px; align-items: center; }
+  .apply-info { max-width: 100%; }
+  .card-glass { padding: 40px 20px !important; border-radius: 24px !important; }
+}
+</style>
