@@ -365,13 +365,13 @@ const allTopics = Array.from(new Set(insights.flatMap(i => i.topics))).sort();
 </style>
 
 <script>
-  const searchInput = document.getElementById('insight-search');
-  const topicFilter = document.getElementById('topic-filter');
-  const cards = document.querySelectorAll('.insight-card');
+  const searchInput = document.querySelector<HTMLInputElement>('#insight-search');
+  const topicFilter = document.querySelector<HTMLSelectElement>('#topic-filter');
+  const cards = document.querySelectorAll<HTMLElement>('.insight-card');
 
   function filterInsights() {
-    const query = searchInput.value.toLowerCase();
-    const topic = topicFilter.value;
+    const query = searchInput?.value.toLowerCase() ?? '';
+    const topic = topicFilter?.value ?? '';
 
     cards.forEach(card => {
       const title = card.getAttribute('data-title') || '';
