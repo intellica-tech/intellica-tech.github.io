@@ -4,11 +4,11 @@
 
 ## Pages
 
-- [Home](https://intellica-tech.github.io/): Main landing page — capabilities, global impact, products, AI solutions, methodology
-- [Products](https://intellica-tech.github.io/products): Licensed product ecosystem — 9 proprietary products across data models, governance, and AI
-- [Solutions](https://intellica-tech.github.io/solutions): Enterprise data & AI solutions, services, and AI portfolio
-- [About](https://intellica-tech.github.io/about): Company background, values, timeline since 2006
-- [Contact](https://intellica-tech.github.io/contact): Contact information and inquiry form
+- [Home](https://intellica.net/): Main landing page — capabilities, global impact, products, AI solutions, methodology
+- [Products](https://intellica.net/products): Licensed product ecosystem — 9 proprietary products across data models, governance, and AI
+- [Solutions](https://intellica.net/solutions): Enterprise data & AI solutions, services, and AI portfolio
+- [About](https://intellica.net/about): Company background, values, timeline since 2006
+- [Contact](https://intellica.net/contact): Contact information and inquiry form
 
 ## Products
 
@@ -56,4 +56,4 @@
 
 ## Detailed Content
 
-- [Full site content](https://intellica-tech.github.io/llms-full.txt)
+- [Full site content](https://intellica.net/llms-full.txt)
