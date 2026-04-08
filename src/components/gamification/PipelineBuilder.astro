@@ -403,8 +403,8 @@ const destinations = [
     width: 100%;
   }
 
-  /* ── Canvas Nodes ──────────────────────────────── */
-  .pb-node {
+  /* ── Canvas Nodes (JS-generated, need :global) ── */
+  .pb-canvas :global(.pb-node) {
     position: relative;
     display: flex;
     align-items: center;
@@ -422,26 +422,26 @@ const destinations = [
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 
-  .pb-node--source {
+  .pb-canvas :global(.pb-node--source) {
     border-color: var(--clr-secondary);
   }
-  .pb-node--transform {
+  .pb-canvas :global(.pb-node--transform) {
     border-color: var(--clr-primary);
   }
-  .pb-node--destination {
+  .pb-canvas :global(.pb-node--destination) {
     border-color: #8B5CF6;
   }
 
-  .pb-node__icon {
+  .pb-canvas :global(.pb-node__icon) {
     width: 22px;
     height: 22px;
     flex-shrink: 0;
   }
-  .pb-node--source .pb-node__icon { color: var(--clr-secondary); }
-  .pb-node--transform .pb-node__icon { color: var(--clr-primary); }
-  .pb-node--destination .pb-node__icon { color: #8B5CF6; }
+  .pb-canvas :global(.pb-node--source .pb-node__icon) { color: var(--clr-secondary); }
+  .pb-canvas :global(.pb-node--transform .pb-node__icon) { color: var(--clr-primary); }
+  .pb-canvas :global(.pb-node--destination .pb-node__icon) { color: #8B5CF6; }
 
-  .pb-node__name {
+  .pb-canvas :global(.pb-node__name) {
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -449,7 +449,7 @@ const destinations = [
     line-height: 1.2;
   }
 
-  .pb-node__remove {
+  .pb-canvas :global(.pb-node__remove) {
     position: absolute;
     top: -8px;
     right: -8px;
@@ -472,12 +472,12 @@ const destinations = [
     z-index: 3;
   }
 
-  .pb-node__remove:hover {
+  .pb-canvas :global(.pb-node__remove:hover) {
     background: #dc2626;
     transform: scale(1.15);
   }
 
-  @keyframes pb-node-in {
+  :global(@keyframes pb-node-in) {
     from {
       opacity: 0;
       transform: scale(0.85) translateY(8px);
@@ -509,27 +509,27 @@ const destinations = [
     display: none;
   }
 
-  /* ── SVG Connections ───────────────────────────── */
-  .pb-conn {
+  /* ── SVG Connections (JS-generated, need :global) */
+  .pb-canvas :global(.pb-conn) {
     fill: none;
     stroke: rgba(0, 0, 0, 0.12);
     stroke-width: 2;
     transition: stroke 0.3s ease;
   }
 
-  .pb-conn--running {
+  .pb-canvas :global(.pb-conn--running) {
     stroke: url(#pb-grad-conn);
     stroke-width: 2.5;
   }
 
-  /* ── Data Particles ────────────────────────────── */
-  .pb-particle {
+  /* ── Data Particles (JS-generated, need :global) */
+  .pb-canvas :global(.pb-particle) {
     fill: var(--clr-primary);
     r: 4;
     opacity: 0;
   }
 
-  .pb-particle--running {
+  .pb-canvas :global(.pb-particle--running) {
     opacity: 1;
   }
 
@@ -583,13 +583,13 @@ const destinations = [
 
   /* ── Reduced motion ────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
-    .pb-node {
+    .pb-canvas :global(.pb-node) {
       animation: none;
     }
     .pb-success__inner {
       animation: none;
     }
-    .pb-particle--running {
+    .pb-canvas :global(.pb-particle--running) {
       opacity: 0;
     }
   }
@@ -614,7 +614,7 @@ const destinations = [
       min-height: auto;
     }
 
-    .pb-node {
+    .pb-canvas :global(.pb-node) {
       width: 100%;
       max-width: 200px;
     }
