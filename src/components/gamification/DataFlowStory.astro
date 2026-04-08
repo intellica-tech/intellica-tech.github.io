@@ -67,24 +67,24 @@ const stages = [
     </div>
 
     <!-- Pipeline -->
-    <div class="dfs-pipeline">
+    <div class="dfs-pipeline" aria-label="Data pipeline stages" role="list">
       <!-- Vertical connector -->
-      <div class="dfs-connector">
+      <div class="dfs-connector" aria-hidden="true">
         <div class="dfs-connector__track"></div>
         <div class="dfs-connector__fill"></div>
       </div>
 
       <!-- Stages -->
       {stages.map((stage, index) => (
-        <div class="dfs-stage" data-stage-index={index}>
+        <div class="dfs-stage" data-stage-index={index} role="listitem">
           <div class="dfs-stage__icon-wrap">
             <div class="dfs-stage__icon" set:html={stage.icon} />
             {/* Particles */}
-            <span class="dfs-particle dfs-particle--1" />
-            <span class="dfs-particle dfs-particle--2" />
-            <span class="dfs-particle dfs-particle--3" />
-            <span class="dfs-particle dfs-particle--4" />
-            <span class="dfs-particle dfs-particle--5" />
+            <span class="dfs-particle dfs-particle--1" aria-hidden="true" />
+            <span class="dfs-particle dfs-particle--2" aria-hidden="true" />
+            <span class="dfs-particle dfs-particle--3" aria-hidden="true" />
+            <span class="dfs-particle dfs-particle--4" aria-hidden="true" />
+            <span class="dfs-particle dfs-particle--5" aria-hidden="true" />
           </div>
           <div class="dfs-stage__content">
             <span class="dfs-stage__label">{stage.label}</span>
@@ -230,8 +230,8 @@ const stages = [
   .dfs-stage.active .dfs-particle--5 { animation-delay: 1.6s; }
 
   @keyframes dfs-pulse {
-    0%, 100% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 0.8; transform: scale(1.2); }
+    0%, 100% { opacity: 0; scale: 0.5; }
+    50% { opacity: 0.8; scale: 1.2; }
   }
 
   /* ── Stage content ── */
@@ -315,6 +315,21 @@ const stages = [
       margin-top: 40px;
     }
   }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .dfs-stage {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .dfs-stage.active .dfs-particle {
+      animation: none;
+    }
+    .dfs-connector__fill {
+      transition: none;
+    }
+  }
 </style>
 
 <script>
@@ -334,6 +349,7 @@ const stages = [
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            observer.unobserve(entry.target);
           }
         });
 
@@ -352,6 +368,11 @@ const stages = [
             : 0;
           const clamped = Math.min(Math.max(percentage, 0), 100);
           (fill as HTMLElement).style.height = clamped + '%';
+        }
+
+        // Disconnect observer when all stages are active
+        if (activeCount === stageCount) {
+          observer.disconnect();
         }
       },
       {
