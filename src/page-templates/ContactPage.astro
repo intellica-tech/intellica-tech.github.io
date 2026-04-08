@@ -332,7 +332,13 @@ select.form-input {
 </style>
 
 <script is:inline>
-  // ── Mode Toggle ──────────────────────────
+  // ── Smart Mode Selection ──────────────────
+  // Logic:
+  //   ?mode=classic → always classic
+  //   ?mode=fun     → always fun
+  //   no param + referrer is same site → classic (user came from a CTA)
+  //   no param + referrer empty/external → fun (direct visit)
+  //   Toggle always available to switch manually
   (function() {
     var funModeContainer = document.getElementById('fun-mode-container');
     var classicMode = document.getElementById('classic-mode');
@@ -349,6 +355,29 @@ select.form-input {
       if (funModeContainer) funModeContainer.style.display = 'block';
     }
 
+    // Determine initial mode
+    var params = new URLSearchParams(window.location.search);
+    var modeParam = params.get('mode');
+
+    if (modeParam === 'classic') {
+      showClassic();
+    } else if (modeParam === 'fun') {
+      showFun();
+    } else {
+      // No explicit param — check referrer
+      var referrer = document.referrer;
+      var isSameSite = referrer && (
+        referrer.indexOf('intellica.net') !== -1 ||
+        referrer.indexOf(window.location.host) !== -1
+      );
+      if (isSameSite) {
+        showClassic();
+      } else {
+        showFun();
+      }
+    }
+
+    // Manual toggle
     if (switchToClassic) {
       switchToClassic.addEventListener('click', showClassic);
     }
