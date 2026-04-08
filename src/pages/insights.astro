@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ReadingPaths from '../components/gamification/ReadingPaths.astro';
 
 const siteUrl = "https://intellica.net";
 const breadcrumbs = [{ name: "Insights", url: `${siteUrl}/insights` }];
@@ -172,6 +173,9 @@ const allTopics = Array.from(new Set(insights.flatMap(i => i.topics))).sort();
   .hero-disabled__actions { margin-bottom: 24px; }
 }
 </style>
+
+  <!-- READING PATHS -->
+  <ReadingPaths />
 
   <!-- FEATURED -->
   <section class="section section--white">
