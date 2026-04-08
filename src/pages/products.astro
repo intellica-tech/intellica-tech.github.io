@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProductFitWizard from '../components/gamification/ProductFitWizard.astro';
 
 const siteUrl = "https://intellica.net";
 const breadcrumbs = [{ name: "Products", url: `${siteUrl}/products` }];
@@ -92,6 +93,8 @@ const productsSchema = {
     .hero-disabled__actions { margin-bottom: 24px; }
   }
 </style>
+
+  <ProductFitWizard />
 
   <!-- Data Models -->
   <section class="section section--white" id="data-models">
