@@ -1,0 +1,922 @@
+---
+/**
+ * ChallengeArena.astro
+ * Mini SQL challenges for academy candidates.
+ * Five progressive challenges with keyword-based validation,
+ * styled code editor, table previews, timer, and celebration animation.
+ */
+
+const challenges = [
+  {
+    id: 1,
+    title: "Select all customers from Istanbul",
+    tables: [
+      {
+        name: "customers",
+        columns: ["id", "name", "city", "email"],
+        rows: [
+          ["1", "Ayse Yilmaz", "Istanbul", "ayse@mail.com"],
+          ["2", "Mehmet Kaya", "Ankara", "mehmet@mail.com"],
+          ["3", "Elif Demir", "Istanbul", "elif@mail.com"],
+          ["4", "Can Ozturk", "Izmir", "can@mail.com"],
+        ],
+      },
+    ],
+    keywords: ["SELECT", "FROM", "customers", "WHERE", "city", "Istanbul"],
+    hint: "Use SELECT ... FROM ... WHERE ...",
+  },
+  {
+    id: 2,
+    title: "Find total sales per region",
+    tables: [
+      {
+        name: "orders",
+        columns: ["id", "region", "amount", "date"],
+        rows: [
+          ["1", "Marmara", "1500", "2025-01-15"],
+          ["2", "Marmara", "2300", "2025-02-20"],
+          ["3", "Central", "900", "2025-03-10"],
+          ["4", "Aegean", "1800", "2025-04-05"],
+        ],
+      },
+    ],
+    keywords: ["SELECT", "region", "SUM", "amount", "FROM", "orders", "GROUP BY", "region"],
+    hint: "Use GROUP BY with an aggregate function",
+  },
+  {
+    id: 3,
+    title: "Join orders with customers",
+    tables: [
+      {
+        name: "customers",
+        columns: ["id", "name", "city"],
+        rows: [
+          ["1", "Ayse Yilmaz", "Istanbul"],
+          ["2", "Mehmet Kaya", "Ankara"],
+          ["3", "Elif Demir", "Istanbul"],
+          ["4", "Can Ozturk", "Izmir"],
+        ],
+      },
+      {
+        name: "orders",
+        columns: ["id", "customer_id", "region", "amount"],
+        rows: [
+          ["1", "1", "Marmara", "1500"],
+          ["2", "3", "Marmara", "2300"],
+          ["3", "2", "Central", "900"],
+          ["4", "4", "Aegean", "1800"],
+        ],
+      },
+    ],
+    keywords: ["SELECT", "FROM", "customers", "JOIN", "orders", "ON", "customer_id"],
+    hint: "Use JOIN ... ON to combine tables",
+  },
+  {
+    id: 4,
+    title: "Find top 3 products by revenue",
+    tables: [
+      {
+        name: "products",
+        columns: ["id", "name", "revenue"],
+        rows: [
+          ["1", "Widget A", "45000"],
+          ["2", "Widget B", "78000"],
+          ["3", "Widget C", "23000"],
+          ["4", "Widget D", "91000"],
+          ["5", "Widget E", "56000"],
+        ],
+      },
+    ],
+    keywords: ["SELECT", "FROM", "products", "ORDER BY", "revenue", "DESC", "LIMIT", "3"],
+    hint: "Use ORDER BY ... DESC with LIMIT",
+  },
+  {
+    id: 5,
+    title: "Calculate running total of daily sales",
+    tables: [
+      {
+        name: "daily_sales",
+        columns: ["date", "amount"],
+        rows: [
+          ["2025-01-01", "1200"],
+          ["2025-01-02", "800"],
+          ["2025-01-03", "1500"],
+          ["2025-01-04", "950"],
+        ],
+      },
+    ],
+    keywords: ["SELECT", "SUM", "amount", "OVER", "ORDER BY", "date"],
+    hint: "Use a window function: SUM() OVER(ORDER BY ...)",
+  },
+];
+
+const challengeDataJSON = JSON.stringify(challenges);
+---
+
+<section class="section challenge-arena" id="challenge-arena">
+  <div class="container">
+    <div class="text-center anim-fade-up">
+      <div class="section-label" style="margin-inline:auto;">TEST YOUR SKILLS</div>
+      <h2 class="section-title">SQL <span class="grad-text">Challenge Arena</span></h2>
+      <p class="challenge-arena__sub">
+        Put your SQL knowledge to the test with five progressive challenges.
+        Write queries, get instant feedback, and prove you are ready for the academy.
+      </p>
+    </div>
+
+    <div class="challenge-arena__card anim-fade-up" id="ca-card">
+      <!-- Header bar -->
+      <div class="ca-header">
+        <div class="ca-counter" id="ca-counter" aria-live="polite">Challenge 1 of 5</div>
+        <div class="ca-timer" id="ca-timer" aria-label="Elapsed time">00:00</div>
+      </div>
+
+      <!-- Challenge title -->
+      <h3 class="ca-title" id="ca-title"></h3>
+
+      <!-- Table previews -->
+      <div class="ca-tables" id="ca-tables"></div>
+
+      <!-- Code editor -->
+      <div class="ca-editor-wrap">
+        <div class="ca-editor-label">Your SQL Query</div>
+        <textarea
+          id="ca-editor"
+          class="ca-editor"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          aria-label="SQL query editor"
+          placeholder="-- Write your SQL query here..."
+          rows="5"
+        ></textarea>
+      </div>
+
+      <!-- Actions -->
+      <div class="ca-actions">
+        <button class="btn btn-primary btn-pill ca-run-btn" id="ca-run" type="button">
+          Run Query
+        </button>
+        <button class="btn btn-ghost ca-hint-btn" id="ca-hint" type="button">
+          Show Hint
+        </button>
+      </div>
+
+      <!-- Feedback -->
+      <div class="ca-feedback" id="ca-feedback" aria-live="assertive"></div>
+
+      <!-- Next button (hidden by default) -->
+      <button class="btn btn-primary btn-pill ca-next-btn" id="ca-next" type="button" style="display:none;">
+        Next Challenge &rarr;
+      </button>
+    </div>
+
+    <!-- Completion screen (hidden by default) -->
+    <div class="ca-completion anim-fade-up" id="ca-completion" style="display:none;" aria-live="polite">
+      <div class="ca-particles" id="ca-particles"></div>
+      <div class="ca-completion-inner">
+        <div class="ca-trophy">&#9733;</div>
+        <h3 class="ca-completion-title">Challenge Complete!</h3>
+        <p class="ca-completion-score" id="ca-score"></p>
+        <p class="ca-completion-time" id="ca-final-time"></p>
+        <p class="ca-completion-msg">
+          You have demonstrated solid SQL skills. Take the next step and apply to the Intellica Academy.
+        </p>
+        <a href="/contact" class="btn btn-primary btn-pill btn-lg ca-apply-btn">Apply to the Academy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Section ── */
+  .challenge-arena {
+    background: linear-gradient(180deg, var(--clr-dark-2) 0%, #0a0f1f 100%);
+    color: var(--clr-text);
+    overflow: hidden;
+  }
+
+  .challenge-arena__sub {
+    text-align: center;
+    color: var(--clr-muted);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 640px;
+    margin-inline: auto;
+    margin-bottom: 48px;
+  }
+
+  /* ── Card ── */
+  .challenge-arena__card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    max-width: 820px;
+    margin-inline: auto;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ── Header ── */
+  .ca-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  .ca-counter {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--clr-primary);
+  }
+
+  .ca-timer {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--clr-muted);
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--clr-border);
+  }
+
+  /* ── Challenge title ── */
+  .ca-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  /* ── Table preview ── */
+  .ca-tables {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .ca-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ca-table-name {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-primary);
+    margin-bottom: 8px;
+  }
+
+  .ca-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .ca-table th {
+    background: rgba(0, 200, 150, 0.1);
+    color: var(--clr-primary);
+    font-weight: 700;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 200, 150, 0.15);
+    white-space: nowrap;
+  }
+
+  .ca-table td {
+    padding: 6px 12px;
+    border: 1px solid var(--clr-border);
+    color: var(--clr-muted);
+    white-space: nowrap;
+  }
+
+  .ca-table tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  /* ── Editor ── */
+  .ca-editor-wrap {
+    margin-bottom: 20px;
+  }
+
+  .ca-editor-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-muted);
+    margin-bottom: 8px;
+  }
+
+  .ca-editor {
+    width: 100%;
+    min-height: 120px;
+    padding: 16px;
+    background: #1e1e2e;
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    outline: none;
+  }
+
+  .ca-editor:focus {
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.15);
+  }
+
+  .ca-editor--correct {
+    border-color: #22c55e;
+    color: #86efac;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+  }
+
+  .ca-editor--error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  }
+
+  /* ── Actions ── */
+  .ca-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .ca-run-btn {
+    min-width: 140px;
+  }
+
+  .ca-hint-btn {
+    font-size: 0.82rem;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    color: var(--clr-muted);
+  }
+
+  .ca-hint-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+
+  .ca-next-btn {
+    margin-top: 16px;
+  }
+
+  /* ── Feedback ── */
+  .ca-feedback {
+    min-height: 24px;
+    margin-bottom: 4px;
+  }
+
+  .ca-feedback-msg {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .ca-feedback-msg--correct {
+    background: rgba(34, 197, 94, 0.1);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .ca-feedback-msg--error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .ca-feedback-msg--hint {
+    background: rgba(251, 191, 36, 0.1);
+    color: #fde68a;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 0.88rem;
+  }
+
+  .ca-checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #22c55e;
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 20px;
+    text-align: center;
+    font-weight: 900;
+    flex-shrink: 0;
+    animation: ca-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes ca-pop {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+
+  /* ── Completion ── */
+  .ca-completion {
+    position: relative;
+    max-width: 820px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .ca-completion-inner {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 60px 40px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .ca-trophy {
+    font-size: 4rem;
+    color: #fbbf24;
+    margin-bottom: 16px;
+    animation: ca-trophy-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes ca-trophy-glow {
+    0% { text-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+    100% { text-shadow: 0 0 40px rgba(251, 191, 36, 0.6); }
+  }
+
+  .ca-completion-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .ca-completion-score {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--clr-primary);
+    margin-bottom: 8px;
+  }
+
+  .ca-completion-time {
+    font-size: 0.95rem;
+    color: var(--clr-muted);
+    margin-bottom: 24px;
+  }
+
+  .ca-completion-msg {
+    font-size: 1.05rem;
+    color: var(--clr-muted);
+    max-width: 480px;
+    margin-inline: auto;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .ca-apply-btn {
+    display: inline-flex;
+  }
+
+  /* ── Particles ── */
+  .ca-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .ca-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ca-confetti 3s ease-out forwards;
+  }
+
+  @keyframes ca-confetti {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(400px) rotate(720deg) scale(0.2);
+    }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .challenge-arena__card {
+      padding: 24px 16px;
+      border-radius: var(--radius-md);
+    }
+
+    .ca-header {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .ca-title {
+      font-size: 1.1rem;
+    }
+
+    .ca-editor {
+      font-size: 0.82rem;
+      min-height: 100px;
+    }
+
+    .ca-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .ca-run-btn,
+    .ca-hint-btn {
+      width: 100%;
+    }
+
+    .ca-completion-inner {
+      padding: 40px 20px;
+    }
+
+    .ca-completion-title {
+      font-size: 1.4rem;
+    }
+
+    .ca-trophy {
+      font-size: 3rem;
+    }
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .ca-checkmark {
+      animation: none;
+    }
+    .ca-particle {
+      animation: none;
+      display: none;
+    }
+    .ca-trophy {
+      animation: none;
+    }
+    @keyframes ca-pop {
+      from, to { transform: scale(1); }
+    }
+    @keyframes ca-confetti {
+      from, to { opacity: 0; }
+    }
+    @keyframes ca-trophy-glow {
+      from, to { text-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+    }
+  }
+</style>
+
+<script define:vars={{ challengeDataJSON }}>
+  (function () {
+    var challenges = JSON.parse(challengeDataJSON);
+    var currentIndex = 0;
+    var score = 0;
+    var timerInterval = null;
+    var timerStarted = false;
+    var elapsedSeconds = 0;
+    var challengeSolved = false;
+
+    // DOM references
+    var card = document.getElementById("ca-card");
+    var counter = document.getElementById("ca-counter");
+    var timer = document.getElementById("ca-timer");
+    var title = document.getElementById("ca-title");
+    var tables = document.getElementById("ca-tables");
+    var editor = document.getElementById("ca-editor");
+    var runBtn = document.getElementById("ca-run");
+    var hintBtn = document.getElementById("ca-hint");
+    var feedback = document.getElementById("ca-feedback");
+    var nextBtn = document.getElementById("ca-next");
+    var completion = document.getElementById("ca-completion");
+    var scoreEl = document.getElementById("ca-score");
+    var finalTimeEl = document.getElementById("ca-final-time");
+    var particlesEl = document.getElementById("ca-particles");
+
+    function formatTime(s) {
+      var m = Math.floor(s / 60);
+      var sec = s % 60;
+      return (m < 10 ? "0" + m : m) + ":" + (sec < 10 ? "0" + sec : sec);
+    }
+
+    function startTimer() {
+      if (timerStarted) return;
+      timerStarted = true;
+      timerInterval = setInterval(function () {
+        elapsedSeconds++;
+        timer.textContent = formatTime(elapsedSeconds);
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    // Build table preview using createElement
+    function buildTablePreview(tableData) {
+      var wrap = document.createElement("div");
+      wrap.className = "ca-table-wrap";
+
+      var nameEl = document.createElement("div");
+      nameEl.className = "ca-table-name";
+      nameEl.textContent = tableData.name;
+      wrap.appendChild(nameEl);
+
+      var table = document.createElement("table");
+      table.className = "ca-table";
+      table.setAttribute("role", "table");
+      table.setAttribute("aria-label", tableData.name + " table preview");
+
+      // thead
+      var thead = document.createElement("thead");
+      var headerRow = document.createElement("tr");
+      tableData.columns.forEach(function (col) {
+        var th = document.createElement("th");
+        th.setAttribute("scope", "col");
+        th.textContent = col;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // tbody
+      var tbody = document.createElement("tbody");
+      tableData.rows.forEach(function (row) {
+        var tr = document.createElement("tr");
+        row.forEach(function (cell) {
+          var td = document.createElement("td");
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      wrap.appendChild(table);
+      return wrap;
+    }
+
+    // Render current challenge
+    function renderChallenge() {
+      var ch = challenges[currentIndex];
+      challengeSolved = false;
+
+      counter.textContent = "Challenge " + (currentIndex + 1) + " of " + challenges.length;
+      title.textContent = ch.title;
+
+      // Clear tables
+      while (tables.firstChild) {
+        tables.removeChild(tables.firstChild);
+      }
+      ch.tables.forEach(function (t) {
+        tables.appendChild(buildTablePreview(t));
+      });
+
+      // Reset editor
+      editor.value = "";
+      editor.className = "ca-editor";
+      editor.removeAttribute("readonly");
+
+      // Clear feedback
+      while (feedback.firstChild) {
+        feedback.removeChild(feedback.firstChild);
+      }
+
+      // Hide next button
+      nextBtn.style.display = "none";
+
+      // Show run / hint buttons
+      runBtn.style.display = "";
+      hintBtn.style.display = "";
+
+      // Focus editor
+      requestAnimationFrame(function () {
+        editor.focus();
+      });
+    }
+
+    // Validate user answer against expected keywords
+    function validate(userInput, keywords) {
+      var upper = userInput.toUpperCase().replace(/\s+/g, " ");
+      // Multi-word keywords like "GROUP BY" and "ORDER BY" should be checked as phrases
+      for (var i = 0; i < keywords.length; i++) {
+        var kw = keywords[i].toUpperCase();
+        if (upper.indexOf(kw) === -1) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Show feedback message
+    function showFeedback(type, text) {
+      var msg = document.createElement("div");
+      msg.className = "ca-feedback-msg ca-feedback-msg--" + type;
+
+      if (type === "correct") {
+        var check = document.createElement("span");
+        check.className = "ca-checkmark";
+        check.textContent = "\u2713";
+        msg.appendChild(check);
+      }
+
+      var span = document.createElement("span");
+      span.textContent = text;
+      msg.appendChild(span);
+
+      // For error, append to existing feedback; for correct, clear first
+      if (type === "correct") {
+        while (feedback.firstChild) {
+          feedback.removeChild(feedback.firstChild);
+        }
+      }
+      feedback.appendChild(msg);
+    }
+
+    // Show hint
+    function showHint() {
+      var ch = challenges[currentIndex];
+      // Check if hint is already shown
+      var existing = feedback.querySelector(".ca-feedback-msg--hint");
+      if (existing) return;
+
+      var msg = document.createElement("div");
+      msg.className = "ca-feedback-msg ca-feedback-msg--hint";
+      var span = document.createElement("span");
+      span.textContent = "Hint: " + ch.hint;
+      msg.appendChild(span);
+      feedback.appendChild(msg);
+    }
+
+    // Create confetti particles
+    function createParticles() {
+      var colors = ["#00C896", "#009FE3", "#fbbf24", "#ef4444", "#a78bfa", "#34d399"];
+      var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) return;
+
+      for (var i = 0; i < 40; i++) {
+        var p = document.createElement("div");
+        p.className = "ca-particle";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = -10 + Math.random() * 20 + "%";
+        p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        p.style.width = (4 + Math.random() * 8) + "px";
+        p.style.height = p.style.width;
+        p.style.animationDelay = Math.random() * 1.5 + "s";
+        p.style.animationDuration = (2 + Math.random() * 2) + "s";
+        particlesEl.appendChild(p);
+      }
+    }
+
+    // Show completion screen
+    function showCompletion() {
+      stopTimer();
+      card.style.display = "none";
+      completion.style.display = "";
+
+      scoreEl.textContent = score + " out of " + challenges.length + " correct";
+      finalTimeEl.textContent = "Completed in " + formatTime(elapsedSeconds);
+
+      createParticles();
+    }
+
+    // Handle run button
+    runBtn.addEventListener("click", function () {
+      if (challengeSolved) return;
+
+      var userInput = editor.value.trim();
+      if (!userInput) {
+        // Clear old error feedback
+        while (feedback.firstChild) {
+          feedback.removeChild(feedback.firstChild);
+        }
+        showFeedback("error", "Please write a SQL query before running.");
+        editor.className = "ca-editor ca-editor--error";
+        return;
+      }
+
+      var ch = challenges[currentIndex];
+      var isCorrect = validate(userInput, ch.keywords);
+
+      if (isCorrect) {
+        challengeSolved = true;
+        score++;
+        editor.className = "ca-editor ca-editor--correct";
+        editor.setAttribute("readonly", "true");
+        showFeedback("correct", "Correct! Well done.");
+
+        // Show next or complete
+        if (currentIndex < challenges.length - 1) {
+          nextBtn.style.display = "";
+          nextBtn.focus();
+        } else {
+          // Last challenge - show completion after brief delay
+          setTimeout(showCompletion, 1200);
+        }
+
+        // Hide run/hint buttons
+        runBtn.style.display = "none";
+        hintBtn.style.display = "none";
+      } else {
+        editor.className = "ca-editor ca-editor--error";
+        // Clear old feedback
+        while (feedback.firstChild) {
+          feedback.removeChild(feedback.firstChild);
+        }
+        showFeedback("error", "Not quite right. Check the expected keywords and try again.");
+        showHint();
+      }
+    });
+
+    // Handle hint button
+    hintBtn.addEventListener("click", function () {
+      showHint();
+    });
+
+    // Handle next button
+    nextBtn.addEventListener("click", function () {
+      currentIndex++;
+      renderChallenge();
+    });
+
+    // Start timer on first keypress in editor
+    editor.addEventListener("input", function () {
+      startTimer();
+    });
+
+    // Handle Enter key (Ctrl+Enter or Cmd+Enter to run)
+    editor.addEventListener("keydown", function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        runBtn.click();
+      }
+    });
+
+    // Initialize first challenge
+    renderChallenge();
+
+    // IntersectionObserver for fade-up animations within this section
+    var section = document.getElementById("challenge-arena");
+    if (section) {
+      var animEls = section.querySelectorAll(".anim-fade-up");
+      if (animEls.length && "IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        animEls.forEach(function (el) {
+          observer.observe(el);
+        });
+      }
+    }
+  })();
+</script>
