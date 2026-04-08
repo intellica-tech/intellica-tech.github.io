@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 
 const siteUrl = "https://intellica-tech.github.io";
 
@@ -127,7 +125,7 @@ const websiteSchema = {
       </div>
       <!-- MAP -->
       <div class="map-wrap anim-fade-up">
-        <img alt="Global footprint" class="map-image" src="/assets/images/map/world-impact-map.png" />
+        <img alt="Global footprint" class="map-image" src="/assets/images/map/world-impact-map.png" loading="lazy" />
         <svg aria-hidden="true" class="map-overlay" preserveAspectRatio="none" viewBox="0 0 1200 520">
           <path class="conn" d="M108,255 C300,180 400,140 500,137" /> <!-- Seattle to London -->
           <path class="conn" d="M500,137 C530,150 550,165 573,172" /> <!-- London to Tirana -->
@@ -183,30 +181,30 @@ const websiteSchema = {
         </p>
       </div>
       <div class="logo-grid anim-fade-up">
-        <a class="logo-tile logo-tile--lg" aria-label="Ministry of Interior"><img alt="Ministry of Interior" src="/assets/images/logos/InteriorMinistryTR.png" /></a>
-        <a class="logo-tile logo-tile--lg" aria-label="EGM"><img alt="EGM" src="/assets/images/logos/egm_logo2.png" /></a>
-        <a class="logo-tile logo-tile--lg" aria-label="SGK"><img alt="SGK" src="/assets/images/logos/SGKLOGOTYPE-RENKLI.svg" /></a>
-        <a class="logo-tile logo-tile--lg" aria-label="TCDD"><img alt="TCDD" src="/assets/images/logos/TCDD_Taşımacılık_Logo.png" /></a>
-        <a class="logo-tile" aria-label="Akbank"><img alt="Akbank" src="/assets/images/logos/Akbank_logo.svg" /></a>
-        <a class="logo-tile" aria-label="Fibabanka"><img alt="Fibabanka" src="/assets/images/logos/Fibabanka.png" /></a>
-        <a class="logo-tile" aria-label="ING"><img alt="ING" src="/assets/images/logos/ING.png" /></a>
-        <a class="logo-tile" aria-label="Odeabank"><img alt="Odeabank" src="/assets/images/logos/Odeabank_logo.png" /></a>
-        <a class="logo-tile" aria-label="TEB"><img alt="TEB" src="/assets/images/logos/TEB_LOGO.png" /></a>
-        <a class="logo-tile" aria-label="DenizBank"><img alt="DenizBank" src="/assets/images/logos/DenizBank_logo.svg (1).png" /></a>
-        <a class="logo-tile" aria-label="TBI Bank"><img alt="TBI Bank" src="/assets/images/logos/tbi-bank.png" /></a>
-        <a class="logo-tile" aria-label="Birbank"><img alt="Birbank" src="/assets/images/logos/birbank..svg" /></a>
-        <a class="logo-tile" aria-label="Yapı Kredi"><img alt="Yapı Kredi" src="/assets/images/logos/Yapı_kredi_logo.png" /></a>
-        <a class="logo-tile" aria-label="Vodafone"><img alt="Vodafone" src="/assets/images/logos/Vodafone_logo_2017.png" /></a>
-        <a class="logo-tile" aria-label="Turkcell"><img alt="Turkcell" src="/assets/images/logos/Turkcell_logo.png" /></a>
-        <a class="logo-tile" aria-label="Türk Telekom"><img alt="Türk Telekom" src="/assets/images/logos/TURKTELEKOM.png" /></a>
-        <a class="logo-tile" aria-label="Zain"><img alt="Zain" src="/assets/images/logos/ZAINr.png" /></a>
-        <a class="logo-tile" aria-label="T-Mobile"><img alt="T-Mobile" src="/assets/images/logos/TMOBILE.png" /></a>
-        <a class="logo-tile" aria-label="Boyner"><img alt="Boyner" src="/assets/images/logos/Boyner_Logo.jpg" /></a>
-        <a class="logo-tile" aria-label="LC Waikiki"><img alt="LC Waikiki" src="/assets/images/logos/lcw.png" /></a>
-        <a class="logo-tile" aria-label="Allianz"><img alt="Allianz" src="/assets/images/logos/Allianz.svg.png" /></a>
-        <a class="logo-tile" aria-label="Anadolu Sigorta"><img alt="Anadolu Sigorta" src="/assets/images/logos/Anadolu_Sigorta_logo.svg" /></a>
-        <a class="logo-tile" aria-label="Hopi"><img alt="Hopi" src="/assets/images/logos/hopi.png" /></a>
-        <a class="logo-tile" aria-label="Erciyes Anadolu Holding"><img alt="Erciyes Anadolu Holding" src="/assets/images/logos/Erciyes_Anadolu_Holding_logo.svg" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="Ministry of Interior"><img alt="Ministry of Interior" src="/assets/images/logos/InteriorMinistryTR.png" loading="lazy" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="EGM"><img alt="EGM" src="/assets/images/logos/egm_logo2.png" loading="lazy" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="SGK"><img alt="SGK" src="/assets/images/logos/SGKLOGOTYPE-RENKLI.svg" loading="lazy" /></a>
+        <a class="logo-tile logo-tile--lg" aria-label="TCDD"><img alt="TCDD" src="/assets/images/logos/TCDD_Taşımacılık_Logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Akbank"><img alt="Akbank" src="/assets/images/logos/Akbank_logo.svg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Fibabanka"><img alt="Fibabanka" src="/assets/images/logos/Fibabanka.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="ING"><img alt="ING" src="/assets/images/logos/ING.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Odeabank"><img alt="Odeabank" src="/assets/images/logos/Odeabank_logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="TEB"><img alt="TEB" src="/assets/images/logos/TEB_LOGO.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="DenizBank"><img alt="DenizBank" src="/assets/images/logos/DenizBank_logo.svg (1).png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="TBI Bank"><img alt="TBI Bank" src="/assets/images/logos/tbi-bank.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Birbank"><img alt="Birbank" src="/assets/images/logos/birbank..svg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Yapı Kredi"><img alt="Yapı Kredi" src="/assets/images/logos/Yapı_kredi_logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Vodafone"><img alt="Vodafone" src="/assets/images/logos/Vodafone_logo_2017.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Turkcell"><img alt="Turkcell" src="/assets/images/logos/Turkcell_logo.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Türk Telekom"><img alt="Türk Telekom" src="/assets/images/logos/TURKTELEKOM.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Zain"><img alt="Zain" src="/assets/images/logos/ZAINr.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="T-Mobile"><img alt="T-Mobile" src="/assets/images/logos/TMOBILE.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Boyner"><img alt="Boyner" src="/assets/images/logos/Boyner_Logo.jpg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="LC Waikiki"><img alt="LC Waikiki" src="/assets/images/logos/lcw.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Allianz"><img alt="Allianz" src="/assets/images/logos/Allianz.svg.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Anadolu Sigorta"><img alt="Anadolu Sigorta" src="/assets/images/logos/Anadolu_Sigorta_logo.svg" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Hopi"><img alt="Hopi" src="/assets/images/logos/hopi.png" loading="lazy" /></a>
+        <a class="logo-tile" aria-label="Erciyes Anadolu Holding"><img alt="Erciyes Anadolu Holding" src="/assets/images/logos/Erciyes_Anadolu_Holding_logo.svg" loading="lazy" /></a>
       </div>
       <div class="text-center anim-fade-up" style="margin-top: 48px;">
         <a href="/clients" class="btn btn-primary btn-pill btn-lg">View All Clients →</a>
@@ -290,7 +288,7 @@ const websiteSchema = {
           </div>
           <div class="shelf-grid">
             <a href="/products/ifdm" class="premium-card">
-              <div class="card-p-logo"><img alt="IFDM" src="/assets/images/logos/IFDM_logo.png" /></div>
+              <div class="card-p-logo"><img alt="IFDM" src="/assets/images/logos/IFDM_logo.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>IFDM</h4>
                 <p>Standard data model for finance analytics.</p>
@@ -298,7 +296,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/itdm" class="premium-card">
-              <div class="card-p-logo"><img alt="ITDM" src="/assets/images/logos/ITDM_logo.png" /></div>
+              <div class="card-p-logo"><img alt="ITDM" src="/assets/images/logos/ITDM_logo.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>ITDM</h4>
                 <p>Global data model for telecom intelligence.</p>
@@ -306,7 +304,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/hrdm" class="premium-card">
-              <div class="card-p-logo"><img alt="HRDM" src="/assets/images/logos/hrdm.png" /></div>
+              <div class="card-p-logo"><img alt="HRDM" src="/assets/images/logos/hrdm.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>HRDM</h4>
                 <p>Optimized model for HR & workforce analytics.</p>
@@ -324,7 +322,7 @@ const websiteSchema = {
           </div>
           <div class="shelf-grid">
             <a href="/products/icc" class="premium-card">
-              <div class="card-p-logo"><img alt="ICC" src="/assets/images/logos/ıcc.png" /></div>
+              <div class="card-p-logo"><img alt="ICC" src="/assets/images/logos/ıcc.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>ICC</h4>
                 <p>Central data consistency & reconciliation.</p>
@@ -332,7 +330,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/retouch" class="premium-card">
-              <div class="card-p-logo"><img alt="ReTouch" src="/assets/images/logos/retouch.svg" /></div>
+              <div class="card-p-logo"><img alt="ReTouch" src="/assets/images/logos/retouch.svg" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>ReTouch</h4>
                 <p>Validated data entry & metadata management.</p>
@@ -340,7 +338,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/retable" class="premium-card">
-              <div class="card-p-logo"><img alt="Retable" src="/assets/images/logos/retable.png" /></div>
+              <div class="card-p-logo"><img alt="Retable" src="/assets/images/logos/retable.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>Retable</h4>
                 <p>Collaborative no-code application platform.</p>
@@ -348,7 +346,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/orqenta" class="premium-card" target="_blank">
-              <div class="card-p-logo"><img alt="Orqenta" src="/assets/images/logos/orqenta_logo.png" /></div>
+              <div class="card-p-logo"><img alt="Orqenta" src="/assets/images/logos/orqenta_logo.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>Orqenta</h4>
                 <p>Workflow orchestration & distributed job scheduling platform.</p>
@@ -366,7 +364,7 @@ const websiteSchema = {
           </div>
           <div class="shelf-grid">
             <a href="/products/talk-to-your-data" class="premium-card">
-              <div class="card-p-logo"><img alt="Talk To" src="/assets/images/logos/talkto.png" /></div>
+              <div class="card-p-logo"><img alt="Talk To" src="/assets/images/logos/talkto.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>Talk To</h4>
                 <p>Natural language data analyst agent.</p>
@@ -374,7 +372,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/blue-octopus" class="premium-card">
-              <div class="card-p-logo"><img alt="Blue Octopus" src="/assets/images/logos/BLUEOCT_logo.png" /></div>
+              <div class="card-p-logo"><img alt="Blue Octopus" src="/assets/images/logos/BLUEOCT_logo.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>Blue Octopus</h4>
                 <p>Event intelligence & automated response.</p>
@@ -382,7 +380,7 @@ const websiteSchema = {
               <div class="card-p-arrow">→</div>
             </a>
             <a href="/products/var" class="premium-card">
-              <div class="card-p-logo"><img alt="VAR" src="/assets/images/logos/VAR_logo.png" /></div>
+              <div class="card-p-logo"><img alt="VAR" src="/assets/images/logos/VAR_logo.png" loading="lazy" /></div>
               <div class="card-p-content">
                 <h4>VAR</h4>
                 <p>Voice analysis & recognition platform.</p>
