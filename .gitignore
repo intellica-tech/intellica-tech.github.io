@@ -34,3 +34,4 @@ pnpm-debug.log*
 .claude/todos/
 
 .superpowers/brainstorm/
+.playwright-mcp/
