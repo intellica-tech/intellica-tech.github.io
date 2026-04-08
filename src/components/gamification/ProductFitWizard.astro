@@ -247,66 +247,70 @@ const productsJson = JSON.stringify(products);
     margin-bottom: 36px;
   }
 
-  /* ── Result product card ── */
-  .pfw-result-card {
+  /* ── Result product card (JS-generated, needs :global) ── */
+  .pfw-result__list :global(.pfw-result-card) {
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 20px 24px;
     border: 1px solid #E2E8F0;
     border-radius: 16px;
-    background: #F8FAFC;
+    background: #fff;
     text-decoration: none;
     color: inherit;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
   }
-  .pfw-result-card:hover {
+  .pfw-result__list :global(.pfw-result-card:hover) {
     border-color: var(--clr-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 200, 150, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 200, 150, 0.12);
   }
-  .pfw-result-card__rank {
-    width: 36px;
-    height: 36px;
+  .pfw-result__list :global(.pfw-result-card__rank) {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: var(--grad-brand);
     color: #fff;
     font-weight: 800;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .pfw-result-card__info {
+  .pfw-result__list :global(.pfw-result-card__info) {
     flex: 1;
     min-width: 0;
   }
-  .pfw-result-card__name {
-    font-size: 1.1rem;
-    font-weight: 700;
+  .pfw-result__list :global(.pfw-result-card__name) {
+    font-size: 1.15rem;
+    font-weight: 750;
     color: var(--clr-light-text);
     margin-bottom: 2px;
   }
-  .pfw-result-card__tagline {
+  .pfw-result__list :global(.pfw-result-card__tagline) {
     font-size: 0.85rem;
     color: var(--clr-light-muted);
   }
-  .pfw-result-card__match {
-    font-size: 0.85rem;
+  .pfw-result__list :global(.pfw-result-card__match) {
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--clr-primary);
     white-space: nowrap;
     flex-shrink: 0;
+    background: rgba(0, 200, 150, 0.08);
+    padding: 4px 12px;
+    border-radius: 999px;
   }
-  .pfw-result-card__arrow {
-    font-size: 1.2rem;
+  .pfw-result__list :global(.pfw-result-card__arrow) {
+    font-size: 1.3rem;
     color: var(--clr-primary);
-    opacity: 0.4;
-    transition: all 0.2s ease;
+    opacity: 0.3;
+    transition: all 0.25s ease;
     flex-shrink: 0;
   }
-  .pfw-result-card:hover .pfw-result-card__arrow {
+  .pfw-result__list :global(.pfw-result-card:hover .pfw-result-card__arrow) {
     opacity: 1;
     transform: translateX(4px);
   }
@@ -357,7 +361,7 @@ const productsJson = JSON.stringify(products);
       width: 24px;
       height: 24px;
     }
-    .pfw-result-card {
+    .pfw-result__list :global(.pfw-result-card) {
       flex-wrap: wrap;
       gap: 12px;
       padding: 16px;
@@ -374,7 +378,7 @@ const productsJson = JSON.stringify(products);
       animation: none;
     }
     .pfw-option,
-    .pfw-result-card,
+    .pfw-result__list :global(.pfw-result-card),
     .pfw-progress__fill {
       transition: none;
     }
