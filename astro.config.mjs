@@ -33,5 +33,12 @@ export default defineConfig({
         '/blog': '/insights',
         '/business-benefits': '/solutions',
         '/demo': '/contact',
+        '/tr/about-us': '/tr/about',
+        '/tr/our-products': '/tr/products',
+        '/tr/our-services': '/tr/solutions',
+        '/tr/career': '/tr/careers',
+        '/tr/business-benefits': '/tr/solutions',
+        '/tr/privacy-policy': '/tr/privacy',
+        '/tr/cookie-policy': '/tr/cookies',
     },
 });
