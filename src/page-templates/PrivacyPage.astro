@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const breadcrumbs = [
+  { name: t('privacy.breadcrumb'), url: tp('/privacy') }
+];
+---
+
+<Layout
+  title={t('meta.privacy.title')}
+  description={t('meta.privacy.description')}
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+  lang={lang}
+>
+  <section class="section section--white">
+    <div class="container--hero anim-fade-up legal-page">
+      <div class="legal-header">
+        <div class="section-label">{t('privacy.label')}</div>
+        <h1 class="section-title" style="color:var(--clr-light-text);">{t('privacy.title')}<span class="grad-text">{t('privacy.titleHighlight')}</span></h1>
+        <p class="section-sub">{t('privacy.sub')}</p>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-block">
+          <h2>{t('privacy.h1')}</h2>
+          <p>{t('privacy.p1')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('privacy.h2')}</h2>
+          <p>{t('privacy.p2')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('privacy.h3')}</h2>
+          <p>{t('privacy.p3')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('privacy.h4')}</h2>
+          <p>{t('privacy.p4')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('privacy.h5')}</h2>
+          <p>{t('privacy.p5')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('privacy.h6')}</h2>
+          <p>{t('privacy.p6')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .legal-header {
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .legal-block {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
+  .legal-block h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--clr-light-text);
+  }
+
+  .legal-block p {
+    color: var(--clr-light-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>

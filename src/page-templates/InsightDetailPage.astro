@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; slug: string; }
+const { lang, slug } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+// Article data — same for all languages (content is in English)
+const articles = [
+  { slug: "dashboard-guven", title: "Why Trust Decreases as the Number of Dashboards Increases?", desc: "Why does dashboard inflation actually hurt trust? A practical framework exploring definition drift, loss of lineage, and maintenance obesity.", date: "Feb 1, 2026", time: "6 min", topics: ["Data Governance", "Dashboard Governance", "Data Lineage", "Semantic Layer"], content: `<p class="lead">At the beginning of a data-driven transformation, everything starts with a grand promise: "We will democratize data". This promise usually manifests as dashboards spread across every corner of the organization, adorned with colorful graphics and expected to answer every possible question. However, a paradox frequently emerges—especially in large-scale banking, telecom, or energy projects with complex data structures: As the number of dashboards increases, trust in data decreases proportionally.</p><p>We have all witnessed moments where the "active customer" rate appears as 12% on the Marketing Director's dashboard but 8% on the Risk Management dashboard. Since both parties are certain their dashboard reflects the absolute truth, the dashboard ceases to be a decision-support tool and instead becomes a source of information pollution and inter-departmental conflict.</p><div class="callout"><b>Quick summary:</b> Dashboard Inflation: An Illusion of Success? Why uncontrolled growth creates three primary forms of destruction: Metric Drift, Loss of Data Lineage, and Maintenance Obesity.</div><h2>Dashboard Inflation: An Illusion of Success?</h2><p>Reporting requests are often reactive; every new crisis, campaign, or regulation births a new dashboard. This uncontrolled growth creates an unmanageable Dashboard Inflation.</p><h2>The Solution: "Less is More" and Data Governance</h2><p>Increasing the number of dashboards is like adding new windows to a building with a faulty foundation; it doesn't make the structure stronger.</p><h2>Conclusion: More Clarity, Not More Dashboards</h2><p>The purpose of a dashboard is to present data, not to validate it or compensate for a lack of strategy.</p><p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>` },
+  { slug: "manuel-kontroller", title: "Why Manual Controls Are Still Alive: Excel Shelters in the Age of Data", desc: "The real reason behind Excel silos: trust trauma and risk ownership.", date: "Feb 1, 2026", time: "5 min", topics: ["Data Quality", "Reconciliation", "Operational Risk", "Data Lineage"], content: `<p class="lead">In today's modern data landscape, despite multi-million dollar investments in data warehouses, an interesting habit persists at the very heart of operations.</p><div class="callout"><b>Quick summary:</b> Why, in this golden age of data and automation, do manual controls remain a "survival mechanism" for so many companies?</div><h2>The Breaking Point of Trust</h2><p>The deep-seated need for manual control systems usually stems from a "historical error trauma".</p><h2>Conclusion</h2><p>If your critical decisions still rely on local files, it is time to restructure your data strategy.</p><p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>` },
+  { slug: "verinin-nabzi", title: "Data Autopsy or Data Pulse? The Paradigm Shift in Early Warning Systems", desc: "Standard reports are autopsies; true early warning is a data-in-motion discipline.", date: "Feb 1, 2026", time: "6 min", topics: ["Early Warning", "Data Observability", "Anomaly Detection", "Event Correlation"], content: `<p class="lead">In the business world, a familiar ritual unfolds every morning: dashboards fed by massive datasets are opened.</p><div class="callout"><b>Quick summary:</b> Seeking the "Meaningful Signal" Amidst Data Heaps.</div><h2>Seeking the "Meaningful Signal"</h2><p>As companies invest more in data, they ironically begin to drown in it.</p><h2>Conclusion</h2><p>True competency lies in pre-determining when and under what conditions data should "wake you up".</p><p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>` },
+  { slug: "is-analizi", title: "Business Analysis: The \"Reality Filter\" That Determines a Project's Fate", desc: "Success starts before the code.", date: "Feb 1, 2026", time: "7 min", topics: ["Business Analysis", "Scope Management", "Impact Analysis", "CR Process"], content: `<p class="lead">While the success of technology investments is often measured by the modernity of the programming language, field experience shows that a project's true fate is decided long before the first line of code is written.</p><div class="callout"><b>Quick summary:</b> The "Reality Filter" that determines a Project's Fate.</div><h2>The Anatomy of a "Simple Report"</h2><p>In the corporate world, one of the most dangerous phrases is: "We just want a simple report".</p><h2>Conclusion</h2><p>Sustainable success begins at the point where facts are bravely questioned.</p><p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>` },
+  { slug: "rag-ne-zaman-ise-yarar", title: "When Does RAG (Retrieval) Work and When Does It Mislead?", desc: "RAG success depends more on the quality of information access than the model.", date: "Feb 1, 2026", time: "8 min", topics: ["RAG", "GenAI", "Information Retrieval", "Document AI"], content: `<p class="lead">RAG (Retrieval-Augmented Generation) is the most practical way to speak your enterprise's internal knowledge.</p><div class="callout"><b>Quick summary:</b> RAG success is built on 5 pillars: chunking + metadata + relevance + freshness + attribution.</div><h2>When Does RAG Really Work?</h2><p>When your information is across many documents like procedures, contract clauses, runbooks, or FAQs.</p><h2>Five Pillars of Success</h2><p>1) Chunking 2) Metadata 3) Relevance 4) Freshness 5) Attribution</p><p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>` },
+  { slug: "genai-guven-standardi", title: "Establishing a 'Trust Standard' in Enterprise GenAI", desc: "Trust in GenAI is built through processes, measurement, and governance.", date: "Feb 1, 2026", time: "9 min", topics: ["GenAI", "Governance", "Security", "LLM Evaluation"], content: `<p class="lead">In Enterprise GenAI, the real question isn't "how smart is the model?" but "how much can I trust the output?"</p><div class="callout"><b>Quick summary:</b> A trust standard is established through attribution, governed access (RBAC), rigorous evaluation (LLM eval), deep observability, and human-in-the-loop (HITL) workflows.</div><h2>7 Components of the Trust Standard</h2><p>Data Boundaries, Access/RBAC, Attribution, Continuous Evaluation, Guardrails, Observability, and HITL.</p><p class="meta-line"><b>Published:</b> Feb 1, 2026 • <b>Author:</b> Intellica Team</p>` }
+];
+
+const article = articles.find(a => a.slug === slug)!;
+const breadcrumbs = [
+  { name: t('insightsDetail.breadcrumb'), url: tp('/insights') },
+  { name: article.title, url: tp(`/insights/${article.slug}`) }
+];
+
+const relatedArticles = articles.filter(a => a.slug !== article.slug).slice(0, 3);
+
+const titleWords = article.title.split(' ');
+const titleLastWord = titleWords.pop();
+const titleStart = titleWords.join(' ');
+---
+
+<Layout title={`${article.title} | ${t('meta.insightsDetail.titleSuffix')}`} description={article.desc} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
+  <!-- HERO -->
+  <section class="insight-hero noise">
+    <div class="insight-hero-bg"></div>
+    <div class="container relative">
+      <div class="insight-header-meta anim-fade-up">
+        <span class="insight-date">{article.date}</span>
+        <span class="insight-dot"></span>
+        <span class="insight-time">{article.time} {t('insights.library.readSuffix')}</span>
+      </div>
+      <h1 class="insight-title anim-fade-up">{titleStart} <span class="grad-text">{titleLastWord}</span></h1>
+      <div class="insight-header-tags anim-fade-up">
+        {article.topics.map(topic => <span class="header-tag">{topic}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="article-layout">
+        <article class="article-main anim-fade-up">
+          <div class="article-body" set:html={article.content} />
+          <div class="article-footer">
+            <div class="footer-actions">
+              <a href={tp('/insights')} class="btn btn-primary btn-pill">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                {t('insightsDetail.backToAll')}
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <aside class="article-sidebar anim-fade-up">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">{t('insightsDetail.related.title')}</h3>
+            <div class="related-stack">
+              {relatedArticles.map(ra => (
+                <a href={tp(`/insights/${ra.slug}`)} class="related-card">
+                  <h4 class="related-h">{ra.title}</h4>
+                  <p class="related-p">{ra.desc.substring(0, 85)}...</p>
+                  <span class="related-link">{t('insightsDetail.related.readMore')} &rarr;</span>
+                </a>
+              ))}
+            </div>
+            <a href={tp('/insights')} class="btn btn-ghost-dark btn-pill btn-full" style="margin-top: 32px;">{t('insightsDetail.related.exploreLibrary')}</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>{t('insightsDetail.cta.title')}<span class="grad-text">{t('insightsDetail.cta.titleHighlight')}</span></h2>
+        <p>{t('insightsDetail.cta.desc')}</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('insightsDetail.cta.primary')}</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href={tp('/clients')}>{t('insightsDetail.cta.secondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.insight-hero { position: relative; padding: 180px 0 100px; background: linear-gradient(135deg, #162a4d 0%, #020617 100%); color: #fff; overflow: hidden; text-align: center; }
+.insight-hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(0, 200, 150, 0.1), transparent 70%); opacity: 0.4; }
+.relative { position: relative; z-index: 2; }
+.insight-header-meta { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+.insight-date, .insight-time { font-size: 0.8rem; font-weight: 700; color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.1em; }
+.insight-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.insight-title { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; max-width: 1000px; margin-inline: auto; margin-bottom: 40px; letter-spacing: -0.05em; font-weight: 950; color: #fff; }
+.insight-header-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.header-tag { font-size: 0.75rem; font-weight: 600; padding: 6px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; color: rgba(255,255,255,0.8); }
+.article-layout { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: start; }
+.article-main { max-width: 850px; }
+.article-body :global(.lead) { font-size: 1.4rem; line-height: 1.7; color: var(--clr-light-text); margin-bottom: 48px; font-weight: 500; }
+.article-body :global(.callout) { padding: 32px 40px; background: #f8fafc; border-left: 6px solid var(--clr-primary); border-radius: 0 24px 24px 0; margin: 48px 0; font-size: 1.1rem; color: #334155; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
+.article-body :global(h2) { font-size: 2.2rem; margin-top: 64px; margin-bottom: 24px; color: var(--clr-light-text); letter-spacing: -0.02em; }
+.article-body :global(h3) { font-size: 1.5rem; margin-top: 40px; margin-bottom: 20px; color: var(--clr-light-text); }
+.article-body :global(p) { font-size: 1.15rem; line-height: 1.8; color: var(--clr-light-muted); margin-bottom: 24px; }
+.article-body :global(ul), .article-body :global(ol) { margin-bottom: 40px; padding-left: 20px; }
+.article-body :global(li) { font-size: 1.15rem; color: var(--clr-light-muted); margin-bottom: 16px; }
+.article-body :global(b), .article-body :global(strong) { color: var(--clr-light-text); font-weight: 700; }
+.article-body :global(.meta-line) { margin-top: 80px; padding-top: 32px; border-top: 1px solid #e2e8f0; font-size: 0.9rem; color: #94a3b8; }
+.article-footer { margin-top: 100px; padding-top: 48px; border-top: 1px solid #e2e8f0; }
+.footer-actions { display: flex; justify-content: space-between; align-items: center; }
+.sidebar-card { padding: 40px; background: #fff; border: 1px solid #e2e8f0; border-radius: 32px; margin-bottom: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
+.sidebar-title { font-size: 1.4rem; margin-bottom: 32px; color: var(--clr-light-text); }
+.related-stack { display: flex; flex-direction: column; gap: 32px; }
+.related-card { display: block; text-decoration: none; }
+.related-h { font-size: 1.1rem; color: var(--clr-light-text); margin-bottom: 10px; line-height: 1.4; transition: color 0.2s ease; }
+.related-card:hover .related-h { color: var(--clr-primary); }
+.related-p { font-size: 0.9rem; color: var(--clr-light-muted); line-height: 1.6; margin-bottom: 12px; }
+.related-link { font-size: 0.85rem; font-weight: 700; color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.05em; }
+.btn-full { width: 100%; justify-content: center; }
+@media (max-width: 1200px) { .article-layout { grid-template-columns: 1fr; gap: 60px; } .article-sidebar { grid-row: 2; } }
+@media (max-width: 768px) { .insight-hero { padding: 140px 0 60px; } .insight-title { font-size: 2.2rem; } .article-body :global(.lead) { font-size: 1.2rem; } .article-body :global(h2) { font-size: 1.8rem; } }
+</style>

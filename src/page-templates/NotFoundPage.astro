@@ -1,0 +1,303 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const quickLinks = [
+  {
+    title: t('notFound.link.products'),
+    desc: t('notFound.link.productsDesc'),
+    href: tp('/products'),
+  },
+  {
+    title: t('notFound.link.solutions'),
+    desc: t('notFound.link.solutionsDesc'),
+    href: tp('/solutions'),
+  },
+  {
+    title: t('notFound.link.about'),
+    desc: t('notFound.link.aboutDesc'),
+    href: tp('/about'),
+  },
+  {
+    title: t('notFound.link.contact'),
+    desc: t('notFound.link.contactDesc'),
+    href: tp('/contact'),
+  },
+];
+---
+
+<Layout title="Page Not Found | Intellica" description="The page you're looking for doesn't exist. Explore Intellica's data & AI solutions." hideCta={true} lang={lang}>
+
+  <section class="notfound-hero noise">
+    <div class="container notfound-inner">
+
+      <!-- Animated background elements -->
+      <div class="notfound-bg-grid" aria-hidden="true">
+        <div class="grid-line gl-1"></div>
+        <div class="grid-line gl-2"></div>
+        <div class="grid-line gl-3"></div>
+        <div class="grid-line gl-4"></div>
+        <div class="grid-line gl-5"></div>
+      </div>
+
+      <div class="notfound-content anim-fade-up">
+        <div class="notfound-code">
+          <span class="code-digit">4</span>
+          <span class="code-dot">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt="" class="code-logo" />
+          </span>
+          <span class="code-digit">4</span>
+        </div>
+
+        <p class="notfound-tagline">
+          {t('notFound.tagline')} <span class="grad-text">{t('notFound.taglineHighlight')}</span>
+        </p>
+
+        <p class="notfound-desc">{t('notFound.desc')}</p>
+
+        <div class="notfound-actions">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/')}>{t('notFound.backHome')}</a>
+        </div>
+      </div>
+
+      <div class="notfound-links anim-fade-up">
+        <h2 class="notfound-links-title">{t('notFound.quickNav')}</h2>
+        <div class="notfound-grid">
+          {quickLinks.map((link) => (
+            <a href={link.href} class="notfound-card">
+              <div class="notfound-card-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 17l6-7-6-7" stroke="url(#arrow-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <defs>
+                    <linearGradient id="arrow-grad" x1="7" y1="3" x2="13" y2="17" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#00C896"/>
+                      <stop offset="1" stop-color="#009FE3"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="notfound-card-body">
+                <h3>{link.title}</h3>
+                <p>{link.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .notfound-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--clr-dark);
+      position: relative;
+      overflow: hidden;
+      padding-block: 120px 80px;
+    }
+
+    .notfound-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .notfound-bg-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.06;
+    }
+
+    .grid-line {
+      position: absolute;
+      background: var(--grad-brand);
+    }
+
+    .gl-1, .gl-2, .gl-3 {
+      width: 1px;
+      height: 100%;
+      animation: pulse-line 4s ease-in-out infinite;
+    }
+
+    .gl-1 { left: 20%; animation-delay: 0s; }
+    .gl-2 { left: 50%; animation-delay: 1.2s; }
+    .gl-3 { left: 80%; animation-delay: 2.4s; }
+
+    .gl-4, .gl-5 {
+      height: 1px;
+      width: 100%;
+      animation: pulse-line 4s ease-in-out infinite;
+    }
+
+    .gl-4 { top: 30%; animation-delay: 0.6s; }
+    .gl-5 { top: 70%; animation-delay: 1.8s; }
+
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .notfound-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .notfound-code {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .code-digit {
+      font-size: clamp(5rem, 12vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      background: var(--grad-brand);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.9;
+    }
+
+    .code-dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(60px, 12vw, 110px);
+      height: clamp(60px, 12vw, 110px);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .code-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0.7;
+      filter: drop-shadow(0 0 40px rgba(0, 200, 150, 0.3));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+
+    .notfound-tagline {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      color: var(--clr-text);
+      letter-spacing: -0.01em;
+    }
+
+    .notfound-desc {
+      font-size: 1.05rem;
+      color: var(--clr-muted);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .notfound-actions {
+      margin-top: 8px;
+    }
+
+    .notfound-links {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .notfound-links-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .notfound-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .notfound-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .notfound-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(0, 200, 150, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 200, 150, 0.08);
+    }
+
+    .notfound-card-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 200, 150, 0.08);
+      border: 1px solid rgba(0, 200, 150, 0.15);
+      border-radius: var(--radius-sm);
+    }
+
+    .notfound-card-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-text);
+      margin-bottom: 2px;
+    }
+
+    .notfound-card-body p {
+      font-size: 0.85rem;
+      color: var(--clr-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .notfound-hero {
+        padding-block: 100px 100px;
+      }
+
+      .notfound-inner {
+        gap: 48px;
+      }
+
+      .notfound-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .notfound-card {
+        padding: 16px 20px;
+      }
+    }
+  </style>
+</Layout>

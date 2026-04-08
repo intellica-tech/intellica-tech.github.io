@@ -1,0 +1,20 @@
+---
+import InsightDetailPage from '../../../page-templates/InsightDetailPage.astro';
+import { languages, defaultLang, type Lang } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  const slugs = [
+    "dashboard-guven",
+    "manuel-kontroller",
+    "verinin-nabzi",
+    "is-analizi",
+    "rag-ne-zaman-ise-yarar",
+    "genai-guven-standardi"
+  ];
+  const langs = Object.keys(languages).filter(l => l !== defaultLang);
+  return langs.flatMap(lang => slugs.map(slug => ({ params: { lang, slug } })));
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+---
+<InsightDetailPage lang={lang} slug={slug} />

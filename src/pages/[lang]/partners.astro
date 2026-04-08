@@ -1,0 +1,9 @@
+---
+import PartnersPage from '../../page-templates/PartnersPage.astro';
+import { getI18nPaths } from '../../i18n/config';
+import type { Lang } from '../../i18n/config';
+
+export const getStaticPaths = getI18nPaths;
+const { lang } = Astro.params as { lang: Lang };
+---
+<PartnersPage lang={lang} />
