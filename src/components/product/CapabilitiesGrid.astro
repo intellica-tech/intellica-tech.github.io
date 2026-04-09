@@ -18,9 +18,9 @@ const { capabilities } = Astro.props;
     </div>
 
     <div class="grid-3 anim-fade-up" style="gap: 24px;">
-      {capabilities.items.map((cap) => (
+      {capabilities.items.map((cap, i) => (
         <div class="cap-card-modern">
-          <div class="cap-icon-box"><img src="/assets/img/intellica_camlogo_icibos.png" alt="" loading="lazy" /></div>
+          <span class="cap-num">{String(i + 1).padStart(2, '0')}</span>
           <h3>{cap.title}</h3>
           <p>{cap.description}</p>
         </div>
@@ -28,3 +28,14 @@ const { capabilities } = Astro.props;
     </div>
   </div>
 </section>
+
+<style>
+.cap-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(0, 200, 150, 0.15);
+  line-height: 1;
+  margin-bottom: 16px;
+  display: block;
+}
+</style>
