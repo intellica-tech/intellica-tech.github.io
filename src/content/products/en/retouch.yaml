@@ -1,0 +1,192 @@
+slug: "retouch"
+lang: "en"
+name: "ReTouch — Entry Management"
+
+pageTitle: "ReTouch — Reference Data & Entry Management | Intellica"
+pageDescription: >
+  ReTouch: Governed data entry and reference data management; replacing manual
+  processes with validated workflows and full audit trails.
+
+hero:
+  category: "Data Platform & Governance"
+  titlePrefix: "ReTouch — Entry"
+  titleHighlight: "Management"
+  description: >
+    Master your manual data entries and reference data. Eliminate Excel-based
+    collection and secure your processes with approval workflows, validation
+    rules, and full auditability.
+
+overview:
+  problem: >
+    Relying on manual data entry or shared Excel sheets for master and reference
+    data leads to errors, lack of validation, and zero audit trails.
+  approach: >
+    ReTouch provides a web-based, governed interface for data entry. It ensures
+    data is validated against your business rules and approved by designated
+    stakeholders before entering core systems.
+  businessValue: >
+    100% auditable data entry. Significant reduction in data correction costs.
+    Significantly improved reference data quality.
+  whenPreferred:
+    - "When reference data (tags, categories, lookups) is currently managed in Excel"
+    - "To implement \"Maker-Checker\" approval workflows for critical data changes"
+    - "When manual data entry needs to be validated against existing system data"
+    - "To maintain a full version history of all manual data updates"
+    - "When data governance policies require formal data entry controls"
+  preferredNote: "Note: ReTouch integrates with your existing identity management for secure access."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Custom Workflows"
+      description: "Flexible approval steps including multi-tier Maker-Checker-Approver patterns."
+    - title: "Data Validation"
+      description: "Enforce strict rules like regex, range checks, and cross-reference lookups."
+    - title: "Full Audit Trail"
+      description: "Track every single change: Who changed what, when, and the before/after state."
+    - title: "Version Control"
+      description: "Easily browse and revert to previous states of your reference data tables."
+    - title: "Form Builder"
+      description: "Create and deploy data entry screens dynamically without writing front-end code."
+    - title: "System Sync"
+      description: "Automatically push approved data into your target DWH, Lakehouse, or ERP systems."
+
+featureSection:
+  heading: "Validated"
+  headingHighlight: "Data Entry"
+  description: >
+    ReTouch provides a secure, web-based layer for direct data interaction. Bridge
+    the gap between source systems and the analytical layer with a validated
+    management console.
+  calloutTitle: "Governance Control"
+  calloutDescription: "Empower data owners to manage parameters and reference data directly with full auditability."
+  image: "/assets/images/Retouch_Ekran görüntüsü.png"
+  imageAlt: "ReTouch Interface"
+  imageCaption: "ReTouch Interface: Validated data entry and management layer."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Explore ReTouch solutions in Finance, Telecom, and Manufacturing."
+  tabs:
+    - id: "finance"
+      label: "Finance"
+      cards:
+        - title: "Regulatory Parameter Management"
+          badges: []
+          scenario: "Manual management of reference and mapping tables used in regulatory reports can lead to compliance risks and audit failures."
+          interventionLabel: "RETOUCH INTERVENTION"
+          interventionItems:
+            - "Centralized platform for reference and mapping tables."
+            - "Mandatory field and lookup controls applied."
+            - "Permission-based entry and approval mechanism."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Reduced compliance risk."
+            - "Informed, accurate regulatory reporting."
+            - "Simplified audit processes."
+        - title: "Branch & Product Goal Consistency"
+          badges: []
+          scenario: "Managing branch-level targets in scattered Excel files causes version chaos and inconsistent executive reporting."
+          interventionLabel: "RETOUCH INTERVENTION"
+          interventionItems:
+            - "Single source of truth for all target tables."
+            - "Role-based entry and workflow management."
+            - "Automatic validation prevents incorrect data entry."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Improved reporting consistency."
+            - "Reliable performance measurement."
+            - "Executive access to a single truth source."
+    - id: "telecom"
+      label: "Telecom"
+      cards:
+        - title: "Campaign Parameter Control"
+          badges: []
+          scenario: "Small errors in campaign or tariff parameters can lead to significant revenue loss and customer dissatisfaction."
+          interventionLabel: "RETOUCH INTERVENTION"
+          interventionItems:
+            - "Centralized management of tariffs and price tables."
+            - "Date range and pricing validation rules."
+            - "Approved-only publishing workflow."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Minimized revenue leakage risks."
+            - "Increased pricing precision."
+            - "Stronger revenue assurance posture."
+        - title: "Dealer Commission Consistency"
+          badges: []
+          scenario: "Manual management of dealer commission and revenue share tables causes reconciliation problems and financial disputes."
+          interventionLabel: "RETOUCH INTERVENTION"
+          interventionItems:
+            - "Commission tables collected in standard, structured formats."
+            - "Permission-based entry with double-control (maker-checker)."
+            - "Real-time validation prevents incomplete or inconsistent records."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Strengthened reconciliation and accounting accuracy."
+            - "Reduced risk of incorrect payments and disputes."
+            - "Reliable financial reporting data."
+    - id: "manufacturing"
+      label: "Manufacturing"
+      cards:
+        - title: "Dealer Sales Quota Management"
+          badges: []
+          scenario: "Managing dealer sales targets via Excel leads to data freshness issues and planning inconsistencies."
+          interventionLabel: "RETOUCH INTERVENTION"
+          interventionItems:
+            - "Centralized platform for model and dealer targets."
+            - "Strict range and mandatory field checks."
+            - "Version history and change tracking."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Reliable sales planning data."
+            - "Faster regional performance reporting."
+            - "Enhanced operational coordination."
+        - title: "Production Reference Data Control"
+          badges: []
+          scenario: "Errors in part code mapping and supplier reference tables affect production planning and reporting accuracy."
+          interventionLabel: "RETOUCH INTERVENTION"
+          interventionItems:
+            - "Centralized management of part mapping and references."
+            - "Lookup and dictionary controls ensure data integrity."
+            - "Approved publishing and version tracking for ERP readiness."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Increased production planning accuracy."
+            - "Reduced supply chain risks."
+            - "Ensured consistency in corporate reporting."
+
+journey:
+  heading: "The ReTouch"
+  headingHighlight: "Process"
+  steps:
+    - number: "01"
+      title: "Design"
+      description: "Define table/form structures, validation rules, and user permissions."
+    - number: "02"
+      title: "Validate & Approve"
+      description: "Real-time checks during entry followed by a governed approval workflow."
+    - number: "03"
+      title: "Publish"
+      description: "Approved data is synchronized with your enterprise data layer for reporting."
+
+integration:
+  heading: "Better"
+  headingHighlight: "Governance"
+  description: "ReTouch transforms unmanaged manual data into governed enterprise assets:"
+  items:
+    - "Single point of entry for all manual reference data"
+    - "Centralized management of business validation rules"
+    - "Proactive identification of data quality issues at the source"
+    - "Elimination of distributed, un-versioned Excel files"
+    - "Secure, role-based access to sensitive data domains"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataEntry"
+
+customComponents: []

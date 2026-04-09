@@ -1,0 +1,99 @@
+slug: "itdm"
+lang: "en"
+name: "ITDM — Intellica Telecom Data Model"
+
+pageTitle: "ITDM — Intellica Telecom Data Model | Intellica"
+pageDescription: >
+  ITDM: Industry-standard telecom data warehouse model; TM Forum SID aligned,
+  covering network, billing and CRM for rapid analytics deployment.
+
+hero:
+  category: "Data Models"
+  titlePrefix: "ITDM — Telecom"
+  titleHighlight: "Data Model"
+  description: >
+    Scale your telecom analytics infrastructure globally. Accelerate your digital
+    transformation and network intelligence with a pre-modeled industry data
+    warehouse.
+
+overview:
+  problem: >
+    Telecom data (CDR, Billing, Network, CRM) is massive and highly complex.
+    Designing a sustainable model from scratch is slow and prone to architectural
+    debt.
+  approach: >
+    Intellica Telecom Data Model (ITDM) provides an industry-standard,
+    subject-oriented telecom data model (aligned with TM Forum SID) with
+    pre-defined mapping templates for rapid implementation.
+  businessValue: >
+    Significant reduction in modeling effort, faster time-to-market for network
+    insights, and global industry standardization.
+  whenPreferred:
+    - "When a durable, reliable and sustainable analytical platform is needed"
+    - "Aligning with industry standards such as TM Forum SID"
+    - "Standardizing KPIs across business units and regional entities"
+    - "Harmonizing and modeling CDR, network event, and billing data to deliver business-ready insights"
+    - "Accelerating 5G analytics projects"
+  preferredNote: ""
+
+capabilities:
+  label: "Capabilities"
+  heading: "Telecom-Specific"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "SID Alignment"
+      description: "Strictly aligned with TM Forum Shared Information/Data model standards."
+    - title: "Domain Overlap"
+      description: "Complete coverage for Voice, Data, SMS, Billing, VAS, and CRM data points."
+    - title: "High Performance"
+      description: "Tailored for processing and indexing massive telco-scale CDR volumes."
+    - title: "Universal Dimensions"
+      description: "Standardized geography, time, customer, and product dimensions."
+    - title: "Telco Metrics"
+      description: "Ready-to-use business formulas for churn, ARPU, and network QoS/QoE."
+    - title: "Future Ready"
+      description: "Supports emerging technologies like 5G, IoT, and edge-native data assets."
+
+featureSection:
+  heading: "Layered"
+  headingHighlight: "Architecture"
+  description: >
+    ITDM structures raw telecom protocols into business-meaningful subject areas,
+    enabling cross-domain analysis. Our approach ensures alignment between network
+    engineering and commercial intelligence.
+  calloutTitle: "TM Forum SID Aligned"
+  calloutDescription: "Subject-oriented structures covering network, billing, and CRM ecosystems."
+  image: "/assets/images/itdm-architecture.png"
+  imageAlt: "ITDM Architecture Approach"
+  imageCaption: "ITDM Logical Model: Bridging the gap between network engineering and commercial intelligence."
+
+journey:
+  heading: "Implementation"
+  headingHighlight: "Journey"
+  steps:
+    - number: "01"
+      title: "Discovery & Mapping"
+      description: "Aligning source system schemas with ITDM's subject-oriented structures."
+    - number: "02"
+      title: "ETL/ELT Integration"
+      description: "Deploying automated pipelines to populate the foundation and analytical layers."
+    - number: "03"
+      title: "Insight Activation"
+      description: "Enabling self-service BI and standard regulatory/commercial reporting."
+
+integration:
+  heading: "Integration &"
+  headingHighlight: "Synergy"
+  description: "ITDM is designed to be technology-neutral, supporting major modern data stacks:"
+  items:
+    - "Cloud Data Warehouses (Snowflake, BigQuery, Databricks)"
+    - "Hadoop/Spark-based Data Lakes"
+    - "Traditional SQL Engines (Oracle, SQL Server, Teradata)"
+    - "Modern BI Tools (Tableau, Power BI, Looker)"
+    - "Network Probe & Mediation Systems"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataModel"
+
+customComponents: []

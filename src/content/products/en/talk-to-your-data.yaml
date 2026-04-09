@@ -1,0 +1,168 @@
+slug: "talk-to-your-data"
+lang: "en"
+name: "Talk To — AI Data Analytics"
+
+pageTitle: "Talk To — AI Data Analytics | Intellica"
+pageDescription: >
+  Talk To: Query your enterprise data using natural language. AI-powered insights,
+  visualization, and tool orchestration.
+
+hero:
+  category: "AI Products"
+  titlePrefix: "Talk To —"
+  titleHighlight: "Natural Query"
+  description: >
+    Interact with your enterprise data using natural language. Talk To acts as an
+    AI data analyst, translating your questions into precise queries and delivering
+    instant insights.
+
+overview:
+  problem: >
+    Data access typically remains the responsibility of expert teams (SQL/BI).
+    Ad-hoc requests accumulate, waiting times lengthen, and the same questions
+    are asked repeatedly.
+  approach: >
+    Talk To matches natural language questions with schema/metadata; generates and
+    executes the necessary query and presents the result as an understandable
+    summary or visualization.
+  businessValue: >
+    Response in minutes, fewer errors, higher self-service adoption, and faster
+    decision cycles.
+  whenPreferred:
+    - "When ad-hoc analysis requests are piling up in SQL/BI teams"
+    - "To enable self-service insights for business units"
+    - "For more accurate query generation via schema/metadata awareness"
+    - "When building an assistant to take actions (MCP) with reporting tools"
+    - "To ensure security (RBAC, logging) in an enterprise AI framework"
+  preferredNote: "Note: Scope and integration details are finalized during the discovery phase."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Natural Language Querying"
+      description: "Get instant insights through a chat interface using simple question-and-answer interactions."
+    - title: "Schema Awareness"
+      description: "Understands data fields and relationships to produce highly accurate database queries."
+    - title: "Auto Visualization"
+      description: "Generates tables and core charts based on the context of your data request."
+    - title: "Tool Orchestration"
+      description: "Interacts with reporting tools and external applications via MCP for end-to-end action."
+    - title: "Error Reduction"
+      description: "Minimizes manual query errors and incorrect filtering through AI-driven validation."
+    - title: "Enterprise Governance"
+      description: "Role-based access (RBAC), auditing, and centralized logging for secure production use."
+
+featureSection:
+  heading: "Interact with Data."
+  headingHighlight: "Get Instant Insights."
+  description: >
+    Talk To enables you to interact with your corporate data by converting natural
+    language questions into database queries. Get insights through a single
+    conversation interface without writing SQL or navigating complex BI tools.
+  calloutTitle: "Intelligent Analyst Assistant"
+  calloutDescription: "Context-aware analysis using LLMs to provide follow-up answers and deep-dive discoveries."
+  image: "/assets/images/talktoekrangoruntusu.png"
+  imageAlt: "Talk To Interface"
+  imageCaption: "Talk To: Natural language data analysis and intelligent insight platform."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Discover the operational and strategic value created by Talk To across different departments."
+  tabs:
+    - id: "it-bi"
+      label: "IT & BI Workflow"
+      cards:
+        - title: "Reducing SQL and BI Complexity"
+          badges: ["Efficiency", "SQL & BI"]
+          scenario: "Business units being dependent on IT teams for data analysis or navigating complex BI tools can slow down decision-making."
+          interventionLabel: "Talk To Intervention"
+          interventionItems:
+            - "Automatically converts natural language questions into SQL queries."
+            - "Integrates seamlessly with databases and reporting tools."
+            - "Delivers responses as tables, charts, or summarized analysis."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Faster self-service analytics adoption."
+            - "Reduced ad-hoc workload on IT and BI teams."
+            - "Shorter data-to-decision cycles."
+        - title: "Ad-hoc Reporting Automation"
+          badges: ["Self-Service", "Reporting"]
+          scenario: "Teams spend excessive hours manually compiling reports for one-off vertical analysis requests."
+          interventionLabel: "Talk To Intervention"
+          interventionItems:
+            - "Standardize semantic layers for consistent field definitions."
+            - "Allow business users to generate on-the-fly reports via chat."
+            - "Export results instantly to common analysis formats."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Minimizes manual reporting errors."
+            - "Frees up expert resources for strategic projects."
+            - "Transparent and auditable query history."
+    - id: "customer"
+      label: "Customer Support"
+      cards:
+        - title: "360° Customer View & Rapid Support"
+          badges: ["Support", "Customer 360"]
+          scenario: "Support agents searching for data across CRM, billing, and interaction systems leads to time loss and incomplete context."
+          interventionLabel: "Talk To Intervention"
+          interventionItems:
+            - "Analyzes CRM and transaction history in an integrated way."
+            - "Provides contextual customer summaries to representatives."
+            - "Generates Next Best Action (NBA) suggestions based on data."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Higher First Contact Resolution (FCR) rates."
+            - "Shortened Average Handling Time (AHT) per case."
+            - "Increased customer satisfaction and cross-sell potential."
+    - id: "management"
+      label: "Executive Insights"
+      cards:
+        - title: "Instant KPI Querying for Management"
+          badges: ["Executive", "KPI Tracking"]
+          scenario: "Senior management often depends on dashboard updates or technical teams to access real-time KPI performance."
+          interventionLabel: "Talk To Intervention"
+          interventionItems:
+            - "Enables natural language querying of high-level KPIs."
+            - "Supports contextual filtering and seamless drill-down."
+            - "Produces instant charts and executive summary reports."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Immediate access to management reports."
+            - "Simplified KPI interpretation and trend analysis."
+            - "Strengthened strategic decision-making capabilities."
+
+journey:
+  heading: "Intelligent"
+  headingHighlight: "Workflow"
+  description: "Talk To orchestrates the entire intelligence cycle, from data connection to actionable visualization."
+  steps:
+    - number: "01"
+      title: "Connect & Authorize"
+      description: "Define data sources, schema metadata, and role-based access controls."
+    - number: "02"
+      title: "Ask & Verify"
+      description: "Question submitted, query generated and validated before execution."
+    - number: "03"
+      title: "Insight & Action"
+      description: "Results delivered as summaries, charts, or triggered workflows (MCP)."
+
+integration:
+  heading: "Ecosystem"
+  headingHighlight: "Integration"
+  description: "Built to integrate with existing enterprise architecture and governance standards:"
+  items:
+    - "Enterprise DB/DWH/Data Lake connectivity (SQL, NoSQL)"
+    - "Schema-aware mapping for accurate domain-specific querying"
+    - "MCP-compatible application orchestration (Reporting, CRM)"
+    - "Full SSO/LDAP integration and granular RBAC auditing"
+    - "Centralized logging for all AI-generated query operations"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, Analytics"
+
+customComponents: ['SQLPlayground']

@@ -1,0 +1,153 @@
+slug: "blue-octopus"
+lang: "en"
+name: "Blue Octopus — AI Event Intelligence Platform"
+
+pageTitle: "Blue Octopus — AI Surveillance & Action Platform | Intellica"
+pageDescription: >
+  Blue Octopus: AI-powered centralized analytics and surveillance platform for
+  critical data monitoring, event detection, and action management.
+
+hero:
+  category: "AI Products"
+  titlePrefix: "Blue Octopus — AI"
+  titleHighlight: "Event Intelligence"
+  description: >
+    AI-powered event intelligence and orchestration for monitoring, detecting and
+    managing critical business events across your organization.
+
+overview:
+  problem: >
+    Monitoring massive data streams for critical events manually or with simple
+    rules leads to missed incidents and high false-positive rates that desensitize
+    operations teams.
+  approach: >
+    Blue Octopus integrates event monitoring, analytics, and automated action
+    management into a single platform for real-time operational excellence.
+  businessValue: >
+    Instant identification of critical business events, significantly reduced
+    mean-time-to-resolution (MTTR), and automated compliance oversight.
+  whenPreferred:
+    - "When you need a centralized command center for critical incidents and distributed field operations"
+    - "To monitor real-time events from multiple systems, sensors, logs and external sources on a single platform"
+    - "When rapid alerting, coordinated response and action management are required during security or operational events"
+    - "To correlate incident data, location intelligence and resource availability in map-based operational workflows"
+    - "When standard monitoring tools are not sufficient for multi-source event detection, AI-supported surveillance and tactical coordination"
+  preferredNote: "Note: Blue Octopus supports both batch and real-time streaming data ingestion."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Event Detection"
+      description: "AI-driven identification of anomalies, fraudulent activities, and complex data patterns."
+    - title: "Action Orchestration"
+      description: "Automated multi-system workflows triggered instantly by specific data events."
+    - title: "Integrated Console"
+      description: "Integrated \"Single Pane of Glass\" view of all monitored systems and active alerts."
+    - title: "Adaptive Alerting"
+      description: "Intelligent threshold management and AI-predicted alerting to reduce noise."
+    - title: "Event Correlation"
+      description: "Correlate multi-source events to detect hidden patterns and identify critical incidents in real time."
+    - title: "Integrated Ingestion"
+      description: "Connects directly with Kafka streams, Cloud events, and enterprise SQL/NoSQL sources."
+
+featureSection:
+  heading: "Centralized"
+  headingHighlight: "Command Center"
+  description: >
+    Blue Octopus provides an integrated "Command & Control" layer to manage
+    disparate security and operational events across your organization's entire
+    data footprint.
+  calloutTitle: "Action-Oriented Alerts"
+  calloutDescription: "Don't just watch the data; trigger immediate incident response workflows across the infrastructure."
+  image: "/assets/images/Blueoctopus_screen.png"
+  imageAlt: "Blue Octopus Interface"
+  imageCaption: "Blue Octopus: Visualizing security analytics, event monitoring, and enterprise action management."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Discover how Blue Octopus provides intelligent surveillance and automated response for critical business events."
+  tabs:
+    - id: "logistics"
+      label: "Logistics & SLA"
+      cards:
+        - title: "SLA Monitoring"
+          badges: ["Logistics", "SLA Monitoring"]
+          scenario: "A logistics firm needs to monitor thousands of shipments. If a critical delay pattern is detected in a specific hub, the system must alert managers before the SLA breach occurs."
+          interventionLabel: "Blue Octopus Role"
+          interventionItems:
+            - "Real-time tracking of GPS and hub processing data streams."
+            - "AI-based delay prediction for ongoing shipments across all routes."
+            - "Automated escalation to regional hub managers via mobile alerts."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Reduced SLA penalties and customer refund costs."
+            - "Proactive management of logistics bottlenecks."
+            - "Standardized incident reporting across global hubs."
+    - id: "banking"
+      label: "Banking & Security"
+      cards:
+        - title: "Failure & Attack Detection"
+          badges: ["Banking", "Systemic Failure"]
+          scenario: "A bank needs to detect if a specific ATM network or digital channel is experiencing a higher-than-average failure rate, indicating a potential cyber-attack or platform bug."
+          interventionLabel: "Blue Octopus Role"
+          interventionItems:
+            - "Detect success/fail ratios across thousands of transaction points."
+            - "Distinguish between maintenance patterns and anomalous failure spikes."
+            - "Orchestrate system-wide protective actions if thresholds are met."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Minimized financial exposure to digital channel downtime."
+            - "Faster Mean-Time-to-Repair (MTTR) for critical infra failures."
+            - "Robust protection against localized network attacks."
+    - id: "operations"
+      label: "Global Operations"
+      cards:
+        - title: "Global Operations Visibility"
+          badges: ["Enterprise", "Visibility"]
+          scenario: "Regional operations teams using different monitoring tools leads to a fragmented view of enterprise health and delayed global responses."
+          interventionLabel: "Blue Octopus Role"
+          interventionItems:
+            - "Consolidate regional event streams into a single source of truth."
+            - "Apply global correlation rules to identify cross-regional trends."
+            - "Centralized situational awareness with role-based dashboarding."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Standardized operational response across the entire organization."
+            - "Improved executive oversight of global business processes."
+            - "Reduced noise by eliminating redundant regional alerts."
+
+journey:
+  heading: "Operational"
+  headingHighlight: "Journey"
+  description: "Blue Octopus orchestrates the lifecycle of business event intelligence from ingestion to resolution."
+  steps:
+    - number: "01"
+      title: "Ingest"
+      description: "Collect and integrate data from logs, systems, sensors and external sources into a centralized event stream."
+    - number: "02"
+      title: "Detect"
+      description: "Identify anomalies and critical patterns using AI-driven event intelligence and correlation across multiple data sources."
+    - number: "03"
+      title: "Act"
+      description: "Trigger automated workflows, alerts and coordinated responses to manage incidents in real time."
+
+integration:
+  heading: "Ecosystem"
+  headingHighlight: "Integration"
+  description: "Built to integrate with existing enterprise IT and Security ecosystems seamlessly:"
+  items:
+    - "Native log ingestion (syslog, app logs, security appliances)"
+    - "Bidirectional SIEM/SOAR and ticketing system integration"
+    - "Granular SSO/LDAP based role-base access (RBAC)"
+    - "Direct connection to DWH and Data Lake layers"
+    - "Advanced UI for custom BI and dashboarding integration"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, AISurveillance"
+
+customComponents: []

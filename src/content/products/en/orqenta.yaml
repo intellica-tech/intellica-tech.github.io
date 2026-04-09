@@ -1,0 +1,179 @@
+slug: "orqenta"
+lang: "en"
+name: "Orqenta — Bank-Grade Orchestration"
+
+pageTitle: "Orqenta — Workflow Orchestration and Automation | Intellica"
+pageDescription: >
+  Orqenta: Bank-grade workflow orchestration and automation engine. Safe and
+  auditable execution for mission-critical enterprise processes.
+
+hero:
+  category: "Data Platform & Governance"
+  titlePrefix: "Orqenta — Bank-Grade"
+  titleHighlight: "Orchestration"
+  description: >
+    Run critical workflows with absolute confidence. Orqenta is a next-generation
+    orchestration engine that manages enterprise data and processes in a
+    deterministic, auditable, and crash-safe manner.
+
+overview:
+  problem: >
+    Critical workflows produce risks like dual-execution, missing steps, and data
+    loss in distributed systems. In regulated sectors, these flaws lead to severe
+    operational and audit risks.
+  approach: >
+    Orqenta integrates disparate data pipelines and business processes into a
+    single, automated orchestration layer — ensuring visibility, control, and
+    reliability across the enterprise.
+  businessValue: >
+    Zero-loss crash recovery, secure retry mechanisms, and a full audit trail.
+    Maximum reliability and compliance for high-stakes mission-critical operations.
+  whenPreferred:
+    - "When precision and \"exactly-once\" execution are non-negotiable"
+    - "In industries requiring strict audit trails (Telecom, Banking, Energy)"
+    - "To eliminate split-brain risks and duplicate execution in distributed systems"
+    - "When processes must recover instantly and correctly after a system crash"
+    - "For managing complex dependencies with professional operational control"
+  preferredNote: "Note: Orqenta is designed specifically for regulated and high-compliance environments."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Deterministic execution"
+      description: "Managed dependencies and synchronization points for predictable flow management across distributed nodes."
+    - title: "3-Layer Idempotency"
+      description: "Prevention of duplicate effects using Event ID, Idempotency Key, and Execution ID for absolute correctness."
+    - title: "Crash-Safe Recovery"
+      description: "Database-driven state machine ensures full recovery without loss after any server or process interruption."
+    - title: "Operational Control"
+      description: "Professional management including pause, resume, cancel, node retry, and real-time agent rerouting."
+    - title: "Full Observability"
+      description: "Centralized logging, trace ID tracking, and dedicated execution incident management for rapid troubleshooting."
+    - title: "Bank-Grade Security"
+      description: "Built with RBAC, mTLS, HMAC authentication, SSRF protection, and automatic secret masking in logs."
+
+featureSection:
+  heading: "Functional"
+  headingHighlight: "Design"
+  description: >
+    High-level overview of Orqenta's reliability model and core execution
+    capabilities, designed for long-running workloads in banking and telecom.
+  calloutTitle: "Deterministic Workflow Design"
+  calloutDescription: "Visual DAG editor for complex cross-system synchronization and dependency management."
+  image: "/assets/images/Orqenta.png"
+  imageAlt: "Orqenta Architecture & Reliability Model"
+  imageCaption: "Orqenta Interface: Visualizing DAG workflow editing and operational oversight."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Orqenta manages critical dependencies and SLA targets to ensure predictable operational outcomes."
+  tabs:
+    - id: "finance"
+      label: "Finance & Reporting"
+      cards:
+        - title: "SLA Management in End-of-Day Batch Flows"
+          badges: ["Finance", "SLA & Batch"]
+          scenario: "When risk, accounting, or reporting steps in the end-of-day sequence delay, the entire chain is impacted, risking critical SLA breaches."
+          interventionLabel: "Orqenta Intervention"
+          interventionItems:
+            - "Integrated model of complex cross-system dependencies."
+            - "Define clear cut-off times and specific SLA targets."
+            - "Real-time monitoring with automated escalations per delay."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Guaranteed SLA compliance for regulatory reporting."
+            - "Eliminated operational blind spots in batch cycles."
+            - "Faster response to execution incidents."
+        - title: "DWH-to-BI Synchronization Dependency"
+          badges: ["Enterprise", "DWH & BI"]
+          scenario: "Fragmented scheduling leads to BI refreshes triggering before DWH ETL processes are complete, resulting in dashboards displaying stale or incomplete data."
+          interventionLabel: "Orqenta Intervention"
+          interventionItems:
+            - "Orchestrate DWH load, transform, and publish steps as a single DAG."
+            - "Ensures BI refresh triggers only upon upstream ETL success."
+            - "Self-healing mechanisms for automated retry of failed steps."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "100% data reliability for executive dashboards."
+            - "Standardized, predictable publishing cycles."
+            - "Reduction in manual cross-team coordination effort."
+    - id: "telecom"
+      label: "Telecom & Energy"
+      cards:
+        - title: "Rating & Billing Chain Integrity"
+          badges: ["Telecom", "Dependency"]
+          scenario: "Mediation, Rating, and Billing must trigger in perfect sequence. Premature downstream execution results in incorrect billing and revenue leakage."
+          interventionLabel: "Orqenta Intervention"
+          interventionItems:
+            - "Dynamic readiness checks for high-volume data files."
+            - "Early warning signals for upstream bottlenecks."
+            - "Automated eskalation to prevent billing cycle delays."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Minimized risk of revenue leakage and billing errors."
+            - "Enhanced process synchronization across distributed nodes."
+            - "Higher operational visibility for billing teams."
+        - title: "Critical Reporting Cut-Off Control"
+          badges: ["Energy", "Cut-Off"]
+          scenario: "Utility reports require strict time-window management. Missing a cut-off due to data arrival issues leads to regulatory non-compliance."
+          interventionLabel: "Orqenta Intervention"
+          interventionItems:
+            - "Strict enforcement of cut-off logic and time windows."
+            - "Conditional triggers: block downstream if upstream quality thresholds are not met."
+            - "Full audit trail for time-sensitive execution decisions."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "On-time regulatory reporting performance."
+            - "Lowered risks of operational fines and audit failures."
+            - "Robust, deterministic reporting governance."
+    - id: "operations"
+      label: "Operations Management"
+      cards:
+        - title: "Proactive Monitoring & Incident Control"
+          badges: ["Operations", "Monitoring"]
+          scenario: "Siloed process monitoring across tools increases issue detection time and extends Mean Time to Repair (MTTR)."
+          interventionLabel: "Orqenta Intervention"
+          interventionItems:
+            - "Integrated \"single pane of glass\" visibility for all enterprise flows."
+            - "Early error signal detection with proactive alerting."
+            - "Operational command: pause, resume, cancel, or reroute with full audibility."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Reduced MTTR and minimized production outages."
+            - "Significant gain in operational efficiency."
+            - "Audit-ready incident management history."
+
+journey:
+  heading: "Central Authority"
+  headingHighlight: "Model"
+  description: "Unlike traditional distributed schedulers, Orqenta centralizes decision logic to eliminate split-brain issues and out-of-sync states."
+  steps:
+    - number: "01"
+      title: "Stateless Agents"
+      description: "Execution agents pull tasks via HTTP polling, meaning zero inbound ports and easy network scaling."
+    - number: "02"
+      title: "State Machine"
+      description: "The state is managed entirely by a central database, ensuring every transition is atomic and durable."
+    - number: "03"
+      title: "Tag-Based Routing"
+      description: "Intelligent job routing based on labels, capabilities, or geographical constraints of execution agents."
+
+integration:
+  heading: "Security &"
+  headingHighlight: "Governance"
+  description: "Orqenta is built for mission-critical enterprise environments requiring high reliability:"
+  items:
+    - "RBAC: Granular permissions for Admins, Developers, Operators, and Viewers."
+    - "Auth: mTLS or HMAC-SHA256 based agent authentication for secure communication."
+    - "Protection: Built-in SSRF protection to prevent metadata leakage in cloud environments."
+    - "Masking: Automatic redaction of secrets and credentials in logs and user interfaces."
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, WorkflowEngine"
+
+customComponents: []

@@ -1,0 +1,137 @@
+slug: "ifdm"
+lang: "en"
+name: "IFDM — Intellica Finance Data Model"
+
+pageTitle: "IFDM — Intellica Finance Data Model | Intellica"
+pageDescription: >
+  IFDM: Standard data model approach for finance analytics; fast
+  mapping/discovery, KPI framework and wave-based reporting rollout.
+
+hero:
+  category: "Data Models"
+  titlePrefix: "IFDM — Finance"
+  titleHighlight: "Data Model"
+  description: >
+    Rapidly deploy your enterprise finance data model. Establish a common
+    financial language and accelerate your data warehouse transformation.
+
+overview:
+  problem: >
+    Banking data is fragmented across core domains such as Loans, Deposits,
+    Credit Cards, and Customers, managed in separate systems. This leads to
+    inconsistent KPIs, reconciliation issues, and unreliable reporting.
+  approach: >
+    IFDM integrates Loans, Deposits, Credit Cards, Customers, and Transactions
+    into a single, standardized data model — ensuring consistent definitions,
+    aligned reporting, and a true single source of truth.
+  businessValue: >
+    Provides a single source of truth for executives and decision-makers,
+    enabling faster, more reliable, and audit-ready financial reporting with
+    reduced reconciliation effort.
+  whenPreferred:
+    - "When the enterprise finance model needs to be standardized during DWH/BI or analytics projects"
+    - "When there are inconsistencies between GL, AP/AR, budget, and profitability reports"
+    - "During Semantic model/Power BI transformation"
+    - "When consolidation and management reporting need to be made sustainable"
+    - "When a common dictionary and governance are targeted for finance KPIs"
+  preferredNote: ""
+
+capabilities:
+  label: "Capabilities"
+  heading: "Finance-Specific"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Core Model"
+      description: "Provides finance assets and relationships in a standard framework."
+    - title: "KPI & Metric Framework"
+      description: "Provides a starting set for common finance metrics."
+    - title: "Analytical Layer Alignment"
+      description: "Tiering suitable for Power BI / semantic model designs."
+    - title: "Mapping & Adaptation"
+      description: "Rapid mapping approach for source system fields numbered to the model."
+    - title: "Governance & Standardization"
+      description: "Provides a foundation for versioning and standardization."
+    - title: "Extensible Architecture"
+      description: "Can be grown with new domains according to organizational needs."
+
+featureSection:
+  heading: "Layered"
+  headingHighlight: "Architecture"
+  description: >
+    IFDM structures fragmented finance data into business-meaningful subject
+    areas. Our Foundation (3NF) and Analysis (Dimensional) layers ensure both
+    enterprise data integrity and high-performance reporting infrastructure.
+  calloutTitle: "Standardized Methodology"
+  calloutDescription: "Rapid mapping approach for source systems to an integrated enterprise data language."
+  image: "/assets/images/ifdm-architecture.png"
+  imageAlt: "IFDM Architecture Approach"
+  imageCaption: "IFDM Architecture: Enterprise data standardization with Foundation and Analysis layers."
+
+useCases:
+  label: "Solutions"
+  heading: "Business Value &"
+  headingHighlight: "Impact"
+  subtitle: "Discover the value of IFDM in enterprise reporting and data management processes."
+  tabs:
+    - id: "default"
+      label: null
+      cards:
+        - title: "Accelerating Enterprise BI Transformation"
+          badges: []
+          scenario: "In a new data warehouse project, designing the model from scratch extends the timeline, creates scope uncertainty, and increases redesign risk."
+          interventionLabel: "IFDM CONTRIBUTION"
+          interventionItems:
+            - "Ready subject-oriented foundation model for the finance sector."
+            - "Covers core domains like Party, Contract, Accounting, Product."
+            - "Integrated 3NF structure according to Inmon principles."
+            - "Ready metric and dimension structure for the analysis layer."
+          impactLabel: "GAIN"
+          impactItems:
+            - "Project time is shortened."
+            - "Modeling risk is reduced."
+            - "Common data language between Business and IT."
+        - title: "Creating a Single Version of Truth"
+          badges: []
+          scenario: "Different reporting teams using different data definitions lead to KPI inconsistencies and executive decision errors."
+          interventionLabel: "IFDM CONTRIBUTION"
+          interventionItems:
+            - "Baseline business definitions and mapping structures."
+            - "Integrated and normalized structure in the Foundation layer."
+            - "Standard KPI and dimensional model in the Analysis layer."
+            - "Conformed dimension approach for report consistency."
+          impactLabel: "GAIN"
+          impactItems:
+            - "Single source of truth created across the organization."
+            - "KPI inconsistencies eliminated."
+            - "Increased executive reporting trust."
+
+journey:
+  heading: "Implementation"
+  headingHighlight: "Journey"
+  steps:
+    - number: "01"
+      title: "Scoping"
+      description: "Target reports, KPIs, and source systems are clarified."
+    - number: "02"
+      title: "Adaptation"
+      description: "Model adaptation is performed with mapping; the foundation layer is established."
+    - number: "03"
+      title: "Wave-based Rollout"
+      description: "Semantic layer and reports are deployed wave by wave."
+
+integration:
+  heading: "Integration &"
+  headingHighlight: "Synergy"
+  description: "Our products are adapted to work seamlessly within your existing ecosystem. Typical integration areas include:"
+  items:
+    - "ERP/Finance systems (SAP, Oracle, etc.)"
+    - "Databases & DWH layers"
+    - "ETL/ELT and orchestration tools"
+    - "BI and reporting platforms (Power BI, etc.)"
+    - "Identity and Access (SSO/LDAP) with role-based security"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataModel"
+
+customComponents: []
