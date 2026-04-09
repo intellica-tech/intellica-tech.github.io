@@ -1,0 +1,76 @@
+---
+import Layout from './Layout.astro';
+import type { Lang } from '../i18n/config';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import ProductHero from '../components/product/ProductHero.astro';
+import OverviewSection from '../components/product/OverviewSection.astro';
+import CapabilitiesGrid from '../components/product/CapabilitiesGrid.astro';
+import FeatureShowcase from '../components/product/FeatureShowcase.astro';
+import UseCaseTabs from '../components/product/UseCaseTabs.astro';
+import JourneySection from '../components/product/JourneySection.astro';
+import ProductCTA from '../components/product/ProductCTA.astro';
+import SQLPlayground from '../components/gamification/SQLPlayground.astro';
+
+interface Props {
+  product: Record<string, any>;
+}
+
+const { product } = Astro.props;
+const lang = product.lang as Lang;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const siteUrl = 'https://intellica.net';
+
+const breadcrumbs = [
+  { name: t('productLayout.breadcrumb'), url: `${siteUrl}${tp('/products')}` },
+  { name: product.name, url: `${siteUrl}${tp(`/products/${product.slug}`)}` },
+];
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': product.jsonLd.type,
+  name: product.name,
+  description: product.pageDescription,
+  applicationCategory: product.jsonLd.category,
+  operatingSystem: 'Web-based',
+  author: { '@id': `${siteUrl}/#organization` },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    priceCurrency: 'USD',
+  },
+};
+
+const customComponentMap: Record<string, any> = {
+  SQLPlayground,
+};
+---
+<Layout title={product.pageTitle} description={product.pageDescription} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+
+  <ProductHero hero={product.hero} lang={lang} />
+
+  <OverviewSection overview={product.overview} lang={lang} />
+
+  <CapabilitiesGrid capabilities={product.capabilities} />
+
+  {product.featureSection && (
+    <FeatureShowcase featureSection={product.featureSection} />
+  )}
+
+  {product.customComponents?.map((name: string) => {
+    const Component = customComponentMap[name];
+    return Component ? <Component /> : null;
+  })}
+
+  {product.useCases && (
+    <UseCaseTabs useCases={product.useCases} />
+  )}
+
+  {product.journey && (
+    <JourneySection journey={product.journey} integration={product.integration} />
+  )}
+
+  <ProductCTA lang={lang} />
+</Layout>

@@ -1,15 +1,17 @@
 ---
-import ProductDetailPage from '../../../page-templates/ProductDetailPage.astro';
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import { getCollection } from 'astro:content';
 import { languages, defaultLang, type Lang } from '../../../i18n/config';
 
-export function getStaticPaths() {
-  const slugs = ['ifdm', 'itdm', 'hrdm', 'icc', 'retouch', 'retable', 'talkto', 'blueoctopus', 'var'];
-  const langs = Object.keys(languages).filter(l => l !== defaultLang);
-  return langs.flatMap(lang =>
-    slugs.map(slug => ({ params: { lang, slug } }))
-  );
+export async function getStaticPaths() {
+  const langs = Object.keys(languages).filter((l) => l !== defaultLang);
+  const products = await getCollection('products', (p) => langs.includes(p.data.lang));
+  return products.map((p) => ({
+    params: { lang: p.data.lang, slug: p.data.slug },
+    props: { product: p.data },
+  }));
 }
 
-const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { product } = Astro.props;
 ---
-<ProductDetailPage lang={lang} slug={slug} />
+<ProductLayout product={product} />
