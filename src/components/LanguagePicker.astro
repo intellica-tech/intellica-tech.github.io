@@ -7,7 +7,7 @@ interface Props {
 
 const { lang: currentLang } = Astro.props;
 
-const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})/`);
+const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})(/|$)`);
 const currentPath = Astro.url.pathname.replace(localePattern, '/');
 ---
 

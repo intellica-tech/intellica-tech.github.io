@@ -8,7 +8,7 @@ const langNames = JSON.stringify(
   Object.fromEntries(Object.entries(languages).map(([code, { name }]) => [code, name]))
 );
 const supportedLangs = JSON.stringify(Object.keys(languages));
-const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})/`);
+const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})(/|$)`);
 const basePath = Astro.url.pathname.replace(localePattern, '/');
 ---
 
