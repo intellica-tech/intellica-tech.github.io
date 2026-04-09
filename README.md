@@ -38,7 +38,7 @@ Intellica is a **Data & AI** company that has been leading enterprises on their 
 | **Typography** | Inter (Google Fonts) |
 | **Rendering** | Static Site Generation (SSG) |
 | **Interactivity** | Vanilla JS — 11 gamification components, no framework dependencies |
-| **Container** | Docker (multi-stage: Node 24 builder → Nginx 1.27 Alpine) |
+| **Container** | Docker (multi-stage: Node 24 Slim builder → Nginx Alpine runtime) |
 | **Registry** | GitHub Container Registry (`ghcr.io`) |
 | **Hosting** | GitHub Pages (via GitHub Actions) |
 | **CI/CD** | GitHub Actions |
