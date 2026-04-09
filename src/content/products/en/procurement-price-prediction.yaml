@@ -1,0 +1,60 @@
+slug: "procurement-price-prediction"
+lang: "en"
+name: "Procurement Price Prediction"
+
+pageTitle: "Procurement Price Prediction — AI Solutions | Intellica"
+pageDescription: >
+  Procurement Price Prediction: AI-powered price forecasting and anomaly detection
+  for strategic procurement, optimizing purchasing decisions with market intelligence.
+
+hero:
+  category: "AI Solutions"
+  titlePrefix: "Procurement Price"
+  titleHighlight: "Prediction"
+  description: >
+    Predictive intelligence for your procurement strategy. Optimize purchasing
+    decisions with AI-powered price forecasting and market-driven anomaly detection.
+
+overview:
+  problem: >
+    Procurement teams struggle with volatile market prices, fluctuating FX rates,
+    and inconsistent supplier quotes, leading to sub-optimal purchasing timing and
+    cost overruns.
+  approach: >
+    This AI solution integrates internal procurement data with external market
+    indicators (Commodity indices, FX, Energy) to generate accurate reference
+    prices and anomaly alerts for bids.
+  businessValue: >
+    Significant cost savings on strategic categories, proactive risk management
+    against market spikes, and automated fraud/anomaly detection in supplier bids.
+  whenPreferred:
+    - "For organizations with high-volume procurement of raw materials or commodities"
+    - "To standardize \"Reference Price\" calculations across distributed purchasing units"
+    - "When manual price tracking in Excel is no longer sufficient for global markets"
+    - "To detect suspicious price anomalies or outlier quotations from suppliers"
+    - "For strategic medium-to-long term planning of high-value procurement contracts"
+  preferredNote: "Note: Models are customized based on the specific commodity universe of the enterprise."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Solution"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Index Integration"
+      description: "Automatic daily ingestion of global commodity, energy, and financial indices (LME, Brent, etc.)."
+    - title: "Price Forecasting"
+      description: "Multi-variable ML models predicting price trends for the upcoming 1 to 12 months."
+    - title: "Anomaly Detection"
+      description: "Automated flagging of supplier bids that deviate from expected market-driven ranges."
+    - title: "Driver Analysis"
+      description: "Identification of which external factors (FX, labor, oil) are most affecting your costs."
+    - title: "Strategic Alerts"
+      description: "Notifications when market conditions suggest optimal windows for high-volume purchases."
+    - title: "Category Customization"
+      description: "Tailored logic and models for different industrial categories (Metal, Plastic, Logistics, etc.)."
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, AIProcurement"
+
+customComponents: []

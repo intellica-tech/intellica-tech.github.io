@@ -1,0 +1,192 @@
+slug: "icc"
+lang: "tr"
+name: "ICC — Intellica Consistency Controller"
+
+pageTitle: "ICC — Intellica Consistency Controller | Intellica"
+pageDescription: >
+  ICC: Otomatik veri mutabakatı ve tutarlılık yönetimi; kaynak sistemler ile
+  raporlama katmanları arasında güven sağlayan gerçek zamanlı sapma uyarıları.
+
+hero:
+  category: "Veri Platformu & Yönetişim"
+  titlePrefix: "ICC — Tutarlılık"
+  titleHighlight: "Denetleyicisi"
+  description: >
+    Kurumsal verilerinizde tam tutarlılık sağlayın. Otomatik mutabakat, kalite
+    kapıları ve gerçek zamanlı sapma uyarılarıyla tutarsızlıkları ortadan
+    kaldırın. Kaynaktan rapora verilerinize güvenin.
+
+overview:
+  problem: >
+    Veriler genellikle kaynak sistemler ile veri ambarı arasında farklılık
+    gösterir; bu durum çelişkili raporlara, yönetim güveninin kaybına ve
+    düzenleyici risklere yol açar.
+  approach: >
+    ICC, birden fazla veri noktası arasındaki mutabakat sürecini otomatikleştirerek
+    tutarsızlıkları kayıt düzeyinde, iş kararlarınızı etkilemeden önce tespit eder.
+  businessValue: >
+    Manuel mutabakat çabasında %90 azalma. Veri entegrasyon hatalarının anında
+    tespiti. Daha yüksek denetim hazırlığı.
+  whenPreferred:
+    - "Finansal raporlar aynı dönem için farklı rakamlar gösterdiğinde"
+    - "ETL/ELT iş hatlarınızda otomatik \"Kalite Kapıları\" uygulamak istediğinizde"
+    - "Resmi mutabakat kayıtları gerektiren düzenleyici uyumluluk ihtiyacında"
+    - "Karmaşık veri göçlerinde birebir veri eşliğini sağlamak için"
+    - "BT ve Muhasebe ekiplerinin operasyonel yükünü azaltmak istediğinizde"
+  preferredNote: "Not: ICC, milyonlarca kayıt üzerinde yüzlerce mutabakat kuralına ölçeklenebilir."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Otomatik Mutabakat"
+      description: "Özel ve kırılgan denetim betikleri yazmadan sistemler arası veri eşleştirmesi."
+    - title: "Kalite Kapıları"
+      description: "Hatalı verilerin üretim raporlarına ulaşmasını engelleyen kriterler tanımlayın."
+    - title: "Sapma Uyarıları"
+      description: "Sistemler arası veri sapması eşik değerlerini aştığında anında bildirim alın."
+    - title: "Denetim Kaydı"
+      description: "Mutabakat sonuçlarının tam geçmişi; düzenleyici uyumluluk için mükemmel."
+    - title: "Kural Motoru"
+      description: "Derin SQL uzmanlığı gerektirmeden karmaşık tutarlılık kurallarını görsel olarak tanımlayın."
+    - title: "Sağlık Panosu"
+      description: "Kuruluş genelinde veri sağlığı ve tutarlılık durumunun üst düzey görünümü."
+
+featureSection:
+  heading: "Yapılandırılabilir"
+  headingHighlight: "Kalite Kuralları"
+  description: >
+    ICC, veri sahiplerini sezgisel ve görsel bir arayüz aracılığıyla karmaşık
+    doğrulama kuralları oluşturma konusunda güçlendirir. Manuel veri denetimini
+    üretim seviyesinde otomatik bir motora dönüştürün.
+  calloutTitle: "Görsel Kural Mantığı"
+  calloutDescription: "Sürükle-bırak ile karmaşıklığı standart veri kalitesi sinyallerine dönüştürün."
+  image: "/assets/images/icc_rule.png"
+  imageAlt: "ICC Kural Tasarım Arayüzü"
+  imageCaption: "ICC Arayüzü: Karmaşık veri doğrulama akışlarının görsel yapılandırması."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "ICC'nin Telekom, Finans ve Sigorta sektörlerinde veri tutarlılığı sorunlarını nasıl çözdüğünü görün."
+  tabs:
+    - id: "telecom"
+      label: "Telekom"
+      cards:
+        - title: "CRM – Faturalama Gelir Tutarlılığı"
+          badges: []
+          scenario: "CRM ile faturalama kayıtları arasındaki tutarsızlıklar gelir kaybına, faturalama hatalarına ve operasyonel risklere yol açar."
+          interventionLabel: "ICC MÜDAHALESİ"
+          interventionItems:
+            - "CRM ve faturalama verilerinin otomatik çapraz doğrulaması."
+            - "Eksik veya uyumsuz aboneliklerin tespiti."
+            - "Gelir güvence ekipleri için gerçek zamanlı uyarı."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Gelir kaybı risklerinin azaltılması."
+            - "İyileştirilmiş faturalama doğruluğu ve müşteri güveni."
+            - "Güçlendirilmiş gelir güvence süreçleri."
+        - title: "Provizyon – Aktivasyon Bütünlüğü"
+          badges: []
+          scenario: "CRM, provizyon ve ağ sistemleri arasındaki boşluklar başarısız aktivasyonlara ve müşteri memnuniyetsizliğine neden olur."
+          interventionLabel: "ICC MÜDAHALESİ"
+          interventionItems:
+            - "Aktif CRM aboneliklerini ağ verileriyle çapraz kontrol eder."
+            - "Başarısız veya eksik aktivasyonları otomatik olarak işaretler."
+            - "Anında operasyonel düzeltme sürecini tetikler."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Aktivasyon hatalarının erken tespiti."
+            - "Azaltılmış müşteri şikayetleri ve destek yükü."
+            - "En aza indirilmiş operasyonel gecikmeler."
+    - id: "finance"
+      label: "Finans"
+      cards:
+        - title: "Finansal Raporlama ve Mutabakat"
+          badges: []
+          scenario: "Çekirdek bankacılık, ERP ve muhasebe sistemleri arasındaki tutarsızlıklar düzenleyici risklere ve raporlama hatalarına yol açar."
+          interventionLabel: "ICC MÜDAHALESİ"
+          interventionItems:
+            - "Tüm sistemlerdeki hesap bakiyelerini çapraz doğrular."
+            - "Mutabakat farklılıklarını otomatik olarak tespit eder."
+            - "Uçtan uca veri bütünlüğünü sağlar."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Artırılmış raporlama hassasiyeti."
+            - "Azaltılmış denetim ve düzenleyici riskler."
+            - "Manuel çabada önemli ölçüde azalma."
+        - title: "Kredi Limiti ve Risk Tutarlılığı"
+          badges: []
+          scenario: "Müşteri kredi limitleri, risk skorları ve segment bilgileri sistemler arasında tutarsız olup hatalı kredi kararlarına yol açar."
+          interventionLabel: "ICC MÜDAHALESİ"
+          interventionItems:
+            - "Kredi limitleri, segmentler ve risk skorlarını çapraz doğrular."
+            - "Eşik değere dayalı sapmalar için otomatik uyarılar üretir."
+            - "Müşteri risk profillerinin gerçek zamanlı uyumunu sağlar."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Riskli kredi kararlarının en aza indirilmesi."
+            - "Güçlendirilmiş uyumluluk ve düzenleyici uyum."
+            - "Risk maruziyeti üzerinde artırılmış operasyonel kontrol."
+    - id: "insurance"
+      label: "Sigorta"
+      cards:
+        - title: "Poliçe – Hasar – Muhasebe Eşliği"
+          badges: []
+          scenario: "Poliçe üretimi ile hasar kayıtları arasındaki uyumsuzluklar hatalı mali karşılık ayrılmasına ve denetim başarısızlıklarına neden olur."
+          interventionLabel: "ICC MÜDAHALESİ"
+          interventionItems:
+            - "Poliçe, hasar ve muhasebe kayıtlarını çapraz kontrol eder."
+            - "Tahsil edilen primleri aktif poliçelerle doğrular."
+            - "Hasar ödemelerinin doğru yansıtılmasını sağlar."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Kuruluş genelinde entegre finansal doğruluk."
+            - "Güvenilir teknik kâr hesaplamaları."
+            - "Güçlendirilmiş uyumluluk ve denetim duruşu."
+        - title: "Prim – Komisyon – Reasürans"
+          badges: []
+          scenario: "Acente komisyonları, reasürans payları ve tahsil edilen primler arasındaki tutarsızlıklar gelir kaybına neden olur."
+          interventionLabel: "ICC MÜDAHALESİ"
+          interventionItems:
+            - "Tahsil edilen primleri komisyon hesaplamalarıyla karşılaştırır."
+            - "Poliçe bazında reasürans paylarını doğrular."
+            - "Sözleşme ve komisyon parametrelerine uyumluluğu kontrol eder."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Azaltılmış gelir kaybı ve fazla ödeme riski."
+            - "Hızlandırılmış reasürans mutabakat süreçleri."
+            - "Daha güçlü genel gelir güvencesi."
+
+journey:
+  heading: "Operasyonel"
+  headingHighlight: "Model"
+  steps:
+    - number: "01"
+      title: "Kural Tanımı"
+      description: "Kritik veri varlıkları için karşılaştırma noktaları ve tolerans eşik değerlerinin belirlenmesi."
+    - number: "02"
+      title: "Otomatik Çalıştırma"
+      description: "ICC, karşılaştırmaları zamanlanmış veri iş hatlarınızın bir parçası olarak veya gerçek zamanlı çalıştırır."
+    - number: "03"
+      title: "Olay Çözümü"
+      description: "Sapma işaretlenir, uyarılar gönderilir ve mutabakat kaydı inceleme için güncellenir."
+
+integration:
+  heading: "Kurumsal"
+  headingHighlight: "Hazırlık"
+  description: "ICC, yüksek güvenilirlik gerektiren kritik kurumsal ortamlar için tasarlanmıştır:"
+  items:
+    - "Yapılandırılmış ve yarı yapılandırılmış veri kaynaklarını destekler"
+    - "Cloud DWH, SQL Veritabanları ve Dosya Sistemlerine bağlanır"
+    - "Milyonlarca kayıt düzeyinde kontrol için ölçeklenebilir işleme"
+    - "CI/CD ve iş hattı orkestratörleriyle entegrasyon için Rest API"
+    - "Detaylı olay yönetimi ve onay iş akışları"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataGovernance"
+
+customComponents: []

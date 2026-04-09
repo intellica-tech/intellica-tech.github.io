@@ -1,0 +1,683 @@
+---
+/**
+ * ROICalculator.astro
+ * Interactive "What's Your Data Worth?" calculator with industry,
+ * company size, and data maturity inputs. Live-updating SVG gauges
+ * showing annual savings, decision speed, and risk reduction.
+ * Benchmark-based calculation with 3-year projection.
+ */
+
+// ── Benchmark data ──
+const benchmarkData = {
+  baseSavings: {
+    "50-100": 150000,
+    "100-500": 500000,
+    "500-2000": 1500000,
+    "2000+": 4000000,
+  },
+  industryMultiplier: {
+    finance: 1.3,
+    telecom: 1.2,
+    retail: 1.1,
+    manufacturing: 1.15,
+    other: 1.0,
+  },
+  maturityDiscount: {
+    basic: 1.0,
+    intermediate: 0.6,
+    advanced: 0.3,
+  },
+  decisionSpeed: {
+    basic: 65,
+    intermediate: 40,
+    advanced: 20,
+  },
+  riskReduction: {
+    basic: 55,
+    intermediate: 35,
+    advanced: 15,
+  },
+  roiMultiplier: 2.8,
+  maxSavings: 5200000,
+};
+
+const benchmarkJson = JSON.stringify(benchmarkData);
+---
+
+<section class="section section--light roi-section" id="roi-calculator">
+  <div class="container">
+    <div class="roi-header anim-fade-up">
+      <div class="section-label">ROI CALCULATOR</div>
+      <h2 class="section-title">
+        What's Your Data <span class="grad-text">Worth</span>?
+      </h2>
+      <p class="roi-subtitle">
+        Estimate how much value a modern data platform could unlock for your organization.
+      </p>
+    </div>
+
+    <div class="roi-card anim-fade-up" id="roi-card">
+      <div class="roi-layout">
+        <!-- Inputs -->
+        <div class="roi-inputs" role="form" aria-label="ROI calculator inputs">
+
+          <!-- Industry -->
+          <div class="roi-field">
+            <label class="roi-field__label" for="roi-industry" id="roi-industry-label">Industry</label>
+            <select
+              class="roi-select"
+              id="roi-industry"
+              aria-labelledby="roi-industry-label"
+            >
+              <option value="finance">Finance &amp; Banking</option>
+              <option value="telecom">Telecom</option>
+              <option value="retail">Retail &amp; E-Commerce</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Company Size -->
+          <fieldset class="roi-field roi-fieldset">
+            <legend class="roi-field__label">Company Size</legend>
+            <div class="roi-segments" role="radiogroup" aria-label="Company size">
+              <label class="roi-segment">
+                <input type="radio" name="roi-size" value="50-100" class="roi-segment__input" />
+                <span class="roi-segment__label">50–100</span>
+              </label>
+              <label class="roi-segment">
+                <input type="radio" name="roi-size" value="100-500" class="roi-segment__input" checked />
+                <span class="roi-segment__label">100–500</span>
+              </label>
+              <label class="roi-segment">
+                <input type="radio" name="roi-size" value="500-2000" class="roi-segment__input" />
+                <span class="roi-segment__label">500–2K</span>
+              </label>
+              <label class="roi-segment">
+                <input type="radio" name="roi-size" value="2000+" class="roi-segment__input" />
+                <span class="roi-segment__label">2000+</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Data Maturity -->
+          <fieldset class="roi-field roi-fieldset">
+            <legend class="roi-field__label">Current Data Maturity</legend>
+            <div class="roi-maturity-options" role="radiogroup" aria-label="Data maturity level">
+              <label class="roi-maturity-option">
+                <input type="radio" name="roi-maturity" value="basic" class="roi-maturity__input" checked />
+                <span class="roi-maturity__card">
+                  <span class="roi-maturity__title">Basic</span>
+                  <span class="roi-maturity__desc">Spreadsheets, manual reports</span>
+                </span>
+              </label>
+              <label class="roi-maturity-option">
+                <input type="radio" name="roi-maturity" value="intermediate" class="roi-maturity__input" />
+                <span class="roi-maturity__card">
+                  <span class="roi-maturity__title">Intermediate</span>
+                  <span class="roi-maturity__desc">Central DWH, some BI</span>
+                </span>
+              </label>
+              <label class="roi-maturity-option">
+                <input type="radio" name="roi-maturity" value="advanced" class="roi-maturity__input" />
+                <span class="roi-maturity__card">
+                  <span class="roi-maturity__title">Advanced</span>
+                  <span class="roi-maturity__desc">Cloud platform, self-service</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Results -->
+        <div class="roi-results" aria-live="polite" aria-atomic="true" id="roi-results">
+          <!-- Annual Savings -->
+          <div class="roi-metric-card">
+            <div class="roi-metric__header">
+              <span class="roi-metric__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-.52.06-1.05.07-1.58.07C7.05 20 3.41 16.76 3.05 12.58 3.02 12.39 3 12.2 3 12c0-4.97 4.03-9 9-9 4.63 0 8.44 3.5 8.95 8h-2.01C18.44 7.56 15.52 5 12 5 8.13 5 5 8.13 5 12s3.13 7 7 7c.34 0 .67-.03 1-.08v2.01z" fill="currentColor"/>
+                  <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="roi-metric__label">Estimated Annual Savings</span>
+            </div>
+            <div class="roi-metric__value" id="roi-savings-value">$500K</div>
+            <div class="roi-bar-wrap">
+              <div class="roi-bar-bg">
+                <div class="roi-bar-fill" id="roi-savings-bar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision Speed -->
+          <div class="roi-metric-card">
+            <div class="roi-metric__header">
+              <span class="roi-metric__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="roi-metric__label">Decision Speed Improvement</span>
+            </div>
+            <div class="roi-gauge-wrap">
+              <svg class="roi-gauge" viewBox="0 0 120 120" aria-hidden="true">
+                <circle
+                  class="roi-gauge__bg"
+                  cx="60" cy="60" r="50"
+                  fill="none"
+                  stroke-width="10"
+                />
+                <circle
+                  class="roi-gauge__fill"
+                  id="roi-speed-gauge"
+                  cx="60" cy="60" r="50"
+                  fill="none"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                  transform="rotate(-90 60 60)"
+                />
+              </svg>
+              <div class="roi-gauge__text" id="roi-speed-value">65%</div>
+            </div>
+          </div>
+
+          <!-- Risk Reduction -->
+          <div class="roi-metric-card">
+            <div class="roi-metric__header">
+              <span class="roi-metric__icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="roi-metric__label">Risk Reduction</span>
+            </div>
+            <div class="roi-gauge-wrap">
+              <svg class="roi-gauge" viewBox="0 0 120 120" aria-hidden="true">
+                <circle
+                  class="roi-gauge__bg"
+                  cx="60" cy="60" r="50"
+                  fill="none"
+                  stroke-width="10"
+                />
+                <circle
+                  class="roi-gauge__fill"
+                  id="roi-risk-gauge"
+                  cx="60" cy="60" r="50"
+                  fill="none"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                  transform="rotate(-90 60 60)"
+                />
+              </svg>
+              <div class="roi-gauge__text" id="roi-risk-value">55%</div>
+            </div>
+          </div>
+
+          <!-- 3-Year ROI -->
+          <div class="roi-projection">
+            <div class="roi-projection__label">3-Year Projected ROI</div>
+            <div class="roi-projection__value" id="roi-3year-value">$1.4M</div>
+          </div>
+
+          <a class="btn btn-primary btn-pill btn-lg roi-cta" href="/contact">
+            Unlock Your Data's Value
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Section ── */
+  .roi-section {
+    padding-block: clamp(64px, 8vw, 100px);
+  }
+
+  .roi-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .roi-header .section-label {
+    margin-inline: auto;
+  }
+  .roi-subtitle {
+    color: var(--clr-light-muted);
+    font-size: 1.05rem;
+    max-width: 560px;
+    margin: 8px auto 0;
+    line-height: 1.7;
+  }
+
+  /* ── Card shell ── */
+  .roi-card {
+    background: var(--clr-light-card);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    max-width: 960px;
+    margin-inline: auto;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ── Two-column layout ── */
+  .roi-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── Inputs ── */
+  .roi-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .roi-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .roi-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .roi-field__label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--clr-light-muted);
+  }
+
+  /* ── Select ── */
+  .roi-select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-sm);
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235B6473' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--clr-light-text);
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  .roi-select:hover {
+    border-color: var(--clr-primary);
+  }
+  .roi-select:focus-visible {
+    outline: 2px solid var(--clr-primary);
+    outline-offset: 2px;
+  }
+
+  /* ── Segmented control ── */
+  .roi-segments {
+    display: flex;
+    gap: 0;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .roi-segment {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+  }
+  .roi-segment__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+  .roi-segment__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--clr-light-muted);
+    background: #fff;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .roi-segment:last-child .roi-segment__label {
+    border-right: none;
+  }
+  .roi-segment__input:checked + .roi-segment__label {
+    background: var(--clr-primary);
+    color: #fff;
+    font-weight: 700;
+  }
+  .roi-segment__input:focus-visible + .roi-segment__label {
+    outline: 2px solid var(--clr-primary);
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  /* ── Maturity radio cards ── */
+  .roi-maturity-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .roi-maturity-option {
+    cursor: pointer;
+    position: relative;
+  }
+  .roi-maturity__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+  .roi-maturity__card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .roi-maturity__card:hover {
+    border-color: var(--clr-primary);
+    background: rgba(0, 200, 150, 0.03);
+  }
+  .roi-maturity__input:checked + .roi-maturity__card {
+    border-color: var(--clr-primary);
+    background: rgba(0, 200, 150, 0.06);
+    box-shadow: 0 0 0 1px var(--clr-primary);
+  }
+  .roi-maturity__input:focus-visible + .roi-maturity__card {
+    outline: 2px solid var(--clr-primary);
+    outline-offset: 2px;
+  }
+  .roi-maturity__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--clr-light-text);
+  }
+  .roi-maturity__desc {
+    font-size: 0.8rem;
+    color: var(--clr-light-muted);
+  }
+
+  /* ── Results ── */
+  .roi-results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .roi-metric-card {
+    background: var(--clr-light-bg);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: var(--radius-md);
+    padding: 20px;
+  }
+  .roi-metric__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .roi-metric__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 200, 150, 0.1);
+    color: var(--clr-primary);
+    flex-shrink: 0;
+  }
+  .roi-metric__label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--clr-light-muted);
+  }
+
+  /* ── Savings value + bar ── */
+  .roi-metric__value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--clr-light-text);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .roi-bar-wrap {
+    width: 100%;
+  }
+  .roi-bar-bg {
+    height: 10px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .roi-bar-fill {
+    height: 100%;
+    background: var(--grad-brand);
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── Gauges ── */
+  .roi-gauge-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+  .roi-gauge {
+    width: 100%;
+    height: 100%;
+  }
+  .roi-gauge__bg {
+    stroke: rgba(0, 0, 0, 0.06);
+  }
+  .roi-gauge__fill {
+    stroke: var(--clr-primary);
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .roi-gauge__text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--clr-light-text);
+  }
+
+  /* ── 3-Year Projection ── */
+  .roi-projection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    background: var(--clr-light-text);
+    color: #fff;
+  }
+  .roi-projection__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+  .roi-projection__value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── CTA ── */
+  .roi-cta {
+    align-self: center;
+    margin-top: 4px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .roi-card {
+      padding: 24px 16px;
+    }
+    .roi-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .roi-segment__label {
+      padding: 10px 4px;
+      font-size: 0.75rem;
+    }
+    .roi-metric__value {
+      font-size: 1.6rem;
+    }
+    .roi-projection {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+      padding: 16px 20px;
+    }
+    .roi-projection__value {
+      font-size: 1.5rem;
+    }
+    .roi-gauge-wrap {
+      width: 100px;
+      height: 100px;
+    }
+    .roi-gauge__text {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .roi-bar-fill,
+    .roi-gauge__fill {
+      transition: none;
+    }
+  }
+</style>
+
+<script define:vars={{ benchmarkJson }}>
+  (function () {
+    var data = JSON.parse(benchmarkJson);
+    var CIRCUMFERENCE = 2 * Math.PI * 50; // r=50
+
+    // DOM refs
+    var industryEl = document.getElementById("roi-industry");
+    var sizeInputs = document.querySelectorAll('input[name="roi-size"]');
+    var maturityInputs = document.querySelectorAll('input[name="roi-maturity"]');
+    var savingsValueEl = document.getElementById("roi-savings-value");
+    var savingsBarEl = document.getElementById("roi-savings-bar");
+    var speedGaugeEl = document.getElementById("roi-speed-gauge");
+    var speedValueEl = document.getElementById("roi-speed-value");
+    var riskGaugeEl = document.getElementById("roi-risk-gauge");
+    var riskValueEl = document.getElementById("roi-risk-value");
+    var threeYearEl = document.getElementById("roi-3year-value");
+
+    // Initialize gauge stroke-dasharray
+    speedGaugeEl.setAttribute("stroke-dasharray", String(CIRCUMFERENCE));
+    speedGaugeEl.setAttribute("stroke-dashoffset", String(CIRCUMFERENCE));
+    riskGaugeEl.setAttribute("stroke-dasharray", String(CIRCUMFERENCE));
+    riskGaugeEl.setAttribute("stroke-dashoffset", String(CIRCUMFERENCE));
+
+    function getSelectedValue(inputs) {
+      for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].checked) return inputs[i].value;
+      }
+      return null;
+    }
+
+    function formatCurrency(amount) {
+      if (amount >= 1000000) {
+        var millions = amount / 1000000;
+        // Show one decimal if not a whole number
+        var formatted = millions % 1 === 0
+          ? String(millions)
+          : millions.toFixed(1);
+        return "$" + formatted + "M";
+      }
+      if (amount >= 1000) {
+        var thousands = amount / 1000;
+        var formatted2 = thousands % 1 === 0
+          ? String(thousands)
+          : thousands.toFixed(0);
+        return "$" + formatted2 + "K";
+      }
+      return "$" + String(amount);
+    }
+
+    function setGauge(gaugeEl, pct) {
+      var offset = CIRCUMFERENCE - (pct / 100) * CIRCUMFERENCE;
+      gaugeEl.setAttribute("stroke-dashoffset", String(offset));
+    }
+
+    function calculate() {
+      var industry = industryEl.value;
+      var size = getSelectedValue(sizeInputs);
+      var maturity = getSelectedValue(maturityInputs);
+
+      if (!industry || !size || !maturity) return;
+
+      var baseSavings = data.baseSavings[size] || 0;
+      var multiplier = data.industryMultiplier[industry] || 1.0;
+      var discount = data.maturityDiscount[maturity] || 1.0;
+      var annualSavings = baseSavings * multiplier * discount;
+
+      var decisionSpeed = data.decisionSpeed[maturity] || 0;
+      var riskReduction = data.riskReduction[maturity] || 0;
+      var threeYearROI = annualSavings * data.roiMultiplier;
+
+      // Update savings
+      savingsValueEl.textContent = formatCurrency(annualSavings);
+      var barPct = Math.min((annualSavings / data.maxSavings) * 100, 100);
+      savingsBarEl.style.width = barPct + "%";
+
+      // Update gauges
+      speedValueEl.textContent = decisionSpeed + "%";
+      setGauge(speedGaugeEl, decisionSpeed);
+
+      riskValueEl.textContent = riskReduction + "%";
+      setGauge(riskGaugeEl, riskReduction);
+
+      // Update 3-year
+      threeYearEl.textContent = formatCurrency(threeYearROI);
+    }
+
+    // Attach listeners
+    industryEl.addEventListener("change", calculate);
+    for (var i = 0; i < sizeInputs.length; i++) {
+      sizeInputs[i].addEventListener("change", calculate);
+    }
+    for (var j = 0; j < maturityInputs.length; j++) {
+      maturityInputs[j].addEventListener("change", calculate);
+    }
+
+    // Initial calculation
+    calculate();
+  })();
+</script>

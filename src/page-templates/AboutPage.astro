@@ -1,0 +1,768 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Lang } from '../i18n/config';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const siteUrl = "https://intellica.net";
+const breadcrumbs = [{ name: t('about.breadcrumb'), url: `${siteUrl}${tp('/about')}` }];
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": t('about.schema.name'),
+  "description": t('about.schema.description'),
+  "url": `${siteUrl}${tp('/about')}`,
+  "mainEntity": { "@id": `${siteUrl}/#organization` }
+};
+---
+
+<Layout title={t('meta.about.title')} description={t('meta.about.description')} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+
+  <!-- Page Hero -->
+  <section class="hero noise" id="about-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content anim-fade-up">
+          <div class="section-label">{t('about.hero.label')}</div>
+          <h1 class="hero__title">{t('about.hero.title')}<span class="grad-text">{t('about.hero.titleHighlight')}</span></h1>
+          <span class="hero__accent"></span>
+          <p class="hero__desc">{t('about.hero.desc')}</p>
+          <div class="hero__actions">
+            <a href={tp('/contact')} class="btn btn-primary btn-pill btn-lg">{t('about.hero.cta')}</a>
+          </div>
+        </div>
+
+        <div class="hero__visual anim-fade-up">
+          <img src="/assets/img/intellica_camlogo_icibos.png" alt={t('about.hero.imgAlt')} class="hero__shape-new" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Who We Are -->
+  <section class="section section--white" id="team">
+    <div class="container">
+      <div class="about-intro anim-fade-up">
+        <div class="about-intro__content">
+          <div class="section-label">{t('about.whoWeAre.label')}</div>
+          <h2 style="color:var(--clr-light-text);margin-bottom:24px;">{t('about.whoWeAre.title')}<span class="grad-text">{t('about.whoWeAre.titleHighlight')}</span></h2>
+          <p style="color:var(--clr-light-muted);font-size:1.15rem;line-height:1.8;margin-bottom:24px;">
+            {t('about.whoWeAre.desc1')}
+          </p>
+          <p style="color:var(--clr-light-muted);font-size:1.05rem;line-height:1.8;margin-bottom:32px;">
+            {t('about.whoWeAre.desc2')}
+          </p>
+
+            <div class="about-stats">
+              <div class="about-stat">
+                <span class="about-stat__number grad-text">{t('about.whoWeAre.stat1.number')}</span>
+                <span class="about-stat__label">{t('about.whoWeAre.stat1.label')}</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat__number grad-text">{t('about.whoWeAre.stat2.number')}</span>
+                <span class="about-stat__label">{t('about.whoWeAre.stat2.label')}</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat__number grad-text">{t('about.whoWeAre.stat3.number')}</span>
+                <span class="about-stat__label">{t('about.whoWeAre.stat3.label')}</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat__number grad-text">{t('about.whoWeAre.stat4.number')}</span>
+                <span class="about-stat__label">{t('about.whoWeAre.stat4.label')}</span>
+              </div>
+            </div>
+        </div>
+        <div class="about-intro__visual anim-fade-up">
+          <div class="img-frame">
+            <img src="/assets/img/global_data_ai_abstract_presence.png" alt={t('about.whoWeAre.imgAlt')} loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities & Expertise -->
+  <section class="section section--light" id="capabilities">
+    <div class="container">
+      <div class="grid-2 anim-fade-up" style="gap: 60px; align-items: center; margin-bottom: 80px;">
+        <div>
+          <div class="section-label">{t('about.capabilities.label')}</div>
+          <h2 style="color:var(--clr-light-text); margin-bottom: 24px;">{t('about.capabilities.title')}<span class="grad-text">{t('about.capabilities.titleHighlight')}</span></h2>
+          <p style="color:var(--clr-light-muted); font-size: 1.1rem; line-height: 1.7;">
+            {t('about.capabilities.desc')}
+          </p>
+        </div>
+        <div class="grid-2" style="gap: 20px;">
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">{t('about.capabilities.card1.title')}</h4>
+             <p style="font-size: 0.9rem; color: var(--clr-light-muted);">{t('about.capabilities.card1.desc')}</p>
+          </div>
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">{t('about.capabilities.card2.title')}</h4>
+             <p style="font-size: 0.9rem; color: var(--clr-light-muted);">{t('about.capabilities.card2.desc')}</p>
+          </div>
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">{t('about.capabilities.card3.title')}</h4>
+            <p style="font-size: 0.9rem; color: var(--clr-light-muted);">{t('about.capabilities.card3.desc')}</p>
+          </div>
+          <div class="cap-card-modern" style="background: #fff; padding: 24px;">
+            <h4 style="margin-bottom: 12px; color: var(--clr-primary);">{t('about.capabilities.card4.title')}</h4>
+            <p style="font-size: 0.9rem; color: var(--clr-light-muted);">{t('about.capabilities.card4.desc')}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <h2 style="color:var(--clr-light-text);">
+          {t('about.howWeWork.title')}<span class="grad-text">{t('about.howWeWork.titleHighlight')}</span>
+        </h2>
+      </div>
+
+      <div class="grid-3 anim-fade-up" style="gap: 24px;">
+        <div class="cap-card-modern" style="background: #f8fafc;">
+          <h3>{t('about.howWeWork.step1.title')}</h3>
+          <p>
+            {t('about.howWeWork.step1.desc')}
+          </p>
+        </div>
+
+        <div class="cap-card-modern" style="background: #f8fafc;">
+          <h3>{t('about.howWeWork.step2.title')}</h3>
+          <p>
+            {t('about.howWeWork.step2.desc')}
+          </p>
+        </div>
+
+        <div class="cap-card-modern" style="background: #f8fafc;">
+          <h3>{t('about.howWeWork.step3.title')}</h3>
+          <p>
+            {t('about.howWeWork.step3.desc')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('about.values.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">{t('about.values.title')}<span class="grad-text">{t('about.values.titleHighlight')}</span>{t('about.values.titleSuffix')}</h2>
+        <p class="section-sub">{t('about.values.sub')}</p>
+      </div>
+      <div class="grid-4 anim-fade-up">
+        <div class="value-card card-light">
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt={t('about.values.card1.imgAlt')} style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" loading="lazy" />
+          </div>
+          <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">{t('about.values.card1.title')}</h3>
+           <p style="color:var(--clr-light-muted);font-size:0.88rem;">{t('about.values.card1.desc')}</p>
+        </div>
+        <div class="value-card card-light">
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt={t('about.values.card2.imgAlt')} style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" loading="lazy" />
+          </div>
+          <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">{t('about.values.card2.title')}</h3>
+           <p style="color:var(--clr-light-muted);font-size:0.88rem;">{t('about.values.card2.desc')}</p>
+        </div>
+        <div class="value-card card-light">
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt={t('about.values.card3.imgAlt')} style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" loading="lazy" />
+          </div>
+          <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">{t('about.values.card3.title')}</h3>
+           <p style="color:var(--clr-light-muted);font-size:0.88rem;">{t('about.values.card3.desc')}</p>
+        </div>
+        <div class="value-card card-light">
+          <div class="value-card__icon">
+            <img src="/assets/img/intellica_camlogo_icibos.png" alt={t('about.values.card4.imgAlt')} style="width: 40px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,196,204,0.3));" loading="lazy" />
+          </div>
+          <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:8px;">{t('about.values.card4.title')}</h3>
+           <p style="color:var(--clr-light-muted);font-size:0.88rem;">{t('about.values.card4.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Horizontal Grid (Strict 2 Rows) -->
+  <section class="section section--dark history-section" id="tarihce">
+    <div class="history-bg">
+      <img src="/assets/img/history_background.png" alt="" aria-hidden="true" style="opacity: 0.2;" loading="lazy" />
+    </div>
+    <div class="container container--wide">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto; color: #00f0ff; border-color: rgba(0,240,255,0.3);">{t('about.history.label')}</div>
+        <h2 class="section-title">{t('about.history.title')}<span class="grad-text">{t('about.history.titleHighlight')}</span></h2>
+        <p class="section-sub" style="color: rgba(255,255,255,0.6);">{t('about.history.sub')}</p>
+      </div>
+
+      <div class="timeline-grid-v3 anim-fade-up">
+        <!-- Row 1: 2006-2015 -->
+        <div class="timeline-row">
+          <div class="timeline-row-line"></div>
+          <div class="timeline-row-items">
+            <!-- 2006 -->
+            <div class="timeline-node org">
+              <div class="node-year">2006</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2006.title')}</h3>
+                <p>{t('about.history.2006.desc')}</p>
+              </div>
+            </div>
+            <!-- 2009 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2009</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2009.title')}</h3>
+                <p>{t('about.history.2009.desc')}</p>
+              </div>
+            </div>
+            <!-- 2011 -->
+            <div class="timeline-node intl">
+              <div class="node-year">2011</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2011.title')}</h3>
+                <p>{t('about.history.2011.desc')}</p>
+              </div>
+            </div>
+            <!-- 2012 -->
+            <div class="timeline-node org">
+              <div class="node-year">2012</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2012.title')}</h3>
+                <p>{t('about.history.2012.desc')}</p>
+              </div>
+            </div>
+            <!-- 2014 -->
+            <div class="timeline-node intl">
+              <div class="node-year">2014</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2014.title')}</h3>
+                <p>{t('about.history.2014.desc')}</p>
+              </div>
+            </div>
+            <!-- 2015-1 -->
+            <div class="timeline-node org">
+              <div class="node-year">2015</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2015a.title')}</h3>
+                <p>{t('about.history.2015a.desc')}</p>
+              </div>
+            </div>
+            <!-- 2015-2 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2015</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2015b.title')}</h3>
+                <p>{t('about.history.2015b.desc')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: 2016-2025 -->
+        <div class="timeline-row" style="margin-top: 80px;">
+          <div class="timeline-row-line"></div>
+          <div class="timeline-row-items">
+            <!-- 2016 -->
+            <div class="timeline-node org">
+              <div class="node-year">2016</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2016.title')}</h3>
+                <p>{t('about.history.2016.desc')}</p>
+              </div>
+            </div>
+            <!-- 2019 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2019</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2019.title')}</h3>
+                <p>{t('about.history.2019.desc')}</p>
+              </div>
+            </div>
+            <!-- 2020 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2020</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2020.title')}</h3>
+                <p>{t('about.history.2020.desc')}</p>
+              </div>
+            </div>
+            <!-- 2021 -->
+            <div class="timeline-node intl">
+              <div class="node-year">2021</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2021.title')}</h3>
+                <p>{t('about.history.2021.desc')}</p>
+              </div>
+            </div>
+            <!-- 2022 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2022</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2022.title')}</h3>
+                <p>{t('about.history.2022.desc')}</p>
+              </div>
+            </div>
+            <!-- 2023 -->
+            <div class="timeline-node org">
+              <div class="node-year">2023</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2023.title')}</h3>
+                <p>{t('about.history.2023.desc')}</p>
+              </div>
+            </div>
+            <!-- 2025 -->
+            <div class="timeline-node prod">
+              <div class="node-year">2025</div>
+              <div class="node-dot"></div>
+              <div class="node-content">
+                <h3>{t('about.history.2025.title')}</h3>
+                <p>{t('about.history.2025.desc')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend (Dark Version) -->
+      <div class="timeline-legend-v3 anim-fade-up">
+        <div class="legend-item"><span class="dot org"></span> {t('about.history.legend.org')}</div>
+        <div class="legend-item"><span class="dot intl"></span> {t('about.history.legend.intl')}</div>
+        <div class="legend-item"><span class="dot prod"></span> {t('about.history.legend.prod')}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Section -->
+  <section class="section section--light" id="clients">
+    <div class="container">
+      <div class="grid-2 anim-fade-up" style="gap: 60px; align-items: center;">
+        <div>
+          <div class="section-label">{t('about.clients.label')}</div>
+          <h2 class="section-title" style="color:var(--clr-light-text);">{t('about.clients.title')}<span class="grad-text">{t('about.clients.titleHighlight')}</span></h2>
+          <p class="section-sub" style="text-align: left; margin-inline: 0; max-width: 100%;">
+            {t('about.clients.desc')}
+          </p>
+          <div style="margin-top: 32px;">
+            <a href={tp('/clients')} class="btn btn-primary btn-pill">{t('about.clients.cta')}</a>
+          </div>
+        </div>
+        <div class="clients-preview-visual">
+          <img src="/assets/img/global_network_premium.png" alt={t('about.clients.imgAlt')} style="width: 100%; max-width: 520px; border-radius: 24px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- ===== CTA STRIP ===== -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>{t('about.cta.title')}<span class="grad-text">{t('about.cta.titleHighlight')}</span></h2>
+        <p>{t('about.cta.desc')}</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('about.cta.primary')}</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href={tp('/clients')}>{t('about.cta.secondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+/* HERO: STANDARDIZED (Shared with index/solutions) */
+.hero-disabled {
+  min-height: 750px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #162a4d 0%, #020617 100%);
+}
+.hero-disabled__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+.hero-disabled__content-wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+.hero-disabled__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: 60px;
+}
+.hero-disabled__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.hero-disabled__accent {
+  display: block;
+  width: 80px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--grad-brand);
+  margin-bottom: 32px;
+}
+.hero-disabled__desc {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.hero-disabled__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hero-disabled__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-disabled__shape-new {
+  width: 100%;
+  max-width: 560px;
+  animation: float 8s ease-in-out infinite;
+  filter: drop-shadow(0 20px 80px rgba(0, 200, 150, 0.3));
+}
+
+@media (max-width: 1100px) {
+  .hero-disabled {
+    min-height: auto !important;
+    padding-top: 5px !important;
+    padding-bottom: 25px !important;
+    height: auto;
+  }
+  .hero-disabled__content-wrap {
+    grid-template-columns: 1fr;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-disabled__content { align-items: flex-start; padding-block: 20px; }
+  .hero-disabled__visual {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 90px;
+    height: 90px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 0;
+    z-index: 10;
+  }
+  .hero-disabled__shape-new {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 1;
+    filter: drop-shadow(0 4px 12px rgba(0, 200, 150, 0.25));
+  }
+  .hero-disabled__desc { font-size: 1.15rem; max-width: 100%; margin-bottom: 24px; height: auto; min-height: 0; }
+  .hero-disabled__title { font-size: clamp(2.2rem, 8vw, 3.5rem); margin-bottom: 16px; }
+}
+
+@media (max-width: 768px) {
+  .hero-disabled__actions { flex-direction: row; gap: 16px; flex-wrap: wrap; justify-content: flex-start; }
+  .hero-disabled__actions .btn { width: auto; }
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-intro__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 60px;
+}
+.about-stat {
+  display: flex;
+  flex-direction: column;
+}
+.about-stat__number {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.about-stat__label {
+  font-size: 0.85rem;
+  color: var(--clr-light-muted);
+  font-weight: 600;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+.img-frame {
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  width: 100%;
+}
+.img-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.value-card {
+  text-align: center;
+  padding: 28px 24px;
+}
+.value-card__icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+/* V3 Timeline Styles (Strict 2 Rows) */
+.history-section {
+  position: relative;
+  overflow: hidden;
+  background: #020810;
+  padding: 100px 0;
+}
+.history-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.history-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-grid-v3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 60px;
+}
+
+.timeline-row {
+  position: relative;
+  padding: 40px 0;
+}
+
+.timeline-row-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,240,255,0.4), var(--clr-primary), rgba(0,240,255,0.4), transparent);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-row-items {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  padding: 0 40px;
+}
+
+.timeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  position: relative;
+}
+
+.node-year {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00f0ff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,240,255,0.3);
+}
+
+.node-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #fff;
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  z-index: 3;
+}
+
+.timeline-node.org .node-dot { background: #2563eb; border-color: #2563eb; box-shadow: 0 0 15px rgba(37,99,235,0.6); }
+.timeline-node.intl .node-dot { background: #9333ea; border-color: #9333ea; box-shadow: 0 0 15px rgba(147,51,234,0.6); }
+.timeline-node.prod .node-dot { background: #06b6d4; border-color: #06b6d4; box-shadow: 0 0 15px rgba(6,182,212,0.6); }
+
+.node-content {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.node-content h3 {
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.node-content p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+}
+
+.timeline-legend-v3 {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 60px;
+}
+.timeline-legend-v3 .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.timeline-legend-v3 .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.timeline-legend-v3 .dot.org { background: #2563eb; }
+.timeline-legend-v3 .dot.intl { background: #9333ea; }
+.timeline-legend-v3 .dot.prod { background: #06b6d4; }
+
+@media (max-width: 1100px) {
+  .timeline-row-line { display: none; }
+  .timeline-row-items {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+  .timeline-node { width: 160px; }
+}
+
+@media (max-width: 600px) {
+  .timeline-row-items { gap: 32px; padding: 0 10px; }
+  .timeline-node { width: 100%; max-width: 200px; }
+  .timeline-grid-v3 { margin-top: 40px; }
+  .timeline-row { padding: 20px 0; }
+  .timeline-row:not(:first-child) { margin-top: 40px !important; }
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.logo-tile {
+  background: #fff;
+  border: 1px solid #eef2f6;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  transition: all 0.3s ease;
+}
+.logo-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-color: var(--clr-primary);
+}
+.logo-tile img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1100px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .about-intro__visual { order: -1; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    text-align: left;
+  }
+  .about-intro__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .logo-tile { height: 100px; padding: 20px; }
+}
+
+@media (max-width: 600px) {
+  .about-stats {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .about-stat {
+    align-items: center;
+    text-align: center;
+  }
+  .about-intro h2 {
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+}
+</style>

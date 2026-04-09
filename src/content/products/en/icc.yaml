@@ -1,0 +1,191 @@
+slug: "icc"
+lang: "en"
+name: "ICC — Intellica Consistency Controller"
+
+pageTitle: "ICC — Intellica Consistency Controller | Intellica"
+pageDescription: >
+  ICC: Automated data reconciliation and consistency management; ensuring trust
+  across source systems and reporting layers with real-time drift alerts.
+
+hero:
+  category: "Data Platform & Governance"
+  titlePrefix: "ICC — Consistency"
+  titleHighlight: "Controller"
+  description: >
+    Ensure total data consistency across your enterprise. Eliminate discrepancies
+    with automated reconciliation, quality gates, and real-time drift alerts.
+    Trust your data from source to report.
+
+overview:
+  problem: >
+    Data often differs between source systems and the data warehouse, leading to
+    conflicting reports, loss of executive trust, and regulatory risks.
+  approach: >
+    ICC automates the reconciliation process between multiple data points, flagging
+    inconsistencies at the record level before they impact your business decisions.
+  businessValue: >
+    90% reduction in manual reconciliation effort. Immediate detection of data
+    integration failures. Higher audit readiness.
+  whenPreferred:
+    - "When financial reports show different numbers for the same period"
+    - "To implement automated \"Quality Gates\" in your ETL/ELT pipelines"
+    - "For regulatory compliance that requires formal reconciliation logs"
+    - "During complex data migrations to ensure 1:1 data parity"
+    - "To reduce the operational burden on IT and Accounting teams"
+  preferredNote: "Note: ICC scales to hundreds of reconciliation rules across millions of records."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Auto-Reconciliation"
+      description: "Cross-system data matching without writing custom, fragile audit scripts."
+    - title: "Quality Gates"
+      description: "Define criteria to block faulty data from reaching production reports."
+    - title: "Drift Alerting"
+      description: "Get notified instantly when data drift between systems exceeds thresholds."
+    - title: "Audit Logging"
+      description: "Full history of reconciliation results, perfect for regulatory compliance."
+    - title: "Rule Engine"
+      description: "Define complex consistency rules visually without deep SQL expertise."
+    - title: "Health Dashboard"
+      description: "High-level view of data health and consistency status across the organization."
+
+featureSection:
+  heading: "Configurable"
+  headingHighlight: "Quality Rules"
+  description: >
+    ICC empowers data stewards to build complex validation rules through an
+    intuitive, visual interface. Transform manual data auditing into a
+    production-grade automated engine.
+  calloutTitle: "Visual Rule Logic"
+  calloutDescription: "Drag-and-drop complexity into standardized data quality signals."
+  image: "/assets/images/icc_rule.png"
+  imageAlt: "ICC Rule Design Interface"
+  imageCaption: "ICC Interface: Visual configuration of complex data validation flows."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "See how ICC resolves data consistency challenges across Telecom, Finance, and Insurance."
+  tabs:
+    - id: "telecom"
+      label: "Telecom"
+      cards:
+        - title: "CRM – Billing Revenue Consistency"
+          badges: []
+          scenario: "Discrepancies between CRM and billing records lead to revenue leakage, billing errors, and operational risks."
+          interventionLabel: "ICC INTERVENTION"
+          interventionItems:
+            - "Automatic cross-validation of CRM and billing data."
+            - "Identification of missing or mismatched subscriptions."
+            - "Real-time alerting for revenue assurance teams."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Mitigated revenue loss risks."
+            - "Improved billing accuracy & customer trust."
+            - "Strengthened revenue assurance processes."
+        - title: "Provisioning – Activation Integrity"
+          badges: []
+          scenario: "Gaps between CRM, provisioning, and network systems cause failed activations and customer dissatisfaction."
+          interventionLabel: "ICC INTERVENTION"
+          interventionItems:
+            - "Cross-checks active CRM subscriptions with network data."
+            - "Automatically flags failed or incomplete activations."
+            - "Triggers immediate operational remediation."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Early detection of activation errors."
+            - "Reduced customer complaints & support load."
+            - "Minimized operational delays."
+    - id: "finance"
+      label: "Finance"
+      cards:
+        - title: "Financial Reporting & Reconciliation"
+          badges: []
+          scenario: "Inconsistencies between core banking, ERP, and accounting systems lead to regulatory risks and reporting errors."
+          interventionLabel: "ICC INTERVENTION"
+          interventionItems:
+            - "Cross-validates account balances across all systems."
+            - "Automatically identifies reconciliation variances."
+            - "Ensures end-to-end data integrity."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Increased reporting precision."
+            - "Lowered audit and regulatory risks."
+            - "Significant reduction in manual effort."
+        - title: "Credit Limit & Risk Consistency"
+          badges: []
+          scenario: "Customer credit limits, risk scores, and segment info are inconsistent across systems, leading to faulty credit decisions."
+          interventionLabel: "ICC INTERVENTION"
+          interventionItems:
+            - "Cross-validates credit limits, segments, and risk scores."
+            - "Generates automatic alerts for threshold-based sapma/drifts."
+            - "Ensures alignment of customer risk profiles in real-time."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Minimized risky credit decisions."
+            - "Strengthened compliance and regulatory adherence."
+            - "Increased operational control over risk exposure."
+    - id: "insurance"
+      label: "Insurance"
+      cards:
+        - title: "Policy – Claims – Accounting Parity"
+          badges: []
+          scenario: "Mismatches between policy production and claims records cause incorrect financial provisioning and audit failures."
+          interventionLabel: "ICC INTERVENTION"
+          interventionItems:
+            - "Cross-checks policy, claims, and accounting records."
+            - "Validates collected premiums against active policies."
+            - "Ensures correct reflection of claim payments."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Integrated financial truth across the organization."
+            - "Reliable technical profit calculations."
+            - "Enhanced compliance and audit posture."
+        - title: "Premium – Commission – Reinsurance"
+          badges: []
+          scenario: "Inconsistencies between agency commissions, reinsurance shares, and collected premiums cause revenue leakage."
+          interventionLabel: "ICC INTERVENTION"
+          interventionItems:
+            - "Compares collected premiums with commission calculations."
+            - "Validates reinsurance shares per policy."
+            - "Checks compliance with contract and commission parameters."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Reduced revenue leakage and overpayment risk."
+            - "Accelerated reinsurance reconciliation processes."
+            - "Stronger overall revenue assurance."
+
+journey:
+  heading: "Operational"
+  headingHighlight: "Model"
+  steps:
+    - number: "01"
+      title: "Rule Definition"
+      description: "Establishing comparison points and tolerance thresholds for critical data assets."
+    - number: "02"
+      title: "Automated Execution"
+      description: "ICC runs comparisons as part of your scheduled data pipelines or in real-time."
+    - number: "03"
+      title: "Incident Resolution"
+      description: "Drift is flagged, alerts are sent, and the reconciliation log is updated for review."
+
+integration:
+  heading: "Enterprise"
+  headingHighlight: "Ready"
+  description: "ICC is built for mission-critical enterprise environments requiring high reliability:"
+  items:
+    - "Supports structured and semi-structured data sources"
+    - "Connects to Cloud DWH, SQL Databases, and File Systems"
+    - "Scalable processing for millions of record-level checks"
+    - "Rest API for integration with CI/CD and pipeline orchestrators"
+    - "Detailed incident management and approval workflows"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataGovernance"
+
+customComponents: []

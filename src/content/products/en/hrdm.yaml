@@ -1,0 +1,99 @@
+slug: "hrdm"
+lang: "en"
+name: "HRDM — Human Resources Data Model"
+
+pageTitle: "HRDM — Human Resources Data Model | Intellica"
+pageDescription: >
+  HRDM: Comprehensive data warehouse model for HR analytics; covering talent
+  management, employee lifecycle, and workforce optimization.
+
+hero:
+  category: "Data Models"
+  titlePrefix: "HRDM — Human Resources"
+  titleHighlight: "Data Model"
+  description: >
+    Empower your workforce with data-driven HR insights. Transform payroll,
+    talent management, and employee lifecycle data into actionable strategic
+    insights with our pre-modeled architecture.
+
+overview:
+  problem: >
+    HR data is often locked in disparate systems (Payroll, LMS, ATS). Creating
+    an integrated view of the employee lifecycle for strategic workforce planning
+    is complex and time-consuming.
+  approach: >
+    Intellica Human Resources Data Model (HRDM) provides a holistic,
+    subject-oriented data model specifically designed for HR processes, enabling
+    fast integration and standardized reporting across all personnel domains.
+  businessValue: >
+    Dramatically reduced analysis effort for HR reporting and significantly
+    improved accuracy in workforce cost and turnover tracking.
+  whenPreferred:
+    - "During HR system migrations or digital HR transformations"
+    - "When building executive HR dashboards (Turnover, Cost analysis, etc.)"
+    - "To support strategic workforce planning and talent gap analysis"
+    - "When standardizing HR KPIs across a global or distributed organization"
+    - "To improve the quality and consistency of personnel-related data assets"
+  preferredNote: ""
+
+capabilities:
+  label: "Capabilities"
+  heading: "HR-Specific"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Employee 360"
+      description: "Integrated view of staff data from initial recruitment to terminal exit/retirement."
+    - title: "Org Hierarchy"
+      description: "Robust management of complex, time-varying organizational structures and reporting lines."
+    - title: "Payroll & Benefits"
+      description: "Standardized models for salary buckets, bonuses, and distributed benefit schemes."
+    - title: "Talent & Learning"
+      description: "Tracks employee skills, mandatory certifications, and professional learning progress."
+    - title: "Workforce Analytics"
+      description: "Ready-to-use schemas for detailed attrition, turnover, and diversity analysis."
+    - title: "Strategic Library"
+      description: "Pre-defined metrics for labor cost, productivity ratios, and recruitment efficiency."
+
+featureSection:
+  heading: "Layered"
+  headingHighlight: "Architecture"
+  description: >
+    HRDM provides process-oriented descriptions and key attributes for core HR
+    domains. This structure ensures an integrated data language for workforce
+    analytics, recruitment tracking, and performance management.
+  calloutTitle: "Subject-Oriented Design"
+  calloutDescription: "Extensible framework covering Employee journey, Payroll, and Organizational structures."
+  image: "/assets/images/hrdm-architecture.png"
+  imageAlt: "HRDM Architecture Approach"
+  imageCaption: "HRDM Architecture: Integrated workforce visualization with Foundation and Analysis layers."
+
+journey:
+  heading: "Implementation"
+  headingHighlight: "Journey"
+  steps:
+    - number: "01"
+      title: "Data Discovery"
+      description: "Auditing existing HR systems (Workday, SAP SuccessFactors, local payroll systems)."
+    - number: "02"
+      title: "KPI Standardization"
+      description: "Defining standardized formulas for turnover, absenteeism, and cost-per-hire."
+    - number: "03"
+      title: "Dashboard Activation"
+      description: "Deploying strategic dashboards for HR leaders and department managers."
+
+integration:
+  heading: "Integration &"
+  headingHighlight: "Synergy"
+  description: "HRDM is built with strict privacy and integration standards in mind, ensuring a secure organizational fit:"
+  items:
+    - "GDPR / KVKK compliant data handling patterns"
+    - "Granular role-based access control (RBAC)"
+    - "Data masking and anonymization techniques for analytics"
+    - "Audit trails for all personnel-related data access"
+    - "Secure integration with internal identity management"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataModel"
+
+customComponents: []

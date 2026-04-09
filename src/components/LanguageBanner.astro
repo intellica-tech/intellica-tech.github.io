@@ -1,0 +1,150 @@
+---
+import { languages, defaultLang, type Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang: currentLang } = Astro.props;
+
+const langNames = JSON.stringify(
+  Object.fromEntries(Object.entries(languages).map(([code, { name }]) => [code, name]))
+);
+const supportedLangs = JSON.stringify(Object.keys(languages));
+const localePattern = new RegExp(`^/(${Object.keys(languages).join('|')})(/|$)`);
+const basePath = Astro.url.pathname.replace(localePattern, '/');
+---
+
+<div id="lang-banner" class="lang-banner" hidden>
+  <div class="lang-banner__inner">
+    <p id="lang-banner-text" class="lang-banner__text"></p>
+    <div class="lang-banner__actions">
+      <a id="lang-banner-link" class="lang-banner__btn"></a>
+      <button id="lang-banner-dismiss" class="lang-banner__close" aria-label="Dismiss">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ currentLang, defaultLang, langNames, supportedLangs, basePath }}>
+(function() {
+  var STORAGE_KEY = 'lang-banner-dismissed';
+  try {
+    if (localStorage.getItem(STORAGE_KEY)) return;
+  } catch (e) {
+    return;
+  }
+
+  var consent;
+  try { consent = localStorage.getItem('ga_consent'); } catch (e) { consent = null; }
+  var delay = consent === null ? 4000 : 1500;
+
+  setTimeout(function() {
+    var browserLang = navigator.language.slice(0, 2);
+    var supported = JSON.parse(supportedLangs);
+    var names = JSON.parse(langNames);
+
+    if (!supported.includes(browserLang) || browserLang === currentLang) return;
+
+    var banner = document.getElementById('lang-banner');
+    var text = document.getElementById('lang-banner-text');
+    var link = document.getElementById('lang-banner-link');
+    if (!banner || !text || !link) return;
+
+    var targetName = names[browserLang];
+    text.textContent = currentLang === 'en'
+      ? 'This page is also available in ' + targetName + '.'
+      : 'Bu sayfa ' + targetName + ' dilinde de mevcuttur.';
+    link.textContent = currentLang === 'en'
+      ? 'Switch to ' + targetName
+      : targetName + ' diline geç';
+    link.href = browserLang === defaultLang ? basePath : '/' + browserLang + basePath;
+
+    banner.hidden = false;
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        banner.classList.add('visible');
+      });
+    });
+  }, delay);
+
+  document.getElementById('lang-banner-dismiss')?.addEventListener('click', function() {
+    try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (e) {}
+    var banner = document.getElementById('lang-banner');
+    if (banner) {
+      banner.classList.remove('visible');
+      setTimeout(function() { banner.hidden = true; }, 400);
+    }
+  });
+})();
+</script>
+
+<style>
+  .lang-banner {
+    position: fixed;
+    top: calc(var(--header-h) + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    max-width: 480px;
+    width: calc(100% - 32px);
+  }
+  .lang-banner.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .lang-banner__inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(11, 18, 32, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 200, 150, 0.2);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  }
+  .lang-banner__text {
+    flex: 1;
+    font-size: 0.85rem;
+    color: rgba(240, 244, 255, 0.85);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .lang-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .lang-banner__btn {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: var(--grad-brand);
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .lang-banner__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    border: none;
+    color: rgba(240, 244, 255, 0.5);
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .lang-banner { top: calc(var(--header-h) + 8px); }
+    .lang-banner__inner { flex-wrap: wrap; }
+  }
+</style>

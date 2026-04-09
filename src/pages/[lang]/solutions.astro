@@ -1,0 +1,8 @@
+---
+import SolutionsPage from '../../page-templates/SolutionsPage.astro';
+import { getI18nPaths } from '../../i18n/config';
+import type { Lang } from '../../i18n/config';
+export const getStaticPaths = getI18nPaths;
+const { lang } = Astro.params as { lang: Lang };
+---
+<SolutionsPage lang={lang} />

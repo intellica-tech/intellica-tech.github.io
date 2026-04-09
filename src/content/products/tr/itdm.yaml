@@ -1,0 +1,99 @@
+slug: "itdm"
+lang: "tr"
+name: "ITDM — Intellica Telecom Data Model"
+
+pageTitle: "ITDM — Intellica Telecom Data Model | Intellica"
+pageDescription: >
+  ITDM: Endüstri standardında telekom veri ambarı modeli; TM Forum SID uyumlu,
+  ağ, faturalama ve CRM'i kapsayan hızlı analitik dağıtımı.
+
+hero:
+  category: "Veri Modelleri"
+  titlePrefix: "ITDM — Telekom"
+  titleHighlight: "Veri Modeli"
+  description: >
+    Telekom analitik altyapınızı küresel ölçekte büyütün. Dijital dönüşümünüzü
+    ve ağ zekânızı önceden modellenmiş bir endüstri veri ambarıyla
+    hızlandırın.
+
+overview:
+  problem: >
+    Telekom verileri (CDR, Faturalama, Ağ, CRM) devasa ve son derece
+    karmaşıktır. Sürdürülebilir bir modeli sıfırdan tasarlamak yavaştır ve
+    mimari borca yatkındır.
+  approach: >
+    Intellica Telecom Data Model (ITDM), hızlı uygulama için önceden
+    tanımlanmış eşleme şablonlarıyla endüstri standardında, konu odaklı bir
+    telekom veri modeli (TM Forum SID uyumlu) sunar.
+  businessValue: >
+    Modelleme çabasında önemli azalma, ağ içgörüleri için daha hızlı pazara
+    çıkış süresi ve küresel endüstri standardizasyonu.
+  whenPreferred:
+    - "Dayanıklı, güvenilir ve sürdürülebilir bir analitik platforma ihtiyaç duyulduğunda"
+    - "TM Forum SID gibi endüstri standartlarıyla uyum sağlanırken"
+    - "İş birimleri ve bölgesel birimler genelinde KPI'ların standartlaştırılması için"
+    - "CDR, ağ olayı ve faturalama verilerinin iş kullanımına hazır içgörüler sunmak için uyumlaştırılması ve modellenmesinde"
+    - "5G analitik projelerinin hızlandırılması için"
+  preferredNote: ""
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Telekoma Özel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "SID Uyumu"
+      description: "TM Forum Paylaşımlı Bilgi/Veri modeli standartlarıyla sıkı uyum."
+    - title: "Alan Kapsamı"
+      description: "Ses, Data, SMS, Faturalama, KDS ve CRM veri noktaları için eksiksiz kapsam."
+    - title: "Yüksek Performans"
+      description: "Devasa telekom ölçeğinde CDR hacimlerinin işlenmesi ve indekslenmesi için optimize edilmiştir."
+    - title: "Evrensel Boyutlar"
+      description: "Standartlaştırılmış coğrafya, zaman, müşteri ve ürün boyutları."
+    - title: "Telekom Metrikleri"
+      description: "Kayıp oranı, ARPU ve ağ QoS/QoE için kullanıma hazır iş formülleri."
+    - title: "Geleceğe Hazır"
+      description: "5G, IoT ve uç bilişim tabanlı veri varlıkları gibi yeni teknolojileri destekler."
+
+featureSection:
+  heading: "Katmanlı"
+  headingHighlight: "Mimari"
+  description: >
+    ITDM, ham telekom protokollerini iş anlamı taşıyan konu alanlarına
+    yapılandırarak alanlar arası analizi mümkün kılar. Yaklaşımımız, ağ
+    mühendisliği ile ticari zekâ arasında uyum sağlar.
+  calloutTitle: "TM Forum SID Uyumlu"
+  calloutDescription: "Ağ, faturalama ve CRM ekosistemlerini kapsayan konu odaklı yapılar."
+  image: "/assets/images/itdm-architecture.png"
+  imageAlt: "ITDM Mimari Yaklaşımı"
+  imageCaption: "ITDM Mantıksal Model: Ağ mühendisliği ile ticari zekâ arasındaki boşluğun kapatılması."
+
+journey:
+  heading: "Uygulama"
+  headingHighlight: "Yolculuğu"
+  steps:
+    - number: "01"
+      title: "Keşif ve Eşleme"
+      description: "Kaynak sistem şemalarının ITDM'nin konu odaklı yapılarıyla uyumlandırılması."
+    - number: "02"
+      title: "ETL/ELT Entegrasyonu"
+      description: "Temel ve analitik katmanları doldurmak için otomatik iş hatlarının devreye alınması."
+    - number: "03"
+      title: "İçgörü Aktivasyonu"
+      description: "Self-servis BI ve standart düzenleyici/ticari raporlamanın etkinleştirilmesi."
+
+integration:
+  heading: "Entegrasyon &"
+  headingHighlight: "Sinerji"
+  description: "ITDM, teknolojiden bağımsız olarak tasarlanmış olup başlıca modern veri yığınlarını destekler:"
+  items:
+    - "Bulut Veri Ambarları (Snowflake, BigQuery, Databricks)"
+    - "Hadoop/Spark tabanlı Data Lake'ler"
+    - "Geleneksel SQL Motorları (Oracle, SQL Server, Teradata)"
+    - "Modern BI Araçları (Tableau, Power BI, Looker)"
+    - "Ağ Prob & Aracılık Sistemleri"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataModel"
+
+customComponents: []

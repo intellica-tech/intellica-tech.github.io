@@ -1,0 +1,1325 @@
+---
+/**
+ * ContactFunMode.astro
+ * Fun Mode contact form with SQL theme, chat icebreaker,
+ * data particles, message encoder, and pipeline success animation.
+ * Submits to the same Web3Forms endpoint as the classic form.
+ */
+---
+
+<div id="fun-mode" class="fun-mode">
+  <!-- ========== FEATURE 1: Chat Icebreaker ========== -->
+  <div class="chat-icebreaker" id="chat-icebreaker">
+    <div class="chat-bubble chat-bubble--bot">
+      <div class="chat-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="chat-text">
+        <span class="chat-name">Intellica</span>
+        <p>Hey! Before the boring form stuff... quick question:</p>
+      </div>
+    </div>
+    <div class="chat-bubble chat-bubble--bot chat-bubble--question">
+      <div class="chat-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="chat-text">
+        <p>Where does your data currently live?</p>
+        <div class="chat-options" id="chat-options">
+          <button class="chat-option" data-interest="data-platform" type="button">Spreadsheet chaos</button>
+          <button class="chat-option" data-interest="analytics" type="button">A data warehouse</button>
+          <button class="chat-option" data-interest="governance" type="button">Everywhere and nowhere</button>
+          <button class="chat-option" data-interest="consulting" type="button">What data?</button>
+        </div>
+      </div>
+    </div>
+    <div class="chat-bubble chat-bubble--bot chat-response" id="chat-response" style="display:none;">
+      <div class="chat-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="chat-text">
+        <p>Got it! We know exactly who to connect you with. Fill in below and we'll make it happen.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FEATURE 3: SQL-Themed Form ========== -->
+  <div class="sql-form-wrap">
+    <!-- FEATURE 2: Data Particles Background -->
+    <div class="data-particles" aria-hidden="true">
+      <span class="particle particle--1">0101</span>
+      <span class="particle particle--2">JSON</span>
+      <span class="particle particle--3">ETL</span>
+      <span class="particle particle--4">SQL</span>
+      <span class="particle particle--5">{'{id:7}'}</span>
+      <span class="particle particle--6">null</span>
+      <span class="particle particle--7">API</span>
+      <span class="particle particle--8">0x4F</span>
+      <span class="particle particle--9">SELECT</span>
+      <span class="particle particle--10">PIPE</span>
+      <span class="particle particle--11">0110</span>
+      <span class="particle particle--12">ROW</span>
+    </div>
+
+    <div class="sql-editor">
+      <div class="sql-header">
+        <div class="sql-dots">
+          <span class="sql-dot sql-dot--red"></span>
+          <span class="sql-dot sql-dot--yellow"></span>
+          <span class="sql-dot sql-dot--green"></span>
+        </div>
+        <span class="sql-title">query.sql</span>
+      </div>
+
+      <form id="fun-contact-form" class="sql-body" novalidate>
+        <!-- Hidden fields — same as classic form -->
+        <input type="hidden" name="access_key" value="fe9f6fd8-4cca-4e1d-82e0-e0b10f76fa81" />
+        <input type="hidden" name="subject" value="New Contact Form Submission — Intellica" />
+        <input type="hidden" name="from_name" value="Intellica Website" />
+        <input type="hidden" name="interest" id="fun-interest" value="" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <!-- Line 1: Comment -->
+        <div class="sql-line">
+          <span class="line-num">1</span>
+          <span class="sql-comment">-- Let's build a connection</span>
+        </div>
+
+        <!-- Line 2: SELECT -->
+        <div class="sql-line">
+          <span class="line-num">2</span>
+          <span class="sql-keyword">SELECT</span>
+          <span class="sql-value">partnership</span>
+        </div>
+
+        <!-- Line 3: FROM -->
+        <div class="sql-line">
+          <span class="line-num">3</span>
+          <span class="sql-keyword">FROM</span>
+          <span class="sql-value">intellica</span>
+        </div>
+
+        <!-- Line 4: WHERE name -->
+        <div class="sql-line">
+          <span class="line-num">4</span>
+          <span class="sql-keyword">WHERE</span>
+          <span class="sql-col">name</span>
+          <span class="sql-op">=</span>
+          <input type="text" name="firstName" id="fun-firstName" class="sql-input sql-input--sm" placeholder="first_name" required aria-label="First Name" />
+          <input type="text" name="lastName" id="fun-lastName" class="sql-input sql-input--sm" placeholder="last_name" aria-label="Last Name" />
+        </div>
+
+        <!-- Line 5: AND email -->
+        <div class="sql-line">
+          <span class="line-num">5</span>
+          <span class="sql-indent"></span>
+          <span class="sql-keyword">AND</span>
+          <span class="sql-col">email</span>
+          <span class="sql-op">=</span>
+          <input type="email" name="email" id="fun-email" class="sql-input sql-input--md" placeholder="you@company.com" required aria-label="Email" />
+        </div>
+
+        <!-- Line 6: AND phone -->
+        <div class="sql-line">
+          <span class="line-num">6</span>
+          <span class="sql-indent"></span>
+          <span class="sql-keyword">AND</span>
+          <span class="sql-col">phone</span>
+          <span class="sql-op">=</span>
+          <input type="tel" name="phone" id="fun-phone" class="sql-input sql-input--md" placeholder="+90 555 123 4567" aria-label="Phone" />
+        </div>
+
+        <!-- Line 7: AND company -->
+        <div class="sql-line">
+          <span class="line-num">7</span>
+          <span class="sql-indent"></span>
+          <span class="sql-keyword">AND</span>
+          <span class="sql-col">company</span>
+          <span class="sql-op">=</span>
+          <input type="text" name="company" id="fun-company" class="sql-input sql-input--md" placeholder="company_name" aria-label="Company" />
+        </div>
+
+        <!-- Line 8: AND interest -->
+        <div class="sql-line">
+          <span class="line-num">8</span>
+          <span class="sql-indent"></span>
+          <span class="sql-keyword">AND</span>
+          <span class="sql-col">interest</span>
+          <span class="sql-keyword"> IN</span>
+          <span class="sql-op">(</span>
+          <select name="interestDisplay" id="fun-interest-select" class="sql-input sql-input--select" aria-label="Interest">
+            <option value="">'select_interest'</option>
+            <option value="ai">'ai'</option>
+            <option value="analytics">'analytics'</option>
+            <option value="consulting">'consulting'</option>
+            <option value="talent-program">'talent_program'</option>
+            <option value="governance">'governance'</option>
+            <option value="data-platform">'data_platform'</option>
+            <option value="products">'products'</option>
+            <option value="other">'other'</option>
+          </select>
+          <span class="sql-op">)</span>
+        </div>
+
+        <!-- Line 9: AND message -->
+        <div class="sql-line sql-line--message">
+          <span class="line-num">9</span>
+          <span class="sql-indent"></span>
+          <span class="sql-keyword">AND</span>
+          <span class="sql-col">message</span>
+          <span class="sql-op">=</span>
+          <textarea name="message" id="fun-message" class="sql-input sql-input--textarea" placeholder="'Your message here...'" rows="3" aria-label="Message"></textarea>
+        </div>
+
+        <!-- FEATURE 4: Encode Easter Egg -->
+        <div class="encode-egg" id="encode-egg">
+          <button type="button" class="encode-trigger" id="encode-trigger">Want to encode your message?</button>
+          <div class="encode-bar" id="encode-bar" style="display:none;">
+            <div class="encode-modes">
+              <button type="button" class="encode-mode encode-mode--active" data-mode="base64">Base64</button>
+              <button type="button" class="encode-mode" data-mode="binary">Binary</button>
+              <button type="button" class="encode-mode" data-mode="hex">Hex</button>
+            </div>
+            <div class="encode-output" id="encode-output" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <!-- Line 10: LIMIT -->
+        <div class="sql-line">
+          <span class="line-num">10</span>
+          <span class="sql-keyword">LIMIT</span>
+          <span class="sql-value">1</span>
+          <span class="sql-col">amazing_collaboration</span>
+          <span class="sql-op">;</span>
+        </div>
+
+        <!-- Submit row -->
+        <div class="sql-actions">
+          <button type="submit" id="fun-submit-btn" class="sql-execute-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            EXECUTE QUERY
+          </button>
+          <button type="button" class="sql-classic-link" id="switch-to-classic">Prefer classic form?</button>
+        </div>
+
+        <!-- Validation error -->
+        <div class="sql-error" id="fun-error" style="display:none;" role="alert">
+          <span class="sql-error-icon">!</span>
+          <span class="sql-error-text" id="fun-error-text"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== FEATURE 5: Pipeline Success Animation ========== -->
+  <div class="pipeline-success" id="pipeline-success" style="display:none;" aria-live="polite">
+    <div class="pipeline-stages" id="pipeline-stages">
+      <div class="pipeline-stage" data-stage="extract">
+        <div class="pipeline-circle">
+          <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="pipeline-label">EXTRACT</div>
+        <div class="pipeline-desc">Parsed your message</div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-stage" data-stage="validate">
+        <div class="pipeline-circle">
+          <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="pipeline-label">VALIDATE</div>
+        <div class="pipeline-desc">Data looks clean</div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-stage" data-stage="encrypt">
+        <div class="pipeline-circle">
+          <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="pipeline-label">ENCRYPT</div>
+        <div class="pipeline-desc">Secured for transit</div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-stage" data-stage="route">
+        <div class="pipeline-circle">
+          <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="pipeline-label">ROUTE</div>
+        <div class="pipeline-desc">Finding the right team</div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-stage" data-stage="deliver">
+        <div class="pipeline-circle">
+          <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="pipeline-label">DELIVER</div>
+        <div class="pipeline-desc">Message delivered!</div>
+      </div>
+    </div>
+
+    <!-- Confetti container -->
+    <div class="confetti-container" id="confetti-container" aria-hidden="true"></div>
+
+    <!-- Final message -->
+    <div class="pipeline-final" id="pipeline-final" style="display:none;">
+      <h3 class="pipeline-final-title">Query executed successfully!</h3>
+      <p class="pipeline-final-desc">Your message traveled through our data pipeline and reached the Intellica team. <span class="pipeline-bytes">847 bytes processed.</span></p>
+      <button type="button" class="sql-execute-btn pipeline-another" id="fun-another-btn">Send Another Message</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* =============================================
+   Fun Mode — Scoped Styles
+   ============================================= */
+
+.fun-mode {
+  width: 100%;
+}
+
+/* ── Chat Icebreaker ─────────────────────── */
+.chat-icebreaker {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: chatFadeIn 0.4s ease forwards;
+}
+
+.chat-bubble:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.chat-response {
+  animation-delay: 0s;
+}
+
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 200, 150, 0.1);
+  border: 1px solid rgba(0, 200, 150, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--clr-primary);
+}
+
+.chat-text {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--clr-border);
+  border-radius: 0 16px 16px 16px;
+  padding: 14px 18px;
+  flex: 1;
+}
+
+.chat-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--clr-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.chat-text p {
+  font-size: 0.92rem;
+  color: var(--clr-light-text);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.chat-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chat-option {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--clr-primary);
+  background: rgba(0, 200, 150, 0.06);
+  border: 1px solid rgba(0, 200, 150, 0.25);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chat-option:hover {
+  background: rgba(0, 200, 150, 0.14);
+  border-color: var(--clr-primary);
+  transform: translateY(-1px);
+}
+
+.chat-option--selected {
+  background: var(--clr-primary);
+  color: #fff;
+  border-color: var(--clr-primary);
+  pointer-events: none;
+}
+
+/* ── SQL Form Wrapper with Particles ─────── */
+.sql-form-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Data Particles (Feature 2) ──────────── */
+.data-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--clr-primary);
+  opacity: 0.07;
+  animation: particleFloat 18s linear infinite;
+  user-select: none;
+}
+
+.particle--1  { left: 5%;  top: 10%; animation-duration: 22s; animation-delay: 0s; }
+.particle--2  { left: 15%; top: 80%; animation-duration: 19s; animation-delay: -3s; }
+.particle--3  { left: 28%; top: 30%; animation-duration: 24s; animation-delay: -7s; }
+.particle--4  { left: 42%; top: 65%; animation-duration: 20s; animation-delay: -2s; }
+.particle--5  { left: 58%; top: 15%; animation-duration: 26s; animation-delay: -10s; }
+.particle--6  { left: 72%; top: 50%; animation-duration: 21s; animation-delay: -5s; }
+.particle--7  { left: 85%; top: 25%; animation-duration: 23s; animation-delay: -8s; }
+.particle--8  { left: 92%; top: 75%; animation-duration: 18s; animation-delay: -1s; }
+.particle--9  { left: 35%; top: 90%; animation-duration: 25s; animation-delay: -12s; }
+.particle--10 { left: 50%; top: 5%;  animation-duration: 20s; animation-delay: -4s; }
+.particle--11 { left: 8%;  top: 55%; animation-duration: 22s; animation-delay: -9s; }
+.particle--12 { left: 78%; top: 88%; animation-duration: 19s; animation-delay: -6s; }
+
+@keyframes particleFloat {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.06; }
+  25%  { opacity: 0.1; }
+  50%  { transform: translateY(-40px) rotate(5deg); opacity: 0.12; }
+  75%  { opacity: 0.08; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 0.06; }
+}
+
+/* ── SQL Editor Chrome ───────────────────── */
+.sql-editor {
+  position: relative;
+  z-index: 1;
+  background: #0a0e17;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sql-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sql-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.sql-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.sql-dot--red    { background: #ff5f57; }
+.sql-dot--yellow { background: #febc2e; }
+.sql-dot--green  { background: #28c840; }
+
+.sql-title {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: var(--clr-muted);
+}
+
+.sql-body {
+  padding: 24px 20px;
+}
+
+/* ── SQL Lines ───────────────────────────── */
+.sql-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 5px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.sql-line--message {
+  align-items: flex-start;
+}
+
+.line-num {
+  width: 28px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  user-select: none;
+  padding-right: 8px;
+}
+
+.sql-keyword {
+  color: var(--clr-primary);
+  font-weight: 700;
+}
+
+.sql-comment {
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+
+.sql-value {
+  color: #e8a854;
+}
+
+.sql-col {
+  color: #9ecbff;
+}
+
+.sql-op {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sql-indent {
+  width: 16px;
+  flex-shrink: 0;
+}
+
+/* ── SQL Inputs ──────────────────────────── */
+.sql-input {
+  background: rgba(232, 168, 84, 0.08);
+  border: 1px solid rgba(232, 168, 84, 0.2);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #e8a854;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sql-input::placeholder {
+  color: rgba(232, 168, 84, 0.35);
+}
+
+.sql-input:focus {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 2px rgba(0, 200, 150, 0.15);
+}
+
+.sql-input--sm {
+  width: 130px;
+}
+
+.sql-input--md {
+  width: 220px;
+}
+
+.sql-input--select {
+  width: 180px;
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3l4 4 4-4' stroke='%23e8a854' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
+}
+
+.sql-input--select option {
+  background: #0a0e17;
+  color: #e8a854;
+}
+
+.sql-input--textarea {
+  flex: 1;
+  min-width: 200px;
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ── Encode Easter Egg (Feature 4) ───────── */
+.encode-egg {
+  padding: 0 0 6px 36px;
+}
+
+.encode-trigger {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.encode-trigger:hover {
+  color: var(--clr-primary);
+}
+
+.encode-bar {
+  margin-top: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.encode-modes {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.encode-mode {
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--clr-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.encode-mode:hover {
+  border-color: var(--clr-primary);
+}
+
+.encode-mode--active {
+  background: rgba(0, 200, 150, 0.12);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+
+.encode-output {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: rgba(0, 200, 150, 0.6);
+  word-break: break-all;
+  max-height: 60px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+/* ── SQL Actions ─────────────────────────── */
+.sql-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sql-execute-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--grad-brand);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.sql-execute-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 200, 150, 0.25);
+}
+
+.sql-execute-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.sql-classic-link {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--clr-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.sql-classic-link:hover {
+  color: var(--clr-primary);
+}
+
+/* ── SQL Error ───────────────────────────── */
+.sql-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 80, 80, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.25);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #ff6b6b;
+}
+
+.sql-error-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 80, 80, 0.15);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+/* ── Pipeline Success (Feature 5) ────────── */
+.pipeline-success {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.pipeline-stages {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.pipeline-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+
+.pipeline-stage--complete {
+  opacity: 1;
+}
+
+.pipeline-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.pipeline-stage--complete .pipeline-circle {
+  background: var(--grad-brand);
+  border-color: var(--clr-primary);
+}
+
+.pipeline-check {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.pipeline-stage--complete .pipeline-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pipeline-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--clr-muted);
+  letter-spacing: 0.08em;
+}
+
+.pipeline-stage--complete .pipeline-label {
+  color: var(--clr-primary);
+}
+
+.pipeline-desc {
+  font-size: 0.72rem;
+  color: var(--clr-light-muted);
+  max-width: 100px;
+  text-align: center;
+}
+
+.pipeline-connector {
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 24px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.pipeline-connector::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--grad-brand);
+  transition: width 0.4s ease;
+}
+
+.pipeline-connector--filled::after {
+  width: 100%;
+}
+
+/* ── Confetti ────────────────────────────── */
+.confetti-container {
+  position: relative;
+  height: 0;
+  overflow: visible;
+}
+
+:global(.confetti-dot) {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: confettiFall 2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120px) rotate(720deg); opacity: 0; }
+}
+
+/* ── Pipeline Final ──────────────────────── */
+.pipeline-final {
+  margin-top: 32px;
+  padding: 28px;
+  background: rgba(0, 200, 150, 0.04);
+  border: 1px solid rgba(0, 200, 150, 0.15);
+  border-radius: var(--radius-md);
+}
+
+.pipeline-final-title {
+  font-size: 1.3rem;
+  color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+
+.pipeline-final-desc {
+  font-size: 0.92rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.pipeline-bytes {
+  font-family: 'Courier New', monospace;
+  color: var(--clr-primary);
+  font-size: 0.85rem;
+}
+
+.pipeline-another {
+  margin-top: 8px;
+}
+
+/* ── Chat Fade-In ────────────────────────── */
+@keyframes chatFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Reduced Motion ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .chat-bubble,
+  .particle,
+  :global(.confetti-dot),
+  .pipeline-circle,
+  .pipeline-check,
+  .pipeline-connector::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .particle {
+    opacity: 0.07;
+  }
+}
+
+/* ── Mobile Responsive ───────────────────── */
+@media (max-width: 768px) {
+  .sql-body {
+    padding: 16px 12px;
+  }
+
+  .sql-line {
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+
+  .sql-input--sm {
+    width: 100px;
+  }
+
+  .sql-input--md {
+    width: 160px;
+  }
+
+  .sql-input--select {
+    width: 140px;
+  }
+
+  .sql-input--textarea {
+    min-width: 140px;
+  }
+
+  .line-num {
+    width: 22px;
+    font-size: 0.68rem;
+  }
+
+  .sql-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sql-execute-btn {
+    justify-content: center;
+  }
+
+  .sql-classic-link {
+    text-align: center;
+  }
+
+  .pipeline-stages {
+    gap: 4px;
+  }
+
+  .pipeline-connector {
+    width: 20px;
+  }
+
+  .pipeline-desc {
+    font-size: 0.65rem;
+    max-width: 60px;
+  }
+
+  .pipeline-circle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .pipeline-connector {
+    margin-top: 19px;
+  }
+
+  .chat-options {
+    flex-direction: column;
+  }
+
+  .encode-egg {
+    padding-left: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sql-line {
+    flex-wrap: wrap;
+  }
+
+  .sql-input--sm,
+  .sql-input--md,
+  .sql-input--select {
+    width: 100%;
+    margin-top: 2px;
+  }
+
+  .sql-input--textarea {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .pipeline-stages {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pipeline-connector {
+    width: 2px;
+    height: 20px;
+    margin-top: 0;
+  }
+
+  .pipeline-connector::after {
+    width: 100% !important;
+    height: 0;
+    transition: height 0.4s ease;
+  }
+
+  .pipeline-connector--filled::after {
+    height: 100%;
+  }
+}
+</style>
+
+<script is:inline>
+(function() {
+  'use strict';
+
+  // ── DOM References ──────────────────────────
+  var funForm = document.getElementById('fun-contact-form');
+  var funSubmitBtn = document.getElementById('fun-submit-btn');
+  var funError = document.getElementById('fun-error');
+  var funErrorText = document.getElementById('fun-error-text');
+  var chatOptions = document.getElementById('chat-options');
+  var chatResponse = document.getElementById('chat-response');
+  var funInterest = document.getElementById('fun-interest');
+  var funInterestSelect = document.getElementById('fun-interest-select');
+  var encodeTrigger = document.getElementById('encode-trigger');
+  var encodeBar = document.getElementById('encode-bar');
+  var encodeOutput = document.getElementById('encode-output');
+  var funMessage = document.getElementById('fun-message');
+  var pipelineSuccess = document.getElementById('pipeline-success');
+  var pipelineFinal = document.getElementById('pipeline-final');
+  var confettiContainer = document.getElementById('confetti-container');
+  var funAnotherBtn = document.getElementById('fun-another-btn');
+  var sqlFormWrap = document.querySelector('.sql-form-wrap');
+  var chatIcebreaker = document.getElementById('chat-icebreaker');
+
+  var currentEncodeMode = 'base64';
+
+  // ── Feature 1: Chat Icebreaker ────────────
+  if (chatOptions) {
+    var optionBtns = chatOptions.querySelectorAll('.chat-option');
+    for (var i = 0; i < optionBtns.length; i++) {
+      optionBtns[i].addEventListener('click', function() {
+        var interest = this.getAttribute('data-interest');
+
+        // Mark selected
+        for (var j = 0; j < optionBtns.length; j++) {
+          optionBtns[j].classList.remove('chat-option--selected');
+          optionBtns[j].removeAttribute('aria-pressed');
+        }
+        this.classList.add('chat-option--selected');
+        this.setAttribute('aria-pressed', 'true');
+
+        // Set hidden interest field
+        if (funInterest) {
+          funInterest.value = interest;
+        }
+
+        // Also update the visible dropdown
+        if (funInterestSelect) {
+          funInterestSelect.value = interest;
+        }
+
+        // Show response bubble
+        if (chatResponse) {
+          chatResponse.style.display = 'flex';
+        }
+      });
+    }
+  }
+
+  // Sync dropdown to hidden field
+  if (funInterestSelect) {
+    funInterestSelect.addEventListener('change', function() {
+      if (funInterest) {
+        funInterest.value = this.value;
+      }
+    });
+  }
+
+  // ── Feature 4: Encode Easter Egg ──────────
+  if (encodeTrigger && encodeBar) {
+    encodeTrigger.addEventListener('click', function() {
+      var isVisible = encodeBar.style.display !== 'none';
+      encodeBar.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) {
+        updateEncode();
+      }
+    });
+  }
+
+  // Encode mode buttons
+  var encodeModes = document.querySelectorAll('.encode-mode');
+  for (var m = 0; m < encodeModes.length; m++) {
+    encodeModes[m].addEventListener('click', function() {
+      for (var n = 0; n < encodeModes.length; n++) {
+        encodeModes[n].classList.remove('encode-mode--active');
+      }
+      this.classList.add('encode-mode--active');
+      currentEncodeMode = this.getAttribute('data-mode');
+      updateEncode();
+    });
+  }
+
+  // Live encode on message input
+  if (funMessage) {
+    funMessage.addEventListener('input', function() {
+      if (encodeBar && encodeBar.style.display !== 'none') {
+        updateEncode();
+      }
+    });
+  }
+
+  function updateEncode() {
+    if (!funMessage || !encodeOutput) return;
+    var text = funMessage.value;
+    if (!text) {
+      encodeOutput.textContent = 'Type a message to see it encoded...';
+      return;
+    }
+
+    var encoded = '';
+    if (currentEncodeMode === 'base64') {
+      try {
+        encoded = btoa(unescape(encodeURIComponent(text)));
+      } catch(e) {
+        encoded = '[encoding error]';
+      }
+    } else if (currentEncodeMode === 'binary') {
+      for (var i = 0; i < text.length; i++) {
+        var bin = text.charCodeAt(i).toString(2);
+        while (bin.length < 8) { bin = '0' + bin; }
+        encoded += bin + ' ';
+      }
+      encoded = encoded.trim();
+    } else if (currentEncodeMode === 'hex') {
+      for (var i = 0; i < text.length; i++) {
+        var hex = text.charCodeAt(i).toString(16);
+        if (hex.length < 2) { hex = '0' + hex; }
+        encoded += hex + ' ';
+      }
+      encoded = encoded.trim();
+    }
+
+    encodeOutput.textContent = encoded;
+  }
+
+  // ── Form Submission ───────────────────────
+  if (funForm) {
+    funForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Hide previous error
+      if (funError) funError.style.display = 'none';
+
+      // Validate
+      var firstName = document.getElementById('fun-firstName');
+      var email = document.getElementById('fun-email');
+
+      if (!firstName || !firstName.value.trim()) {
+        showFunError('ERROR 1054: Column "name" cannot be null — please enter your first name.');
+        if (firstName) firstName.focus();
+        return;
+      }
+
+      if (!email || !email.value.trim()) {
+        showFunError('ERROR 1048: Column "email" cannot be null — we need your email to respond.');
+        if (email) email.focus();
+        return;
+      }
+
+      // Simple email check
+      var emailVal = email.value.trim();
+      if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+        showFunError('ERROR 1366: Incorrect email value — please check the format.');
+        email.focus();
+        return;
+      }
+
+      // Disable submit
+      var originalText = funSubmitBtn.textContent;
+      funSubmitBtn.disabled = true;
+      funSubmitBtn.textContent = 'EXECUTING...';
+
+      var formData = new FormData(funForm);
+      // Remove the display-only interestDisplay field; use the hidden interest field
+      formData.delete('interestDisplay');
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.success) {
+          // Hide form, show pipeline
+          if (sqlFormWrap) sqlFormWrap.style.display = 'none';
+          if (chatIcebreaker) chatIcebreaker.style.display = 'none';
+          if (pipelineSuccess) {
+            pipelineSuccess.style.display = 'block';
+            runPipeline();
+          }
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      })
+      .catch(function() {
+        showFunError('ERROR 503: Connection failed — please try again or email info@intellica.net');
+      })
+      .finally(function() {
+        funSubmitBtn.disabled = false;
+        funSubmitBtn.textContent = originalText;
+      });
+    });
+  }
+
+  function showFunError(msg) {
+    if (funError && funErrorText) {
+      funErrorText.textContent = msg;
+      funError.style.display = 'flex';
+    }
+  }
+
+  // ── Feature 5: Pipeline Animation ─────────
+  function runPipeline() {
+    var stages = document.querySelectorAll('.pipeline-stage');
+    var connectors = document.querySelectorAll('.pipeline-connector');
+    var delay = 400;
+
+    for (var i = 0; i < stages.length; i++) {
+      (function(index) {
+        setTimeout(function() {
+          stages[index].classList.add('pipeline-stage--complete');
+
+          // Fill connector before this stage (if not first)
+          if (index > 0 && connectors[index - 1]) {
+            connectors[index - 1].classList.add('pipeline-connector--filled');
+          }
+
+          // After last stage, show confetti + final message
+          if (index === stages.length - 1) {
+            setTimeout(function() {
+              spawnConfetti();
+              if (pipelineFinal) {
+                pipelineFinal.style.display = 'block';
+              }
+            }, 300);
+          }
+        }, delay * (index + 1));
+      })(i);
+    }
+  }
+
+  function spawnConfetti() {
+    if (!confettiContainer) return;
+    var colors = ['#00C896', '#009FE3', '#e8a854', '#ff6b6b', '#a78bfa', '#34d399', '#f59e0b'];
+
+    for (var i = 0; i < 25; i++) {
+      (function(idx) {
+        var dot = document.createElement('span');
+        dot.className = 'confetti-dot';
+        var color = colors[idx % colors.length];
+        var left = Math.random() * 300 - 150;
+        var animDelay = Math.random() * 0.6;
+        var size = 4 + Math.random() * 5;
+
+        dot.style.width = size + 'px';
+        dot.style.height = size + 'px';
+        dot.style.background = color;
+        dot.style.left = 'calc(50% + ' + left + 'px)';
+        dot.style.top = '-10px';
+        dot.style.animationDelay = animDelay + 's';
+
+        confettiContainer.appendChild(dot);
+      })(i);
+    }
+  }
+
+  // ── Send Another ──────────────────────────
+  if (funAnotherBtn) {
+    funAnotherBtn.addEventListener('click', function() {
+      // Reset form
+      if (funForm) funForm.reset();
+
+      // Reset pipeline
+      var stages = document.querySelectorAll('.pipeline-stage');
+      var connectors = document.querySelectorAll('.pipeline-connector');
+      for (var i = 0; i < stages.length; i++) {
+        stages[i].classList.remove('pipeline-stage--complete');
+      }
+      for (var i = 0; i < connectors.length; i++) {
+        connectors[i].classList.remove('pipeline-connector--filled');
+      }
+
+      // Clear confetti
+      if (confettiContainer) {
+        while (confettiContainer.firstChild) {
+          confettiContainer.removeChild(confettiContainer.firstChild);
+        }
+      }
+
+      // Hide pipeline, show form
+      if (pipelineSuccess) pipelineSuccess.style.display = 'none';
+      if (pipelineFinal) pipelineFinal.style.display = 'none';
+      if (sqlFormWrap) sqlFormWrap.style.display = 'block';
+      if (chatIcebreaker) chatIcebreaker.style.display = 'flex';
+
+      // Reset chat icebreaker
+      if (chatResponse) chatResponse.style.display = 'none';
+      var optionBtns = document.querySelectorAll('.chat-option');
+      for (var i = 0; i < optionBtns.length; i++) {
+        optionBtns[i].classList.remove('chat-option--selected');
+        optionBtns[i].removeAttribute('aria-pressed');
+      }
+
+      // Reset encode bar
+      if (encodeBar) encodeBar.style.display = 'none';
+      if (encodeOutput) encodeOutput.textContent = '';
+    });
+  }
+})();
+</script>

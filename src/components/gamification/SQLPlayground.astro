@@ -1,0 +1,1263 @@
+---
+/**
+ * SQLPlayground.astro
+ * "Talk to Your Data" live demo — natural language to SQL with
+ * pre-defined query mappings, typewriter SQL reveal, result tables,
+ * SVG bar charts, and table/chart toggle. Static site compatible.
+ */
+
+// ── Query Mappings ──
+const queryMappings = [
+  {
+    id: "monthly-sales",
+    keywords: ["monthly", "sales", "region", "month"],
+    sql: "SELECT region, DATE_TRUNC('month', order_date) AS month,\n       SUM(amount) AS total_sales\nFROM orders\nGROUP BY region, month\nORDER BY month, region",
+    columns: ["region", "month", "total_sales"],
+    rows: [
+      ["North", "2025-01", "$42,300"],
+      ["South", "2025-01", "$38,100"],
+      ["North", "2025-02", "$45,800"],
+      ["South", "2025-02", "$41,200"],
+      ["North", "2025-03", "$48,500"],
+      ["South", "2025-03", "$43,700"]
+    ],
+    chartLabel: "total_sales",
+    chartKey: "region"
+  },
+  {
+    id: "top-customers",
+    keywords: ["top", "customers", "best", "5"],
+    sql: "SELECT c.name, SUM(o.amount) AS total_spent\nFROM customers c\nJOIN orders o ON c.id = o.customer_id\nGROUP BY c.name\nORDER BY total_spent DESC\nLIMIT 5",
+    columns: ["name", "total_spent"],
+    rows: [
+      ["Acme Corp", "$89,400"],
+      ["GlobalTech Inc", "$76,200"],
+      ["DataDriven Ltd", "$64,800"],
+      ["NextWave Solutions", "$58,300"],
+      ["CloudFirst AG", "$51,900"]
+    ],
+    chartLabel: "total_spent",
+    chartKey: "name"
+  },
+  {
+    id: "quarterly-revenue",
+    keywords: ["total", "revenue", "quarter", "quarterly"],
+    sql: "SELECT SUM(amount) AS total_revenue,\n       COUNT(*) AS order_count\nFROM orders\nWHERE order_date >= '2025-01-01'\n  AND order_date < '2025-04-01'",
+    columns: ["total_revenue", "order_count"],
+    rows: [
+      ["$125,400", "847"]
+    ],
+    chartLabel: null,
+    chartKey: null
+  },
+  {
+    id: "regional-comparison",
+    keywords: ["compare", "regions", "regional", "comparison"],
+    sql: "SELECT region, SUM(amount) AS total,\n       COUNT(*) AS orders,\n       ROUND(AVG(amount), 2) AS avg_order\nFROM orders\nGROUP BY region\nORDER BY total DESC",
+    columns: ["region", "total", "orders", "avg_order"],
+    rows: [
+      ["North", "$134,600", "312", "$431.41"],
+      ["South", "$123,000", "298", "$412.75"],
+      ["East", "$98,400", "245", "$401.63"],
+      ["West", "$87,200", "218", "$400.00"]
+    ],
+    chartLabel: "total",
+    chartKey: "region"
+  },
+  {
+    id: "declining-products",
+    keywords: ["declining", "products", "revenue", "decrease"],
+    sql: "SELECT p.name, p.revenue_current,\n       p.revenue_previous,\n       ROUND((p.revenue_current - p.revenue_previous)\n             / p.revenue_previous * 100, 1) AS change_pct\nFROM products p\nWHERE p.revenue_current < p.revenue_previous\nORDER BY change_pct ASC",
+    columns: ["name", "revenue_current", "revenue_previous", "change_pct"],
+    rows: [
+      ["Widget Pro", "$12,400", "$18,600", "-33.3%"],
+      ["DataSync Basic", "$8,200", "$11,500", "-28.7%"],
+      ["Legacy Reporter", "$5,100", "$6,800", "-25.0%"]
+    ],
+    chartLabel: "change_pct",
+    chartKey: "name"
+  },
+  {
+    id: "avg-order-value",
+    keywords: ["average", "order", "value", "avg"],
+    sql: "SELECT ROUND(AVG(amount), 2) AS avg_order_value,\n       MIN(amount) AS min_order,\n       MAX(amount) AS max_order\nFROM orders",
+    columns: ["avg_order_value", "min_order", "max_order"],
+    rows: [
+      ["$412.58", "$23.50", "$4,850.00"]
+    ],
+    chartLabel: null,
+    chartKey: null
+  },
+  {
+    id: "customer-city",
+    keywords: ["customer", "count", "city", "cities"],
+    sql: "SELECT city, COUNT(*) AS customer_count\nFROM customers\nGROUP BY city\nORDER BY customer_count DESC",
+    columns: ["city", "customer_count"],
+    rows: [
+      ["Istanbul", "142"],
+      ["Ankara", "98"],
+      ["Izmir", "76"],
+      ["Bursa", "54"],
+      ["Antalya", "41"]
+    ],
+    chartLabel: "customer_count",
+    chartKey: "city"
+  },
+  {
+    id: "daily-sales-trend",
+    keywords: ["daily", "sales", "trend", "running"],
+    sql: "SELECT order_date,\n       SUM(amount) AS daily_total,\n       SUM(SUM(amount)) OVER (\n         ORDER BY order_date\n       ) AS running_total\nFROM orders\nGROUP BY order_date\nORDER BY order_date",
+    columns: ["order_date", "daily_total", "running_total"],
+    rows: [
+      ["2025-03-01", "$4,230", "$4,230"],
+      ["2025-03-02", "$3,810", "$8,040"],
+      ["2025-03-03", "$5,120", "$13,160"],
+      ["2025-03-04", "$4,680", "$17,840"],
+      ["2025-03-05", "$6,210", "$24,050"]
+    ],
+    chartLabel: "daily_total",
+    chartKey: "order_date"
+  },
+  {
+    id: "order-status",
+    keywords: ["order", "status", "pending", "completed", "shipped"],
+    sql: "SELECT status, COUNT(*) AS order_count,\n       ROUND(AVG(amount), 2) AS avg_amount\nFROM orders\nGROUP BY status\nORDER BY order_count DESC",
+    columns: ["status", "order_count", "avg_amount"],
+    rows: [
+      ["Completed", "523", "$425.30"],
+      ["Shipped", "198", "$398.50"],
+      ["Pending", "87", "$380.20"],
+      ["Cancelled", "39", "$290.10"]
+    ],
+    chartLabel: "order_count",
+    chartKey: "status"
+  },
+  {
+    id: "monthly-growth",
+    keywords: ["growth", "month", "over", "percentage"],
+    sql: "SELECT month,\n       revenue,\n       LAG(revenue) OVER (ORDER BY month) AS prev_month,\n       ROUND((revenue - LAG(revenue) OVER (\n         ORDER BY month)) / LAG(revenue) OVER (\n         ORDER BY month) * 100, 1) AS growth_pct\nFROM monthly_summary\nORDER BY month",
+    columns: ["month", "revenue", "prev_month", "growth_pct"],
+    rows: [
+      ["2025-01", "$38,200", "—", "—"],
+      ["2025-02", "$42,500", "$38,200", "11.3%"],
+      ["2025-03", "$47,800", "$42,500", "12.5%"]
+    ],
+    chartLabel: "revenue",
+    chartKey: "month"
+  }
+];
+
+const mappingsJson = JSON.stringify(queryMappings);
+---
+
+<section class="section section--dark noise sql-playground-section" id="sql-playground">
+  <div class="container">
+    <!-- Header -->
+    <div class="sql-pg__header anim-fade-up">
+      <div class="section-label" style="margin-inline: auto;">LIVE DEMO</div>
+      <h2 class="section-title">
+        Talk to Your <span class="grad-text">Data</span>
+      </h2>
+      <p class="section-sub">
+        Try it now — ask a question in plain English
+      </p>
+    </div>
+
+    <!-- Split Interface -->
+    <div class="sql-pg__layout anim-fade-up" id="sql-pg-layout">
+
+      <!-- Left: Input -->
+      <div class="sql-pg__input-side">
+        <label class="sql-pg__input-label" for="sql-pg-textarea" id="sql-pg-label">
+          Your Question
+        </label>
+        <textarea
+          class="sql-pg__textarea"
+          id="sql-pg-textarea"
+          rows="3"
+          placeholder="e.g. Show me monthly sales by region..."
+          aria-labelledby="sql-pg-label"
+        ></textarea>
+        <button
+          class="btn btn-primary btn-pill sql-pg__ask-btn"
+          id="sql-pg-ask"
+          type="button"
+          aria-label="Submit your question"
+        >
+          Ask
+        </button>
+
+        <div class="sql-pg__chips" role="list" aria-label="Example queries">
+          <button class="sql-pg__chip" role="listitem" type="button" data-query="Show me monthly sales by region">Show me monthly sales by region</button>
+          <button class="sql-pg__chip" role="listitem" type="button" data-query="Who are the top 5 customers?">Who are the top 5 customers?</button>
+          <button class="sql-pg__chip" role="listitem" type="button" data-query="What's the total revenue this quarter?">What's the total revenue this quarter?</button>
+          <button class="sql-pg__chip" role="listitem" type="button" data-query="Compare sales between regions">Compare sales between regions</button>
+          <button class="sql-pg__chip" role="listitem" type="button" data-query="Show me products with declining revenue">Show me products with declining revenue</button>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="sql-pg__result-side" id="sql-pg-results" aria-live="polite" aria-atomic="true">
+        <!-- Empty state -->
+        <div class="sql-pg__empty" id="sql-pg-empty">
+          <div class="sql-pg__empty-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="40" height="32" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="4" y1="16" x2="44" y2="16" stroke="currentColor" stroke-width="2"/>
+              <circle cx="10" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="20" cy="12" r="1.5" fill="currentColor"/>
+              <line x1="12" y1="24" x2="36" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="12" y1="30" x2="28" y2="30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p>Ask a question to see generated SQL and results</p>
+        </div>
+
+        <!-- Active result (hidden until query) -->
+        <div class="sql-pg__active" id="sql-pg-active" hidden>
+          <!-- SQL Output -->
+          <div class="sql-pg__sql-block">
+            <div class="sql-pg__sql-header">
+              <span class="sql-pg__sql-tag">Generated SQL</span>
+              <span class="sql-pg__sql-status" id="sql-pg-status">Analyzing...</span>
+            </div>
+            <pre class="sql-pg__code"><code id="sql-pg-code"></code></pre>
+          </div>
+
+          <!-- Results: table + charts shown simultaneously -->
+          <div class="sql-pg__results-grid" id="sql-pg-results-grid" hidden>
+            <div class="sql-pg__table-wrap" id="sql-pg-table-wrap"></div>
+            <div class="sql-pg__charts-row" id="sql-pg-charts-row"></div>
+          </div>
+
+          <!-- No Match -->
+          <div class="sql-pg__no-match" id="sql-pg-no-match" hidden>
+            <p>I can handle more complex queries in a live demo. Let's talk!</p>
+            <a href="/contact" class="btn btn-primary btn-pill" style="margin-top: 16px;">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Section ── */
+  .sql-playground-section {
+    overflow: hidden;
+  }
+
+  .sql-pg__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  /* ── Layout ── */
+  .sql-pg__layout {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .sql-pg__layout {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  /* ── Input Side ── */
+  .sql-pg__input-side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sql-pg__input-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-primary);
+  }
+
+  .sql-pg__textarea {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    color: var(--clr-text);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+  }
+
+  .sql-pg__textarea::placeholder {
+    color: var(--clr-muted);
+  }
+
+  .sql-pg__textarea:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.15);
+  }
+
+  .sql-pg__ask-btn {
+    align-self: flex-start;
+    padding: 12px 40px;
+  }
+
+  /* ── Chips ── */
+  .sql-pg__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .sql-pg__chip {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--clr-border);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    font-family: var(--font);
+  }
+
+  .sql-pg__chip:hover {
+    color: var(--clr-primary);
+    border-color: rgba(0, 200, 150, 0.4);
+    background: rgba(0, 200, 150, 0.08);
+  }
+
+  .sql-pg__chip:focus-visible {
+    outline: 2px solid var(--clr-primary);
+    outline-offset: 2px;
+  }
+
+  /* ── Result Side ── */
+  .sql-pg__result-side {
+    min-height: 320px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: relative;
+  }
+
+  /* ── Empty State ── */
+  .sql-pg__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    gap: 16px;
+    color: var(--clr-muted);
+    text-align: center;
+  }
+
+  .sql-pg__empty-icon {
+    opacity: 0.4;
+    color: var(--clr-muted);
+  }
+
+  .sql-pg__empty p {
+    font-size: 0.95rem;
+    max-width: 280px;
+  }
+
+  /* ── SQL Block ── */
+  .sql-pg__sql-block {
+    background: #0a0e17;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .sql-pg__sql-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .sql-pg__sql-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-primary);
+  }
+
+  .sql-pg__sql-status {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--clr-muted);
+    transition: color 0.3s ease;
+  }
+
+  .sql-pg__sql-status[data-done="true"] {
+    color: var(--clr-primary);
+  }
+
+  .sql-pg__code {
+    display: block;
+    padding: 16px;
+    font-family: 'Courier New', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--clr-text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 60px;
+    margin: 0;
+  }
+
+  /* ── SQL Syntax Colors (JS-generated spans need :global) ── */
+  .sql-pg__code :global(.sql-kw) {
+    color: var(--clr-primary);
+    font-weight: 700;
+  }
+
+  .sql-pg__code :global(.sql-str) {
+    color: #f0a060;
+  }
+
+  .sql-pg__code :global(.sql-num) {
+    color: #60a0f0;
+  }
+
+  .sql-pg__code :global(.sql-fn) {
+    color: #c0a0f0;
+  }
+
+  .sql-pg__code :global(.sql-op) {
+    color: #e0e0e0;
+  }
+
+  /* ── Results Grid ── */
+  .sql-pg__results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .sql-pg__charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .sql-pg__charts-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Chart Cards (JS-generated, need :global) ── */
+  .sql-pg__charts-row :global(.sql-pg__chart-card) {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+
+  .sql-pg__charts-row :global(.sql-pg__chart-card__title) {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--clr-primary);
+    margin-bottom: 12px;
+  }
+
+  .sql-pg__charts-row :global(.sql-pg__chart-card--full) {
+    grid-column: 1 / -1;
+  }
+
+  /* ── Table (JS-generated elements need :global) ── */
+  .sql-pg__table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sql-pg__table-wrap :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  .sql-pg__table-wrap :global(th) {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--clr-primary);
+    background: rgba(0, 200, 150, 0.06);
+    border-bottom: 1px solid rgba(0, 200, 150, 0.15);
+    white-space: nowrap;
+  }
+
+  .sql-pg__table-wrap :global(td) {
+    padding: 10px 14px;
+    color: var(--clr-text);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    white-space: nowrap;
+  }
+
+  .sql-pg__table-wrap :global(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .sql-pg__table-wrap :global(tr:hover td) {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  /* ── Chart SVG (JS-generated, need :global) ── */
+  .sql-pg__charts-row :global(svg) {
+    width: 100%;
+    display: block;
+  }
+
+  /* ── No Match ── */
+  .sql-pg__no-match {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--clr-muted);
+  }
+
+  .sql-pg__no-match p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  /* ── Typewriter cursor ── */
+  .sql-pg__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--clr-primary);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: sql-pg-blink 0.7s step-end infinite;
+  }
+
+  @keyframes sql-pg-blink {
+    50% { opacity: 0; }
+  }
+
+  /* ── Reduced Motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .sql-pg__cursor {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+</style>
+
+<script define:vars={{ mappingsJson }}>
+  // ── Parse data ──
+  const MAPPINGS = JSON.parse(mappingsJson);
+
+  // ── SQL Keywords for syntax highlighting ──
+  const SQL_KEYWORDS = new Set([
+    "SELECT", "FROM", "WHERE", "GROUP", "BY", "ORDER", "LIMIT",
+    "JOIN", "ON", "AS", "AND", "OR", "NOT", "IN", "IS", "NULL",
+    "ASC", "DESC", "HAVING", "DISTINCT", "INSERT", "UPDATE",
+    "DELETE", "CREATE", "DROP", "ALTER", "INTO", "VALUES",
+    "SET", "BETWEEN", "LIKE", "EXISTS", "UNION", "ALL",
+    "CASE", "WHEN", "THEN", "ELSE", "END", "OVER", "WITH"
+  ]);
+
+  const SQL_FUNCTIONS = new Set([
+    "SUM", "COUNT", "AVG", "MIN", "MAX", "ROUND", "DATE_TRUNC",
+    "LAG", "LEAD", "ROW_NUMBER", "RANK", "COALESCE", "CAST"
+  ]);
+
+  const STOP_WORDS = new Set([
+    "show", "me", "the", "a", "an", "is", "are", "what",
+    "whats", "who", "how", "many", "much", "do", "does",
+    "give", "get", "find", "list", "display", "tell",
+    "can", "you", "i", "my", "our", "all", "for", "of",
+    "in", "to", "by", "with", "between", "this", "that"
+  ]);
+
+  // ── State ──
+  let typewriterTimer = null;
+
+  // ── DOM Elements ──
+  function getEl(id) {
+    return document.getElementById(id);
+  }
+
+  function init() {
+    const textarea = getEl("sql-pg-textarea");
+    const askBtn = getEl("sql-pg-ask");
+    const chips = document.querySelectorAll(".sql-pg__chip");
+
+    if (!textarea || !askBtn) return;
+
+    // Ask button
+    askBtn.addEventListener("click", function () {
+      handleQuery(textarea.value.trim());
+    });
+
+    // Enter key
+    textarea.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleQuery(textarea.value.trim());
+      }
+    });
+
+    // Chips
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var query = chip.getAttribute("data-query") || "";
+        textarea.value = query;
+        handleQuery(query);
+      });
+    });
+  }
+
+  // ── Query Handler ──
+  function handleQuery(input) {
+    if (!input) return;
+
+    // Cancel any running typewriter
+    cancelTypewriter();
+
+    var emptyEl = getEl("sql-pg-empty");
+    var activeEl = getEl("sql-pg-active");
+    var noMatchEl = getEl("sql-pg-no-match");
+    var codeEl = getEl("sql-pg-code");
+    var statusEl = getEl("sql-pg-status");
+    var resultsGrid = getEl("sql-pg-results-grid");
+    var tableWrap = getEl("sql-pg-table-wrap");
+    var chartsRow = getEl("sql-pg-charts-row");
+
+    // Show active, hide empty
+    if (emptyEl) emptyEl.hidden = true;
+    if (activeEl) activeEl.hidden = false;
+    if (noMatchEl) noMatchEl.hidden = true;
+    if (resultsGrid) resultsGrid.hidden = true;
+
+    // Clear previous
+    if (codeEl) {
+      while (codeEl.firstChild) codeEl.removeChild(codeEl.firstChild);
+    }
+    if (tableWrap) {
+      while (tableWrap.firstChild) tableWrap.removeChild(tableWrap.firstChild);
+    }
+    if (chartsRow) {
+      while (chartsRow.firstChild) chartsRow.removeChild(chartsRow.firstChild);
+    }
+
+    // Update status
+    if (statusEl) {
+      statusEl.textContent = "Analyzing...";
+      statusEl.removeAttribute("data-done");
+    }
+
+    // Match query
+    var match = findBestMatch(input);
+
+    if (!match) {
+      // No match
+      if (noMatchEl) noMatchEl.hidden = false;
+      if (statusEl) {
+        statusEl.textContent = "No match found";
+      }
+      // Hide SQL block
+      var sqlBlock = document.querySelector(".sql-pg__sql-block");
+      if (sqlBlock) sqlBlock.style.display = "none";
+      return;
+    }
+
+    // Show SQL block
+    var sqlBlock = document.querySelector(".sql-pg__sql-block");
+    if (sqlBlock) sqlBlock.style.display = "";
+
+    // Run typewriter
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReduced) {
+      // Instant reveal
+      highlightSQL(codeEl, match.sql);
+      if (statusEl) {
+        statusEl.textContent = "Query generated";
+        statusEl.setAttribute("data-done", "true");
+      }
+      showResults(match, tableWrap, chartsRow, resultsGrid);
+    } else {
+      typewriterReveal(codeEl, match.sql, function () {
+        highlightSQL(codeEl, match.sql);
+        if (statusEl) {
+          statusEl.textContent = "Query generated";
+          statusEl.setAttribute("data-done", "true");
+        }
+        showResults(match, tableWrap, chartsRow, resultsGrid);
+      });
+    }
+  }
+
+  // ── Keyword Extraction & Matching ──
+  function extractKeywords(input) {
+    return input
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, " ")
+      .split(/\s+/)
+      .filter(function (w) {
+        return w.length > 1 && !STOP_WORDS.has(w);
+      });
+  }
+
+  function findBestMatch(input) {
+    var userKeywords = extractKeywords(input);
+    if (userKeywords.length === 0) return null;
+
+    var bestScore = 0;
+    var bestMatch = null;
+
+    for (var i = 0; i < MAPPINGS.length; i++) {
+      var mapping = MAPPINGS[i];
+      var score = 0;
+
+      for (var j = 0; j < userKeywords.length; j++) {
+        for (var k = 0; k < mapping.keywords.length; k++) {
+          if (
+            userKeywords[j] === mapping.keywords[k] ||
+            mapping.keywords[k].indexOf(userKeywords[j]) !== -1 ||
+            userKeywords[j].indexOf(mapping.keywords[k]) !== -1
+          ) {
+            score++;
+            break;
+          }
+        }
+      }
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = mapping;
+      }
+    }
+
+    return bestScore >= 2 ? bestMatch : null;
+  }
+
+  // ── Typewriter ──
+  function typewriterReveal(codeEl, sql, onComplete) {
+    var idx = 0;
+    var textNode = document.createTextNode("");
+    codeEl.appendChild(textNode);
+
+    // Add cursor
+    var cursor = document.createElement("span");
+    cursor.className = "sql-pg__cursor";
+    cursor.setAttribute("aria-hidden", "true");
+    codeEl.appendChild(cursor);
+
+    function tick() {
+      if (idx < sql.length) {
+        textNode.textContent = sql.substring(0, idx + 1);
+        idx++;
+        typewriterTimer = setTimeout(tick, 15);
+      } else {
+        // Remove cursor
+        if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+        typewriterTimer = null;
+        if (onComplete) onComplete();
+      }
+    }
+
+    typewriterTimer = setTimeout(tick, 15);
+  }
+
+  function cancelTypewriter() {
+    if (typewriterTimer !== null) {
+      clearTimeout(typewriterTimer);
+      typewriterTimer = null;
+    }
+    // Remove any lingering cursor
+    var cursors = document.querySelectorAll(".sql-pg__cursor");
+    cursors.forEach(function (c) {
+      if (c.parentNode) c.parentNode.removeChild(c);
+    });
+  }
+
+  // ── Syntax Highlighting ──
+  function highlightSQL(codeEl, sql) {
+    while (codeEl.firstChild) codeEl.removeChild(codeEl.firstChild);
+
+    // Tokenize: split by word boundaries while preserving whitespace & punctuation
+    var tokens = sql.match(/\s+|[(),.*=<>!;]+|'[^']*'|"[^"]*"|\d+(?:\.\d+)?|\w+/g) || [];
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      var upper = token.toUpperCase();
+
+      var span = document.createElement("span");
+
+      if (/^\s+$/.test(token)) {
+        // Whitespace — use a text node
+        codeEl.appendChild(document.createTextNode(token));
+        continue;
+      } else if (/^'[^']*'$/.test(token) || /^"[^"]*"$/.test(token)) {
+        span.className = "sql-str";
+      } else if (/^\d+(?:\.\d+)?$/.test(token)) {
+        span.className = "sql-num";
+      } else if (SQL_FUNCTIONS.has(upper)) {
+        span.className = "sql-fn";
+      } else if (SQL_KEYWORDS.has(upper)) {
+        span.className = "sql-kw";
+      } else if (/^[(),.*=<>!;]+$/.test(token)) {
+        span.className = "sql-op";
+      }
+
+      span.textContent = token;
+      codeEl.appendChild(span);
+    }
+  }
+
+  // ── Chart Colors ──
+  var CHART_COLORS = ["#00C896", "#009FE3", "#0073B6", "#8B5CF6", "#F59E0B", "#EF4444"];
+
+  // ── Parse Chart Data (shared helper) ──
+  function parseChartData(match) {
+    if (!match.chartLabel || !match.chartKey) return [];
+
+    var labelIdx = match.columns.indexOf(match.chartKey);
+    var valueIdx = match.columns.indexOf(match.chartLabel);
+    if (labelIdx === -1 || valueIdx === -1) return [];
+
+    var data = [];
+    for (var i = 0; i < match.rows.length; i++) {
+      var rawVal = match.rows[i][valueIdx].replace(/[$,%\u2014]/g, "").replace(/,/g, "");
+      var numVal = Math.abs(parseFloat(rawVal));
+      if (!isNaN(numVal)) {
+        data.push({
+          label: match.rows[i][labelIdx],
+          value: numVal,
+          display: match.rows[i][valueIdx]
+        });
+      }
+    }
+    return data;
+  }
+
+  // ── Detect time-series keys ──
+  function hasDateKeys(match) {
+    if (!match.chartKey) return false;
+    var labelIdx = match.columns.indexOf(match.chartKey);
+    if (labelIdx === -1) return false;
+    // Check if keys look like dates (contain "-" like "2025-01")
+    var dateCount = 0;
+    for (var i = 0; i < match.rows.length; i++) {
+      if (/\d{4}-\d{2}/.test(match.rows[i][labelIdx])) dateCount++;
+    }
+    return dateCount >= 2;
+  }
+
+  // ── Create Chart Card Wrapper ──
+  function createChartCard(title, fullWidth) {
+    var card = document.createElement("div");
+    card.className = "sql-pg__chart-card" + (fullWidth ? " sql-pg__chart-card--full" : "");
+    var cardTitle = document.createElement("div");
+    cardTitle.className = "sql-pg__chart-card__title";
+    cardTitle.textContent = title;
+    card.appendChild(cardTitle);
+    return card;
+  }
+
+  // ── Show Results ──
+  function showResults(match, tableWrap, chartsRow, resultsGrid) {
+    // Build table
+    buildTable(match, tableWrap);
+
+    // Show results grid
+    if (resultsGrid) resultsGrid.hidden = false;
+
+    // Parse data for charts
+    var data = parseChartData(match);
+    var hasChart = data.length > 1;
+
+    if (hasChart) {
+      // Always show bar chart
+      var barCard = createChartCard("Bar Chart", false);
+      buildBarChart(data, match, barCard);
+      chartsRow.appendChild(barCard);
+
+      // Donut chart for few categorical rows (2-6 rows), non-date keys
+      if (data.length >= 2 && data.length <= 6 && !hasDateKeys(match)) {
+        var donutCard = createChartCard("Distribution", false);
+        buildDonutChart(data, match, donutCard);
+        chartsRow.appendChild(donutCard);
+      }
+
+      // Line chart for time-series data
+      if (hasDateKeys(match) && data.length >= 2) {
+        var lineCard = createChartCard("Trend", true);
+        buildLineChart(data, match, lineCard);
+        chartsRow.appendChild(lineCard);
+      }
+    }
+  }
+
+  // ── Build Table ──
+  function buildTable(match, container) {
+    if (!container) return;
+
+    var table = document.createElement("table");
+    table.setAttribute("role", "table");
+
+    // Header
+    var thead = document.createElement("thead");
+    var headerRow = document.createElement("tr");
+
+    for (var i = 0; i < match.columns.length; i++) {
+      var th = document.createElement("th");
+      th.setAttribute("scope", "col");
+      th.textContent = match.columns[i];
+      headerRow.appendChild(th);
+    }
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Body
+    var tbody = document.createElement("tbody");
+    for (var r = 0; r < match.rows.length; r++) {
+      var tr = document.createElement("tr");
+      for (var c = 0; c < match.rows[r].length; c++) {
+        var td = document.createElement("td");
+        td.textContent = match.rows[r][c];
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    container.appendChild(table);
+  }
+
+  // ── Build Bar Chart (SVG horizontal bars) ──
+  function buildBarChart(data, match, container) {
+    if (!container || data.length === 0) return;
+
+    var maxVal = 0;
+    for (var d = 0; d < data.length; d++) {
+      if (data[d].value > maxVal) maxVal = data[d].value;
+    }
+    if (maxVal === 0) maxVal = 1;
+
+    var NS = "http://www.w3.org/2000/svg";
+    var barHeight = 28;
+    var barGap = 12;
+    var labelWidth = 120;
+    var valueWidth = 80;
+    var chartLeft = labelWidth + 8;
+    var chartRight = valueWidth + 8;
+    var chartWidth = 500;
+    var barAreaWidth = chartWidth - chartLeft - chartRight;
+    var svgHeight = data.length * (barHeight + barGap) + 8;
+
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + chartWidth + " " + svgHeight);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Bar chart showing " + match.chartLabel + " by " + match.chartKey);
+
+    for (var b = 0; b < data.length; b++) {
+      var y = b * (barHeight + barGap) + 4;
+      var barW = (data[b].value / maxVal) * barAreaWidth;
+      if (barW < 4) barW = 4;
+
+      // Label
+      var labelText = document.createElementNS(NS, "text");
+      labelText.setAttribute("x", String(labelWidth));
+      labelText.setAttribute("y", String(y + barHeight / 2 + 4));
+      labelText.setAttribute("text-anchor", "end");
+      labelText.setAttribute("fill", "#8A99B3");
+      labelText.setAttribute("font-size", "11");
+      labelText.setAttribute("font-family", "Inter, sans-serif");
+      labelText.textContent = data[b].label;
+      svg.appendChild(labelText);
+
+      // Gradient bar
+      var defsId = "sql-pg-bar-grad-" + b;
+      var defs = document.createElementNS(NS, "defs");
+      var grad = document.createElementNS(NS, "linearGradient");
+      grad.setAttribute("id", defsId);
+      var stop1 = document.createElementNS(NS, "stop");
+      stop1.setAttribute("offset", "0%");
+      stop1.setAttribute("stop-color", "#00C896");
+      var stop2 = document.createElementNS(NS, "stop");
+      stop2.setAttribute("offset", "100%");
+      stop2.setAttribute("stop-color", "#009FE3");
+      grad.appendChild(stop1);
+      grad.appendChild(stop2);
+      defs.appendChild(grad);
+      svg.appendChild(defs);
+
+      var rect = document.createElementNS(NS, "rect");
+      rect.setAttribute("x", String(chartLeft));
+      rect.setAttribute("y", String(y));
+      rect.setAttribute("width", String(barW));
+      rect.setAttribute("height", String(barHeight));
+      rect.setAttribute("rx", "4");
+      rect.setAttribute("fill", "url(#" + defsId + ")");
+      svg.appendChild(rect);
+
+      // Value label
+      var valText = document.createElementNS(NS, "text");
+      valText.setAttribute("x", String(chartLeft + barW + 8));
+      valText.setAttribute("y", String(y + barHeight / 2 + 4));
+      valText.setAttribute("text-anchor", "start");
+      valText.setAttribute("fill", "#F0F4FF");
+      valText.setAttribute("font-size", "11");
+      valText.setAttribute("font-weight", "600");
+      valText.setAttribute("font-family", "Inter, sans-serif");
+      valText.textContent = data[b].display;
+      svg.appendChild(valText);
+    }
+
+    container.appendChild(svg);
+  }
+
+  // ── Build Donut Chart (SVG) ──
+  function buildDonutChart(data, match, container) {
+    if (!container || data.length === 0) return;
+
+    var NS = "http://www.w3.org/2000/svg";
+    var cx = 100;
+    var cy = 100;
+    var radius = 70;
+    var strokeW = 30;
+    var circumference = 2 * Math.PI * radius;
+
+    // Calculate total
+    var total = 0;
+    for (var i = 0; i < data.length; i++) {
+      total += data[i].value;
+    }
+    if (total === 0) return;
+
+    var svgSize = 200;
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + svgSize + " " + svgSize);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Donut chart showing distribution of " + match.chartLabel);
+    svg.style.maxWidth = "200px";
+    svg.style.margin = "0 auto";
+
+    var offset = 0;
+    for (var s = 0; s < data.length; s++) {
+      var sliceLen = (data[s].value / total) * circumference;
+      var color = CHART_COLORS[s % CHART_COLORS.length];
+
+      var circle = document.createElementNS(NS, "circle");
+      circle.setAttribute("cx", String(cx));
+      circle.setAttribute("cy", String(cy));
+      circle.setAttribute("r", String(radius));
+      circle.setAttribute("fill", "none");
+      circle.setAttribute("stroke", color);
+      circle.setAttribute("stroke-width", String(strokeW));
+      // dasharray: segment length, then rest of circumference
+      circle.setAttribute("stroke-dasharray", sliceLen + " " + (circumference - sliceLen));
+      // dashoffset rotates the segment start; negate for clockwise
+      circle.setAttribute("stroke-dashoffset", String(-offset));
+      // Rotate -90deg so first slice starts at top
+      circle.setAttribute("transform", "rotate(-90 " + cx + " " + cy + ")");
+
+      svg.appendChild(circle);
+      offset += sliceLen;
+    }
+
+    // Center text: total
+    var centerText = document.createElementNS(NS, "text");
+    centerText.setAttribute("x", String(cx));
+    centerText.setAttribute("y", String(cy + 5));
+    centerText.setAttribute("text-anchor", "middle");
+    centerText.setAttribute("fill", "#F0F4FF");
+    centerText.setAttribute("font-size", "16");
+    centerText.setAttribute("font-weight", "700");
+    centerText.setAttribute("font-family", "Inter, sans-serif");
+    centerText.textContent = data.length + " items";
+    svg.appendChild(centerText);
+
+    container.appendChild(svg);
+
+    // Legend below
+    var legend = document.createElement("div");
+    legend.style.cssText = "display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;justify-content:center;";
+
+    for (var lg = 0; lg < data.length; lg++) {
+      var item = document.createElement("div");
+      item.style.cssText = "display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#8A99B3;";
+
+      var dot = document.createElement("span");
+      dot.style.cssText = "width:8px;height:8px;border-radius:50%;flex-shrink:0;background:" + CHART_COLORS[lg % CHART_COLORS.length] + ";";
+
+      var label = document.createElement("span");
+      label.textContent = data[lg].label + " (" + data[lg].display + ")";
+
+      item.appendChild(dot);
+      item.appendChild(label);
+      legend.appendChild(item);
+    }
+
+    container.appendChild(legend);
+  }
+
+  // ── Build Line Chart (SVG) ──
+  function buildLineChart(data, match, container) {
+    if (!container || data.length < 2) return;
+
+    var NS = "http://www.w3.org/2000/svg";
+    var padding = { top: 20, right: 20, bottom: 40, left: 50 };
+    var width = 500;
+    var height = 220;
+    var plotW = width - padding.left - padding.right;
+    var plotH = height - padding.top - padding.bottom;
+
+    var maxVal = 0;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].value > maxVal) maxVal = data[i].value;
+    }
+    if (maxVal === 0) maxVal = 1;
+    // Add 10% headroom
+    maxVal = maxVal * 1.1;
+
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Line chart showing " + match.chartLabel + " over time");
+
+    // Defs: area gradient
+    var defs = document.createElementNS(NS, "defs");
+    var areaGrad = document.createElementNS(NS, "linearGradient");
+    areaGrad.setAttribute("id", "sql-pg-line-area-grad");
+    areaGrad.setAttribute("x1", "0");
+    areaGrad.setAttribute("y1", "0");
+    areaGrad.setAttribute("x2", "0");
+    areaGrad.setAttribute("y2", "1");
+    var gs1 = document.createElementNS(NS, "stop");
+    gs1.setAttribute("offset", "0%");
+    gs1.setAttribute("stop-color", "#00C896");
+    gs1.setAttribute("stop-opacity", "0.3");
+    var gs2 = document.createElementNS(NS, "stop");
+    gs2.setAttribute("offset", "100%");
+    gs2.setAttribute("stop-color", "#00C896");
+    gs2.setAttribute("stop-opacity", "0.02");
+    areaGrad.appendChild(gs1);
+    areaGrad.appendChild(gs2);
+    defs.appendChild(areaGrad);
+    svg.appendChild(defs);
+
+    // Grid lines (3 horizontal)
+    for (var g = 0; g <= 3; g++) {
+      var gy = padding.top + (plotH / 3) * g;
+      var gridLine = document.createElementNS(NS, "line");
+      gridLine.setAttribute("x1", String(padding.left));
+      gridLine.setAttribute("y1", String(gy));
+      gridLine.setAttribute("x2", String(padding.left + plotW));
+      gridLine.setAttribute("y2", String(gy));
+      gridLine.setAttribute("stroke", "rgba(255,255,255,0.06)");
+      gridLine.setAttribute("stroke-width", "1");
+      svg.appendChild(gridLine);
+    }
+
+    // Calculate points
+    var points = [];
+    for (var p = 0; p < data.length; p++) {
+      var px = padding.left + (p / (data.length - 1)) * plotW;
+      var py = padding.top + plotH - (data[p].value / maxVal) * plotH;
+      points.push({ x: px, y: py });
+    }
+
+    // Area fill (polygon)
+    var areaPoints = "";
+    for (var a = 0; a < points.length; a++) {
+      areaPoints += points[a].x + "," + points[a].y + " ";
+    }
+    // Close the polygon at the bottom
+    areaPoints += points[points.length - 1].x + "," + (padding.top + plotH) + " ";
+    areaPoints += points[0].x + "," + (padding.top + plotH);
+
+    var polygon = document.createElementNS(NS, "polygon");
+    polygon.setAttribute("points", areaPoints);
+    polygon.setAttribute("fill", "url(#sql-pg-line-area-grad)");
+    svg.appendChild(polygon);
+
+    // Line (polyline)
+    var linePoints = "";
+    for (var l = 0; l < points.length; l++) {
+      linePoints += points[l].x + "," + points[l].y;
+      if (l < points.length - 1) linePoints += " ";
+    }
+
+    var polyline = document.createElementNS(NS, "polyline");
+    polyline.setAttribute("points", linePoints);
+    polyline.setAttribute("fill", "none");
+    polyline.setAttribute("stroke", "#00C896");
+    polyline.setAttribute("stroke-width", "2.5");
+    polyline.setAttribute("stroke-linejoin", "round");
+    polyline.setAttribute("stroke-linecap", "round");
+    svg.appendChild(polyline);
+
+    // Dots + value labels at each data point
+    for (var dt = 0; dt < points.length; dt++) {
+      // Dot
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", String(points[dt].x));
+      dot.setAttribute("cy", String(points[dt].y));
+      dot.setAttribute("r", "4");
+      dot.setAttribute("fill", "#00C896");
+      dot.setAttribute("stroke", "#0B1220");
+      dot.setAttribute("stroke-width", "2");
+      svg.appendChild(dot);
+
+      // Value above dot
+      var valLabel = document.createElementNS(NS, "text");
+      valLabel.setAttribute("x", String(points[dt].x));
+      valLabel.setAttribute("y", String(points[dt].y - 10));
+      valLabel.setAttribute("text-anchor", "middle");
+      valLabel.setAttribute("fill", "#F0F4FF");
+      valLabel.setAttribute("font-size", "9");
+      valLabel.setAttribute("font-weight", "600");
+      valLabel.setAttribute("font-family", "Inter, sans-serif");
+      valLabel.textContent = data[dt].display;
+      svg.appendChild(valLabel);
+
+      // X-axis label
+      var xLabel = document.createElementNS(NS, "text");
+      xLabel.setAttribute("x", String(points[dt].x));
+      xLabel.setAttribute("y", String(padding.top + plotH + 20));
+      xLabel.setAttribute("text-anchor", "middle");
+      xLabel.setAttribute("fill", "#8A99B3");
+      xLabel.setAttribute("font-size", "10");
+      xLabel.setAttribute("font-family", "Inter, sans-serif");
+      xLabel.textContent = data[dt].label;
+      svg.appendChild(xLabel);
+    }
+
+    container.appendChild(svg);
+  }
+
+  // ── Bootstrap ──
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

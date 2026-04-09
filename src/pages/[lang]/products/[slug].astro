@@ -1,0 +1,17 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import { getCollection } from 'astro:content';
+import { languages, defaultLang, type Lang } from '../../../i18n/config';
+
+export async function getStaticPaths() {
+  const langs = Object.keys(languages).filter((l) => l !== defaultLang);
+  const products = await getCollection('products', (p) => langs.includes(p.data.lang));
+  return products.map((p) => ({
+    params: { lang: p.data.lang, slug: p.data.slug },
+    props: { product: p.data },
+  }));
+}
+
+const { product } = Astro.props;
+---
+<ProductLayout product={product} />

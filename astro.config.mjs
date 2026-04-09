@@ -1,10 +1,44 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
 export default defineConfig({
     site: 'https://intellica.net',
     output: 'static',
-    integrations: [sitemap()],
+    i18n: {
+        locales: ['en', 'tr'],
+        defaultLocale: 'en',
+        routing: {
+            prefixDefaultLocale: false,
+        },
+    },
+    integrations: [
+        sitemap({
+            i18n: {
+                defaultLocale: 'en',
+                locales: {
+                    en: 'en-US',
+                    tr: 'tr-TR',
+                },
+            },
+        }),
+    ],
+    redirects: {
+        '/about-us': '/about',
+        '/our-products': '/products',
+        '/our-services': '/solutions',
+        '/career': '/careers',
+        '/privacy-policy': '/privacy',
+        '/cookie-policy': '/cookies',
+        '/terms-and-conditions': '/terms',
+        '/blog': '/insights',
+        '/business-benefits': '/solutions',
+        '/demo': '/contact',
+        '/tr/about-us': '/tr/about',
+        '/tr/our-products': '/tr/products',
+        '/tr/our-services': '/tr/solutions',
+        '/tr/career': '/tr/careers',
+        '/tr/business-benefits': '/tr/solutions',
+        '/tr/privacy-policy': '/tr/privacy',
+        '/tr/cookie-policy': '/tr/cookies',
+    },
 });

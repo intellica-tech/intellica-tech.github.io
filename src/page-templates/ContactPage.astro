@@ -1,0 +1,436 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactFunMode from '../components/gamification/ContactFunMode.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const siteUrl = "https://intellica.net";
+const breadcrumbs = [{ name: t('contact.breadcrumb'), url: `${siteUrl}${tp('/contact')}` }];
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": t('contact.schema.name'),
+  "description": t('contact.schema.description'),
+  "url": `${siteUrl}${tp('/contact')}`,
+  "mainEntity": {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`
+  }
+};
+---
+
+<Layout title={t('meta.contact.title')} description={t('meta.contact.description')} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(contactSchema)} />
+
+  <!-- Page Hero -->
+  <section class="hero noise" id="contact-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content anim-fade-up">
+          <div class="section-label">{t('contact.hero.label')}</div>
+          <h1 class="hero__title">{t('contact.hero.title')}<span class="grad-text">{t('contact.hero.titleHighlight')}</span></h1>
+          <span class="hero__accent"></span>
+          <p class="hero__desc">{t('contact.hero.desc')}</p>
+        </div>
+
+        <div class="hero__visual anim-fade-up">
+          <img src="/assets/img/contact_hero_consultation.png" alt={t('contact.hero.imgAlt')} class="hero__shape-new" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+#contact-hero { min-height: 650px !important; }
+@media (max-width: 1100px) {
+  #contact-hero { min-height: auto !important; padding-bottom: 60px; }
+}
+</style>
+
+  <!-- Contact Section -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="contact-grid anim-fade-up">
+        <!-- Form Area (Fun Mode + Classic Mode) -->
+        <div class="contact-form-wrap">
+
+          <!-- ===== Fun Mode (default, visible) ===== -->
+          <div id="fun-mode-container">
+            <ContactFunMode />
+          </div>
+
+          <!-- ===== Classic Mode (hidden by default) ===== -->
+          <div id="classic-mode" style="display:none;">
+            <div class="classic-mode-toggle">
+              <button type="button" class="mode-toggle-link" id="switch-to-fun">Try our fun mode!</button>
+            </div>
+            <div id="form-header">
+              <h2 style="color:var(--clr-light-text);font-size:1.8rem;margin-bottom:8px;">{t('contact.form.heading')}</h2>
+              <p style="color:var(--clr-light-muted);margin-bottom:36px;">{t('contact.form.subheading')}</p>
+            </div>
+            <form id="contact-form">
+              <input type="hidden" name="access_key" value="fe9f6fd8-4cca-4e1d-82e0-e0b10f76fa81" />
+              <input type="hidden" name="subject" value="New Contact Form Submission — Intellica" />
+              <input type="hidden" name="from_name" value="Intellica Website" />
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="classic-firstName">{t('contact.form.firstName')}</label>
+                  <input type="text" id="classic-firstName" name="firstName" class="form-input" placeholder={t('contact.form.firstNamePlaceholder')} required />
+                </div>
+                <div class="form-group">
+                  <label for="classic-lastName">{t('contact.form.lastName')}</label>
+                  <input type="text" id="classic-lastName" name="lastName" class="form-input" placeholder={t('contact.form.lastNamePlaceholder')} required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="classic-email">{t('contact.form.email')}</label>
+                  <input type="email" id="classic-email" name="email" class="form-input" placeholder={t('contact.form.emailPlaceholder')} required />
+                </div>
+                <div class="form-group">
+                  <label for="classic-phone">{t('contact.form.phone')}</label>
+                  <input type="tel" id="classic-phone" name="phone" class="form-input" placeholder={t('contact.form.phonePlaceholder')} />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="classic-company">{t('contact.form.company')}</label>
+                <input type="text" id="classic-company" name="company" class="form-input" placeholder={t('contact.form.companyPlaceholder')} />
+              </div>
+              <div class="form-group">
+                <label for="classic-interest">{t('contact.form.interest')}</label>
+                <select id="classic-interest" name="interest" class="form-input">
+                  <option value="">{t('contact.form.interestDefault')}</option>
+                  <option value="ai">{t('contact.form.interestAI')}</option>
+                  <option value="analytics">{t('contact.form.interestAnalytics')}</option>
+                  <option value="consulting">{t('contact.form.interestConsulting')}</option>
+                  <option value="talent-program">{t('contact.form.interestTalent')}</option>
+                  <option value="governance">{t('contact.form.interestGovernance')}</option>
+                  <option value="data-platform">{t('contact.form.interestPlatform')}</option>
+                  <option value="products">{t('contact.form.interestProducts')}</option>
+                  <option value="other">{t('contact.form.interestOther')}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="classic-message">{t('contact.form.message')}</label>
+                <textarea id="classic-message" name="message" class="form-input" placeholder={t('contact.form.messagePlaceholder')} rows="5"></textarea>
+              </div>
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-pill">
+                {t('contact.form.submit')}
+              </button>
+            </form>
+
+            <div id="success-message" style="display: none; text-align: center; padding: 40px 20px; background: rgba(0, 200, 150, 0.05); border: 1px solid rgba(0, 200, 150, 0.2); border-radius: 24px; margin-top: 20px;">
+              <div style="width: 64px; height: 64px; background: var(--grad-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: #fff; font-size: 24px;">&#10003;</div>
+              <h3 style="color: var(--clr-light-text); font-size: 1.5rem; margin-bottom: 12px;">{t('contact.success.title')}</h3>
+              <p style="color: var(--clr-light-muted); line-height: 1.6;">{t('contact.success.desc')}</p>
+              <button onclick="window.location.reload()" class="btn btn-ghost btn-pill btn-sm" style="margin-top: 24px;">{t('contact.success.another')}</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Contact Info (shared by both modes) -->
+        <div class="contact-info">
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-info-card__content">
+              <p style="color:var(--clr-light-muted);font-size:0.9rem;line-height:1.7;margin:0;">
+                <a href="https://www.google.com/maps/search/?api=1&query=Intellica+Atatürk+Mah.+Turgut+Özal+Blv.+Gardenya+1+Plaza+Ataşehir+İstanbul" target="_blank" rel="noopener" style="color:var(--clr-light-muted); transition: color 0.3s ease;" class="hover-primary">
+                  {t('contact.info.addressLine1')}<br/>
+                  {t('contact.info.addressLine2')}<br/>
+                  {t('contact.info.addressLine3')}
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-info-card__content">
+              <p style="color:var(--clr-light-muted);font-size:0.9rem;margin:0;">
+                <a href="mailto:info@intellica.net" style="color:var(--clr-primary);">info@intellica.net</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-info-card__content">
+              <p style="color:var(--clr-light-muted);font-size:0.9rem;margin:0;">
+                <a href="tel:+902166884546" style="color:var(--clr-primary);">+90 216 688 45 46</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-card card-light anim-fade-up">
+            <div class="contact-info-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="contact-info-card__content">
+              <p style="color:var(--clr-light-muted);font-size:0.9rem;margin:0;">
+                <a href="https://www.linkedin.com/company/intellica" target="_blank" rel="noopener" style="color:var(--clr-primary);">
+                  linkedin.com/company/intellica
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-why anim-fade-up">
+            <h3 style="color:var(--clr-light-text);font-size:1.1rem;margin-bottom:16px;">{t('contact.why.title')}</h3>
+            <ul class="contact-why__list">
+              <li>{t('contact.why.stat1')}</li>
+              <li>{t('contact.why.stat2')}</li>
+              <li>{t('contact.why.stat3')}</li>
+              <li>{t('contact.why.stat4')}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>{t('contact.cta.title')}<span class="grad-text">{t('contact.cta.titleHighlight')}</span></h2>
+        <p>{t('contact.cta.desc')}</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('contact.cta.primary')}</a>
+          <a class="btn btn-ghost btn-pill btn-lg" href={tp('/clients')}>{t('contact.cta.secondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 60px;
+  align-items: start;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contact-info-card {
+  padding: 24px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+.contact-info-card__content {
+  flex: 1;
+}
+.contact-info-card__icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 200, 150, 0.08);
+  border: 1px solid rgba(0, 200, 150, 0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  flex-shrink: 0;
+  color: var(--clr-primary);
+  transition: all 0.3s ease;
+}
+.contact-info-card:hover .contact-info-card__icon {
+  background: var(--clr-primary);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 200, 150, 0.2);
+}
+.contact-info-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+.contact-why {
+  padding: 28px;
+  background: linear-gradient(135deg, rgba(0,200,150,0.06), rgba(0,159,227,0.04));
+  border: 1px solid rgba(0,200,150,0.15);
+  border-radius: var(--radius-md);
+  margin-top: 8px;
+}
+.contact-why__list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.contact-why__list li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.88rem; color: var(--clr-light-muted);
+}
+.contact-why__list li::before {
+  content: '✓';
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--grad-brand);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hover-primary:hover {
+  color: var(--clr-primary) !important;
+  text-decoration: underline;
+}
+
+select.form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236B7280' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.classic-mode-toggle {
+  margin-bottom: 20px;
+}
+.mode-toggle-link {
+  font-size: 0.85rem;
+  color: var(--clr-primary);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--font);
+  transition: opacity 0.2s ease;
+}
+.mode-toggle-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+
+<script is:inline>
+  // ── Smart Mode Selection ──────────────────
+  // Logic:
+  //   ?mode=classic → always classic
+  //   ?mode=fun     → always fun
+  //   no param + referrer is same site → classic (user came from a CTA)
+  //   no param + referrer empty/external → fun (direct visit)
+  //   Toggle always available to switch manually
+  (function() {
+    var funModeContainer = document.getElementById('fun-mode-container');
+    var classicMode = document.getElementById('classic-mode');
+    var switchToClassic = document.getElementById('switch-to-classic');
+    var switchToFun = document.getElementById('switch-to-fun');
+
+    function showClassic() {
+      if (funModeContainer) funModeContainer.style.display = 'none';
+      if (classicMode) classicMode.style.display = 'block';
+    }
+
+    function showFun() {
+      if (classicMode) classicMode.style.display = 'none';
+      if (funModeContainer) funModeContainer.style.display = 'block';
+    }
+
+    // Determine initial mode
+    var params = new URLSearchParams(window.location.search);
+    var modeParam = params.get('mode');
+
+    if (modeParam === 'classic') {
+      showClassic();
+    } else if (modeParam === 'fun') {
+      showFun();
+    } else {
+      // No explicit param — check referrer
+      var referrer = document.referrer;
+      var isSameSite = referrer && (
+        referrer.indexOf('intellica.net') !== -1 ||
+        referrer.indexOf(window.location.host) !== -1
+      );
+      if (isSameSite) {
+        showClassic();
+      } else {
+        showFun();
+      }
+    }
+
+    // Manual toggle
+    if (switchToClassic) {
+      switchToClassic.addEventListener('click', showClassic);
+    }
+
+    if (switchToFun) {
+      switchToFun.addEventListener('click', showFun);
+    }
+  })();
+
+  // ── Classic Form Submission ──────────────
+  var contactForm = document.getElementById('contact-form');
+  var successMessage = document.getElementById('success-message');
+  var submitBtn = document.getElementById('submit-btn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Change button state
+      var originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      var formData = new FormData(contactForm);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.success) {
+          var formHeader = document.getElementById('form-header');
+          if (formHeader) formHeader.style.display = 'none';
+          contactForm.style.display = 'none';
+          successMessage.style.display = 'block';
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      })
+      .catch(function() {
+        alert('Something went wrong. Please try again or email us at info@intellica.net');
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      });
+    });
+  }
+</script>
+
+<style is:inline>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

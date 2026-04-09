@@ -1,0 +1,100 @@
+slug: "hrdm"
+lang: "tr"
+name: "HRDM — Human Resources Data Model"
+
+pageTitle: "HRDM — Human Resources Data Model | Intellica"
+pageDescription: >
+  HRDM: İK analitiği için kapsamlı veri ambarı modeli; yetenek yönetimi,
+  çalışan yaşam döngüsü ve iş gücü optimizasyonunu kapsar.
+
+hero:
+  category: "Veri Modelleri"
+  titlePrefix: "HRDM — İnsan Kaynakları"
+  titleHighlight: "Veri Modeli"
+  description: >
+    İş gücünüzü veriye dayalı İK içgörüleriyle güçlendirin. Bordro, yetenek
+    yönetimi ve çalışan yaşam döngüsü verilerini önceden modellenmiş
+    mimarimizle eyleme dönüştürülebilir stratejik içgörülere çevirin.
+
+overview:
+  problem: >
+    İK verileri genellikle farklı sistemlerde (Bordro, LMS, ATS) kilitli
+    kalır. Stratejik iş gücü planlaması için çalışan yaşam döngüsünün entegre
+    bir görünümünü oluşturmak karmaşık ve zaman alıcıdır.
+  approach: >
+    Intellica Human Resources Data Model (HRDM), İK süreçleri için özel olarak
+    tasarlanmış bütünsel, konu odaklı bir veri modeli sunarak tüm personel
+    alanlarında hızlı entegrasyon ve standartlaştırılmış raporlamayı mümkün
+    kılar.
+  businessValue: >
+    İK raporlama için analiz çabasında önemli ölçüde azalma ve iş gücü maliyeti
+    ile personel devir hızı takibinde önemli ölçüde iyileştirilmiş doğruluk.
+  whenPreferred:
+    - "İK sistem göçleri veya dijital İK dönüşümleri sırasında"
+    - "Yönetim İK panoları oluştururken (Devir hızı, Maliyet analizi vb.)"
+    - "Stratejik iş gücü planlaması ve yetenek açığı analizini desteklemek için"
+    - "Küresel veya dağıtık bir organizasyonda İK KPI'larını standartlaştırırken"
+    - "Personel ile ilgili veri varlıklarının kalitesini ve tutarlılığını iyileştirmek için"
+  preferredNote: ""
+
+capabilities:
+  label: "Yetenekler"
+  heading: "İK'ya Özel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Çalışan 360"
+      description: "İlk işe alımdan ayrılış/emekliliğe kadar personel verilerinin entegre görünümü."
+    - title: "Organizasyon Hiyerarşisi"
+      description: "Karmaşık, zamana bağlı organizasyon yapılarının ve raporlama hatlarının güçlü yönetimi."
+    - title: "Bordro & Yan Haklar"
+      description: "Maaş kalemleri, primler ve dağıtık yan hak programları için standartlaştırılmış modeller."
+    - title: "Yetenek & Öğrenme"
+      description: "Çalışan becerilerini, zorunlu sertifikaları ve mesleki gelişim ilerlemesini takip eder."
+    - title: "İş Gücü Analitiği"
+      description: "Detaylı yıpranma, devir hızı ve çeşitlilik analizi için kullanıma hazır şemalar."
+    - title: "Stratejik Kütüphane"
+      description: "İşgücü maliyeti, verimlilik oranları ve işe alım etkinliği için önceden tanımlanmış metrikler."
+
+featureSection:
+  heading: "Katmanlı"
+  headingHighlight: "Mimari"
+  description: >
+    HRDM, temel İK alanları için süreç odaklı tanımlar ve anahtar nitelikler
+    sunar. Bu yapı, iş gücü analitiği, işe alım takibi ve performans yönetimi
+    için entegre bir veri dilini sağlar.
+  calloutTitle: "Konu Odaklı Tasarım"
+  calloutDescription: "Çalışan yolculuğu, Bordro ve Organizasyon yapılarını kapsayan genişletilebilir çerçeve."
+  image: "/assets/images/hrdm-architecture.png"
+  imageAlt: "HRDM Mimari Yaklaşımı"
+  imageCaption: "HRDM Mimarisi: Temel ve Analiz katmanlarıyla entegre iş gücü görselleştirmesi."
+
+journey:
+  heading: "Uygulama"
+  headingHighlight: "Yolculuğu"
+  steps:
+    - number: "01"
+      title: "Veri Keşfi"
+      description: "Mevcut İK sistemlerinin denetlenmesi (Workday, SAP SuccessFactors, yerel bordro sistemleri)."
+    - number: "02"
+      title: "KPI Standardizasyonu"
+      description: "Devir hızı, devamsızlık ve işe alım maliyeti için standart formüllerin tanımlanması."
+    - number: "03"
+      title: "Pano Aktivasyonu"
+      description: "İK liderleri ve departman yöneticileri için stratejik panoların devreye alınması."
+
+integration:
+  heading: "Entegrasyon &"
+  headingHighlight: "Sinerji"
+  description: "HRDM, güvenli bir kurumsal uyum sağlamak için sıkı gizlilik ve entegrasyon standartlarıyla geliştirilmiştir:"
+  items:
+    - "GDPR / KVKK uyumlu veri işleme modelleri"
+    - "Ayrıntılı rol tabanlı erişim kontrolü (RBAC)"
+    - "Analitik için veri maskeleme ve anonimleştirme teknikleri"
+    - "Personel ile ilgili tüm veri erişimleri için denetim izleri"
+    - "Dahili kimlik yönetimi ile güvenli entegrasyon"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataModel"
+
+customComponents: []

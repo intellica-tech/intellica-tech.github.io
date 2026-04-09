@@ -1,0 +1,423 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const breadcrumbs = [{ name: t('clients.breadcrumb'), url: tp('/clients') }];
+
+const sectors = [
+  {
+    id: 'banking',
+    title: t('clients.sector.banking'),
+    outcomes: [
+      t('clients.sector.banking.o1'),
+      t('clients.sector.banking.o2'),
+      t('clients.sector.banking.o3')
+    ],
+    logos: [
+      { name: 'Akbank', src: '/assets/images/logos/Akbank_logo.svg' },
+      { name: 'Fibabanka', src: '/assets/images/logos/Fibabanka.png' },
+      { name: 'ING', src: '/assets/images/logos/ING.png' },
+      { name: 'Odeabank', src: '/assets/images/logos/Odeabank_logo.png' },
+      { name: 'TEB', src: '/assets/images/logos/TEB_LOGO.png' },
+      { name: 'Garanti BBVA', src: '/assets/images/logos/Garanti_BBVA_2019.svg' },
+      { name: 'Is Bankasi', src: '/assets/images/logos/Türkiye_İş_Bankası_logo.svg' },
+      { name: 'Yapi Kredi', src: '/assets/images/logos/Yapı_kredi_logo.png' },
+      { name: 'DenizBank', src: '/assets/images/logos/DenizBank_logo.svg (1).png' },
+      { name: 'VakifBank', src: '/assets/images/logos/Vakıfbank_logo.svg' },
+      { name: 'QNB Finansbank', src: '/assets/images/logos/Qnb-finansbank.png' },
+      { name: 'Kuveyt Turk', src: '/assets/images/logos/kuveytturk.jpg' },
+      { name: 'Albaraka', src: '/assets/images/logos/Al_Baraka_Banking_Group_Logo.svg' },
+      { name: 'Anadolubank', src: '/assets/images/logos/Anadolubank_logo.svg' },
+      { name: 'Turkiye Finans', src: '/assets/images/logos/Türkiye_finans.png' },
+      { name: 'Anadolu Sigorta', src: '/assets/images/logos/Anadolu_Sigorta_logo.svg' },
+      { name: 'Allianz', src: '/assets/images/logos/Allianz.svg.png' },
+      { name: 'Anadolu Hayat', src: '/assets/images/logos/Anadolu_Hayat_Emeklilik_logo.svg' },
+      { name: 'Avivasa', src: '/assets/images/logos/Avivasa-logo.jpg' },
+      { name: 'Zagrebacka Banka', src: '/assets/images/logos/Zagrebačka-banka-Logo.svg' },
+      { name: 'Kaspi Bank', src: '/assets/images/logos/kaspi.png' },
+      { name: 'TBI Bank', src: '/assets/images/logos/tbi-bank.png' },
+      { name: 'Birbank', src: '/assets/images/logos/birbank..svg' },
+      { name: 'Tinkoff', src: '/assets/images/logos/Tinkoffbank.png' },
+      { name: 'BKT', src: '/assets/images/logos/bkt.png' }
+    ]
+  },
+  {
+    id: 'telecom',
+    title: t('clients.sector.telecom'),
+    outcomes: [
+      t('clients.sector.telecom.o1'),
+      t('clients.sector.telecom.o2'),
+      t('clients.sector.telecom.o3')
+    ],
+    logos: [
+      { name: 'Vodafone', src: '/assets/images/logos/Vodafone_logo_2017.png' },
+      { name: 'Turkcell', src: '/assets/images/logos/Turkcell_logo.png' },
+      { name: 'Turk Telekom', src: '/assets/images/logos/TURKTELEKOM.png' },
+      { name: 'Zain', src: '/assets/images/logos/ZAINr.png' },
+      { name: 'T-Mobile', src: '/assets/images/logos/TMOBILE.png' },
+      { name: 'Digiturk', src: '/assets/images/logos/digiturk.png' },
+      { name: 'Bakcell', src: '/assets/images/logos/bakcell.svg' },
+      { name: 'Global Bilgi', src: '/assets/images/logos/globalbilgi.png' }
+    ]
+  },
+  {
+    id: 'public',
+    title: t('clients.sector.public'),
+    outcomes: [
+      t('clients.sector.public.o1'),
+      t('clients.sector.public.o2'),
+      t('clients.sector.public.o3')
+    ],
+    logos: [
+      { name: 'Ministry of Interior', src: '/assets/images/logos/InteriorMinistryTR.png' },
+      { name: 'EGM', src: '/assets/images/logos/egm_logo2.png' },
+      { name: 'SGK', src: '/assets/images/logos/SGKLOGOTYPE-RENKLI.svg' },
+      { name: 'TCDD', src: '/assets/images/logos/TCDD_Taşımacılık_Logo.png' }
+    ]
+  },
+  {
+    id: 'manufacturing',
+    title: t('clients.sector.manufacturing'),
+    outcomes: [
+      t('clients.sector.manufacturing.o1'),
+      t('clients.sector.manufacturing.o2'),
+      t('clients.sector.manufacturing.o3')
+    ],
+    logos: [
+      { name: 'Kibar Holding', src: '/assets/images/logos/Kibar_Holding_Logo.jpg' },
+      { name: 'Boyner', src: '/assets/images/logos/Boyner_Logo.jpg' },
+      { name: 'LC Waikiki', src: '/assets/images/logos/lcw.png' },
+      { name: 'Petrol Ofisi', src: '/assets/images/logos/petrolofisi.webp' },
+      { name: 'Hopi', src: '/assets/images/logos/hopi.png' },
+      { name: 'Markafoni', src: '/assets/images/logos/markafoni.jpg' },
+      { name: 'Iyzico', src: '/assets/images/logos/iyzico.jpg' },
+      { name: 'Ininal', src: '/assets/images/logos/ininal.png' },
+      { name: 'Gazprom', src: '/assets/images/logos/Gazprom_logo.svg.png' },
+      { name: 'Erciyes Anadolu', src: '/assets/images/logos/Erciyes_Anadolu_Holding_logo.svg' },
+      { name: 'Wittur', src: '/assets/images/logos/WITTUR_LOGO.jpg' }
+    ]
+  }
+];
+
+const sortedSectors = sectors.map(sector => ({
+  ...sector,
+  logos: [...sector.logos].sort((a, b) => a.name.localeCompare(b.name, 'tr', { sensitivity: 'base' }))
+}));
+---
+
+<Layout title={t('meta.clients.title')} description={t('meta.clients.description')} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
+
+  <!-- SECTION 1 — HERO -->
+  <section class="hero noise" id="clients-hero">
+    <div class="container hero__inner">
+      <div class="hero__content-wrap">
+        <div class="hero__content anim-fade-up">
+          <div class="section-label">{t('clients.hero.label')}</div>
+          <h1 class="hero__title">
+            {t('clients.hero.title')}<span class="grad-text">{t('clients.hero.titleHighlight')}</span>
+          </h1>
+          <span class="hero__accent"></span>
+          <p class="hero__desc">
+            {t('clients.hero.desc')} <br /><br />
+            {t('clients.hero.desc2')}
+          </p>
+          <div class="hero__actions">
+            <a href={tp('/contact')} class="btn btn-primary btn-pill btn-lg">{t('clients.hero.cta')}</a>
+          </div>
+        </div>
+
+        <div class="hero__visual anim-fade-up">
+          <img src="/assets/img/clients_hero_business_meeting.png" alt={t('clients.hero.imgAlt')} class="hero__shape-new" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — INDUSTRY TABS -->
+  <section class="section section--light" id="industry-experience">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+        <h2 class="section-title" style="color:var(--clr-light-text);">{t('clients.industry.title')}<span class="grad-text">{t('clients.industry.titleHighlight')}</span></h2>
+        <p class="section-sub">{t('clients.industry.sub')}</p>
+      </div>
+
+      <div class="tabs-container anim-fade-up">
+        <div class="tabs-nav" role="tablist">
+          <button class="tab-btn active" data-target="all" role="tab" aria-selected="true">{t('clients.industry.tabAll')}</button>
+          {sortedSectors.map(sector => (
+            <button class="tab-btn" data-target={sector.id} role="tab" aria-selected="false">{sector.title}</button>
+          ))}
+        </div>
+
+        <div class="tabs-content">
+          {sortedSectors.map(sector => (
+            <div class="tab-pane active" id={sector.id} role="tabpanel">
+              <div class="sector-header" data-sector-name={sector.title}>
+                <div class="outcomes-grid">
+                  {sector.outcomes.map(outcome => (
+                    <div class="outcome-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="check-icon">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>{outcome}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div class="sector-logos">
+                {sector.logos.map(logo => (
+                  <div class="logo-tile">
+                    <img src={logo.src} alt={logo.name} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION — SELECTED SUCCESS SCENARIOS -->
+  <section class="section section--white" id="success-scenarios">
+    <div class="container">
+      <div class="text-center anim-fade-up" style="margin-bottom:56px;">
+        <div class="section-label" style="margin-inline:auto;">{t('clients.impact.label')}</div>
+        <h2 class="section-title" style="color:var(--clr-light-text);">{t('clients.impact.title')}<span class="grad-text">{t('clients.impact.titleHighlight')}</span></h2>
+        <p class="section-sub">{t('clients.impact.sub')}</p>
+      </div>
+      <div class="success-grid anim-fade-up">
+        <div class="success-card">
+          <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h3>{t('clients.impact.card1.title')}</h3>
+          <p class="success-short">{t('clients.impact.card1.short')}</p>
+          <div class="success-detail">
+            <p>{t('clients.impact.card1.detail')}</p>
+            <ul class="success-metrics"><li>&darr; {t('clients.impact.card1.m1')}</li><li>&darr; {t('clients.impact.card1.m2')}</li><li>&uarr; {t('clients.impact.card1.m3')}</li></ul>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-6"/></svg></div>
+          <h3>{t('clients.impact.card2.title')}</h3>
+          <p class="success-short">{t('clients.impact.card2.short')}</p>
+          <div class="success-detail">
+            <p>{t('clients.impact.card2.detail')}</p>
+            <ul class="success-metrics"><li>&uarr; {t('clients.impact.card2.m1')}</li><li>&darr; {t('clients.impact.card2.m2')}</li><li>&uarr; {t('clients.impact.card2.m3')}</li></ul>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <h3>{t('clients.impact.card3.title')}</h3>
+          <p class="success-short">{t('clients.impact.card3.short')}</p>
+          <div class="success-detail">
+            <p>{t('clients.impact.card3.detail')}</p>
+            <ul class="success-metrics"><li>&darr; {t('clients.impact.card3.m1')}</li><li>&uarr; {t('clients.impact.card3.m2')}</li><li>&uarr; {t('clients.impact.card3.m3')}</li></ul>
+          </div>
+        </div>
+        <div class="success-card">
+          <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28"><ellipse cx="12" cy="12" rx="10" ry="3"/><path d="M2 12c0 3.5 4.5 6.5 10 6.5s10-3 10-6.5"/><line x1="12" y1="2" x2="12" y2="22"/></svg></div>
+          <h3>{t('clients.impact.card4.title')}</h3>
+          <p class="success-short">{t('clients.impact.card4.short')}</p>
+          <div class="success-detail">
+            <p>{t('clients.impact.card4.detail')}</p>
+            <ul class="success-metrics"><li>&uarr; {t('clients.impact.card4.m1')}</li><li>&darr; {t('clients.impact.card4.m2')}</li><li>&uarr; {t('clients.impact.card4.m3')}</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — GLOBAL DELIVERY -->
+  <section class="section section--dark global-delivery">
+    <div class="delivery-bg"></div>
+    <div class="container">
+      <div class="grid-2 anim-fade-up" style="gap: 60px; align-items: center;">
+        <div>
+          <h2 class="section-title">{t('clients.global.title')}<span class="grad-text">{t('clients.global.titleHighlight')}</span></h2>
+          <p style="color: rgba(255,255,255,0.7); font-size: 1.15rem; line-height: 1.7; margin-bottom: 40px;">
+            {t('clients.global.desc')}
+          </p>
+          <div class="stats-row">
+            <div class="stat-card">
+              <span class="stat-num grad-text">20+</span>
+              <span class="stat-lab">{t('clients.global.countries')}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num grad-text">100+</span>
+              <span class="stat-lab">{t('clients.global.professionals')}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num grad-text">30+</span>
+              <span class="stat-lab">{t('clients.global.platforms')}</span>
+            </div>
+          </div>
+        </div>
+        <div class="presence-visual">
+           <img src="/assets/img/global_data_ai_abstract_presence.png" alt={t('clients.global.imgAlt')} style="width: 100%; opacity: 0.8; filter: drop-shadow(0 0 40px var(--clr-primary));" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — WHAT CLIENTS ACHIEVE -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid-2 anim-fade-up" style="gap: 80px; align-items: center;">
+        <div class="impact-visual">
+          <img src="/assets/img/measurable_impact_v2.png" alt={t('clients.measurable.imgAlt')} style="border-radius: 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.1);" loading="lazy" />
+        </div>
+        <div>
+          <h2 class="section-title" style="color:var(--clr-light-text);">{t('clients.measurable.title')}<span class="grad-text">{t('clients.measurable.titleHighlight')}</span></h2>
+          <div class="impact-list">
+            <div class="impact-item">
+              <div class="impact-icon">01</div>
+              <div class="impact-content">
+                <h3>{t('clients.measurable.i1.title')}</h3>
+                <p>{t('clients.measurable.i1.desc')}</p>
+              </div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-icon">02</div>
+              <div class="impact-content">
+                <h3>{t('clients.measurable.i2.title')}</h3>
+                <p>{t('clients.measurable.i2.desc')}</p>
+              </div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-icon">03</div>
+              <div class="impact-content">
+                <h3>{t('clients.measurable.i3.title')}</h3>
+                <p>{t('clients.measurable.i3.desc')}</p>
+              </div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-icon">04</div>
+              <div class="impact-content">
+                <h3>{t('clients.measurable.i4.title')}</h3>
+                <p>{t('clients.measurable.i4.desc')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="cta-strip anim-fade-up">
+        <h2>{t('clients.cta.title')}<span class="grad-text">{t('clients.cta.titleHighlight')}</span></h2>
+        <p>{t('clients.cta.desc')}</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('clients.cta.primary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.success-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.success-card { padding: 32px 28px; border-radius: 24px; background: #FFFFFF; border: 1px solid #E2E8F0; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 16px rgba(15,23,42,0.03); }
+.success-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,200,150,0.08); border-color: rgba(0,200,150,0.25); }
+.success-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0,200,150,0.08), rgba(0,159,227,0.06)); border: 1px solid rgba(0,200,150,0.18); border-radius: 16px; color: #00C896; margin-bottom: 4px; }
+.success-card h3 { font-size: 1.1rem; font-weight: 800; color: #0F172A; margin: 0; letter-spacing: -0.01em; }
+.success-short { font-size: 0.95rem; color: #64748B; line-height: 1.55; margin: 0; }
+.success-detail { margin-top: 8px; padding-top: 16px; border-top: 1px solid #F1F5F9; }
+.success-detail p { font-size: 0.88rem; color: #64748B; line-height: 1.6; margin-bottom: 12px; }
+.success-metrics { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.success-metrics li { font-size: 0.85rem; font-weight: 700; color: #00C896; padding-left: 4px; }
+@media (max-width: 1100px) { .success-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .success-grid { grid-template-columns: 1fr; } }
+
+.tabs-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+.tab-btn { padding: 12px 24px; border-radius: 99px; background: #fff; border: 1px solid #e2e8f0; color: #64748b; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+.tab-btn.active { background: var(--clr-primary); border-color: var(--clr-primary); color: #fff; box-shadow: 0 10px 20px rgba(0, 200, 150, 0.2); }
+
+.tabs-content { position: relative; min-height: 400px; }
+.tab-pane { display: none; animation: fadeIn 0.4s ease; margin-bottom: 80px; }
+.tab-pane.active { display: block; }
+
+.sector-header { background: #fff; padding: 30px; border-radius: 24px; margin-bottom: 40px; border-left: 6px solid var(--clr-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.outcome-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; font-weight: 600; color: #1e293b; }
+.check-icon { color: var(--clr-primary); flex-shrink: 0; }
+
+.sector-logos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-bottom: 40px; }
+.logo-tile { background: #fff; height: 120px; border-radius: 16px; display: flex; align-items: center; justify-content: center; padding: 16px; border: 1px solid #f1f5f9; }
+.logo-tile img { width: auto; height: auto; max-width: 94%; max-height: 80%; object-fit: contain; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.logo-tile img[alt="Avivasa"] { transform: scale(1.4); }
+.logo-tile:hover { border-color: var(--clr-primary); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.logo-tile:hover img { transform: scale(1.05); }
+
+.is-all-view .sector-header::before { content: attr(data-sector-name); display: block; font-size: 0.75rem; font-weight: 800; color: var(--clr-primary); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; opacity: 0.8; }
+
+.global-delivery { position: relative; overflow: hidden; }
+.delivery-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 70% 50%, rgba(0, 240, 255, 0.05), transparent 60%); }
+.stats-row { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 40px; }
+.stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 24px; border-radius: 16px; min-width: 160px; backdrop-filter: blur(10px); }
+.stat-num { font-size: 2.5rem; font-weight: 900; display: block; line-height: 1; margin-bottom: 8px; }
+.stat-lab { font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.impact-list { display: grid; gap: 32px; margin-top: 40px; }
+.impact-item { display: flex; gap: 24px; }
+.impact-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(0, 200, 150, 0.1); color: var(--clr-primary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
+.impact-content h3 { font-size: 1.25rem; color: #1e293b; margin-bottom: 4px; }
+.impact-content p { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1100px) {
+  .sector-logos { grid-template-columns: repeat(4, 1fr); }
+  .outcomes-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .sector-logos { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      tabPanes.forEach(pane => {
+        if (target === 'all') {
+          pane.style.display = 'block';
+          pane.classList.add('active');
+          pane.classList.add('is-all-view');
+        } else {
+          pane.classList.remove('is-all-view');
+          if (pane.id === target) {
+            pane.style.display = 'block';
+            pane.classList.add('active');
+          } else {
+            pane.style.display = 'none';
+            pane.classList.remove('active');
+          }
+        }
+      });
+    });
+  });
+
+  document.querySelector('.tab-btn[data-target="all"]')?.click();
+</script>

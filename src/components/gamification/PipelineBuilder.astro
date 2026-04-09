@@ -1,0 +1,979 @@
+---
+/**
+ * PipelineBuilder.astro
+ * Interactive visual pipeline builder where users click to add nodes
+ * from source/transform/destination palettes. SVG bezier connections
+ * with animated data flow particles on "Run Pipeline".
+ */
+
+// Palette definitions
+const sources = [
+  { id: 'src-db', name: 'Database', iconId: 'cylinder' },
+  { id: 'src-api', name: 'API', iconId: 'cloud' },
+  { id: 'src-file', name: 'File', iconId: 'document' },
+  { id: 'src-stream', name: 'Streaming', iconId: 'wave' },
+];
+
+const transforms = [
+  { id: 'tr-filter', name: 'Filter', iconId: 'funnel' },
+  { id: 'tr-join', name: 'Join', iconId: 'merge' },
+  { id: 'tr-agg', name: 'Aggregate', iconId: 'stack' },
+  { id: 'tr-ml', name: 'ML Model', iconId: 'brain' },
+];
+
+const destinations = [
+  { id: 'dst-dw', name: 'Data Warehouse', iconId: 'db-stack' },
+  { id: 'dst-dash', name: 'Dashboard', iconId: 'chart' },
+  { id: 'dst-alert', name: 'Alert System', iconId: 'bell' },
+  { id: 'dst-api', name: 'API Output', iconId: 'cloud-upload' },
+];
+---
+
+<section class="section section--light pb-section" id="pipeline-builder">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center anim-fade-up">
+      <div class="section-label" style="margin-inline:auto;">INTERACTIVE DEMO</div>
+      <h2 class="section-title">Build Your <span class="grad-text">Pipeline</span></h2>
+      <p class="section-sub">
+        Click components below to assemble a data pipeline. Connect sources, transforms, and destinations — then run it.
+      </p>
+    </div>
+
+    <!-- Palettes -->
+    <div class="pb-palettes anim-fade-up" role="toolbar" aria-label="Pipeline component palettes">
+      <!-- Sources Palette -->
+      <div class="pb-palette" aria-label="Source components">
+        <h3 class="pb-palette__title pb-palette__title--source">Sources</h3>
+        <div class="pb-palette__items">
+          {sources.map((s) => (
+            <button
+              class="pb-chip pb-chip--source"
+              data-node-id={s.id}
+              data-node-name={s.name}
+              data-node-icon={s.iconId}
+              data-lane="source"
+              type="button"
+              aria-label={`Add ${s.name} source`}
+            >
+              <svg class="pb-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href={`#pb-icon-${s.iconId}`} />
+              </svg>
+              <span class="pb-chip__label">{s.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Transforms Palette -->
+      <div class="pb-palette" aria-label="Transform components">
+        <h3 class="pb-palette__title pb-palette__title--transform">Transforms</h3>
+        <div class="pb-palette__items">
+          {transforms.map((t) => (
+            <button
+              class="pb-chip pb-chip--transform"
+              data-node-id={t.id}
+              data-node-name={t.name}
+              data-node-icon={t.iconId}
+              data-lane="transform"
+              type="button"
+              aria-label={`Add ${t.name} transform`}
+            >
+              <svg class="pb-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href={`#pb-icon-${t.iconId}`} />
+              </svg>
+              <span class="pb-chip__label">{t.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Destinations Palette -->
+      <div class="pb-palette" aria-label="Destination components">
+        <h3 class="pb-palette__title pb-palette__title--dest">Destinations</h3>
+        <div class="pb-palette__items">
+          {destinations.map((d) => (
+            <button
+              class="pb-chip pb-chip--dest"
+              data-node-id={d.id}
+              data-node-name={d.name}
+              data-node-icon={d.iconId}
+              data-lane="destination"
+              type="button"
+              aria-label={`Add ${d.name} destination`}
+            >
+              <svg class="pb-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href={`#pb-icon-${d.iconId}`} />
+              </svg>
+              <span class="pb-chip__label">{d.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="pb-canvas anim-fade-up" role="region" aria-label="Pipeline canvas" aria-live="polite">
+      <svg class="pb-canvas__svg" id="pb-svg" aria-hidden="true"></svg>
+      <div class="pb-canvas__lanes">
+        <div class="pb-lane" data-lane-type="source">
+          <div class="pb-lane__label">Sources</div>
+          <div class="pb-lane__nodes" id="pb-lane-source"></div>
+        </div>
+        <div class="pb-lane" data-lane-type="transform">
+          <div class="pb-lane__label">Transforms</div>
+          <div class="pb-lane__nodes" id="pb-lane-transform"></div>
+        </div>
+        <div class="pb-lane" data-lane-type="destination">
+          <div class="pb-lane__label">Destinations</div>
+          <div class="pb-lane__nodes" id="pb-lane-destination"></div>
+        </div>
+      </div>
+      <!-- Empty state -->
+      <div class="pb-canvas__empty" id="pb-empty">
+        <p>Click items above to add them to your pipeline</p>
+      </div>
+    </div>
+
+    <!-- Run Button + Success Message -->
+    <div class="pb-actions anim-fade-up">
+      <button
+        class="btn btn-primary btn-pill btn-lg pb-run-btn"
+        id="pb-run-btn"
+        type="button"
+        disabled
+        aria-disabled="true"
+        aria-label="Run pipeline"
+      >
+        <svg class="pb-run-btn__icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+          <polygon points="4,2 18,10 4,18" />
+        </svg>
+        Run Pipeline
+      </button>
+      <div class="pb-success" id="pb-success" hidden aria-live="assertive">
+        <div class="pb-success__inner">
+          <svg class="pb-success__check" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" stroke="var(--clr-primary)" stroke-width="2" fill="none" />
+            <polyline points="7,12 10,16 17,8" stroke="var(--clr-primary)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <p class="pb-success__text">Pipeline Ready! Let's build this for real.</p>
+          <a class="btn btn-primary btn-pill" href="/contact">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden SVG icon definitions -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+    <defs>
+      <!-- Cylinder (Database) -->
+      <symbol id="pb-icon-cylinder" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <ellipse cx="12" cy="12" rx="8" ry="3" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4" />
+      </symbol>
+      <!-- Cloud (API) -->
+      <symbol id="pb-icon-cloud" viewBox="0 0 24 24">
+        <path d="M6 18a4 4 0 0 1-.8-7.92A6 6 0 0 1 18 9a5 5 0 0 1 .5 9.96" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <!-- Document (File) -->
+      <symbol id="pb-icon-document" viewBox="0 0 24 24">
+        <path d="M6 2h8l6 6v14H6z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round" />
+        <path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <line x1="9" y1="13" x2="15" y2="13" stroke="currentColor" stroke-width="1.5" />
+        <line x1="9" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="1.5" />
+      </symbol>
+      <!-- Wave (Streaming) -->
+      <symbol id="pb-icon-wave" viewBox="0 0 24 24">
+        <path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" />
+        <path d="M2 7c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4" />
+        <path d="M2 17c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4" />
+      </symbol>
+      <!-- Funnel (Filter) -->
+      <symbol id="pb-icon-funnel" viewBox="0 0 24 24">
+        <path d="M3 4h18l-7 8v6l-4 2V12z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round" />
+      </symbol>
+      <!-- Merge (Join) -->
+      <symbol id="pb-icon-merge" viewBox="0 0 24 24">
+        <path d="M6 4v6l6 6 6-6V4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="12" y1="16" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </symbol>
+      <!-- Stack (Aggregate) -->
+      <symbol id="pb-icon-stack" viewBox="0 0 24 24">
+        <polygon points="12,2 22,8 12,14 2,8" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <polyline points="2,12 12,18 22,12" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6" />
+        <polyline points="2,16 12,22 22,16" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.35" />
+      </symbol>
+      <!-- Brain (ML Model) -->
+      <symbol id="pb-icon-brain" viewBox="0 0 24 24">
+        <path d="M12 2a5 5 0 0 0-4.6 3A4.5 4.5 0 0 0 4 9.5a4.5 4.5 0 0 0 2 3.7V18a4 4 0 0 0 8 0h0a4 4 0 0 0 8 0v-4.8a4.5 4.5 0 0 0 2-3.7A4.5 4.5 0 0 0 16.6 5 5 5 0 0 0 12 2z" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0" />
+        <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <circle cx="12" cy="16" r="3" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <line x1="9.5" y1="10.5" x2="10.5" y2="13.5" stroke="currentColor" stroke-width="1.2" />
+        <line x1="14.5" y1="10.5" x2="13.5" y2="13.5" stroke="currentColor" stroke-width="1.2" />
+        <line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+      </symbol>
+      <!-- DB Stack (Data Warehouse) -->
+      <symbol id="pb-icon-db-stack" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="5" rx="8" ry="2.5" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <path d="M4 5v4c0 1.38 3.58 2.5 8 2.5s8-1.12 8-2.5V5" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <path d="M4 9v4c0 1.38 3.58 2.5 8 2.5s8-1.12 8-2.5V9" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <path d="M4 13v4c0 1.38 3.58 2.5 8 2.5s8-1.12 8-2.5v-4" stroke="currentColor" stroke-width="1.5" fill="none" />
+      </symbol>
+      <!-- Chart (Dashboard) -->
+      <symbol id="pb-icon-chart" viewBox="0 0 24 24">
+        <rect x="3" y="14" width="4" height="7" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <rect x="10" y="8" width="4" height="13" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none" />
+        <rect x="17" y="3" width="4" height="18" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none" />
+      </symbol>
+      <!-- Bell (Alert System) -->
+      <symbol id="pb-icon-bell" viewBox="0 0 24 24">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" />
+      </symbol>
+      <!-- Cloud Upload (API Output) -->
+      <symbol id="pb-icon-cloud-upload" viewBox="0 0 24 24">
+        <path d="M6 18a4 4 0 0 1-.8-7.92A6 6 0 0 1 18 9a5 5 0 0 1 .5 9.96" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        <polyline points="12,13 12,21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        <polyline points="9,16 12,13 15,16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+</section>
+
+<style>
+  /* ── Pipeline Builder ──────────────────────────── */
+  .pb-section {
+    overflow: hidden;
+  }
+
+  /* ── Palettes ──────────────────────────────────── */
+  .pb-palettes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .pb-palette {
+    background: var(--clr-light-card);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-md);
+    padding: 20px;
+  }
+
+  .pb-palette__title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+  }
+
+  .pb-palette__title--source {
+    color: var(--clr-secondary);
+    border-color: var(--clr-secondary);
+  }
+
+  .pb-palette__title--transform {
+    color: var(--clr-primary);
+    border-color: var(--clr-primary);
+  }
+
+  .pb-palette__title--dest {
+    color: #8B5CF6;
+    border-color: #8B5CF6;
+  }
+
+  .pb-palette__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── Palette Chips ─────────────────────────────── */
+  .pb-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-family: var(--font);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1.5px solid;
+    background: transparent;
+    color: var(--clr-light-text);
+  }
+
+  .pb-chip--source {
+    border-color: rgba(0, 159, 227, 0.3);
+  }
+  .pb-chip--source:hover {
+    background: rgba(0, 159, 227, 0.1);
+    border-color: var(--clr-secondary);
+  }
+
+  .pb-chip--transform {
+    border-color: rgba(0, 200, 150, 0.3);
+  }
+  .pb-chip--transform:hover {
+    background: rgba(0, 200, 150, 0.1);
+    border-color: var(--clr-primary);
+  }
+
+  .pb-chip--dest {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+  .pb-chip--dest:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: #8B5CF6;
+  }
+
+  .pb-chip:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .pb-chip__icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .pb-chip__label {
+    pointer-events: none;
+  }
+
+  /* ── Canvas ────────────────────────────────────── */
+  .pb-canvas {
+    position: relative;
+    background: var(--clr-light-card);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    min-height: 280px;
+    margin-bottom: 24px;
+  }
+
+  .pb-canvas__svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .pb-canvas__lanes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pb-lane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-height: 180px;
+  }
+
+  .pb-lane__label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clr-light-muted);
+    opacity: 0.6;
+  }
+
+  .pb-lane__nodes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* ── Canvas Nodes (JS-generated, need :global) ── */
+  .pb-canvas :global(.pb-node) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 140px;
+    height: 56px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm);
+    border: 2px solid;
+    background: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--clr-light-text);
+    animation: pb-node-in 0.3s ease-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .pb-canvas :global(.pb-node--source) {
+    border-color: var(--clr-secondary);
+  }
+  .pb-canvas :global(.pb-node--transform) {
+    border-color: var(--clr-primary);
+  }
+  .pb-canvas :global(.pb-node--destination) {
+    border-color: #8B5CF6;
+  }
+
+  .pb-canvas :global(.pb-node__icon) {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  .pb-canvas :global(.pb-node--source .pb-node__icon) { color: var(--clr-secondary); }
+  .pb-canvas :global(.pb-node--transform .pb-node__icon) { color: var(--clr-primary); }
+  .pb-canvas :global(.pb-node--destination .pb-node__icon) { color: #8B5CF6; }
+
+  .pb-canvas :global(.pb-node__name) {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .pb-canvas :global(.pb-node__remove) {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ef4444;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #fff;
+    line-height: 1;
+    padding: 0;
+    font-family: var(--font);
+    transition: var(--transition);
+    z-index: 3;
+  }
+
+  .pb-canvas :global(.pb-node__remove:hover) {
+    background: #dc2626;
+    transform: scale(1.15);
+  }
+
+  :global(@keyframes pb-node-in) {
+    from {
+      opacity: 0;
+      transform: scale(0.85) translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* ── Canvas empty state ────────────────────────── */
+  .pb-canvas__empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .pb-canvas__empty p {
+    color: var(--clr-light-muted);
+    opacity: 0.5;
+    font-size: 0.95rem;
+  }
+
+  .pb-canvas__empty[hidden] {
+    display: none;
+  }
+
+  /* ── SVG Connections (JS-generated, need :global) */
+  .pb-canvas :global(.pb-conn) {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.12);
+    stroke-width: 2;
+    transition: stroke 0.3s ease;
+  }
+
+  .pb-canvas :global(.pb-conn--running) {
+    stroke: url(#pb-grad-conn);
+    stroke-width: 2.5;
+  }
+
+  /* ── Data Particles (JS-generated, need :global) */
+  .pb-canvas :global(.pb-particle) {
+    fill: var(--clr-primary);
+    r: 4;
+    opacity: 0;
+  }
+
+  .pb-canvas :global(.pb-particle--running) {
+    opacity: 1;
+  }
+
+  /* ── Actions ───────────────────────────────────── */
+  .pb-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .pb-run-btn {
+    gap: 10px;
+  }
+
+  .pb-run-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .pb-run-btn__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ── Success ───────────────────────────────────── */
+  .pb-success[hidden] {
+    display: none;
+  }
+
+  .pb-success__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    animation: pb-node-in 0.4s ease-out;
+  }
+
+  .pb-success__check {
+    width: 48px;
+    height: 48px;
+  }
+
+  .pb-success__text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--clr-light-text);
+  }
+
+  /* ── Reduced motion ────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .pb-canvas :global(.pb-node) {
+      animation: none;
+    }
+    .pb-success__inner {
+      animation: none;
+    }
+    .pb-canvas :global(.pb-particle--running) {
+      opacity: 0;
+    }
+  }
+
+  /* ── Responsive ────────────────────────────────── */
+  @media (max-width: 768px) {
+    .pb-palettes {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .pb-canvas {
+      padding: 24px 16px;
+    }
+
+    .pb-canvas__lanes {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .pb-lane {
+      min-height: auto;
+    }
+
+    .pb-canvas :global(.pb-node) {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+</style>
+
+<script>
+  (function initPipelineBuilder() {
+    // State
+    const MAX_PER_LANE = 3;
+    const state = {
+      source: [] as { id: string; name: string; iconId: string }[],
+      transform: [] as { id: string; name: string; iconId: string }[],
+      destination: [] as { id: string; name: string; iconId: string }[],
+    };
+    let isRunning = false;
+
+    // DOM references
+    const svg = document.getElementById('pb-svg') as unknown as SVGSVGElement;
+    const laneSource = document.getElementById('pb-lane-source')!;
+    const laneTransform = document.getElementById('pb-lane-transform')!;
+    const laneDest = document.getElementById('pb-lane-destination')!;
+    const runBtn = document.getElementById('pb-run-btn') as HTMLButtonElement;
+    const emptyEl = document.getElementById('pb-empty')!;
+    const successEl = document.getElementById('pb-success')!;
+    const allChips = document.querySelectorAll<HTMLButtonElement>('.pb-chip');
+
+    const NS = 'http://www.w3.org/2000/svg';
+
+    // Ensure SVG has gradient defs
+    function ensureSvgDefs() {
+      if (svg.querySelector('#pb-grad-conn')) return;
+      const defs = document.createElementNS(NS, 'defs');
+
+      const grad = document.createElementNS(NS, 'linearGradient');
+      grad.setAttribute('id', 'pb-grad-conn');
+      grad.setAttribute('x1', '0%');
+      grad.setAttribute('y1', '0%');
+      grad.setAttribute('x2', '100%');
+      grad.setAttribute('y2', '0%');
+
+      const stop1 = document.createElementNS(NS, 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('stop-color', '#009FE3');
+      const stop2 = document.createElementNS(NS, 'stop');
+      stop2.setAttribute('offset', '50%');
+      stop2.setAttribute('stop-color', '#00C896');
+      const stop3 = document.createElementNS(NS, 'stop');
+      stop3.setAttribute('offset', '100%');
+      stop3.setAttribute('stop-color', '#8B5CF6');
+
+      grad.appendChild(stop1);
+      grad.appendChild(stop2);
+      grad.appendChild(stop3);
+      defs.appendChild(grad);
+      svg.appendChild(defs);
+    }
+    ensureSvgDefs();
+
+    // Lane map
+    const laneMap: Record<string, HTMLElement> = {
+      source: laneSource,
+      transform: laneTransform,
+      destination: laneDest,
+    };
+
+    // Get lane type state key
+    type LaneKey = 'source' | 'transform' | 'destination';
+
+    // Check if pipeline is valid (at least 1 per lane)
+    function isValid(): boolean {
+      return state.source.length > 0 && state.transform.length > 0 && state.destination.length > 0;
+    }
+
+    // Update run button state
+    function updateRunBtn() {
+      const valid = isValid();
+      runBtn.disabled = !valid;
+      runBtn.setAttribute('aria-disabled', String(!valid));
+    }
+
+    // Update empty state
+    function updateEmpty() {
+      const total = state.source.length + state.transform.length + state.destination.length;
+      if (total > 0) {
+        emptyEl.hidden = true;
+      } else {
+        emptyEl.hidden = false;
+      }
+    }
+
+    // Update chip disabled states
+    function updateChips() {
+      allChips.forEach((chip) => {
+        const lane = chip.dataset.lane as LaneKey;
+        const nodeId = chip.dataset.nodeId!;
+        const laneState = state[lane];
+        const alreadyAdded = laneState.some((n) => n.id === nodeId);
+        const laneFull = laneState.length >= MAX_PER_LANE;
+        chip.disabled = alreadyAdded || laneFull;
+      });
+    }
+
+    // Create a node element
+    function createNodeEl(lane: LaneKey, nodeData: { id: string; name: string; iconId: string }): HTMLElement {
+      const node = document.createElement('div');
+      node.className = `pb-node pb-node--${lane}`;
+      node.dataset.nodeId = nodeData.id;
+
+      // Icon
+      const iconSvg = document.createElementNS(NS, 'svg');
+      iconSvg.setAttribute('class', 'pb-node__icon');
+      iconSvg.setAttribute('viewBox', '0 0 24 24');
+      iconSvg.setAttribute('aria-hidden', 'true');
+      const use = document.createElementNS(NS, 'use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#pb-icon-${nodeData.iconId}`);
+      iconSvg.appendChild(use);
+      node.appendChild(iconSvg);
+
+      // Name
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'pb-node__name';
+      nameSpan.textContent = nodeData.name;
+      node.appendChild(nameSpan);
+
+      // Remove button
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'pb-node__remove';
+      removeBtn.type = 'button';
+      removeBtn.setAttribute('aria-label', `Remove ${nodeData.name}`);
+      removeBtn.textContent = '\u00D7';
+      removeBtn.addEventListener('click', () => {
+        if (isRunning) return;
+        removeNode(lane, nodeData.id);
+      });
+      node.appendChild(removeBtn);
+
+      return node;
+    }
+
+    // Add node to a lane
+    function addNode(lane: LaneKey, nodeData: { id: string; name: string; iconId: string }) {
+      if (isRunning) return;
+      if (state[lane].length >= MAX_PER_LANE) return;
+      if (state[lane].some((n) => n.id === nodeData.id)) return;
+
+      state[lane].push(nodeData);
+
+      const nodeEl = createNodeEl(lane, nodeData);
+      laneMap[lane].appendChild(nodeEl);
+
+      successEl.hidden = true;
+      updateRunBtn();
+      updateEmpty();
+      updateChips();
+      requestAnimationFrame(() => drawConnections());
+    }
+
+    // Remove node from a lane
+    function removeNode(lane: LaneKey, nodeId: string) {
+      state[lane] = state[lane].filter((n) => n.id !== nodeId);
+
+      const container = laneMap[lane];
+      const el = container.querySelector(`[data-node-id="${nodeId}"]`);
+      if (el) el.remove();
+
+      successEl.hidden = true;
+      updateRunBtn();
+      updateEmpty();
+      updateChips();
+      requestAnimationFrame(() => drawConnections());
+    }
+
+    // Get center point of a node relative to the SVG
+    function getNodeCenter(nodeEl: HTMLElement): { x: number; y: number } {
+      const svgRect = svg.getBoundingClientRect();
+      const nodeRect = nodeEl.getBoundingClientRect();
+      return {
+        x: nodeRect.left + nodeRect.width / 2 - svgRect.left,
+        y: nodeRect.top + nodeRect.height / 2 - svgRect.top,
+      };
+    }
+
+    // Get right edge center of a node
+    function getNodeRight(nodeEl: HTMLElement): { x: number; y: number } {
+      const svgRect = svg.getBoundingClientRect();
+      const nodeRect = nodeEl.getBoundingClientRect();
+      return {
+        x: nodeRect.right - svgRect.left,
+        y: nodeRect.top + nodeRect.height / 2 - svgRect.top,
+      };
+    }
+
+    // Get left edge center of a node
+    function getNodeLeft(nodeEl: HTMLElement): { x: number; y: number } {
+      const svgRect = svg.getBoundingClientRect();
+      const nodeRect = nodeEl.getBoundingClientRect();
+      return {
+        x: nodeRect.left - svgRect.left,
+        y: nodeRect.top + nodeRect.height / 2 - svgRect.top,
+      };
+    }
+
+    // Draw SVG connections
+    function drawConnections() {
+      // Clear existing paths and particles
+      const existing = svg.querySelectorAll('.pb-conn, .pb-particle');
+      existing.forEach((el) => el.remove());
+
+      const sourceNodes = laneSource.querySelectorAll<HTMLElement>('.pb-node');
+      const transformNodes = laneTransform.querySelectorAll<HTMLElement>('.pb-node');
+      const destNodes = laneDest.querySelectorAll<HTMLElement>('.pb-node');
+
+      // Check if on mobile layout (stacked vertically)
+      const isMobile = window.innerWidth <= 768;
+
+      // Source → Transform connections
+      sourceNodes.forEach((srcEl) => {
+        transformNodes.forEach((trEl) => {
+          const from = isMobile ? getNodeCenter(srcEl) : getNodeRight(srcEl);
+          const to = isMobile ? getNodeCenter(trEl) : getNodeLeft(trEl);
+          drawBezier(from, to, isMobile);
+        });
+      });
+
+      // Transform → Destination connections
+      transformNodes.forEach((trEl) => {
+        destNodes.forEach((dstEl) => {
+          const from = isMobile ? getNodeCenter(trEl) : getNodeRight(trEl);
+          const to = isMobile ? getNodeCenter(dstEl) : getNodeLeft(dstEl);
+          drawBezier(from, to, isMobile);
+        });
+      });
+    }
+
+    // Draw a single bezier path
+    function drawBezier(
+      from: { x: number; y: number },
+      to: { x: number; y: number },
+      isMobile: boolean
+    ) {
+      const path = document.createElementNS(NS, 'path');
+      path.classList.add('pb-conn');
+
+      let d: string;
+      if (isMobile) {
+        // Vertical bezier
+        const cpOffset = Math.abs(to.y - from.y) * 0.4;
+        d = `M${from.x},${from.y} C${from.x},${from.y + cpOffset} ${to.x},${to.y - cpOffset} ${to.x},${to.y}`;
+      } else {
+        // Horizontal bezier
+        const cpOffset = Math.abs(to.x - from.x) * 0.4;
+        d = `M${from.x},${from.y} C${from.x + cpOffset},${from.y} ${to.x - cpOffset},${to.y} ${to.x},${to.y}`;
+      }
+
+      path.setAttribute('d', d);
+      svg.appendChild(path);
+    }
+
+    // Run animation
+    function runPipeline() {
+      if (isRunning || !isValid()) return;
+      isRunning = true;
+      runBtn.disabled = true;
+
+      // Mark connections as running
+      const paths = svg.querySelectorAll<SVGPathElement>('.pb-conn');
+      paths.forEach((p) => p.classList.add('pb-conn--running'));
+
+      // Check reduced motion preference
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReduced) {
+        // Create particles for each path
+        paths.forEach((pathEl, i) => {
+          const circle = document.createElementNS(NS, 'circle');
+          circle.classList.add('pb-particle', 'pb-particle--running');
+          circle.setAttribute('r', '4');
+          svg.appendChild(circle);
+
+          // Animate along path
+          const pathLen = pathEl.getTotalLength();
+          const duration = 1500;
+          const delay = (i % 3) * 200;
+          let start: number | null = null;
+
+          function animateParticle(timestamp: number) {
+            if (start === null) start = timestamp;
+            const elapsed = timestamp - start - delay;
+            if (elapsed < 0) {
+              requestAnimationFrame(animateParticle);
+              return;
+            }
+            const progress = Math.min(elapsed / duration, 1);
+            const point = pathEl.getPointAtLength(progress * pathLen);
+            circle.setAttribute('cx', String(point.x));
+            circle.setAttribute('cy', String(point.y));
+
+            if (progress < 1) {
+              requestAnimationFrame(animateParticle);
+            } else {
+              circle.remove();
+            }
+          }
+
+          requestAnimationFrame(animateParticle);
+        });
+      }
+
+      // After animation duration, show success
+      setTimeout(
+        () => {
+          paths.forEach((p) => p.classList.remove('pb-conn--running'));
+          isRunning = false;
+          updateRunBtn();
+          successEl.hidden = false;
+          successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        },
+        prefersReduced ? 500 : 2000
+      );
+    }
+
+    // Event listeners - palette chips
+    allChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const lane = chip.dataset.lane as LaneKey;
+        const nodeId = chip.dataset.nodeId!;
+        const nodeName = chip.dataset.nodeName!;
+        const nodeIcon = chip.dataset.nodeIcon!;
+        addNode(lane, { id: nodeId, name: nodeName, iconId: nodeIcon });
+      });
+    });
+
+    // Run button
+    runBtn.addEventListener('click', runPipeline);
+
+    // Redraw connections on resize
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => drawConnections(), 150);
+    });
+
+    // IntersectionObserver for anim-fade-up
+    const section = document.getElementById('pipeline-builder');
+    if (section) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const targets = section.querySelectorAll('.anim-fade-up');
+              targets.forEach((el) => el.classList.add('visible'));
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(section);
+    }
+  })();
+</script>

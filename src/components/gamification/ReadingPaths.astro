@@ -1,0 +1,632 @@
+---
+/**
+ * ReadingPaths.astro
+ * "Choose Your Journey" section — organizes blog articles into themed
+ * reading paths with localStorage progress tracking and expandable
+ * article timelines.
+ */
+
+// ── Article catalog ──
+const articles: Record<string, { title: string; time: number }> = {
+  "dashboard-guven": { title: "Why Trust Decreases as the Number of Dashboards Increases?", time: 6 },
+  "manuel-kontroller": { title: "Why Manual Controls Are Still Alive", time: 5 },
+  "verinin-nabzi": { title: "Data Autopsy or Data Pulse?", time: 6 },
+  "is-analizi": { title: "Business Analysis: The Reality Filter", time: 7 },
+  "rag-ne-zaman-ise-yarar": { title: "When Does RAG Work and When Does It Mislead?", time: 8 },
+  "genai-guven-standardi": { title: "How to Establish a Trust Standard in Enterprise GenAI?", time: 9 },
+};
+
+// ── Paths ──
+const paths = [
+  {
+    id: "data-governance",
+    name: "Data Governance Journey",
+    description: "Master data quality, dashboard governance, and reconciliation strategies",
+    icon: "shield",
+    slugs: ["dashboard-guven", "manuel-kontroller"],
+  },
+  {
+    id: "ai-readiness",
+    name: "AI Readiness Journey",
+    description: "Build production-grade AI with RAG, GenAI trust, and business analysis",
+    icon: "cpu",
+    slugs: ["rag-ne-zaman-ise-yarar", "genai-guven-standardi", "is-analizi"],
+  },
+  {
+    id: "data-ops",
+    name: "Data Operations Journey",
+    description: "From manual controls to real-time monitoring and early warning systems",
+    icon: "activity",
+    slugs: ["verinin-nabzi", "manuel-kontroller"],
+  },
+];
+
+// Enrich paths with article data for the template
+const enrichedPaths = paths.map(p => ({
+  ...p,
+  articles: p.slugs.map(s => ({ slug: s, ...articles[s] })),
+  totalTime: p.slugs.reduce((sum, s) => sum + articles[s].time, 0),
+}));
+---
+
+<section class="section section--dark rp" id="reading-paths">
+  <div class="container">
+    <!-- Header -->
+    <div class="text-center anim-fade-up">
+      <div class="section-label">LEARNING PATHS</div>
+      <h2 class="section-title">Choose Your <span class="grad-text">Journey</span></h2>
+      <p class="section-sub">Follow a guided reading path to master a topic end-to-end. Track your progress as you go.</p>
+    </div>
+
+    <!-- Path grid -->
+    <div class="rp__grid anim-fade-up">
+      {enrichedPaths.map((path) => (
+        <div
+          class="rp__card"
+          data-path-id={path.id}
+          role="region"
+          aria-label={path.name}
+        >
+          <!-- Card header — always visible -->
+          <button
+            class="rp__toggle"
+            aria-expanded="false"
+            aria-controls={`rp-articles-${path.id}`}
+          >
+            <div class="rp__icon" data-icon={path.icon}></div>
+            <div class="rp__header">
+              <h3 class="rp__name">{path.name}</h3>
+              <p class="rp__desc">{path.description}</p>
+              <div class="rp__meta">
+                <span class="rp__meta-item">{path.articles.length} articles</span>
+                <span class="rp__meta-sep"></span>
+                <span class="rp__meta-item">{path.totalTime} min total</span>
+                <span class="rp__meta-sep"></span>
+                <span class="rp__meta-item rp__progress-label" data-path-id={path.id}>0/{path.articles.length} completed</span>
+              </div>
+              <!-- Progress bar -->
+              <div class="rp__bar-track">
+                <div class="rp__bar-fill" data-path-id={path.id} style="width:0%"></div>
+              </div>
+            </div>
+            <span class="rp__chevron" aria-hidden="true"></span>
+          </button>
+
+          <!-- Article timeline — hidden by default -->
+          <div
+            class="rp__articles"
+            id={`rp-articles-${path.id}`}
+            hidden
+          >
+            <ol class="rp__timeline" aria-live="polite">
+              {path.articles.map((article, idx) => (
+                <li class="rp__step" data-slug={article.slug} data-path-id={path.id} data-index={idx}>
+                  <div class="rp__step-marker">
+                    <span class="rp__step-dot"></span>
+                    {idx < path.articles.length - 1 && <span class="rp__step-line"></span>}
+                  </div>
+                  <div class="rp__step-body">
+                    <div class="rp__step-top">
+                      <div class="rp__step-info">
+                        <span class="rp__step-title">{article.title}</span>
+                        <span class="rp__step-time">{article.time} min read</span>
+                      </div>
+                      <div class="rp__step-actions">
+                        <button
+                          class="rp__mark-btn"
+                          data-slug={article.slug}
+                          aria-label={`Mark "${article.title}" as read`}
+                        >
+                          <span class="rp__check-icon"></span>
+                          <span class="rp__mark-label">Mark Read</span>
+                        </button>
+                      </div>
+                    </div>
+                    <a
+                      class="rp__read-link"
+                      href={`/insights/${article.slug}`}
+                      data-slug={article.slug}
+                    >
+                      Read Article &rarr;
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── Reading Paths section ── */
+.rp__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+/* ── Card ── */
+.rp__card {
+  background: var(--clr-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.rp__card:hover {
+  border-color: rgba(0, 200, 150, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 200, 150, 0.06);
+}
+
+/* ── Toggle button (card header) ── */
+.rp__toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  padding: 28px 24px;
+  text-align: left;
+  color: var(--clr-text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+.rp__toggle:focus-visible {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: -2px;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Icon ── */
+.rp__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 200, 150, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.rp__icon::after {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.rp__icon[data-icon="shield"]::after { content: "\1F6E1"; }
+.rp__icon[data-icon="cpu"]::after    { content: "\1F9E0"; }
+.rp__icon[data-icon="activity"]::after { content: "\1F4CA"; }
+
+/* ── Header text ── */
+.rp__header {
+  flex: 1;
+  min-width: 0;
+}
+.rp__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.rp__desc {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+/* ── Meta row ── */
+.rp__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--clr-muted);
+  margin-bottom: 10px;
+}
+.rp__meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--clr-muted);
+  opacity: 0.5;
+}
+
+/* ── Progress bar ── */
+.rp__bar-track {
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.rp__bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--grad-brand);
+  transition: width 0.4s ease;
+}
+
+/* ── Chevron ── */
+.rp__chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.rp__chevron::before,
+.rp__chevron::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--clr-muted);
+  transition: transform 0.3s ease;
+}
+.rp__chevron::before {
+  left: 2px;
+  transform: translateY(-50%) rotate(45deg);
+}
+.rp__chevron::after {
+  right: 2px;
+  transform: translateY(-50%) rotate(-45deg);
+}
+.rp__toggle[aria-expanded="true"] .rp__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Articles panel ── */
+.rp__articles {
+  padding: 0 24px 24px;
+}
+.rp__articles[hidden] {
+  display: none;
+}
+
+/* ── Timeline ── */
+.rp__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rp__step {
+  display: flex;
+  gap: 16px;
+  position: relative;
+}
+
+/* ── Step marker (dot + line) ── */
+.rp__step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  padding-top: 4px;
+}
+.rp__step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--clr-border);
+  background: var(--clr-dark);
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.rp__step-line {
+  width: 2px;
+  flex: 1;
+  background: var(--clr-border);
+  margin-top: 4px;
+}
+
+/* Read state — dot fills green */
+.rp__step.is-read .rp__step-dot {
+  border-color: var(--clr-primary);
+  background: var(--clr-primary);
+}
+.rp__step.is-read .rp__step-line {
+  background: var(--clr-primary);
+}
+
+/* Next-up state */
+.rp__step.is-next .rp__step-dot {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 4px rgba(0, 200, 150, 0.15);
+}
+
+/* ── Step body ── */
+.rp__step-body {
+  flex: 1;
+  padding-bottom: 24px;
+  min-width: 0;
+}
+.rp__step-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.rp__step-info {
+  flex: 1;
+  min-width: 0;
+}
+.rp__step-title {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.rp__step-time {
+  font-size: 0.72rem;
+  color: var(--clr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+/* ── Mark as Read button ── */
+.rp__mark-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--clr-border);
+  background: transparent;
+  color: var(--clr-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.rp__mark-btn:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+.rp__mark-btn:focus-visible {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 2px;
+}
+
+/* Check icon (empty circle → filled check) */
+.rp__check-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.rp__check-icon::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  width: 4px;
+  height: 7px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Read state for button */
+.rp__step.is-read .rp__mark-btn {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  background: rgba(0, 200, 150, 0.08);
+}
+.rp__step.is-read .rp__check-icon {
+  border-color: var(--clr-primary);
+  background: var(--clr-primary);
+}
+.rp__step.is-read .rp__check-icon::after {
+  opacity: 1;
+  border-color: #fff;
+}
+.rp__step.is-read .rp__mark-label {
+  /* label changes via JS to "Read" */
+}
+
+/* ── Read link ── */
+.rp__read-link {
+  display: none;
+  margin-top: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.rp__read-link:hover {
+  opacity: 0.8;
+}
+.rp__step.is-next .rp__read-link {
+  display: inline-block;
+}
+/* Also show link on read articles for re-reading */
+.rp__step.is-read .rp__read-link {
+  display: inline-block;
+  opacity: 0.6;
+}
+.rp__step.is-read .rp__read-link:hover {
+  opacity: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .rp__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .rp__toggle {
+    padding: 20px 16px;
+  }
+  .rp__articles {
+    padding: 0 16px 16px;
+  }
+  .rp__step-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rp__step-actions {
+    align-self: flex-start;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .rp__bar-fill,
+  .rp__chevron,
+  .rp__chevron::before,
+  .rp__chevron::after,
+  .rp__step-dot,
+  .rp__step-line,
+  .rp__card,
+  .rp__mark-btn,
+  .rp__check-icon,
+  .rp__check-icon::after {
+    transition: none;
+  }
+}
+</style>
+
+<script>
+  // ── Storage key ──
+  const STORAGE_KEY = "intellica-reading-progress";
+
+  // ── Helpers ──
+  function loadProgress(): Record<string, boolean> {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function saveProgress(progress: Record<string, boolean>): void {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    } catch {
+      // Storage full or unavailable — silently ignore
+    }
+  }
+
+  // ── Render progress for a given path card ──
+  function refreshPath(card: HTMLElement): void {
+    const pathId = card.getAttribute("data-path-id") || "";
+    const steps = card.querySelectorAll<HTMLElement>(".rp__step");
+    const progress = loadProgress();
+    let readCount = 0;
+    let nextFound = false;
+
+    steps.forEach((step) => {
+      const slug = step.getAttribute("data-slug") || "";
+      const isRead = !!progress[slug];
+
+      step.classList.toggle("is-read", isRead);
+      step.classList.remove("is-next");
+
+      // Update mark button label
+      const labelEl = step.querySelector<HTMLElement>(".rp__mark-label");
+      if (labelEl) {
+        labelEl.textContent = isRead ? "Read" : "Mark Read";
+      }
+
+      if (isRead) {
+        readCount++;
+      } else if (!nextFound) {
+        step.classList.add("is-next");
+        nextFound = true;
+      }
+    });
+
+    // Update progress label
+    const progressLabel = card.querySelector<HTMLElement>(
+      `.rp__progress-label[data-path-id="${pathId}"]`
+    );
+    if (progressLabel) {
+      progressLabel.textContent = `${readCount}/${steps.length} completed`;
+    }
+
+    // Update progress bar
+    const barFill = card.querySelector<HTMLElement>(
+      `.rp__bar-fill[data-path-id="${pathId}"]`
+    );
+    if (barFill) {
+      const pct = steps.length > 0 ? (readCount / steps.length) * 100 : 0;
+      barFill.style.width = `${pct}%`;
+    }
+  }
+
+  // ── Init ──
+  function init(): void {
+    const cards = document.querySelectorAll<HTMLElement>(".rp__card");
+
+    cards.forEach((card) => {
+      // Toggle expand/collapse
+      const toggleBtn = card.querySelector<HTMLButtonElement>(".rp__toggle");
+      const articlesPanel = card.querySelector<HTMLElement>(".rp__articles");
+
+      if (toggleBtn && articlesPanel) {
+        toggleBtn.addEventListener("click", () => {
+          const isExpanded = toggleBtn.getAttribute("aria-expanded") === "true";
+          toggleBtn.setAttribute("aria-expanded", String(!isExpanded));
+          if (isExpanded) {
+            articlesPanel.hidden = true;
+          } else {
+            articlesPanel.hidden = false;
+          }
+        });
+      }
+
+      // Mark as Read buttons
+      const markBtns = card.querySelectorAll<HTMLButtonElement>(".rp__mark-btn");
+      markBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const slug = btn.getAttribute("data-slug") || "";
+          const progress = loadProgress();
+          // Toggle
+          if (progress[slug]) {
+            delete progress[slug];
+          } else {
+            progress[slug] = true;
+          }
+          saveProgress(progress);
+          // Refresh ALL cards (an article can appear in multiple paths)
+          cards.forEach(refreshPath);
+        });
+      });
+
+      // Initial render
+      refreshPath(card);
+    });
+  }
+
+  // Run when DOM is ready (Astro ships this as a module)
+  init();
+</script>

@@ -1,0 +1,41 @@
+---
+interface Props {
+  capabilities: {
+    label: string;
+    heading: string;
+    headingHighlight: string;
+    items: { title: string; description: string }[];
+  };
+}
+
+const { capabilities } = Astro.props;
+---
+<section class="section section--light">
+  <div class="container">
+    <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+      <div class="section-label" style="margin-inline: auto;">{capabilities.label}</div>
+      <h2 class="section-title" style="color: var(--clr-light-text);">{capabilities.heading} <span class="grad-text">{capabilities.headingHighlight}</span></h2>
+    </div>
+
+    <div class="grid-3 anim-fade-up" style="gap: 24px;">
+      {capabilities.items.map((cap, i) => (
+        <div class="cap-card-modern">
+          <span class="cap-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{cap.title}</h3>
+          <p>{cap.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.cap-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(0, 200, 150, 0.15);
+  line-height: 1;
+  margin-bottom: 16px;
+  display: block;
+}
+</style>

@@ -33,3 +33,5 @@ pnpm-debug.log*
 .claude/settings.local.json
 .claude/todos/
 
+.superpowers/brainstorm/
+.playwright-mcp/

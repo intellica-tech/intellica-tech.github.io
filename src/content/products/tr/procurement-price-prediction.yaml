@@ -1,0 +1,61 @@
+slug: "procurement-price-prediction"
+lang: "tr"
+name: "Procurement Price Prediction"
+
+pageTitle: "Procurement Price Prediction — AI Çözümleri | Intellica"
+pageDescription: >
+  Procurement Price Prediction: Stratejik tedarik için yapay zekâ destekli fiyat
+  tahmini ve anomali tespiti; pazar zekâsıyla satın alma kararlarını optimize eder.
+
+hero:
+  category: "Yapay Zekâ Çözümleri"
+  titlePrefix: "Procurement Price"
+  titleHighlight: "Prediction"
+  description: >
+    Tedarik stratejiniz için öngörücü zekâ. Yapay zekâ destekli fiyat tahmini
+    ve pazar odaklı anomali tespiti ile satın alma kararlarınızı optimize edin.
+
+overview:
+  problem: >
+    Tedarik ekipleri değişken piyasa fiyatları, dalgalanan döviz kurları ve
+    tutarsız tedarikçi teklifleriyle mücadele eder; bu durum optimal olmayan
+    satın alma zamanlamasına ve maliyet aşımlarına yol açar.
+  approach: >
+    Bu yapay zekâ çözümü, dahili tedarik verilerini harici pazar göstergeleri
+    (Emtia endeksleri, Döviz, Enerji) ile entegre ederek teklifler için doğru
+    referans fiyatlar ve anomali uyarıları üretir.
+  businessValue: >
+    Stratejik kategorilerde önemli maliyet tasarrufları, pazar dalgalanmalarına
+    karşı proaktif risk yönetimi ve tedarikçi tekliflerinde otomatik
+    dolandırıcılık/anomali tespiti.
+  whenPreferred:
+    - "Yüksek hacimli hammadde veya emtia tedariki olan kuruluşlar için"
+    - "Dağıtık satın alma birimlerinde \"Referans Fiyat\" hesaplamalarını standartlaştırmak için"
+    - "Excel'de manuel fiyat takibinin küresel pazarlar için artık yeterli olmadığı durumlarda"
+    - "Tedarikçilerden gelen şüpheli fiyat anomalilerini veya aykırı teklifleri tespit etmek için"
+    - "Yüksek değerli tedarik sözleşmelerinin stratejik orta-uzun vadeli planlaması için"
+  preferredNote: "Not: Modeller, kuruluşun belirli emtia evrenine göre özelleştirilir."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Çözüm"
+  headingHighlight: "Yetenekleri"
+  items:
+    - title: "Endeks Entegrasyonu"
+      description: "Küresel emtia, enerji ve finansal endekslerin (LME, Brent vb.) otomatik günlük alımı."
+    - title: "Fiyat Tahmini"
+      description: "Önümüzdeki 1 ila 12 aylık fiyat eğilimlerini tahmin eden çok değişkenli ML modelleri."
+    - title: "Anomali Tespiti"
+      description: "Beklenen pazar odaklı aralıklardan sapan tedarikçi tekliflerinin otomatik işaretlenmesi."
+    - title: "Etken Analizi"
+      description: "Maliyetlerinizi en çok hangi dış faktörlerin (döviz, işçilik, petrol) etkilediğinin belirlenmesi."
+    - title: "Stratejik Uyarılar"
+      description: "Pazar koşullarının yüksek hacimli alımlar için optimal pencereler önerdiğinde bildirimler."
+    - title: "Kategori Özelleştirme"
+      description: "Farklı endüstriyel kategoriler (Metal, Plastik, Lojistik vb.) için özelleştirilmiş mantık ve modeller."
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, AIProcurement"
+
+customComponents: []

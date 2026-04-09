@@ -4,11 +4,17 @@
  * GA script loads ONLY after user grants consent.
  * Decision is persisted in localStorage (`ga_consent`).
  */
+import { defaultLang, type Lang } from '../i18n/config';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
 export interface Props {
   gaId?: string;
+  lang?: Lang;
 }
 
-const { gaId = 'G-TJXJTG53PX' } = Astro.props;
+const { gaId = 'G-TJXJTG53PX', lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
 ---
 
 <div
@@ -21,15 +27,15 @@ const { gaId = 'G-TJXJTG53PX' } = Astro.props;
 >
   <div class="cookie-consent__inner">
     <p class="cookie-consent__text">
-      We use cookies to analyze site traffic and improve your experience.
-      <a href="/cookies">Learn more</a>
+      {t('cookie.text')}
+      <a href={tp('/cookies')}>{t('cookie.learnMore')}</a>
     </p>
     <div class="cookie-consent__actions">
       <button id="cookie-deny" class="cookie-consent__btn cookie-consent__btn--deny" type="button">
-        Decline
+        {t('cookie.deny')}
       </button>
       <button id="cookie-accept" class="cookie-consent__btn cookie-consent__btn--accept" type="button">
-        Accept
+        {t('cookie.accept')}
       </button>
     </div>
   </div>

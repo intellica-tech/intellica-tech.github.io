@@ -1,7 +1,18 @@
 ---
+import { languages, defaultLang, type Lang } from '../i18n/config';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+// Build locale regex pattern for client-side script
+const localeRegex = Object.keys(languages).join('|');
+
+interface Props { lang?: Lang; }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
 const navItems = [
   {
-    label: 'Products',
+    label: t('bottomNav.products'),
     href: null,
     sheet: 'products',
     page: 'products',
@@ -9,28 +20,28 @@ const navItems = [
     iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="2" y="3" width="7" height="7" rx="1.5"/><rect x="15" y="3" width="7" height="7" rx="1.5"/><rect x="2" y="14" width="7" height="7" rx="1.5"/><rect x="15" y="14" width="7" height="7" rx="1.5"/></svg>`,
   },
   {
-    label: 'AI Solutions',
-    href: '/solutions',
+    label: t('bottomNav.aiSolutions'),
+    href: tp('/solutions'),
     page: 'solutions',
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
     iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
   },
   {
-    label: 'Data Platforms',
-    href: '/data-platforms',
+    label: t('bottomNav.dataPlatforms'),
+    href: tp('/data-platforms'),
     page: 'data-platforms',
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
     iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
   },
   {
-    label: 'Clients',
-    href: '/clients',
+    label: t('bottomNav.clients'),
+    href: tp('/clients'),
     page: 'clients',
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
     iconActive: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
   },
   {
-    label: 'More',
+    label: t('bottomNav.more'),
     href: null,
     sheet: 'more',
     page: 'more',
@@ -41,64 +52,64 @@ const navItems = [
 
 const productGroups = [
   {
-    category: 'Data Models',
+    category: t('nav.products.dataModels'),
     items: [
-      { name: 'IFDM', desc: 'Standard data model for finance', href: '/products/ifdm' },
-      { name: 'ITDM', desc: 'Global data model for telecom', href: '/products/itdm' },
-      { name: 'HRDM', desc: 'Optimized model for HR analytics', href: '/products/hrdm' },
+      { name: t('products.ifdm.name'), desc: t('products.ifdm.desc'), href: tp('/products/ifdm') },
+      { name: t('products.itdm.name'), desc: t('products.itdm.desc'), href: tp('/products/itdm') },
+      { name: t('products.hrdm.name'), desc: t('products.hrdm.desc'), href: tp('/products/hrdm') },
     ]
   },
   {
-    category: 'Platform & Governance',
+    category: t('nav.products.platformGovernance'),
     items: [
-      { name: 'ICC', desc: 'Data consistency & quality control', href: '/products/icc' },
-      { name: 'ReTouch', desc: 'Validated data entry & RDM', href: '/products/retouch' },
-      { name: 'Retable', desc: 'No-code apps & data tables', href: '/products/retable' },
-      { name: 'Orqenta', desc: 'Workflow orchestration and automation', href: '/products/orqenta' },
+      { name: t('products.icc.name'), desc: t('products.icc.desc'), href: tp('/products/icc') },
+      { name: t('products.retouch.name'), desc: t('products.retouch.desc'), href: tp('/products/retouch') },
+      { name: t('products.retable.name'), desc: t('products.retable.desc'), href: tp('/products/retable') },
+      { name: t('products.orqenta.name'), desc: t('products.orqenta.desc'), href: tp('/products/orqenta') },
     ]
   },
   {
-    category: 'AI Products',
+    category: t('nav.products.aiProducts'),
     items: [
-      { name: 'Talk To', desc: 'Natural language data analyst', href: '/products/talk-to-your-data' },
-      { name: 'Blue Octopus', desc: 'Event monitoring & action management', href: '/products/blue-octopus' },
-      { name: 'VAR', desc: 'AI voice analytics & recognition', href: '/products/var' },
+      { name: t('products.talkto.name'), desc: t('products.talkto.desc'), href: tp('/products/talk-to-your-data') },
+      { name: t('products.blueoctopus.name'), desc: t('products.blueoctopus.desc'), href: tp('/products/blue-octopus') },
+      { name: t('products.var.name'), desc: t('products.var.desc'), href: tp('/products/var') },
     ]
   }
 ];
 
 const moreGroups = [
   {
-    category: "About",
+    category: t('bottomNav.more.about'),
     items: [
-      { name: "About Us", desc: "Our mission and global footprint", href: "/about" },
+      { name: t('bottomNav.more.aboutUs'), desc: t('bottomNav.more.aboutUsDesc'), href: tp('/about') },
     ]
   },
   {
-    category: "Careers",
+    category: t('bottomNav.more.careers'),
     items: [
-      { name: "Join Intellica", desc: "Join our journey of innovation", href: "/careers" },
-      { name: "Data & AI Talent Program", desc: "Intellica’s development program", href: "/academy" },
+      { name: t('bottomNav.more.joinIntellica'), desc: t('bottomNav.more.joinIntellicaDesc'), href: tp('/careers') },
+      { name: t('bottomNav.more.talentProgram'), desc: t('bottomNav.more.talentProgramDesc'), href: tp('/academy') },
     ]
   },
   {
-    category: "Research",
+    category: t('bottomNav.more.research'),
     items: [
-      { name: "Insights", desc: "Perspectives and market trends", href: "/insights" },
+      { name: t('bottomNav.more.insights'), desc: t('bottomNav.more.insightsDesc'), href: tp('/insights') },
     ]
   },
   {
-    category: "Get in Touch",
+    category: t('bottomNav.more.getInTouch'),
     items: [
-      { name: "Contact Us", desc: "Start a conversation", href: "/contact" },
-      { name: "Home", desc: "Return to homepage", href: "/" },
+      { name: t('bottomNav.more.contactUs'), desc: t('bottomNav.more.contactUsDesc'), href: tp('/contact') },
+      { name: t('bottomNav.more.home'), desc: t('bottomNav.more.homeDesc'), href: tp('/') },
     ]
   }
 ];
 ---
 
 <!-- Bottom Navigation Bar (mobile only) -->
-<nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation">
+<nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation" data-locales={localeRegex}>
   {navItems.map(item => (
     item.href !== null ? (
       <a
@@ -135,7 +146,7 @@ const moreGroups = [
 <div class="bottom-sheet" id="products-sheet" role="dialog" aria-modal="true" aria-label="Products">
   <div class="sheet-handle-wrap"><div class="sheet-handle"></div></div>
   <div class="sheet-header">
-    <span>Products</span>
+    <span>{t('bottomNav.sheet.products')}</span>
     <button class="sheet-close" aria-label="Close">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -161,7 +172,7 @@ const moreGroups = [
 <div class="bottom-sheet" id="more-sheet" role="dialog" aria-modal="true" aria-label="More Menu">
   <div class="sheet-handle-wrap"><div class="sheet-handle"></div></div>
   <div class="sheet-header">
-    <span>Navigation</span>
+    <span>{t('bottomNav.sheet.navigation')}</span>
     <button class="sheet-close" aria-label="Close">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -417,6 +428,11 @@ const moreGroups = [
 <script>
   // ─── Active page detection ──────────────────
   const path = window.location.pathname;
+  // Strip locale prefix for page matching — reads supported locales from nav data attribute
+  const localeRegex = document.querySelector('.bottom-nav')?.getAttribute('data-locales') || 'en|tr';
+  const localeMatch = path.match(new RegExp(`^/(${localeRegex})(/|$)`));
+  const cleanPath = localeMatch ? path.replace(new RegExp(`^/(${localeRegex})(/|$)`), '/') : path;
+
   const pageMap: Record<string, string> = {
     '/': 'home',
     '/products': 'products',
@@ -429,7 +445,13 @@ const moreGroups = [
     '/insights': 'more',
     '/contact': 'more',
   };
-  const activePage = pageMap[path] ?? '';
+
+  // Handle product subpages
+  if (cleanPath.startsWith('/products/')) {
+    pageMap[cleanPath] = 'products';
+  }
+
+  const activePage = pageMap[cleanPath] ?? '';
 
   document.querySelectorAll<HTMLElement>('.bnav-item').forEach(item => {
     if (item.dataset.page === activePage) {
@@ -446,7 +468,7 @@ const moreGroups = [
   function openSheet(sheetId: string) {
     const targetSheet = document.getElementById(sheetId + '-sheet');
     const trigger = document.querySelector(`[data-sheet="${sheetId}"]`);
-    
+
     // Close existing
     sheets.forEach(s => s.classList.remove('open'));
     triggers.forEach(t => t.classList.remove('active-trigger'));

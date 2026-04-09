@@ -1,0 +1,168 @@
+slug: "talk-to-your-data"
+lang: "tr"
+name: "Talk To — AI Data Analytics"
+
+pageTitle: "Talk To — AI Data Analytics | Intellica"
+pageDescription: >
+  Talk To: Kurumsal verilerinizi doğal dil ile sorgulayın. Yapay zekâ destekli
+  içgörüler, görselleştirme ve araç orkestrasyonu.
+
+hero:
+  category: "Yapay Zekâ Ürünleri"
+  titlePrefix: "Talk To —"
+  titleHighlight: "Doğal Sorgulama"
+  description: >
+    Kurumsal verilerinizle doğal dil kullanarak etkileşime geçin. Talk To bir
+    yapay zekâ veri analisti olarak sorularınızı hassas sorgulara dönüştürür ve
+    anlık içgörüler sunar.
+
+overview:
+  problem: >
+    Veriye erişim genellikle uzman ekiplerin (SQL/BI) sorumluluğunda kalır.
+    Ad-hoc talepler birikir, bekleme süreleri uzar ve aynı sorular tekrar tekrar
+    sorulur.
+  approach: >
+    Talk To, doğal dil sorularını şema/metadata ile eşleştirerek gerekli sorguyu
+    oluşturur, çalıştırır ve sonucu anlaşılır bir özet veya görselleştirme
+    olarak sunar.
+  businessValue: >
+    Dakikalar içinde yanıt, daha az hata, daha yüksek self-servis benimseme oranı
+    ve daha hızlı karar döngüleri.
+  whenPreferred:
+    - "SQL/BI ekiplerinde ad-hoc analiz talepleri biriktiğinde"
+    - "İş birimlerine self-servis içgörü yeteneği kazandırmak istediğinizde"
+    - "Şema/metadata farkındalığı ile daha doğru sorgu üretimi için"
+    - "Raporlama araçlarıyla eylem gerçekleştiren bir asistan (MCP) oluştururken"
+    - "Kurumsal bir yapay zekâ çerçevesinde güvenlik (RBAC, loglama) sağlamak için"
+  preferredNote: "Not: Kapsam ve entegrasyon detayları keşif aşamasında belirlenir."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Doğal Dil Sorgulama"
+      description: "Basit soru-cevap etkileşimleriyle sohbet arayüzü üzerinden anlık içgörüler elde edin."
+    - title: "Şema Farkındalığı"
+      description: "Veri alanlarını ve ilişkilerini anlayarak yüksek doğrulukta veritabanı sorguları üretir."
+    - title: "Otomatik Görselleştirme"
+      description: "Veri talebinizin bağlamına göre tablolar ve temel grafikler oluşturur."
+    - title: "Araç Orkestrasyonu"
+      description: "MCP aracılığıyla raporlama araçları ve harici uygulamalarla uçtan uca eylem gerçekleştirir."
+    - title: "Hata Azaltma"
+      description: "Yapay zekâ destekli doğrulama ile manuel sorgu hatalarını ve yanlış filtrelemeyi en aza indirir."
+    - title: "Kurumsal Yönetişim"
+      description: "Güvenli üretim kullanımı için rol tabanlı erişim (RBAC), denetim ve merkezi loglama."
+
+featureSection:
+  heading: "Verilerle Etkileşime Geçin."
+  headingHighlight: "Anlık İçgörüler Elde Edin."
+  description: >
+    Talk To, doğal dil sorularını veritabanı sorgularına dönüştürerek kurumsal
+    verilerinizle etkileşim kurmanızı sağlar. SQL yazmadan veya karmaşık BI
+    araçlarında gezinmeden tek bir konuşma arayüzünden içgörüler elde edin.
+  calloutTitle: "Akıllı Analist Asistanı"
+  calloutDescription: "LLM'leri kullanarak bağlama duyarlı analiz, takip yanıtları ve derinlemesine keşifler sunar."
+  image: "/assets/images/talktoekrangoruntusu.png"
+  imageAlt: "Talk To Arayüzü"
+  imageCaption: "Talk To: Doğal dil ile veri analizi ve akıllı içgörü platformu."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "Talk To'nun farklı departmanlarda yarattığı operasyonel ve stratejik değeri keşfedin."
+  tabs:
+    - id: "it-bi"
+      label: "BT & BI İş Akışı"
+      cards:
+        - title: "SQL ve BI Karmaşıklığının Azaltılması"
+          badges: ["Verimlilik", "SQL & BI"]
+          scenario: "İş birimlerinin veri analizi için BT ekiplerine bağımlı olması veya karmaşık BI araçlarında gezinmesi karar alma sürecini yavaşlatabilir."
+          interventionLabel: "Talk To Müdahalesi"
+          interventionItems:
+            - "Doğal dil sorularını otomatik olarak SQL sorgularına dönüştürür."
+            - "Veritabanları ve raporlama araçlarıyla sorunsuz entegre olur."
+            - "Yanıtları tablo, grafik veya özetlenmiş analiz olarak sunar."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Daha hızlı self-servis analitik benimsenmesi."
+            - "BT ve BI ekiplerinde azaltılmış ad-hoc iş yükü."
+            - "Daha kısa veriden karara geçiş döngüleri."
+        - title: "Ad-hoc Raporlama Otomasyonu"
+          badges: ["Self-Servis", "Raporlama"]
+          scenario: "Ekipler, tek seferlik dikey analiz talepleri için raporları manuel olarak derlemeye aşırı zaman harcamaktadır."
+          interventionLabel: "Talk To Müdahalesi"
+          interventionItems:
+            - "Tutarlı alan tanımları için semantik katmanları standartlaştırın."
+            - "İş kullanıcılarının sohbet aracılığıyla anlık raporlar oluşturmasını sağlayın."
+            - "Sonuçları yaygın analiz formatlarına anında dışa aktarın."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Manuel raporlama hatalarını en aza indirir."
+            - "Uzman kaynakları stratejik projeler için serbest bırakır."
+            - "Şeffaf ve denetlenebilir sorgu geçmişi."
+    - id: "customer"
+      label: "Müşteri Desteği"
+      cards:
+        - title: "360° Müşteri Görünümü ve Hızlı Destek"
+          badges: ["Destek", "Müşteri 360"]
+          scenario: "Destek temsilcilerinin CRM, faturalama ve etkileşim sistemleri arasında veri araması zaman kaybına ve eksik bağlama yol açar."
+          interventionLabel: "Talk To Müdahalesi"
+          interventionItems:
+            - "CRM ve işlem geçmişini entegre bir şekilde analiz eder."
+            - "Temsilcilere bağlamsal müşteri özetleri sunar."
+            - "Verilere dayalı Sonraki En İyi Eylem (NBA) önerileri üretir."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Daha yüksek İlk Temasta Çözüm (FCR) oranları."
+            - "Vaka başına kısaltılmış Ortalama İşlem Süresi (AHT)."
+            - "Artırılmış müşteri memnuniyeti ve çapraz satış potansiyeli."
+    - id: "management"
+      label: "Yönetim İçgörüleri"
+      cards:
+        - title: "Yönetim İçin Anlık KPI Sorgulama"
+          badges: ["Yönetim", "KPI Takibi"]
+          scenario: "Üst yönetim, gerçek zamanlı KPI performansına erişmek için genellikle pano güncellemelerine veya teknik ekiplere bağımlıdır."
+          interventionLabel: "Talk To Müdahalesi"
+          interventionItems:
+            - "Üst düzey KPI'ların doğal dil ile sorgulanmasını sağlar."
+            - "Bağlamsal filtreleme ve kesintisiz detay inceleme desteği sunar."
+            - "Anlık grafikler ve yönetici özet raporları üretir."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Yönetim raporlarına anında erişim."
+            - "Basitleştirilmiş KPI yorumlama ve trend analizi."
+            - "Güçlendirilmiş stratejik karar alma kapasitesi."
+
+journey:
+  heading: "Akıllı"
+  headingHighlight: "İş Akışı"
+  description: "Talk To, veri bağlantısından eyleme dönüştürülebilir görselleştirmeye kadar tüm zekâ döngüsünü yönetir."
+  steps:
+    - number: "01"
+      title: "Bağlan ve Yetkilendir"
+      description: "Veri kaynaklarını, şema metadata'sını ve rol tabanlı erişim kontrollerini tanımlayın."
+    - number: "02"
+      title: "Sor ve Doğrula"
+      description: "Soru gönderilir, sorgu oluşturulur ve çalıştırılmadan önce doğrulanır."
+    - number: "03"
+      title: "İçgörü ve Eylem"
+      description: "Sonuçlar özet, grafik veya tetiklenen iş akışları (MCP) olarak sunulur."
+
+integration:
+  heading: "Ekosistem"
+  headingHighlight: "Entegrasyonu"
+  description: "Mevcut kurumsal mimari ve yönetişim standartlarıyla entegre olmak üzere tasarlanmıştır:"
+  items:
+    - "Kurumsal DB/DWH/Data Lake bağlantısı (SQL, NoSQL)"
+    - "Doğru alana özgü sorgulama için şema farkındalıklı eşleme"
+    - "MCP uyumlu uygulama orkestrasyonu (Raporlama, CRM)"
+    - "Tam SSO/LDAP entegrasyonu ve ayrıntılı RBAC denetimi"
+    - "Tüm yapay zekâ ile oluşturulan sorgu işlemleri için merkezi loglama"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, Analytics"
+
+customComponents: ['SQLPlayground']

@@ -1,0 +1,110 @@
+slug: "retable"
+lang: "en"
+name: "Retable — No-Code Platform"
+
+pageTitle: "Retable — No-Code Data Application Platform | Intellica"
+pageDescription: >
+  Retable: Collaborative cloud-based no-code platform; transform spreadsheets
+  into powerful databases with AI-driven automations and seamless integrations.
+
+hero:
+  category: "Data Platform & Governance"
+  titlePrefix: "Retable — No-Code"
+  titleHighlight: "Platform"
+  description: >
+    Build data-driven applications without writing code. Collaborative, cloud-based
+    platform for modern teams. Transform your data into powerful internal tools
+    with built-in AI.
+
+overview:
+  problem: >
+    Standard spreadsheets lack the structure and collaboration features needed for
+    complex projects. Traditional app development for internal tools is slow and
+    costly.
+  approach: >
+    Intellica Retable provides a no-code platform to digitize manual data,
+    integrates conformed dimensions, and enables business users to build
+    collaborative data tables and micro-apps.
+  businessValue: >
+    Dramatically faster internal tool development, improved team collaboration,
+    and seamless data workflow automation.
+  whenPreferred:
+    - "When teams need a shared, structured space for complex project tracking"
+    - "To build custom internal tools (CRM, Inventory, HR) without coding"
+    - "When leveraging AI for data cleaning and generation within your tables"
+    - "To replace messy Excel files with professional, relational database views"
+    - "For rapid prototyping of data-intensive enterprise applications"
+  preferredNote: "Note: Retable is a standalone cloud platform with enterprise-grade security."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Flexible Views"
+      description: "Switch between Grid, Kanban, Calendar, and Form views for the same data set."
+    - title: "AI Columns"
+      description: "Integrate GPT-powered columns for content generation and data enrichment."
+    - title: "No-Code Automation"
+      description: "Trigger emails, Slack alerts, or webhooks based on data changes or time."
+    - title: "Extensive API"
+      description: "Full REST API to connect Retable with your existing enterprise tech stack."
+    - title: "Real-time Collab"
+      description: "Work together with your team in real-time with granular record-level permissions."
+    - title: "Reports & Charts"
+      description: "Generate visual insights directly from your data tables with custom dashboards."
+
+featureSection:
+  heading: "Transform Spreadsheets into"
+  headingHighlight: "Smart Apps"
+  description: >
+    Retable turns your tables into powerful applications with automation, AI, and
+    API capabilities. Centralize your workflows and gain full operational visibility
+    without writing a single line of code.
+  calloutTitle: "Operational Flow"
+  calloutDescription: "Track requests, tasks, and approvals from a single, integrated command center."
+  image: "/assets/images/retableekrangörüntüsü.png"
+  imageAlt: "Retable Operational Interface"
+  imageCaption: "Retable Interface: Integrated operational management and workflow tracking."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Explore how Retable resolves operational fragmentation and management challenges."
+  tabs:
+    - id: "default"
+      label: null
+      cards:
+        - title: "Operational Defragmentation"
+          badges: []
+          scenario: "Using Excel, email, and scattered tools for tracking leads to lost tasks, delays, and zero process visibility."
+          interventionLabel: "RETABLE INTERVENTION"
+          interventionItems:
+            - "Centralized table-based process orchestration."
+            - "Integrated task assignment and status tracking."
+            - "Standardized data entry via forms and grids."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Improved visibility and team coordination."
+            - "Reduced delays and faster delivery times."
+            - "Single-source operational command center."
+        - title: "Request & Approval Management"
+          badges: []
+          scenario: "Managing requests in Procurement, IT, or HR via email causes bottlenecks and loss of audit trails."
+          interventionLabel: "RETABLE INTERVENTION"
+          interventionItems:
+            - "Requests captured via standard forms."
+            - "Automated approval steps and role assignment."
+            - "Status notifications for all stakeholders."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Accelerated approval cycles."
+            - "Increased transparency and control."
+            - "Reduced operational overhead and errors."
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, NoCode"
+
+customComponents: []

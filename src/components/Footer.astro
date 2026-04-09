@@ -1,10 +1,15 @@
 ---
 import { version } from '../../package.json';
+import { defaultLang, type Lang } from '../i18n/config';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
 
 interface Props {
   hideCta?: boolean;
+  lang?: Lang;
 }
-const { hideCta = false } = Astro.props;
+const { hideCta = false, lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
 ---
 <footer class="ix-footer-light" role="contentinfo">
   <!-- CTA BAND -->
@@ -12,12 +17,12 @@ const { hideCta = false } = Astro.props;
   <section class="ix-footer__cta">
     <div class="ix-container ix-footer__ctaWrap">
       <div class="ix-footer__ctaText">
-        <h3>Ready to Transform Your Data?</h3>
-        <p>From data platforms to AI solutions, we help organizations turn data into measurable business value.</p>
+        <h3>{t('footer.cta.title')}</h3>
+        <p>{t('footer.cta.desc')}</p>
       </div>
       <div class="ix-footer__ctaActions">
-        <a class="btn btn-primary btn-pill btn-lg" href="/contact">Get in Touch</a>
-        <a class="btn btn-ghost-dark btn-pill btn-lg" href="/clients">View Clients</a>
+        <a class="btn btn-primary btn-pill btn-lg" href={tp('/contact')}>{t('footer.cta.getInTouch')}</a>
+        <a class="btn btn-ghost-dark btn-pill btn-lg" href={tp('/clients')}>{t('footer.cta.viewClients')}</a>
       </div>
     </div>
   </section>
@@ -29,12 +34,12 @@ const { hideCta = false } = Astro.props;
       <!-- BRAND -->
       <div class="ix-footer__col ix-footer__brand">
         <div class="ix-footer__logoRow">
-          <a href="/">
+          <a href={tp('/')}>
             <img src="/assets/img/intellica-logo.png" alt="Intellica" height="34" />
           </a>
         </div>
         <p class="ix-footer__tagline" style="font-weight: 500; font-size: 0.9rem; line-height: 1.6; color: #64748B; margin-top: 16px; max-width: 320px;">
-          Intellica delivers enterprise data platforms, analytics and AI solutions for leading organizations.
+          {t('footer.tagline')}
         </p>
         <div class="ix-footer__contact-tiny" style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
           <a href="https://www.linkedin.com/company/intellica" target="_blank" rel="noopener" style="color: #64748B; font-size: 0.85rem; display: flex; align-items: center; gap: 10px;">
@@ -54,31 +59,31 @@ const { hideCta = false } = Astro.props;
 
       <!-- PRODUCTS -->
       <div class="ix-footer__col">
-        <h4>Products</h4>
+        <h4>{t('footer.col.products')}</h4>
         <div class="ix-footer__link-flow">
-          <a href="/products#governance">Core Products</a>
-          <a href="/products#ai-products">AI Products</a>
-          <a href="/products#data-models">Data Models</a>
-          <a href="/products">All Products</a>
+          <a href={tp('/products#governance')}>{t('footer.link.coreProducts')}</a>
+          <a href={tp('/products#ai-products')}>{t('footer.link.aiProducts')}</a>
+          <a href={tp('/products#data-models')}>{t('footer.link.dataModels')}</a>
+          <a href={tp('/products')}>{t('footer.link.allProducts')}</a>
         </div>
       </div>
 
       <!-- SOLUTIONS -->
       <div class="ix-footer__col">
-        <h4>Solutions</h4>
+        <h4>{t('footer.col.solutions')}</h4>
         <div class="ix-footer__link-flow">
-          <a href="/solutions">AI Solutions</a>
-          <a href="/data-platforms">Data Platforms</a>
+          <a href={tp('/solutions')}>{t('footer.link.aiSolutions')}</a>
+          <a href={tp('/data-platforms')}>{t('footer.link.dataPlatforms')}</a>
         </div>
       </div>
 
       <div class="ix-footer__col">
-        <h4>Company</h4>
+        <h4>{t('footer.col.company')}</h4>
         <div class="ix-footer__link-flow">
-          <a href="/about">About</a>
-          <a href="/careers">Join Intellica</a>
-          <a href="/academy">Data & AI Talent Program</a>
-          <a href="/contact">Contact</a>
+          <a href={tp('/about')}>{t('footer.link.about')}</a>
+          <a href={tp('/careers')}>{t('footer.link.joinIntellica')}</a>
+          <a href={tp('/academy')}>{t('footer.link.talentProgram')}</a>
+          <a href={tp('/contact')}>{t('footer.link.contact')}</a>
         </div>
       </div>
     </div>
@@ -87,11 +92,11 @@ const { hideCta = false } = Astro.props;
   <!-- PIA GROUP BAND -->
   <section class="ix-footer__pia">
     <div class="ix-container ix-footer__piaWrap">
-      <span class="ix-footer__pia-label">A</span>
+      <span class="ix-footer__pia-label">{t('footer.pia.prefix')}</span>
       <a href="https://www.pia-group.net/" target="_blank" rel="noopener noreferrer" class="ix-footer__pia-link" aria-label="PiA Group website">
         <img src="/assets/img/Pia.png" alt="PiA Group" class="ix-footer__pia-logo" />
       </a>
-      <span class="ix-footer__pia-label">Company</span>
+      <span class="ix-footer__pia-label">{t('footer.pia.suffix')}</span>
     </div>
   </section>
 
@@ -100,15 +105,15 @@ const { hideCta = false } = Astro.props;
     <div class="ix-container ix-footer__bottomWrap">
       <div class="ix-footer__trust">
         <span class="ix-dot"></span>
-        <span>Leading enterprise partner in Banking, Telecom, Public Sector, Manufacturing & Energy.</span>
+        <span>{t('footer.trust')}</span>
       </div>
 
       <div class="ix-footer__legal">
-        <span>© {new Date().getFullYear()} Intellica. All rights reserved. <span class="ix-footer__version">v{version}</span></span>
+        <span>© {new Date().getFullYear()} Intellica. {t('footer.rights')} <span class="ix-footer__version">v{version}</span></span>
         <div class="ix-footer__legalLinks">
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
-          <a href="/cookies">Cookies</a>
+          <a href={tp('/privacy')}>{t('footer.legal.privacy')}</a>
+          <a href={tp('/terms')}>{t('footer.legal.terms')}</a>
+          <a href={tp('/cookies')}>{t('footer.legal.cookies')}</a>
         </div>
       </div>
     </div>
@@ -117,7 +122,7 @@ const { hideCta = false } = Astro.props;
 
 <style>
   .ix-container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
-  
+
   .ix-footer-light {
     background: #FFFFFF;
     color: #0F172A;
@@ -125,7 +130,7 @@ const { hideCta = false } = Astro.props;
     position: relative;
     z-index: 10;
   }
-  
+
   .ix-footer-light a { color: #64748B; text-decoration: none; transition: color 0.2s, transform 0.2s; font-size: 14px; font-weight: 500; }
   .ix-footer-light a:hover { color: var(--clr-primary); transform: translateX(2px); }
 
@@ -159,7 +164,7 @@ const { hideCta = false } = Astro.props;
   /* MAIN GRID */
   .ix-footer__main { padding: 64px 0 48px; }
   .ix-footer__grid { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 48px; }
-  
+
   .text-center { text-align: center; }
   .ix-footer__col h4 {
     margin: 0 0 20px;
@@ -192,14 +197,14 @@ const { hideCta = false } = Astro.props;
   .ix-footer__icon:hover { background: #FFFFFF; border-color: var(--clr-primary); color: var(--clr-primary); }
 
   /* Products subgrid */
-  .ix-footer__subgrid { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 16px; 
+  .ix-footer__subgrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
   .ix-footer__vertical-list { display: flex; flex-direction: column; gap: 4px; }
   .ix-footer__vertical-list a { font-size: 14px; color: #64748B; font-weight: 500; }
-  
+
   /* Remove old row styles */
   /* Remove old group h5 styles */
 

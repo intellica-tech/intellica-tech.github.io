@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/config';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+
+const breadcrumbs = [
+  { name: t('cookies.breadcrumb'), url: tp('/cookies') }
+];
+---
+
+<Layout
+  title={t('meta.cookies.title')}
+  description={t('meta.cookies.description')}
+  breadcrumbs={breadcrumbs}
+  hideCta={true}
+  lang={lang}
+>
+  <section class="section section--white">
+    <div class="container legal-page">
+      <div class="legal-header">
+        <div class="section-label">{t('cookies.label')}</div>
+        <h1 class="section-title">{t('cookies.title')}<span class="grad-text">{t('cookies.titleHighlight')}</span></h1>
+        <p class="section-sub">{t('cookies.sub')}</p>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-block">
+          <h2>{t('cookies.h1')}</h2>
+          <p>{t('cookies.p1')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('cookies.h2')}</h2>
+          <p>{t('cookies.p2')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('cookies.h3')}</h2>
+          <p>{t('cookies.p3')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('cookies.h4')}</h2>
+          <p>{t('cookies.p4')}</p>
+        </div>
+        <div class="legal-block">
+          <h2>{t('cookies.h5')}</h2>
+          <p>{t('cookies.p5')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .legal-header {
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .legal-block {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  }
+
+  .legal-block h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--clr-light-text);
+  }
+
+  .legal-block p {
+    color: var(--clr-light-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>

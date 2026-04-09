@@ -1,0 +1,166 @@
+slug: "var"
+lang: "en"
+name: "VAR — Voice Analysis & Recognition"
+
+pageTitle: "VAR — Voice Analysis & Recognition | Intellica"
+pageDescription: >
+  VAR: AI-based voice analytics. Automatic transcription, sentiment analysis,
+  and quality compliance insights for call centers and enterprise audio.
+
+hero:
+  category: "AI Products"
+  titlePrefix: "VAR — Voice"
+  titleHighlight: "Analysis"
+  description: >
+    Turn your voice recordings into actionable intelligence. VAR uses AI to
+    generate automatic transcripts and deep-dive insights to improve quality,
+    compliance, and customer CX measurably.
+
+overview:
+  problem: >
+    Manual listening to massive call volumes is unsustainable, leading to missed
+    quality issues, compliance risks, and customer frustration.
+  approach: >
+    VAR converts voice data into transcripts and applies NLP models for sentiment,
+    topic classification, and keyword spotting, enabling automated auditing at scale.
+  businessValue: >
+    100% coverage of call audits, faster incident detection, and data-driven
+    insights for agent training and coaching.
+  whenPreferred:
+    - "When manual call center auditing is no longer scalable"
+    - "To automate quality scoring and agent performance tracking"
+    - "For real-time keyword spotting to detect ethical or compliance risks"
+    - "To visualize customer complaint trends by topic and segment"
+    - "When migrating from legacy IVR recording to advanced voice intelligence"
+  preferredNote: "Note: VAR supports both internal call recordings and multi-channel audio data."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "Speech-to-Text"
+      description: "Automatic daily transcription of call recordings into high-accuracy, searchable text."
+    - title: "Keyword Spotting"
+      description: "Real-time or batch identification of specific terms, product names, or compliance markers."
+    - title: "Sentiment Analysis"
+      description: "AI-driven scoring of agent and customer emotions to identify at-risk interactions."
+    - title: "Topic Classification"
+      description: "Automatic grouping of calls by subject matter (Billing, Technical, Sales, etc.)."
+    - title: "Automated Quality Set"
+      description: "Ready-to-use dashboards for agent KPIs, silence ratios, and overlap analytics."
+    - title: "Ecosystem Ready"
+      description: "Open APIs to connect voice insights directly into CRM, Ticket, or BI environments."
+
+featureSection:
+  heading: "Intelligent"
+  headingHighlight: "Voice Processing"
+  description: >
+    VAR transforms static call recordings into a dynamic knowledge base. By
+    applying advanced NLP, we extract context, sentiment, and compliance signals
+    that were previously hidden in audio files.
+  calloutTitle: "Multi-Dimensional Analysis"
+  calloutDescription: "Combine metadata (agent ID, duration) with transcription data for 360° operational visibility."
+  image: "/assets/images/varscreen.png"
+  imageAlt: "VAR Interface"
+  imageCaption: "VAR Interface: Transforming call recordings into intelligent quality and compliance insights."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Discover how VAR optimizes call center operations and mitigates enterprise compliance risks."
+  tabs:
+    - id: "qa"
+      label: "Quality Assurance"
+      cards:
+        - title: "Automated Quality Scoring"
+          badges: ["Coaching", "Agent ROI"]
+          scenario: "Traditional call auditing covers less than 2% of calls, making agent coaching subjective and missing majority of performance signals."
+          interventionLabel: "VAR INTERVENTION"
+          interventionItems:
+            - "Standardize scoring across 100% of recorded interactions."
+            - "Automated detection of silence, overlap, and script adherence."
+            - "Identification of top-performing patterns for training."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Significant reduction in manual audit hours."
+            - "Consistent, data-driven agent performance metrics."
+            - "Measurable improvement in average transaction quality."
+        - title: "Sales Pattern Intelligence"
+          badges: ["Sales", "Growth"]
+          scenario: "Closing techniques of top sales agents are often organic and not documented for the rest of the team."
+          interventionLabel: "VAR INTERVENTION"
+          interventionItems:
+            - "Analyze successful close scripts and rebuttal logic."
+            - "Correlate sentiment shifts with conversion outcomes."
+            - "Automated tagging of objection types and agent response."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Standardized high-performance sales playbook."
+            - "Faster ramp-up for new sales representatives."
+            - "Increased overall conversion rates through data."
+    - id: "compliance"
+      label: "Compliance & Ethics"
+      cards:
+        - title: "Regulatory Compliance & Ethical Monitoring"
+          badges: ["Security", "Legal Risk"]
+          scenario: "Undetected script violations or illegal verbal promises can lead to significant regulatory fines and brand damage."
+          interventionLabel: "VAR INTERVENTION"
+          interventionItems:
+            - "Keyword spotting for mandatory legal disclosures."
+            - "Real-time alerting for high-risk verbal patterns."
+            - "Secure, searchable archive for audit investigations."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Guaranteed adherence to regulatory speech requirements."
+            - "Minimized risk of operational fines and penalties."
+            - "Proactive management of potential legal liabilities."
+    - id: "cx"
+      label: "Customer Experience"
+      cards:
+        - title: "Customer Emotion & Attrition Prediction"
+          badges: ["Retention", "Churn"]
+          scenario: "Quietly frustrated customers often port out or cancel services without documented reason, as text-only CRM notes miss vocal cues."
+          interventionLabel: "VAR INTERVENTION"
+          interventionItems:
+            - "Sentiment trend monitoring over the customer lifecycle."
+            - "Identify vocal stress and dissatisfaction signals."
+            - "Flagging specific \"I want to cancel\" intent patterns."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Proactive retention workflows for at-risk customers."
+            - "Increased Net Promoter Score (NPS)."
+            - "Reduced churn through early intervention."
+
+journey:
+  heading: "Execution"
+  headingHighlight: "Journey"
+  description: "From raw audio to strategic insights, VAR manages the entire voice intelligence lifecycle."
+  steps:
+    - number: "01"
+      title: "Ingest & Transcribe"
+      description: "Bulk collection of audio from IVR/ACD systems and automated speech-to-text conversion."
+    - number: "02"
+      title: "Analyze & Score"
+      description: "NLP models apply sentiment scoring, topic extraction, and keyword spotting logic."
+    - number: "03"
+      title: "Orchestrate Action"
+      description: "Results delivered to dashboards, CRMs, or quality audit workflows for intervention."
+
+integration:
+  heading: "Integration &"
+  headingHighlight: "Standardization"
+  description: "VAR is designed to slot into your existing contact center ecosystem with professional flexibility:"
+  items:
+    - "Native integration with major call recording and IVR platforms"
+    - "Direct CRM and Ticket system sync for session context"
+    - "Customized NLP models for dialect and industry-specific terminology"
+    - "Role-based access (RBAC) and mTLS-encrypted data transit"
+    - "Standardized export formats for BI and reporting integration"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, VoiceAnalytics"
+
+customComponents: []

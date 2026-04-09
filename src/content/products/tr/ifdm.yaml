@@ -1,0 +1,137 @@
+slug: "ifdm"
+lang: "tr"
+name: "IFDM — Intellica Finance Data Model"
+
+pageTitle: "IFDM — Intellica Finance Data Model | Intellica"
+pageDescription: >
+  IFDM: Finans analitiği için standart veri modeli yaklaşımı; hızlı
+  eşleme/keşif, KPI çerçevesi ve dalga bazlı raporlama yaygınlaştırması.
+
+hero:
+  category: "Veri Modelleri"
+  titlePrefix: "IFDM — Finans"
+  titleHighlight: "Veri Modeli"
+  description: >
+    Kurumsal finans veri modelinizi hızla devreye alın. Ortak bir finansal dil
+    oluşturun ve veri ambarı dönüşümünüzü hızlandırın.
+
+overview:
+  problem: >
+    Bankacılık verileri Krediler, Mevduat, Kredi Kartları ve Müşteriler gibi
+    temel alanlarda parçalanmış olup ayrı sistemlerde yönetilmektedir. Bu durum
+    tutarsız KPI'lara, mutabakat sorunlarına ve güvenilmez raporlamaya yol açar.
+  approach: >
+    IFDM; Krediler, Mevduat, Kredi Kartları, Müşteriler ve İşlemleri tek bir
+    standart veri modelinde birleştirerek tutarlı tanımlar, uyumlu raporlama
+    ve gerçek bir tek doğruluk kaynağı sağlar.
+  businessValue: >
+    Yöneticiler ve karar vericiler için tek doğruluk kaynağı sunarak daha
+    hızlı, daha güvenilir ve denetime hazır finansal raporlamayı azaltılmış
+    mutabakat çabasıyla mümkün kılar.
+  whenPreferred:
+    - "DWH/BI veya analitik projelerinde kurumsal finans modelinin standartlaştırılması gerektiğinde"
+    - "Büyük defter, AP/AR, bütçe ve kârlılık raporları arasında tutarsızlıklar olduğunda"
+    - "Semantic model/Power BI dönüşümü sırasında"
+    - "Konsolidasyon ve yönetim raporlamasının sürdürülebilir hale getirilmesi gerektiğinde"
+    - "Finans KPI'ları için ortak sözlük ve yönetişim hedeflendiğinde"
+  preferredNote: ""
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Finansa Özel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Çekirdek Model"
+      description: "Finans varlıklarını ve ilişkilerini standart bir çerçevede sunar."
+    - title: "KPI & Metrik Çerçevesi"
+      description: "Yaygın finans metrikleri için başlangıç seti sağlar."
+    - title: "Analitik Katman Uyumu"
+      description: "Power BI / semantic model tasarımlarına uygun katmanlı yapı."
+    - title: "Eşleme & Adaptasyon"
+      description: "Kaynak sistem alanlarının modele hızlı eşleme yaklaşımı."
+    - title: "Yönetişim & Standardizasyon"
+      description: "Sürümleme ve standardizasyon için temel altyapı sağlar."
+    - title: "Genişletilebilir Mimari"
+      description: "Kurumsal ihtiyaçlara göre yeni alanlarla büyütülebilir."
+
+featureSection:
+  heading: "Katmanlı"
+  headingHighlight: "Mimari"
+  description: >
+    IFDM, parçalanmış finans verilerini iş anlamı taşıyan konu alanlarına
+    yapılandırır. Temel (3NF) ve Analiz (Boyutsal) katmanlarımız hem kurumsal
+    veri bütünlüğünü hem de yüksek performanslı raporlama altyapısını sağlar.
+  calloutTitle: "Standartlaştırılmış Metodoloji"
+  calloutDescription: "Kaynak sistemlerden entegre kurumsal veri diline hızlı eşleme yaklaşımı."
+  image: "/assets/images/ifdm-architecture.png"
+  imageAlt: "IFDM Mimari Yaklaşımı"
+  imageCaption: "IFDM Mimarisi: Temel ve Analiz katmanlarıyla kurumsal veri standardizasyonu."
+
+useCases:
+  label: "Çözümler"
+  heading: "İş Değeri &"
+  headingHighlight: "Etki"
+  subtitle: "IFDM'nin kurumsal raporlama ve veri yönetim süreçlerindeki değerini keşfedin."
+  tabs:
+    - id: "default"
+      label: null
+      cards:
+        - title: "Kurumsal BI Dönüşümünün Hızlandırılması"
+          badges: []
+          scenario: "Yeni bir veri ambarı projesinde modeli sıfırdan tasarlamak zaman çizelgesini uzatır, kapsam belirsizliği yaratır ve yeniden tasarım riskini artırır."
+          interventionLabel: "IFDM KATKISI"
+          interventionItems:
+            - "Finans sektörü için hazır konu odaklı temel model."
+            - "Taraf, Sözleşme, Muhasebe, Ürün gibi temel alanları kapsar."
+            - "Inmon prensiplerine göre entegre 3NF yapısı."
+            - "Analiz katmanı için hazır metrik ve boyut yapısı."
+          impactLabel: "KAZANIM"
+          impactItems:
+            - "Proje süresi kısalır."
+            - "Modelleme riski azalır."
+            - "İş ve BT arasında ortak veri dili."
+        - title: "Tek Doğruluk Kaynağının Oluşturulması"
+          badges: []
+          scenario: "Farklı raporlama ekiplerinin farklı veri tanımları kullanması KPI tutarsızlıklarına ve yönetim karar hatalarına yol açar."
+          interventionLabel: "IFDM KATKISI"
+          interventionItems:
+            - "Temel iş tanımları ve eşleme yapıları."
+            - "Temel katmanda entegre ve normalleştirilmiş yapı."
+            - "Analiz katmanında standart KPI ve boyutsal model."
+            - "Rapor tutarlılığı için uyumlu boyut yaklaşımı."
+          impactLabel: "KAZANIM"
+          impactItems:
+            - "Kuruluş genelinde tek doğruluk kaynağı oluşturulur."
+            - "KPI tutarsızlıkları ortadan kaldırılır."
+            - "Yönetim raporlamasına güven artar."
+
+journey:
+  heading: "Uygulama"
+  headingHighlight: "Yolculuğu"
+  steps:
+    - number: "01"
+      title: "Kapsam Belirleme"
+      description: "Hedef raporlar, KPI'lar ve kaynak sistemler netleştirilir."
+    - number: "02"
+      title: "Adaptasyon"
+      description: "Eşleme ile model adaptasyonu gerçekleştirilir; temel katman oluşturulur."
+    - number: "03"
+      title: "Dalga Bazlı Yaygınlaştırma"
+      description: "Semantik katman ve raporlar dalga dalga devreye alınır."
+
+integration:
+  heading: "Entegrasyon &"
+  headingHighlight: "Sinerji"
+  description: "Ürünlerimiz mevcut ekosisteminiz içinde sorunsuz çalışmak üzere uyarlanmıştır. Tipik entegrasyon alanları:"
+  items:
+    - "ERP/Finans sistemleri (SAP, Oracle vb.)"
+    - "Veritabanları & DWH katmanları"
+    - "ETL/ELT ve orkestrasyon araçları"
+    - "BI ve raporlama platformları (Power BI vb.)"
+    - "Rol tabanlı güvenlikle Kimlik ve Erişim (SSO/LDAP)"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataModel"
+
+customComponents: []
