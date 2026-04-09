@@ -1,0 +1,111 @@
+slug: "retable"
+lang: "tr"
+name: "Retable — No-Code Platform"
+
+pageTitle: "Retable — No-Code Veri Uygulama Platformu | Intellica"
+pageDescription: >
+  Retable: İşbirlikçi, bulut tabanlı no-code platform; elektronik tabloları
+  yapay zekâ destekli otomasyonlar ve sorunsuz entegrasyonlarla güçlü
+  veritabanlarına dönüştürün.
+
+hero:
+  category: "Veri Platformu & Yönetişim"
+  titlePrefix: "Retable — No-Code"
+  titleHighlight: "Platform"
+  description: >
+    Kod yazmadan veriye dayalı uygulamalar oluşturun. Modern ekipler için
+    işbirlikçi, bulut tabanlı platform. Verilerinizi yerleşik yapay zekâ ile
+    güçlü dahili araçlara dönüştürün.
+
+overview:
+  problem: >
+    Standart elektronik tablolar, karmaşık projeler için gereken yapı ve
+    işbirliği özelliklerinden yoksundur. Dahili araçlar için geleneksel
+    uygulama geliştirme yavaş ve maliyetlidir.
+  approach: >
+    Intellica Retable, manuel verileri dijitalleştirmek, uyumlu boyutları
+    entegre etmek ve iş kullanıcılarının işbirlikçi veri tabloları ve mikro
+    uygulamalar oluşturmasını sağlayan bir no-code platform sunar.
+  businessValue: >
+    Çarpıcı şekilde hızlanan dahili araç geliştirme, iyileştirilmiş ekip
+    işbirliği ve sorunsuz veri iş akışı otomasyonu.
+  whenPreferred:
+    - "Ekiplerin karmaşık proje takibi için paylaşımlı, yapılandırılmış bir alana ihtiyaç duyduğunda"
+    - "Kodlama yapmadan özel dahili araçlar (CRM, Envanter, İK) oluşturmak için"
+    - "Tablolarınızda veri temizleme ve üretim için yapay zekâdan yararlanırken"
+    - "Dağınık Excel dosyalarını profesyonel, ilişkisel veritabanı görünümleriyle değiştirmek için"
+    - "Veri yoğun kurumsal uygulamaların hızlı prototiplenmesi için"
+  preferredNote: "Not: Retable, kurumsal düzeyde güvenliğe sahip bağımsız bir bulut platformudur."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Esnek Görünümler"
+      description: "Aynı veri seti için Grid, Kanban, Takvim ve Form görünümleri arasında geçiş yapın."
+    - title: "AI Sütunları"
+      description: "İçerik üretimi ve veri zenginleştirme için GPT destekli sütunları entegre edin."
+    - title: "No-Code Otomasyon"
+      description: "Veri değişikliklerine veya zamana göre e-posta, Slack uyarıları veya webhook'lar tetikleyin."
+    - title: "Kapsamlı API"
+      description: "Retable'ı mevcut kurumsal teknoloji altyapınızla bağlamak için tam REST API."
+    - title: "Gerçek Zamanlı İşbirliği"
+      description: "Ayrıntılı kayıt düzeyinde izinlerle ekibinizle gerçek zamanlı birlikte çalışın."
+    - title: "Raporlar ve Grafikler"
+      description: "Özel panolarla veri tablolarınızdan doğrudan görsel içgörüler oluşturun."
+
+featureSection:
+  heading: "Elektronik Tabloları Dönüştürün"
+  headingHighlight: "Akıllı Uygulamalara"
+  description: >
+    Retable, tablolarınızı otomasyon, yapay zekâ ve API yetenekleriyle güçlü
+    uygulamalara dönüştürür. İş akışlarınızı merkezileştirin ve tek bir satır
+    kod yazmadan tam operasyonel görünürlük elde edin.
+  calloutTitle: "Operasyonel Akış"
+  calloutDescription: "Talepleri, görevleri ve onayları tek bir entegre komuta merkezinden takip edin."
+  image: "/assets/images/retableekrangörüntüsü.png"
+  imageAlt: "Retable Operasyonel Arayüz"
+  imageCaption: "Retable Arayüzü: Entegre operasyonel yönetim ve iş akışı takibi."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "Retable'ın operasyonel parçalanmayı ve yönetim zorluklarını nasıl çözdüğünü keşfedin."
+  tabs:
+    - id: "default"
+      label: null
+      cards:
+        - title: "Operasyonel Parçalanmanın Giderilmesi"
+          badges: []
+          scenario: "Takip için Excel, e-posta ve dağınık araçlar kullanmak kaybolan görevlere, gecikmelere ve sıfır süreç görünürlüğüne yol açar."
+          interventionLabel: "RETABLE MÜDAHALESİ"
+          interventionItems:
+            - "Merkezi tablo tabanlı süreç orkestrasyonu."
+            - "Entegre görev atama ve durum takibi."
+            - "Formlar ve grid'ler aracılığıyla standartlaştırılmış veri girişi."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "İyileştirilmiş görünürlük ve ekip koordinasyonu."
+            - "Azaltılmış gecikmeler ve daha hızlı teslimat süreleri."
+            - "Tek kaynaklı operasyonel komuta merkezi."
+        - title: "Talep ve Onay Yönetimi"
+          badges: []
+          scenario: "Satın Alma, BT veya İK'daki taleplerin e-posta ile yönetilmesi darboğazlara ve denetim izi kaybına neden olur."
+          interventionLabel: "RETABLE MÜDAHALESİ"
+          interventionItems:
+            - "Talepler standart formlar aracılığıyla alınır."
+            - "Otomatik onay adımları ve rol ataması."
+            - "Tüm paydaşlar için durum bildirimleri."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Hızlandırılmış onay döngüleri."
+            - "Artırılmış şeffaflık ve kontrol."
+            - "Azaltılmış operasyonel yük ve hatalar."
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, NoCode"
+
+customComponents: []

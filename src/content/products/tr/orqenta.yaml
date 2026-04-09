@@ -1,0 +1,181 @@
+slug: "orqenta"
+lang: "tr"
+name: "Orqenta — Bank-Grade Orchestration"
+
+pageTitle: "Orqenta — İş Akışı Orkestrasyon ve Otomasyon | Intellica"
+pageDescription: >
+  Orqenta: Bankacılık düzeyinde iş akışı orkestrasyon ve otomasyon motoru.
+  Kritik kurumsal süreçler için güvenli ve denetlenebilir yürütme.
+
+hero:
+  category: "Veri Platformu & Yönetişim"
+  titlePrefix: "Orqenta — Bankacılık Düzeyinde"
+  titleHighlight: "Orkestrasyon"
+  description: >
+    Kritik iş akışlarınızı mutlak güvenle çalıştırın. Orqenta, kurumsal veri
+    ve süreçleri deterministik, denetlenebilir ve çökmeye dayanıklı bir şekilde
+    yöneten yeni nesil bir orkestrasyon motorudur.
+
+overview:
+  problem: >
+    Kritik iş akışları, dağıtık sistemlerde çift yürütme, eksik adımlar ve
+    veri kaybı gibi riskler üretir. Düzenlemeye tabi sektörlerde bu hatalar
+    ciddi operasyonel ve denetim risklerine yol açar.
+  approach: >
+    Orqenta, farklı veri iş hatlarını ve iş süreçlerini tek bir otomatik
+    orkestrasyon katmanında birleştirerek kuruluş genelinde görünürlük, kontrol
+    ve güvenilirlik sağlar.
+  businessValue: >
+    Sıfır kayıplı çökme kurtarma, güvenli yeniden deneme mekanizmaları ve tam
+    denetim izi. Yüksek riskli kritik operasyonlar için maksimum güvenilirlik
+    ve uyumluluk.
+  whenPreferred:
+    - "Kesinlik ve \"tam olarak bir kez\" yürütmenin vazgeçilmez olduğu durumlarda"
+    - "Sıkı denetim izi gerektiren sektörlerde (Telekom, Bankacılık, Enerji)"
+    - "Dağıtık sistemlerde bölünmüş beyin risklerini ve mükerrer yürütmeyi ortadan kaldırmak için"
+    - "Süreçlerin sistem çökmesi sonrası anında ve doğru şekilde kurtarılması gerektiğinde"
+    - "Karmaşık bağımlılıkları profesyonel operasyonel kontrolle yönetmek için"
+  preferredNote: "Not: Orqenta özellikle düzenlemeye tabi ve yüksek uyumluluk gerektiren ortamlar için tasarlanmıştır."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Deterministik Yürütme"
+      description: "Dağıtık düğümler genelinde öngörülebilir akış yönetimi için yönetilen bağımlılıklar ve senkronizasyon noktaları."
+    - title: "3 Katmanlı İdempotentlik"
+      description: "Mutlak doğruluk için Event ID, Idempotency Key ve Execution ID kullanarak mükerrer etkilerin önlenmesi."
+    - title: "Çökmeye Dayanıklı Kurtarma"
+      description: "Veritabanı odaklı durum makinesi, herhangi bir sunucu veya süreç kesintisinden sonra kayıpsız tam kurtarma sağlar."
+    - title: "Operasyonel Kontrol"
+      description: "Duraklat, devam ettir, iptal et, düğüm yeniden denemesi ve gerçek zamanlı ajan yeniden yönlendirme dahil profesyonel yönetim."
+    - title: "Tam Gözlemlenebilirlik"
+      description: "Hızlı sorun giderme için merkezi loglama, trace ID takibi ve özel yürütme olay yönetimi."
+    - title: "Bankacılık Düzeyinde Güvenlik"
+      description: "RBAC, mTLS, HMAC kimlik doğrulama, SSRF koruması ve loglarda otomatik gizli bilgi maskeleme ile geliştirilmiştir."
+
+featureSection:
+  heading: "Fonksiyonel"
+  headingHighlight: "Tasarım"
+  description: >
+    Orqenta'nın güvenilirlik modeli ve temel yürütme yeteneklerinin üst düzey
+    genel görünümü; bankacılık ve telekomda uzun süren iş yükleri için
+    tasarlanmıştır.
+  calloutTitle: "Deterministik İş Akışı Tasarımı"
+  calloutDescription: "Karmaşık sistemler arası senkronizasyon ve bağımlılık yönetimi için görsel DAG editörü."
+  image: "/assets/images/Orqenta.png"
+  imageAlt: "Orqenta Mimari ve Güvenilirlik Modeli"
+  imageCaption: "Orqenta Arayüzü: DAG iş akışı düzenleme ve operasyonel gözetimin görselleştirilmesi."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "Orqenta, öngörülebilir operasyonel sonuçlar sağlamak için kritik bağımlılıkları ve SLA hedeflerini yönetir."
+  tabs:
+    - id: "finance"
+      label: "Finans & Raporlama"
+      cards:
+        - title: "Gün Sonu Toplu Akışlarında SLA Yönetimi"
+          badges: ["Finans", "SLA & Toplu İşlem"]
+          scenario: "Gün sonu dizisindeki risk, muhasebe veya raporlama adımları geciktiğinde, tüm zincir etkilenir ve kritik SLA ihlali riski oluşur."
+          interventionLabel: "Orqenta Müdahalesi"
+          interventionItems:
+            - "Karmaşık sistemler arası bağımlılıkların entegre modeli."
+            - "Net kesim zamanları ve belirli SLA hedeflerinin tanımlanması."
+            - "Gecikme başına otomatik eskalasyonlarla gerçek zamanlı izleme."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Düzenleyici raporlama için garantili SLA uyumluluğu."
+            - "Toplu döngülerdeki operasyonel kör noktaların ortadan kaldırılması."
+            - "Yürütme olaylarına daha hızlı müdahale."
+        - title: "DWH-BI Senkronizasyon Bağımlılığı"
+          badges: ["Kurumsal", "DWH & BI"]
+          scenario: "Parçalanmış zamanlama, BI yenilemelerinin DWH ETL süreçleri tamamlanmadan tetiklenmesine yol açarak panolarda eski veya eksik veri görüntülenmesine neden olur."
+          interventionLabel: "Orqenta Müdahalesi"
+          interventionItems:
+            - "DWH yükleme, dönüştürme ve yayınlama adımlarını tek bir DAG olarak yönetin."
+            - "BI yenilemesinin yalnızca üst akış ETL başarısı üzerine tetiklenmesini sağlayın."
+            - "Başarısız adımların otomatik yeniden denemesi için kendi kendini iyileştiren mekanizmalar."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Yönetim panoları için %100 veri güvenilirliği."
+            - "Standartlaştırılmış, öngörülebilir yayınlama döngüleri."
+            - "Manuel ekipler arası koordinasyon çabasında azalma."
+    - id: "telecom"
+      label: "Telekom & Enerji"
+      cards:
+        - title: "Derecelendirme ve Faturalama Zinciri Bütünlüğü"
+          badges: ["Telekom", "Bağımlılık"]
+          scenario: "Aracılık, Derecelendirme ve Faturalama mükemmel sırayla tetiklenmelidir. Erken alt akış yürütmesi hatalı faturalamaya ve gelir kaybına neden olur."
+          interventionLabel: "Orqenta Müdahalesi"
+          interventionItems:
+            - "Yüksek hacimli veri dosyaları için dinamik hazırlık kontrolleri."
+            - "Üst akış darboğazları için erken uyarı sinyalleri."
+            - "Faturalama döngüsü gecikmelerini önlemek için otomatik eskalasyon."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Gelir kaybı ve faturalama hatası riskinin en aza indirilmesi."
+            - "Dağıtık düğümler genelinde geliştirilmiş süreç senkronizasyonu."
+            - "Faturalama ekipleri için daha yüksek operasyonel görünürlük."
+        - title: "Kritik Raporlama Kesim Kontrolü"
+          badges: ["Enerji", "Kesim"]
+          scenario: "Enerji raporları sıkı zaman penceresi yönetimi gerektirir. Veri varış sorunları nedeniyle bir kesim zamanının kaçırılması düzenleyici uyumsuzluğa yol açar."
+          interventionLabel: "Orqenta Müdahalesi"
+          interventionItems:
+            - "Kesim mantığı ve zaman pencerelerinin sıkı uygulanması."
+            - "Koşullu tetikleyiciler: üst akış kalite eşik değerleri karşılanmazsa alt akışı engelleme."
+            - "Zamana duyarlı yürütme kararları için tam denetim izi."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Zamanında düzenleyici raporlama performansı."
+            - "Operasyonel ceza ve denetim başarısızlığı risklerinin azaltılması."
+            - "Güçlü, deterministik raporlama yönetişimi."
+    - id: "operations"
+      label: "Operasyon Yönetimi"
+      cards:
+        - title: "Proaktif İzleme ve Olay Kontrolü"
+          badges: ["Operasyonlar", "İzleme"]
+          scenario: "Araçlar genelinde silo halinde süreç izleme, sorun tespit süresini artırır ve Ortalama Onarım Süresini (MTTR) uzatır."
+          interventionLabel: "Orqenta Müdahalesi"
+          interventionItems:
+            - "Tüm kurumsal akışlar için entegre \"tek cam\" görünürlüğü."
+            - "Proaktif uyarı ile erken hata sinyali tespiti."
+            - "Operasyonel komuta: tam denetlenebilirlikle duraklat, devam ettir, iptal et veya yeniden yönlendir."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Azaltılmış MTTR ve en aza indirilmiş üretim kesintileri."
+            - "Operasyonel verimlilikte önemli kazanım."
+            - "Denetime hazır olay yönetimi geçmişi."
+
+journey:
+  heading: "Merkezi Otorite"
+  headingHighlight: "Modeli"
+  description: "Geleneksel dağıtık zamanlayıcıların aksine, Orqenta bölünmüş beyin sorunlarını ve senkronizasyon dışı durumları ortadan kaldırmak için karar mantığını merkezileştirir."
+  steps:
+    - number: "01"
+      title: "Durumsuz Ajanlar"
+      description: "Yürütme ajanları görevleri HTTP yoklama ile çeker; bu sayede sıfır gelen bağlantı noktası ve kolay ağ ölçeklendirmesi sağlanır."
+    - number: "02"
+      title: "Durum Makinesi"
+      description: "Durum tamamen merkezi bir veritabanı tarafından yönetilir; her geçişin atomik ve kalıcı olması sağlanır."
+    - number: "03"
+      title: "Etiket Tabanlı Yönlendirme"
+      description: "Yürütme ajanlarının etiketlerine, yeteneklerine veya coğrafi kısıtlamalarına dayalı akıllı iş yönlendirmesi."
+
+integration:
+  heading: "Güvenlik ve"
+  headingHighlight: "Yönetişim"
+  description: "Orqenta, yüksek güvenilirlik gerektiren kritik kurumsal ortamlar için tasarlanmıştır:"
+  items:
+    - "RBAC: Yöneticiler, Geliştiriciler, Operatörler ve Görüntüleyiciler için ayrıntılı izinler."
+    - "Kimlik Doğrulama: Güvenli iletişim için mTLS veya HMAC-SHA256 tabanlı ajan kimlik doğrulaması."
+    - "Koruma: Bulut ortamlarında metadata sızıntısını önlemek için yerleşik SSRF koruması."
+    - "Maskeleme: Loglarda ve kullanıcı arayüzlerinde gizli bilgi ve kimlik bilgilerinin otomatik gizlenmesi."
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, WorkflowEngine"
+
+customComponents: []

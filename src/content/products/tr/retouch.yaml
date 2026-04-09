@@ -1,0 +1,193 @@
+slug: "retouch"
+lang: "tr"
+name: "ReTouch — Entry Management"
+
+pageTitle: "ReTouch — Referans Veri & Giriş Yönetimi | Intellica"
+pageDescription: >
+  ReTouch: Yönetişimli veri girişi ve referans veri yönetimi; manuel süreçleri
+  doğrulanmış iş akışları ve tam denetim izleriyle değiştirir.
+
+hero:
+  category: "Veri Platformu & Yönetişim"
+  titlePrefix: "ReTouch — Giriş"
+  titleHighlight: "Yönetimi"
+  description: >
+    Manuel veri girişlerinizi ve referans verilerinizi kontrol altına alın.
+    Excel tabanlı veri toplamayı ortadan kaldırın ve süreçlerinizi onay iş
+    akışları, doğrulama kuralları ve tam denetlenebilirlikle güvence altına alın.
+
+overview:
+  problem: >
+    Ana ve referans veriler için manuel veri girişine veya paylaşılan Excel
+    tablolarına güvenmek hatalara, doğrulama eksikliğine ve sıfır denetim
+    izine yol açar.
+  approach: >
+    ReTouch, veri girişi için web tabanlı, yönetişimli bir arayüz sunar.
+    Verilerin iş kurallarınıza göre doğrulanmasını ve çekirdek sistemlere
+    girmeden önce belirlenen paydaşlar tarafından onaylanmasını sağlar.
+  businessValue: >
+    %100 denetlenebilir veri girişi. Veri düzeltme maliyetlerinde önemli
+    azalma. Önemli ölçüde iyileştirilmiş referans veri kalitesi.
+  whenPreferred:
+    - "Referans veriler (etiketler, kategoriler, arama tabloları) şu anda Excel'de yönetildiğinde"
+    - "Kritik veri değişiklikleri için \"Yapıcı-Denetleyici\" onay iş akışları uygulamak istediğinizde"
+    - "Manuel veri girişinin mevcut sistem verilerine göre doğrulanması gerektiğinde"
+    - "Tüm manuel veri güncellemelerinin tam sürüm geçmişini tutmak için"
+    - "Veri yönetişim politikaları resmi veri giriş kontrolleri gerektirdiğinde"
+  preferredNote: "Not: ReTouch, güvenli erişim için mevcut kimlik yönetim sisteminizle entegre olur."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Özel İş Akışları"
+      description: "Çok katmanlı Yapıcı-Denetleyici-Onaylayıcı modelleri dahil esnek onay adımları."
+    - title: "Veri Doğrulama"
+      description: "Regex, aralık kontrolleri ve çapraz referans arama gibi katı kuralları uygulayın."
+    - title: "Tam Denetim İzi"
+      description: "Her bir değişikliği takip edin: Kim neyi, ne zaman değiştirdi ve önceki/sonraki durumu."
+    - title: "Sürüm Kontrolü"
+      description: "Referans veri tablolarınızın önceki durumlarına kolayca göz atın ve geri dönün."
+    - title: "Form Oluşturucu"
+      description: "Ön yüz kodu yazmadan veri giriş ekranlarını dinamik olarak oluşturun ve dağıtın."
+    - title: "Sistem Senkronizasyonu"
+      description: "Onaylanan verileri otomatik olarak hedef DWH, Lakehouse veya ERP sistemlerinize aktarın."
+
+featureSection:
+  heading: "Doğrulanmış"
+  headingHighlight: "Veri Girişi"
+  description: >
+    ReTouch, doğrudan veri etkileşimi için güvenli, web tabanlı bir katman
+    sağlar. Kaynak sistemler ile analitik katman arasındaki boşluğu
+    doğrulanmış bir yönetim konsoluyla kapatın.
+  calloutTitle: "Yönetişim Kontrolü"
+  calloutDescription: "Veri sahiplerini tam denetlenebilirlikle parametreleri ve referans verileri doğrudan yönetmeleri için güçlendirin."
+  image: "/assets/images/Retouch_Ekran görüntüsü.png"
+  imageAlt: "ReTouch Arayüzü"
+  imageCaption: "ReTouch Arayüzü: Doğrulanmış veri girişi ve yönetim katmanı."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "ReTouch çözümlerini Finans, Telekom ve Üretim sektörlerinde keşfedin."
+  tabs:
+    - id: "finance"
+      label: "Finans"
+      cards:
+        - title: "Düzenleyici Parametre Yönetimi"
+          badges: []
+          scenario: "Düzenleyici raporlarda kullanılan referans ve eşleme tablolarının manuel yönetimi uyumluluk risklerine ve denetim başarısızlıklarına yol açabilir."
+          interventionLabel: "RETOUCH MÜDAHALESİ"
+          interventionItems:
+            - "Referans ve eşleme tabloları için merkezi platform."
+            - "Zorunlu alan ve arama kontrolleri uygulanır."
+            - "İzne dayalı giriş ve onay mekanizması."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Azaltılmış uyumluluk riski."
+            - "Bilgilendirilmiş, doğru düzenleyici raporlama."
+            - "Basitleştirilmiş denetim süreçleri."
+        - title: "Şube & Ürün Hedef Tutarlılığı"
+          badges: []
+          scenario: "Şube düzeyindeki hedeflerin dağınık Excel dosyalarında yönetilmesi sürüm kaosuna ve tutarsız yönetim raporlamasına neden olur."
+          interventionLabel: "RETOUCH MÜDAHALESİ"
+          interventionItems:
+            - "Tüm hedef tabloları için tek doğruluk kaynağı."
+            - "Rol tabanlı giriş ve iş akışı yönetimi."
+            - "Otomatik doğrulama yanlış veri girişini önler."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "İyileştirilmiş raporlama tutarlılığı."
+            - "Güvenilir performans ölçümü."
+            - "Yönetimin tek doğruluk kaynağına erişimi."
+    - id: "telecom"
+      label: "Telekom"
+      cards:
+        - title: "Kampanya Parametre Kontrolü"
+          badges: []
+          scenario: "Kampanya veya tarife parametrelerindeki küçük hatalar önemli gelir kaybına ve müşteri memnuniyetsizliğine yol açabilir."
+          interventionLabel: "RETOUCH MÜDAHALESİ"
+          interventionItems:
+            - "Tarife ve fiyat tablolarının merkezi yönetimi."
+            - "Tarih aralığı ve fiyatlandırma doğrulama kuralları."
+            - "Yalnızca onaylanmış yayınlama iş akışı."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Gelir kaybı risklerinin en aza indirilmesi."
+            - "Artırılmış fiyatlandırma hassasiyeti."
+            - "Güçlendirilmiş gelir güvence duruşu."
+        - title: "Bayi Komisyon Tutarlılığı"
+          badges: []
+          scenario: "Bayi komisyon ve gelir paylaşım tablolarının manuel yönetimi mutabakat sorunlarına ve mali anlaşmazlıklara neden olur."
+          interventionLabel: "RETOUCH MÜDAHALESİ"
+          interventionItems:
+            - "Komisyon tabloları standart, yapılandırılmış formatlarda toplanır."
+            - "Çift kontrollü (yapıcı-denetleyici) izne dayalı giriş."
+            - "Gerçek zamanlı doğrulama eksik veya tutarsız kayıtları önler."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Güçlendirilmiş mutabakat ve muhasebe doğruluğu."
+            - "Hatalı ödemeler ve anlaşmazlık riskinin azaltılması."
+            - "Güvenilir finansal raporlama verisi."
+    - id: "manufacturing"
+      label: "Üretim"
+      cards:
+        - title: "Bayi Satış Kota Yönetimi"
+          badges: []
+          scenario: "Bayi satış hedeflerinin Excel ile yönetilmesi veri tazeliği sorunlarına ve planlama tutarsızlıklarına yol açar."
+          interventionLabel: "RETOUCH MÜDAHALESİ"
+          interventionItems:
+            - "Model ve bayi hedefleri için merkezi platform."
+            - "Sıkı aralık ve zorunlu alan kontrolleri."
+            - "Sürüm geçmişi ve değişiklik takibi."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Güvenilir satış planlama verisi."
+            - "Daha hızlı bölgesel performans raporlaması."
+            - "Geliştirilmiş operasyonel koordinasyon."
+        - title: "Üretim Referans Veri Kontrolü"
+          badges: []
+          scenario: "Parça kodu eşleme ve tedarikçi referans tablolarındaki hatalar üretim planlamasını ve raporlama doğruluğunu etkiler."
+          interventionLabel: "RETOUCH MÜDAHALESİ"
+          interventionItems:
+            - "Parça eşleme ve referansların merkezi yönetimi."
+            - "Arama ve sözlük kontrolleri veri bütünlüğünü sağlar."
+            - "ERP hazırlığı için onaylı yayınlama ve sürüm takibi."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Artırılmış üretim planlama doğruluğu."
+            - "Azaltılmış tedarik zinciri riskleri."
+            - "Kurumsal raporlamada sağlanan tutarlılık."
+
+journey:
+  heading: "ReTouch"
+  headingHighlight: "Süreci"
+  steps:
+    - number: "01"
+      title: "Tasarım"
+      description: "Tablo/form yapılarını, doğrulama kurallarını ve kullanıcı izinlerini tanımlayın."
+    - number: "02"
+      title: "Doğrula ve Onayla"
+      description: "Giriş sırasında gerçek zamanlı kontroller ardından yönetişimli bir onay iş akışı."
+    - number: "03"
+      title: "Yayınla"
+      description: "Onaylanan veriler raporlama için kurumsal veri katmanınızla senkronize edilir."
+
+integration:
+  heading: "Daha İyi"
+  headingHighlight: "Yönetişim"
+  description: "ReTouch, yönetilmeyen manuel verileri yönetişimli kurumsal varlıklara dönüştürür:"
+  items:
+    - "Tüm manuel referans veriler için tek giriş noktası"
+    - "İş doğrulama kurallarının merkezi yönetimi"
+    - "Veri kalitesi sorunlarının kaynağında proaktif tespiti"
+    - "Dağınık, sürümsüz Excel dosyalarının ortadan kaldırılması"
+    - "Hassas veri alanlarına güvenli, rol tabanlı erişim"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataEntry"
+
+customComponents: []

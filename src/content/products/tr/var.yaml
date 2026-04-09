@@ -1,0 +1,169 @@
+slug: "var"
+lang: "tr"
+name: "VAR — Voice Analysis & Recognition"
+
+pageTitle: "VAR — Voice Analysis & Recognition | Intellica"
+pageDescription: >
+  VAR: Yapay zekâ tabanlı ses analitiği. Çağrı merkezleri ve kurumsal ses
+  verileri için otomatik transkripsiyon, duygu analizi ve kalite uyumluluk
+  içgörüleri.
+
+hero:
+  category: "Yapay Zekâ Ürünleri"
+  titlePrefix: "VAR — Ses"
+  titleHighlight: "Analizi"
+  description: >
+    Ses kayıtlarınızı eyleme dönüştürülebilir zekâya çevirin. VAR, kalite,
+    uyumluluk ve müşteri deneyimini ölçülebilir şekilde iyileştirmek için
+    yapay zekâ ile otomatik transkript ve derinlemesine içgörüler üretir.
+
+overview:
+  problem: >
+    Büyük çağrı hacimlerini manuel olarak dinlemek sürdürülebilir değildir; bu
+    durum kaçırılan kalite sorunlarına, uyumluluk risklerine ve müşteri
+    memnuniyetsizliğine yol açar.
+  approach: >
+    VAR, ses verilerini transkriptlere dönüştürür ve duygu analizi, konu
+    sınıflandırması ve anahtar kelime tespiti için NLP modelleri uygulayarak
+    ölçeklenebilir otomatik denetimi mümkün kılar.
+  businessValue: >
+    Çağrı denetimlerinde %100 kapsam, daha hızlı olay tespiti ve temsilci
+    eğitimi ile koçluk için veriye dayalı içgörüler.
+  whenPreferred:
+    - "Manuel çağrı merkezi denetimi artık ölçeklenebilir olmadığında"
+    - "Kalite puanlaması ve temsilci performans takibini otomatikleştirmek için"
+    - "Etik veya uyumluluk risklerini tespit eden gerçek zamanlı anahtar kelime tespiti için"
+    - "Müşteri şikayet eğilimlerini konu ve segmente göre görselleştirmek istediğinizde"
+    - "Eski IVR kayıt sisteminden gelişmiş ses zekâsına geçiş yapılırken"
+  preferredNote: "Not: VAR hem dahili çağrı kayıtlarını hem de çok kanallı ses verilerini destekler."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Konuşmadan Metne"
+      description: "Çağrı kayıtlarının yüksek doğruluklu, aranabilir metne otomatik günlük transkripsiyonu."
+    - title: "Anahtar Kelime Tespiti"
+      description: "Belirli terimlerin, ürün adlarının veya uyumluluk işaretçilerinin gerçek zamanlı veya toplu tespiti."
+    - title: "Duygu Analizi"
+      description: "Risk altındaki etkileşimleri belirlemek için temsilci ve müşteri duygularının yapay zekâ ile puanlanması."
+    - title: "Konu Sınıflandırması"
+      description: "Çağrıların konuya göre otomatik gruplandırılması (Faturalama, Teknik, Satış vb.)."
+    - title: "Otomatik Kalite Seti"
+      description: "Temsilci KPI'ları, sessizlik oranları ve örtüşme analitiği için kullanıma hazır panolar."
+    - title: "Ekosistem Hazırlığı"
+      description: "Ses içgörülerini doğrudan CRM, Biletleme veya BI ortamlarına bağlayan açık API'ler."
+
+featureSection:
+  heading: "Akıllı"
+  headingHighlight: "Ses İşleme"
+  description: >
+    VAR, statik çağrı kayıtlarını dinamik bir bilgi tabanına dönüştürür.
+    Gelişmiş NLP uygulayarak, daha önce ses dosyalarında gizli kalan bağlam,
+    duygu ve uyumluluk sinyallerini çıkarırız.
+  calloutTitle: "Çok Boyutlu Analiz"
+  calloutDescription: "360° operasyonel görünürlük için metadata (temsilci ID, süre) ile transkripsiyon verilerini birleştirin."
+  image: "/assets/images/varscreen.png"
+  imageAlt: "VAR Arayüzü"
+  imageCaption: "VAR Arayüzü: Çağrı kayıtlarını akıllı kalite ve uyumluluk içgörülerine dönüştürme."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "VAR'ın çağrı merkezi operasyonlarını nasıl optimize ettiğini ve kurumsal uyumluluk risklerini nasıl azalttığını keşfedin."
+  tabs:
+    - id: "qa"
+      label: "Kalite Güvence"
+      cards:
+        - title: "Otomatik Kalite Puanlama"
+          badges: ["Koçluk", "Temsilci ROI"]
+          scenario: "Geleneksel çağrı denetimi çağrıların %2'sinden azını kapsar; bu da temsilci koçluğunu öznel hale getirir ve performans sinyallerinin büyük çoğunluğunu kaçırır."
+          interventionLabel: "VAR MÜDAHALESİ"
+          interventionItems:
+            - "Kaydedilen tüm etkileşimlerin %100'ünde standart puanlama."
+            - "Sessizlik, örtüşme ve senaryo uyumunun otomatik tespiti."
+            - "Eğitim için en iyi performans gösteren örüntülerin belirlenmesi."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Manuel denetim saatlerinde önemli azalma."
+            - "Tutarlı, veriye dayalı temsilci performans metrikleri."
+            - "Ortalama işlem kalitesinde ölçülebilir iyileşme."
+        - title: "Satış Örüntü Zekâsı"
+          badges: ["Satış", "Büyüme"]
+          scenario: "En iyi satış temsilcilerinin kapanış teknikleri genellikle organiktir ve ekibin geri kalanı için belgelenmemiştir."
+          interventionLabel: "VAR MÜDAHALESİ"
+          interventionItems:
+            - "Başarılı kapanış senaryolarını ve itiraz mantığını analiz edin."
+            - "Duygu değişimlerini dönüşüm sonuçlarıyla ilişkilendirin."
+            - "İtiraz türlerinin ve temsilci yanıtlarının otomatik etiketlenmesi."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Standartlaştırılmış yüksek performanslı satış kılavuzu."
+            - "Yeni satış temsilcileri için daha hızlı adaptasyon süreci."
+            - "Veriye dayalı olarak artırılmış genel dönüşüm oranları."
+    - id: "compliance"
+      label: "Uyumluluk & Etik"
+      cards:
+        - title: "Düzenleyici Uyumluluk ve Etik İzleme"
+          badges: ["Güvenlik", "Hukuki Risk"]
+          scenario: "Tespit edilemeyen senaryo ihlalleri veya yasadışı sözlü taahhütler önemli düzenleyici cezalara ve marka itibarı zararına yol açabilir."
+          interventionLabel: "VAR MÜDAHALESİ"
+          interventionItems:
+            - "Zorunlu yasal açıklamalar için anahtar kelime tespiti."
+            - "Yüksek riskli sözlü örüntüler için gerçek zamanlı uyarı."
+            - "Denetim soruşturmaları için güvenli, aranabilir arşiv."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Düzenleyici konuşma gerekliliklerine garanti edilmiş uyum."
+            - "Operasyonel ceza ve yaptırım riskinin en aza indirilmesi."
+            - "Potansiyel hukuki yükümlülüklerin proaktif yönetimi."
+    - id: "cx"
+      label: "Müşteri Deneyimi"
+      cards:
+        - title: "Müşteri Duygu ve Kayıp Tahmini"
+          badges: ["Elde Tutma", "Kayıp"]
+          scenario: "Sessizce hayal kırıklığına uğrayan müşteriler genellikle belgelenmiş bir neden olmadan numara taşıma yapar veya hizmetlerini iptal eder; metin tabanlı CRM notları ses ipuçlarını kaçırır."
+          interventionLabel: "VAR MÜDAHALESİ"
+          interventionItems:
+            - "Müşteri yaşam döngüsü boyunca duygu eğilimi izleme."
+            - "Sesli stres ve memnuniyetsizlik sinyallerini belirleme."
+            - "Belirli \"iptal etmek istiyorum\" niyet örüntülerini işaretleme."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Risk altındaki müşteriler için proaktif elde tutma iş akışları."
+            - "Artırılmış Net Tavsiye Skoru (NPS)."
+            - "Erken müdahale ile azaltılmış müşteri kaybı."
+
+journey:
+  heading: "Uygulama"
+  headingHighlight: "Yolculuğu"
+  description: "Ham sesten stratejik içgörülere, VAR tüm ses zekâsı yaşam döngüsünü yönetir."
+  steps:
+    - number: "01"
+      title: "Veri Alımı ve Transkripsiyon"
+      description: "IVR/ACD sistemlerinden toplu ses toplama ve otomatik konuşmadan metne dönüşüm."
+    - number: "02"
+      title: "Analiz ve Puanlama"
+      description: "NLP modelleri duygu puanlama, konu çıkarma ve anahtar kelime tespiti mantığını uygular."
+    - number: "03"
+      title: "Aksiyon Orkestrasyonu"
+      description: "Sonuçlar müdahale için panolara, CRM'lere veya kalite denetim iş akışlarına iletilir."
+
+integration:
+  heading: "Entegrasyon ve"
+  headingHighlight: "Standardizasyon"
+  description: "VAR, mevcut çağrı merkezi ekosistemine profesyonel esneklikle entegre olmak üzere tasarlanmıştır:"
+  items:
+    - "Başlıca çağrı kayıt ve IVR platformlarıyla doğal entegrasyon"
+    - "Oturum bağlamı için doğrudan CRM ve Biletleme sistemi senkronizasyonu"
+    - "Lehçe ve sektöre özgü terminoloji için özelleştirilmiş NLP modelleri"
+    - "Rol tabanlı erişim (RBAC) ve mTLS şifreli veri aktarımı"
+    - "BI ve raporlama entegrasyonu için standartlaştırılmış dışa aktarım formatları"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, VoiceAnalytics"
+
+customComponents: []

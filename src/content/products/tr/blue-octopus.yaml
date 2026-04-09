@@ -1,0 +1,153 @@
+slug: "blue-octopus"
+lang: "tr"
+name: "Blue Octopus — AI Event Intelligence Platform"
+
+pageTitle: "Blue Octopus — AI Gözetim & Aksiyon Platformu | Intellica"
+pageDescription: >
+  Blue Octopus: Kritik veri izleme, olay tespiti ve aksiyon yönetimi için
+  yapay zekâ destekli merkezi analitik ve gözetim platformu.
+
+hero:
+  category: "Yapay Zekâ Ürünleri"
+  titlePrefix: "Blue Octopus — AI"
+  titleHighlight: "Olay Zekâsı"
+  description: >
+    Kuruluşunuz genelinde kritik iş olaylarını izlemek, tespit etmek ve
+    yönetmek için yapay zekâ destekli olay zekâsı ve orkestrasyon.
+
+overview:
+  problem: >
+    Büyük veri akışlarını kritik olaylar açısından manuel olarak veya basit
+    kurallarla izlemek, kaçırılan olaylara ve operasyon ekiplerini
+    duyarsızlaştıran yüksek yanlış pozitif oranlarına yol açar.
+  approach: >
+    Blue Octopus, olay izleme, analitik ve otomatik aksiyon yönetimini gerçek
+    zamanlı operasyonel mükemmellik için tek bir platformda birleştirir.
+  businessValue: >
+    Kritik iş olaylarının anında tespiti, ortalama çözüm süresinde (MTTR)
+    önemli ölçüde azalma ve otomatik uyumluluk gözetimi.
+  whenPreferred:
+    - "Kritik olaylar ve dağıtık saha operasyonları için merkezi bir komuta merkezine ihtiyaç duyulduğunda"
+    - "Birden fazla sistem, sensör, log ve harici kaynaktan gelen gerçek zamanlı olayları tek bir platformda izlemek istediğinizde"
+    - "Güvenlik veya operasyonel olaylar sırasında hızlı uyarı, koordineli müdahale ve aksiyon yönetimi gerektiğinde"
+    - "Olay verisi, konum zekâsı ve kaynak mevcudiyetini harita tabanlı operasyonel iş akışlarında ilişkilendirmek için"
+    - "Standart izleme araçları çoklu kaynak olay tespiti, yapay zekâ destekli gözetim ve taktik koordinasyon için yeterli olmadığında"
+  preferredNote: "Not: Blue Octopus hem toplu hem de gerçek zamanlı akış veri alımını destekler."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Olay Tespiti"
+      description: "Anomalilerin, dolandırıcılık faaliyetlerinin ve karmaşık veri örüntülerinin yapay zekâ ile tespiti."
+    - title: "Aksiyon Orkestrasyonu"
+      description: "Belirli veri olayları tarafından anında tetiklenen otomatik çoklu sistem iş akışları."
+    - title: "Entegre Konsol"
+      description: "Tüm izlenen sistemlerin ve aktif uyarıların entegre \"Tek Cam\" görünümü."
+    - title: "Adaptif Uyarı"
+      description: "Gürültüyü azaltmak için akıllı eşik yönetimi ve yapay zekâ destekli öngörülü uyarı."
+    - title: "Olay Korelasyonu"
+      description: "Gizli örüntüleri tespit etmek ve kritik olayları gerçek zamanlı belirlemek için çoklu kaynak olay korelasyonu."
+    - title: "Entegre Veri Alımı"
+      description: "Kafka akışları, Cloud olayları ve kurumsal SQL/NoSQL kaynakları ile doğrudan bağlantı."
+
+featureSection:
+  heading: "Merkezi"
+  headingHighlight: "Komuta Merkezi"
+  description: >
+    Blue Octopus, kuruluşunuzun tüm veri ayak izi genelinde dağınık güvenlik
+    ve operasyonel olayları yönetmek için entegre bir "Komuta & Kontrol"
+    katmanı sağlar.
+  calloutTitle: "Aksiyona Yönelik Uyarılar"
+  calloutDescription: "Veriyi sadece izlemeyin; altyapı genelinde anında olay müdahale iş akışlarını tetikleyin."
+  image: "/assets/images/Blueoctopus_screen.png"
+  imageAlt: "Blue Octopus Arayüzü"
+  imageCaption: "Blue Octopus: Güvenlik analitiği, olay izleme ve kurumsal aksiyon yönetiminin görselleştirilmesi."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "Blue Octopus'un kritik iş olayları için nasıl akıllı gözetim ve otomatik müdahale sağladığını keşfedin."
+  tabs:
+    - id: "logistics"
+      label: "Lojistik & SLA"
+      cards:
+        - title: "SLA İzleme"
+          badges: ["Lojistik", "SLA İzleme"]
+          scenario: "Bir lojistik firmasının binlerce sevkiyatı izlemesi gerekmektedir. Belirli bir merkezde kritik bir gecikme örüntüsü tespit edildiğinde, sistem SLA ihlali gerçekleşmeden önce yöneticileri uyarmalıdır."
+          interventionLabel: "Blue Octopus Rolü"
+          interventionItems:
+            - "GPS ve merkez işleme veri akışlarının gerçek zamanlı takibi."
+            - "Tüm güzergâhlardaki devam eden sevkiyatlar için yapay zekâ tabanlı gecikme tahmini."
+            - "Bölge merkez yöneticilerine mobil uyarılarla otomatik eskalasyon."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Azaltılmış SLA cezaları ve müşteri iade maliyetleri."
+            - "Lojistik darboğazlarının proaktif yönetimi."
+            - "Küresel merkezler genelinde standartlaştırılmış olay raporlama."
+    - id: "banking"
+      label: "Bankacılık & Güvenlik"
+      cards:
+        - title: "Arıza ve Saldırı Tespiti"
+          badges: ["Bankacılık", "Sistemik Arıza"]
+          scenario: "Bir bankanın, belirli bir ATM ağının veya dijital kanalın ortalamanın üzerinde bir arıza oranı yaşayıp yaşamadığını tespit etmesi gerekir; bu durum potansiyel bir siber saldırıya veya platform hatasına işaret edebilir."
+          interventionLabel: "Blue Octopus Rolü"
+          interventionItems:
+            - "Binlerce işlem noktasında başarı/başarısızlık oranlarını tespit edin."
+            - "Bakım örüntülerini anormal arıza artışlarından ayırt edin."
+            - "Eşik değerlere ulaşıldığında sistem çapında koruyucu aksiyonları koordine edin."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Dijital kanal kesinti süresine karşı finansal maruziyetin en aza indirilmesi."
+            - "Kritik altyapı arızaları için daha hızlı Ortalama Onarım Süresi (MTTR)."
+            - "Yerel ağ saldırılarına karşı güçlü koruma."
+    - id: "operations"
+      label: "Küresel Operasyonlar"
+      cards:
+        - title: "Küresel Operasyon Görünürlüğü"
+          badges: ["Kurumsal", "Görünürlük"]
+          scenario: "Bölgesel operasyon ekiplerinin farklı izleme araçları kullanması, kurumsal sağlığın parçalanmış bir görünümüne ve gecikmiş küresel müdahalelere yol açar."
+          interventionLabel: "Blue Octopus Rolü"
+          interventionItems:
+            - "Bölgesel olay akışlarını tek bir doğruluk kaynağında birleştirin."
+            - "Bölgeler arası eğilimleri belirlemek için küresel korelasyon kuralları uygulayın."
+            - "Rol tabanlı panolarla merkezi durum farkındalığı."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Tüm kuruluş genelinde standartlaştırılmış operasyonel müdahale."
+            - "Küresel iş süreçlerinin iyileştirilmiş yönetim gözetimi."
+            - "Gereksiz bölgesel uyarıların elenmesiyle azaltılmış gürültü."
+
+journey:
+  heading: "Operasyonel"
+  headingHighlight: "Yolculuk"
+  description: "Blue Octopus, iş olayı zekâsının yaşam döngüsünü veri alımından çözüme kadar yönetir."
+  steps:
+    - number: "01"
+      title: "Veri Alımı"
+      description: "Log, sistem, sensör ve harici kaynaklardan verileri merkezi bir olay akışında toplayın ve entegre edin."
+    - number: "02"
+      title: "Tespit"
+      description: "Yapay zekâ destekli olay zekâsı ve çoklu veri kaynağı korelasyonu ile anomalileri ve kritik örüntüleri belirleyin."
+    - number: "03"
+      title: "Aksiyon"
+      description: "Olayları gerçek zamanlı yönetmek için otomatik iş akışlarını, uyarıları ve koordineli müdahaleleri tetikleyin."
+
+integration:
+  heading: "Ekosistem"
+  headingHighlight: "Entegrasyonu"
+  description: "Mevcut kurumsal BT ve Güvenlik ekosistemleriyle sorunsuz entegre olmak üzere tasarlanmıştır:"
+  items:
+    - "Doğal log alımı (syslog, uygulama logları, güvenlik cihazları)"
+    - "Çift yönlü SIEM/SOAR ve biletleme sistemi entegrasyonu"
+    - "Ayrıntılı SSO/LDAP tabanlı rol bazlı erişim (RBAC)"
+    - "DWH ve Data Lake katmanlarına doğrudan bağlantı"
+    - "Özel BI ve pano entegrasyonu için gelişmiş kullanıcı arayüzü"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, AISurveillance"
+
+customComponents: []
