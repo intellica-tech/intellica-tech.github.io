@@ -1,6 +1,6 @@
 # Intellica Tech Website — Claude Project Instructions
 
-Bu proje Intellica Tech'in kurumsal web sitesidir. Astro framework, GitHub Pages üzerinde statik deploy.
+Bu proje Intellica Tech'in kurumsal web sitesidir. Astro v6 framework, GitHub Pages üzerinde statik deploy. Node 24, EN/TR çok dil desteği.
 
 ---
 
@@ -143,12 +143,17 @@ Herhangi bir kontrol başarısız olursa release branch oluşturma, önce düzel
 - JavaScript minimal — statik output'u bozma.
 - Responsive: mobile ≤768px (bottom nav), desktop >768px (header nav).
 - `global.css` global stiller — component stiller `<style>` bloğunda.
+- **i18n:** Yeni metin eklerken hem `en.json` hem `tr.json`'a çeviri anahtarı ekle. Sayfa kopyalarken `pages/` ve `pages/[lang]/` ikisini de oluştur.
+- **Content Collections:** Yeni ürün sayfası eklemek için `src/content/products/en/` ve `tr/` altına YAML dosyası oluştur, `content.config.ts` şemasına uy.
+- **Gamification:** Yeni interactive component eklerken `src/components/gamification/` altına koy. Vanilla JS kullan, framework bağımlılığı ekleme. `prefers-reduced-motion` desteği zorunlu.
 
 ### Senior Webmaster
 - SEO: her sayfa `Layout.astro`'dan title, description, canonical alıyor.
 - Görseller: `public/assets/img/` veya `public/assets/images/` altına.
-- Sitemap `@astrojs/sitemap` ile otomatik üretiliyor.
+- Sitemap `@astrojs/sitemap` ile otomatik üretiliyor (i18n destekli).
 - `.gitignore`: `.claude/`, `*.bak`, geçici dosyalar (`temp_*`, `diff.txt`, `*Kopya*`) commit'e girmesin.
+- **AI Crawlers:** `public/llms.txt` tüm sayfa ve ürün URL'lerini listeler — yeni sayfa eklenince güncelle.
+- **Redirects:** Eski URL'ler `astro.config.mjs` içinde yeni URL'lere yönlendiriliyor (`/about-us` → `/about` vb.).
 
 ### Senior UI/UX Designer
 - Design system `global.css`'te tanımlı — renk, tipografi, spacing değişkenlerine sadık kal.
@@ -164,11 +169,109 @@ Herhangi bir kontrol başarısız olursa release branch oluşturma, önce düzel
 
 ```
 src/
-  components/   → Header.astro, Footer.astro, BottomNav.astro
-  layouts/      → Layout.astro (SEO + yapı)
-  pages/        → Her sayfa .astro dosyası
-  styles/       → global.css
+  components/          → Header, Footer, BottomNav, LanguagePicker, LanguageBanner
+  components/product/  → 8 shared product section components (Hero, Overview, Capabilities…)
+  components/gamification/ → 11 interactive components (ChallengeArena, ROICalculator…)
+  content/products/en/ → 11 English product YAML files
+  content/products/tr/ → 11 Turkish product YAML files
+  content.config.ts    → Content Collection schema (Zod)
+  i18n/config.ts       → Dil yapılandırması (EN default, TR prefix)
+  i18n/utils.ts        → useTranslations(), useTranslatedPath()
+  i18n/locales/en.json → İngilizce çeviri anahtarları
+  i18n/locales/tr.json → Türkçe çeviri anahtarları
+  layouts/             → Layout.astro (SEO + yapı), ProductLayout.astro
+  pages/               → EN sayfalar (prefix yok)
+  pages/[lang]/        → TR sayfalar (/tr/ prefix)
+  styles/              → global.css
 public/
-  assets/img/   → Sayfa görselleri
-  assets/images/→ Logo ve ek görseller
+  assets/img/          → Sayfa görselleri
+  assets/images/       → Logo ve ek görseller
+  llms.txt             → AI crawler visibility dosyası
 ```
+
+---
+
+## i18n (Çok Dil Desteği)
+
+- **Diller:** English (varsayılan, prefix yok), Türkçe (`/tr/` prefix)
+- **Yapılandırma:** `astro.config.mjs` → `i18n.defaultLocale: "en"`, `prefixDefaultLocale: false`
+- **Çeviri dosyaları:** `src/i18n/locales/en.json` ve `tr.json` — dot notation anahtarlar (`nav.products`, `footer.cta.title`)
+- **Yardımcı fonksiyonlar:** `src/i18n/utils.ts` → `useTranslations(lang)`, `useTranslatedPath(lang)`
+- **LanguagePicker:** Sayfa başlığında dil değiştirme butonu
+- **LanguageBanner:** Tarayıcı diline göre otomatik dil önerisi (localStorage ile dismiss)
+- **Routing:** Her sayfa `src/pages/` (EN) ve `src/pages/[lang]/` (TR) olarak iki kopya
+- **Redirects:** Eski URL'ler `astro.config.mjs` içinde yönlendiriliyor
+
+**Yeni sayfa eklerken:** Hem `pages/yeni-sayfa.astro` hem `pages/[lang]/yeni-sayfa.astro` oluştur. Çeviri anahtarlarını her iki JSON dosyasına da ekle.
+
+---
+
+## Content Collections (Ürün Sayfaları)
+
+- **Schema:** `src/content.config.ts` — Zod ile tip güvenli YAML doğrulama
+- **Veri:** `src/content/products/en/*.yaml` (11 ürün) ve `tr/*.yaml` (11 ürün)
+- **Layout:** `src/layouts/ProductLayout.astro` — tüm ürün sayfaları bu layout'u kullanır
+- **Routing:** `src/pages/products/[slug].astro` (EN), `src/pages/[lang]/products/[slug].astro` (TR)
+
+**YAML yapısı (her ürün dosyası):**
+```yaml
+slug, lang, name, pageTitle, pageDescription
+hero: category, titlePrefix, titleHighlight, description
+overview: problem, approach, businessValue, whenPreferred
+capabilities: label, heading, items[]
+featureSection: heading, description, image, calloutTitle
+useCases: tabs[] → cards[] (scenario, intervention, impact)
+journey: steps[]
+integration: items[]
+jsonLd: type, category
+customComponents: [] (opsiyonel — SQLPlayground gibi)
+```
+
+**Shared product components** (`src/components/product/`):
+`ProductHero` · `OverviewSection` · `CapabilitiesGrid` · `FeatureShowcase` · `UseCaseTabs` · `UseCaseCard` · `JourneySection` · `ProductCTA`
+
+**Yeni ürün eklemek için:** `en/` ve `tr/` altına YAML dosyası oluştur, şemaya uy. Routing otomatik çalışır.
+
+---
+
+## Gamification Components
+
+`src/components/gamification/` altında 11 interactive component:
+
+| Component | Açıklama |
+|---|---|
+| `ChallengeArena` | 5 aşamalı SQL challenge — timer, hint, confetti |
+| `ContactFunMode` | SQL temalı iletişim formu — chat icebreaker, pipeline animasyonu |
+| `ROICalculator` | Data değeri hesaplayıcı — SVG gauge, 3 yıllık projeksiyon |
+| `ProductFitWizard` | 3 adımlı ürün eşleştirme — sektör, sorun, öncelik |
+| `DataMaturityQuiz` | 5 soruluk veri olgunluk testi — radar chart |
+| `ProductConstellation` | Ürün ilişki haritası |
+| `DataFlowStory` | İnteraktif veri yolculuğu |
+| `EasterEggTerminal` | Gizli CLI terminali |
+| `PipelineBuilder` | Sürükle-bırak iş akışı oluşturucu |
+| `ReadingPaths` | Kişiselleştirilmiş içerik önerileri |
+| `SQLPlayground` | Tarayıcı içi SQL sorgu çalıştırıcı |
+
+**Pattern:** Vanilla JS (framework yok), `prefers-reduced-motion` desteği, keyboard navigasyon, aria etiketleri.
+
+---
+
+## Sayfalar
+
+| Route (EN) | Route (TR) | Açıklama |
+|---|---|---|
+| `/` | `/tr` | Ana sayfa |
+| `/about` | `/tr/about` | Şirket hikayesi, değerler, zaman çizelgesi |
+| `/products` | `/tr/products` | Ürün listesi |
+| `/products/[slug]` | `/tr/products/[slug]` | Ürün detay (Content Collections) |
+| `/solutions` | `/tr/solutions` | Yetenekler, hizmet modelleri |
+| `/data-platforms` | `/tr/data-platforms` | Veri platformları |
+| `/contact` | `/tr/contact` | İletişim formu (classic + fun mode) |
+| `/careers` | `/tr/careers` | Kariyer |
+| `/academy` | `/tr/academy` | Akademi (Challenge Arena dahil) |
+| `/clients` | `/tr/clients` | Müşteriler |
+| `/insights` | `/tr/insights` | Blog / içerikler |
+| `/partners` | `/tr/partners` | İş ortakları |
+| `/privacy` | `/tr/privacy` | Gizlilik politikası |
+| `/terms` | `/tr/terms` | Kullanım koşulları |
+| `/cookies` | `/tr/cookies` | Çerez politikası |

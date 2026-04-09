@@ -5,7 +5,7 @@
 
 [![Deploy to GitHub Pages](https://github.com/intellica-tech/intellica-tech.github.io/actions/workflows/pages.yml/badge.svg)](https://github.com/intellica-tech/intellica-tech.github.io/actions/workflows/pages.yml)
 [![Docker Build & Push](https://github.com/intellica-tech/intellica-tech.github.io/actions/workflows/docker.yml/badge.svg)](https://github.com/intellica-tech/intellica-tech.github.io/actions/workflows/docker.yml)
-[![Astro](https://img.shields.io/badge/Built%20with-Astro%20v5-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![Astro](https://img.shields.io/badge/Built%20with-Astro%20v6-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-Private-red)](./LICENSE)
 
 ---
@@ -31,53 +31,104 @@ Intellica is a **Data & AI** company that has been leading enterprises on their 
 
 | Layer | Technology |
 |-------|-----------|
-| **Framework** | [Astro v5](https://astro.build) — static output, zero JS by default |
+| **Framework** | [Astro v6](https://astro.build) — static output, zero JS by default |
+| **i18n** | Astro native i18n routing — English (default) + Turkish (`/tr/`) |
+| **Content** | Astro Content Collections (YAML + Zod schema) for product pages |
 | **Styling** | Vanilla CSS with custom design tokens (no framework) |
 | **Typography** | Inter (Google Fonts) |
 | **Rendering** | Static Site Generation (SSG) |
-| **Container** | Docker (multi-stage: Node 22 builder → Nginx 1.27 Alpine) |
+| **Interactivity** | Vanilla JS — 11 gamification components, no framework dependencies |
+| **Container** | Docker (multi-stage: Node 24 builder → Nginx 1.27 Alpine) |
 | **Registry** | GitHub Container Registry (`ghcr.io`) |
 | **Hosting** | GitHub Pages (via GitHub Actions) |
 | **CI/CD** | GitHub Actions |
-| **Node** | v22 LTS (installed via Chocolatey on Windows) |
+| **Node** | v24 |
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-website-naz/
-├── .github/
-│   └── workflows/
-│       ├── docker.yml          # main → build & push Docker image to GHCR
-│       └── pages.yml           # release/* → build & deploy to GitHub Pages
+├── .github/workflows/
+│   ├── docker.yml                # main → build & push Docker image to GHCR
+│   └── pages.yml                 # release/* → build & deploy to GitHub Pages
 │
 ├── public/
-│   └── assets/
-│       ├── img/                # Logos, icons, brand assets
-│       └── images/
-│           ├── logos/          # Client & product logos
-│           └── map/            # World map assets
+│   ├── assets/img/               # Logos, icons, brand assets
+│   ├── assets/images/            # Client & product logos, map assets
+│   └── llms.txt                  # AI crawler visibility (Claude, GPT, etc.)
 │
 ├── src/
 │   ├── components/
-│   │   ├── Header.astro        # Sticky nav with mega-menu & mobile toggle
-│   │   └── Footer.astro        # Brand, social links, navigation columns
+│   │   ├── Header.astro          # Sticky nav with mega-menu & mobile toggle
+│   │   ├── Footer.astro          # Brand, social links, navigation columns
+│   │   ├── BottomNav.astro       # Mobile bottom navigation bar
+│   │   ├── LanguagePicker.astro  # EN/TR language switcher
+│   │   └── LanguageBanner.astro  # Browser language suggestion banner
+│   │
+│   ├── components/product/       # 8 shared product section components
+│   │   ├── ProductHero.astro     # Hero with category badge & title highlight
+│   │   ├── OverviewSection.astro # Problem / approach / business value
+│   │   ├── CapabilitiesGrid.astro# Numbered capability cards
+│   │   ├── FeatureShowcase.astro # Feature section with image callout
+│   │   ├── UseCaseTabs.astro     # Tabbed use cases by industry
+│   │   ├── UseCaseCard.astro     # Individual use case card
+│   │   ├── JourneySection.astro  # Operational steps + integrations
+│   │   └── ProductCTA.astro      # Product call-to-action footer
+│   │
+│   ├── components/gamification/  # 11 interactive engagement components
+│   │   ├── ChallengeArena.astro  # 5-level SQL challenge with timer & hints
+│   │   ├── ContactFunMode.astro  # SQL-themed contact form
+│   │   ├── ROICalculator.astro   # Data value calculator with SVG gauges
+│   │   ├── ProductFitWizard.astro# 3-step product matching wizard
+│   │   ├── DataMaturityQuiz.astro# 5-question maturity assessment
+│   │   ├── SQLPlayground.astro   # Browser-based SQL executor
+│   │   └── ...                   # + 5 more (Constellation, DataFlow, etc.)
+│   │
+│   ├── content/
+│   │   └── products/
+│   │       ├── en/               # 11 English product YAML files
+│   │       └── tr/               # 11 Turkish product YAML files
+│   │
+│   ├── i18n/
+│   │   ├── config.ts             # Language configuration (EN, TR)
+│   │   ├── utils.ts              # useTranslations(), useTranslatedPath()
+│   │   └── locales/
+│   │       ├── en.json           # English translations (~1,200 keys)
+│   │       └── tr.json           # Turkish translations (~1,200 keys)
+│   │
 │   ├── layouts/
-│   │   └── Layout.astro        # Base HTML layout, SEO meta, JS animations
-│   ├── pages/
-│   │   ├── index.astro         # Homepage (Hero, Capabilities, Products, AI, CTA…)
-│   │   ├── products.astro      # 9 product cards across 3 categories
-│   │   ├── solutions.astro     # Capabilities, services, AI portfolio, DWH
-│   │   ├── about.astro         # Company story, values, timeline 2006–2025
-│   │   └── contact.astro       # Contact form + office details
-│   └── styles/
-│       └── global.css          # Design system: tokens, typography, components
+│   │   ├── Layout.astro          # Base HTML layout, SEO meta, JS animations
+│   │   └── ProductLayout.astro   # Product page template (Content Collections)
+│   │
+│   ├── pages/                    # English pages (no prefix)
+│   │   ├── index.astro
+│   │   ├── products.astro
+│   │   ├── products/[slug].astro # Dynamic product detail routes
+│   │   ├── solutions.astro
+│   │   ├── about.astro
+│   │   ├── contact.astro
+│   │   ├── careers.astro
+│   │   ├── academy.astro
+│   │   ├── clients.astro
+│   │   ├── insights.astro
+│   │   ├── partners.astro
+│   │   ├── data-platforms.astro
+│   │   ├── privacy.astro
+│   │   ├── terms.astro
+│   │   └── cookies.astro
+│   │
+│   ├── pages/[lang]/             # Turkish pages (/tr/ prefix)
+│   │   └── (mirrors all EN pages)
+│   │
+│   ├── styles/
+│   │   └── global.css            # Design system: tokens, typography, components
+│   │
+│   └── content.config.ts         # Content Collection schema (Zod)
 │
-├── astro.config.mjs            # Astro config (site URL, static output)
-├── Dockerfile                  # Multi-stage Docker build
-├── nginx.conf                  # Nginx config (gzip, cache, SPA routing)
-├── .dockerignore
+├── astro.config.mjs              # Astro config (site URL, i18n, redirects)
+├── Dockerfile                    # Multi-stage Docker build
+├── nginx.conf                    # Nginx config (gzip, cache, SPA routing)
 └── package.json
 ```
 
@@ -110,42 +161,20 @@ The site uses a bespoke CSS design system defined in `src/styles/global.css`:
 
 ### Prerequisites
 
-Node.js is installed via **Chocolatey** on Windows. Use `.cmd` variants or prepend the path:
-
-```powershell
-# One-time: install Chocolatey
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-# Install Node.js
-choco install nodejs
-```
+- **Node.js v24** — install via [nvm](https://github.com/nvm-sh/nvm), [fnm](https://github.com/Schniz/fnm), or your package manager
 
 ### Commands
 
-Run all commands from the project root. On Windows with Chocolatey Node, prefix with the path:
-
-```powershell
-$env:PATH = "C:\Program Files\nodejs;" + $env:PATH
-```
-
-or 
-```powershell
-$env:PATH = "C:\Program Files\nodejs;" + $env:PATH; & "C:\Program Files\nodejs\npm" run dev
-```
-
 | Command | Action |
 |---------|--------|
-| `npm.cmd install` | Install dependencies |
-| `npm.cmd run dev` | Start dev server → `http://localhost:4321` |
-| `npm.cmd run build` | Build static site to `./dist/` |
-| `npm.cmd run preview` | Preview production build locally |
-| `npm.cmd run astro -- check` | Type-check all `.astro` files |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server → `http://localhost:4321` |
+| `npm run build` | Build static site to `./dist/` |
+| `npm run preview` | Preview production build locally |
 
-**Quick start (copy-paste):**
-```powershell
-$env:PATH = "C:\Program Files\nodejs;" + $env:PATH; & "C:\Program Files\nodejs\npm.cmd" run dev
+**Quick start:**
+```bash
+npm install && npm run dev
 ```
 
 ---
@@ -210,15 +239,73 @@ push to release/*
 
 ---
 
+## 🌐 Internationalization (i18n)
+
+The site supports **English** (default) and **Turkish** with Astro's native i18n routing:
+
+- English pages live at root: `/products`, `/about`, `/contact`
+- Turkish pages use `/tr/` prefix: `/tr/products`, `/tr/about`, `/tr/contact`
+- Translation keys stored in `src/i18n/locales/en.json` and `tr.json` (~1,200 keys each)
+- `LanguagePicker` component for manual switching
+- `LanguageBanner` auto-suggests the visitor's browser language
+- Old URLs redirect via `astro.config.mjs` (`/about-us` → `/about`, `/our-products` → `/products`, etc.)
+
+---
+
+## 📦 Content Collections
+
+Product detail pages are powered by **Astro Content Collections** with YAML data files:
+
+- **22 YAML files** — 11 products × 2 languages (`src/content/products/en/` and `tr/`)
+- **Zod schema** in `src/content.config.ts` enforces type-safe structure
+- **ProductLayout** (`src/layouts/ProductLayout.astro`) renders all product pages
+- **8 shared components** (`src/components/product/`) — Hero, Overview, Capabilities, Features, Use Cases, Journey, Integration, CTA
+
+**Products:** IFDM, ITDM, HRDM, ICC, ReTouch, Retable, Orqenta, Talk To, Blue Octopus, VAR, Procurement Price Prediction
+
+---
+
+## 🎮 Gamification
+
+11 interactive components in `src/components/gamification/` built with **vanilla JS** (no framework dependencies):
+
+| Component | Description |
+|-----------|-------------|
+| **ChallengeArena** | 5-progressive SQL challenges with timer, hints & confetti |
+| **ContactFunMode** | SQL-themed contact form with chat icebreaker & pipeline animation |
+| **ROICalculator** | "What's Your Data Worth?" calculator with SVG gauges |
+| **ProductFitWizard** | 3-step product matching wizard (industry → challenge → priority) |
+| **DataMaturityQuiz** | 5-question assessment with radar chart visualization |
+| **SQLPlayground** | Browser-based SQL query executor |
+| **ProductConstellation** | Visual product relationship mapper |
+| **DataFlowStory** | Interactive data journey narrative |
+| **EasterEggTerminal** | Hidden CLI-style terminal easter egg |
+| **PipelineBuilder** | Drag-and-drop workflow constructor |
+| **ReadingPaths** | Personalized content recommendation paths |
+
+All components support keyboard navigation, `prefers-reduced-motion`, and ARIA labels.
+
+---
+
 ## 📄 Pages
 
-| Route | Description |
-|-------|-------------|
-| `/` | Homepage — Hero, Capabilities, Global Impact, Clients, Products, AI Solutions, How We Work, Testimonials, CTA |
-| `/products` | 9 licensed products across 3 categories (Data Models, Governance, AI) |
-| `/solutions` | Capabilities, 4 service models, AI portfolio, DWH transformation |
-| `/about` | Company story, values, timeline 2006–2025 |
-| `/contact` | Contact form + office address, phone, LinkedIn |
+| Route (EN) | Route (TR) | Description |
+|------------|------------|-------------|
+| `/` | `/tr` | Homepage — Hero, Capabilities, Global Impact, Clients, Products, AI, CTA |
+| `/about` | `/tr/about` | Company story, values, timeline 2006–2025 |
+| `/products` | `/tr/products` | 11 product cards across 3 categories |
+| `/products/[slug]` | `/tr/products/[slug]` | Product detail pages (Content Collections) |
+| `/solutions` | `/tr/solutions` | Capabilities, service models, AI portfolio, DWH |
+| `/data-platforms` | `/tr/data-platforms` | Data platform services |
+| `/contact` | `/tr/contact` | Contact form (classic + fun mode) + office details |
+| `/careers` | `/tr/careers` | Career opportunities |
+| `/academy` | `/tr/academy` | Academy program + Challenge Arena |
+| `/clients` | `/tr/clients` | Client portfolio |
+| `/insights` | `/tr/insights` | Blog / thought leadership |
+| `/partners` | `/tr/partners` | Partner ecosystem |
+| `/privacy` | `/tr/privacy` | Privacy policy |
+| `/terms` | `/tr/terms` | Terms and conditions |
+| `/cookies` | `/tr/cookies` | Cookie policy |
 
 ---
 
