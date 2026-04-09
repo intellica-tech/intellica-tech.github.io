@@ -1,0 +1,44 @@
+---
+interface Props {
+  card: {
+    title: string;
+    badges: string[];
+    scenario?: string;
+    interventionLabel: string;
+    interventionItems: string[];
+    impactLabel: string;
+    impactItems: string[];
+  };
+}
+
+const { card } = Astro.props;
+---
+<div class="use-case-card-alt">
+  {card.badges.length > 0 && (
+    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+      {card.badges.map((badge, i) => (
+        <span style={`font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; ${i === 0 ? 'background: rgba(0, 200, 150, 0.1); color: var(--clr-primary);' : 'background: #f1f5f9; color: #64748b;'}`}>
+          {badge}
+        </span>
+      ))}
+    </div>
+  )}
+  <h4>{card.title}</h4>
+  {card.scenario && <p class="scenario">{card.scenario}</p>}
+  <div class="uc-section">
+    <p class="uc-label">{card.interventionLabel}</p>
+    <ul class="uc-list">
+      {card.interventionItems.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </div>
+  <div class="uc-section">
+    <p class="uc-label uc-label--impact">{card.impactLabel}</p>
+    <ul class="uc-list">
+      {card.impactItems.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </div>
+</div>

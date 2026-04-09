@@ -1,0 +1,202 @@
+---
+import UseCaseCard from './UseCaseCard.astro';
+
+interface Props {
+  useCases: {
+    label: string;
+    heading: string;
+    headingHighlight: string;
+    subtitle?: string;
+    tabs: {
+      id: string;
+      label: string | null;
+      cards: {
+        title: string;
+        badges: string[];
+        scenario?: string;
+        interventionLabel: string;
+        interventionItems: string[];
+        impactLabel: string;
+        impactItems: string[];
+      }[];
+    }[];
+  };
+}
+
+const { useCases } = Astro.props;
+const hasTabs = useCases.tabs.length > 1 || useCases.tabs[0]?.label !== null;
+---
+<section class="section section--light" id="use-cases">
+  <div class="container">
+    <div class="text-center anim-fade-up" style="margin-bottom: 48px;">
+      <div class="section-label" style="margin-inline: auto;">{useCases.label}</div>
+      <h2 class="section-title" style="color: var(--clr-light-text);">{useCases.heading} <span class="grad-text">{useCases.headingHighlight}</span></h2>
+      {useCases.subtitle && <p class="section-sub">{useCases.subtitle}</p>}
+    </div>
+
+    {hasTabs ? (
+      <div class="tabs-container anim-fade-up">
+        <div class="tabs-nav">
+          {useCases.tabs.map((tab, i) => (
+            <button class={`tab-btn${i === 0 ? ' active' : ''}`} data-tab={tab.id}>{tab.label}</button>
+          ))}
+        </div>
+
+        {useCases.tabs.map((tab, i) => (
+          <div id={tab.id} class={`tab-content${i === 0 ? ' active' : ''}`}>
+            {tab.cards.length === 1 ? (
+              <div style="display: flex; justify-content: center;">
+                <div style="max-width: 800px; width: 100%;">
+                  <UseCaseCard card={tab.cards[0]} />
+                </div>
+              </div>
+            ) : (
+              <div class="grid-2" style="gap: 32px;">
+                {tab.cards.map((card) => (
+                  <UseCaseCard card={card} />
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="anim-fade-up">
+        {useCases.tabs[0].cards.length === 1 ? (
+          <div style="display: flex; justify-content: center;">
+            <div style="max-width: 800px; width: 100%;">
+              <UseCaseCard card={useCases.tabs[0].cards[0]} />
+            </div>
+          </div>
+        ) : (
+          <div class="grid-2" style="gap: 32px;">
+            {useCases.tabs[0].cards.map((card) => (
+              <UseCaseCard card={card} />
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+.use-case-card-alt {
+  background: #fff;
+  border: 1px solid #E8EEF5;
+  border-radius: 24px;
+  padding: 40px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+.use-case-card-alt:hover {
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+.use-case-card-alt h4 {
+  font-size: 1.25rem;
+  color: var(--clr-light-text);
+  margin-bottom: 20px;
+}
+.use-case-card-alt .scenario {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+.uc-section { margin-bottom: 24px; }
+.uc-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--clr-primary);
+  margin-bottom: 16px;
+}
+.uc-label--impact { color: #10B981; }
+.uc-list { list-style: none; padding: 0; }
+.uc-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--clr-light-muted);
+}
+.uc-list li::before {
+  content: '\2022';
+  position: absolute; left: 0; color: var(--clr-primary);
+}
+.tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 12px 24px;
+  border-radius: 99px;
+  border: 1px solid #E2E8F0;
+  background: #fff;
+  color: #64748B;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+.tab-btn.active {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 200, 150, 0.25);
+}
+.tab-content {
+  display: none;
+  animation: useCaseFadeIn 0.5s ease;
+}
+.tab-content.active {
+  display: block;
+}
+@keyframes useCaseFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 768px) {
+  .tabs-nav {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 4px 10px 12px;
+    margin-bottom: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+</style>
+
+<script is:inline>
+  document.querySelectorAll('.tabs-container').forEach(container => {
+    container.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(target)?.classList.add('active');
+      });
+    });
+  });
+</script>

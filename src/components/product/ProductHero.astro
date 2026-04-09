@@ -1,0 +1,28 @@
+---
+import type { Lang } from '../../i18n/config';
+import { useTranslations, useTranslatedPath } from '../../i18n/utils';
+
+interface Props {
+  hero: {
+    category: string;
+    titlePrefix: string;
+    titleHighlight: string;
+    description: string;
+  };
+  lang: Lang;
+}
+
+const { hero, lang } = Astro.props;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+---
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label anim-fade-up">{hero.category}</div>
+    <h1 class="anim-fade-up">{hero.titlePrefix} <span class="grad-text">{hero.titleHighlight}</span></h1>
+    <p class="anim-fade-up">{hero.description}</p>
+    <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
+      <a href={tp('/contact')} class="btn btn-primary btn-pill btn-lg">{t('productLayout.cta.primary')}</a>
+    </div>
+  </div>
+</section>

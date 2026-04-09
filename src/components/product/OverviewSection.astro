@@ -1,0 +1,49 @@
+---
+import type { Lang } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  overview: {
+    problem: string;
+    approach: string;
+    businessValue: string;
+    whenPreferred: string[];
+    preferredNote: string;
+  };
+  lang: Lang;
+}
+
+const { overview, lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<section class="section section--white">
+  <div class="container">
+    <div class="grid-2" style="gap: 48px; align-items: start;">
+      <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px;">
+        <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">{t('productLayout.overview.title')} <span class="grad-text">{t('productLayout.overview.titleHighlight')}</span></h2>
+        <div style="margin-bottom: 24px;">
+          <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">{t('productLayout.overview.problemLabel')}</p>
+          <p style="color: var(--clr-light-muted);">{overview.problem}</p>
+        </div>
+        <div style="margin-bottom: 24px;">
+          <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">{t('productLayout.overview.approachLabel')}</p>
+          <p style="color: var(--clr-light-muted);">{overview.approach}</p>
+        </div>
+        <div>
+          <p style="font-weight: 700; color: var(--clr-light-text); margin-bottom: 8px;">{t('productLayout.overview.valueLabel')}</p>
+          <p style="color: var(--clr-light-muted);">{overview.businessValue}</p>
+        </div>
+      </div>
+
+      <div class="card-light anim-fade-up" style="padding: 40px; border-radius: 24px; background: #f8fafc;">
+        <h3 style="color: var(--clr-light-text); margin-bottom: 24px;">{t('productLayout.overview.whenTitle')} <span class="grad-text">{t('productLayout.overview.whenTitleHighlight')}</span></h3>
+        <ul class="check-list">
+          {overview.whenPreferred.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p style="font-size: 0.85rem; color: var(--clr-light-muted); margin-top: 24px; font-style: italic;">{overview.preferredNote}</p>
+      </div>
+    </div>
+  </div>
+</section>

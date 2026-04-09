@@ -1,0 +1,91 @@
+---
+interface Props {
+  journey: {
+    heading: string;
+    headingHighlight: string;
+    description?: string;
+    steps: { number: string; title: string; description: string }[];
+  };
+  integration?: {
+    heading: string;
+    headingHighlight: string;
+    description: string;
+    items: string[];
+  };
+}
+
+const { journey, integration } = Astro.props;
+---
+<section class="section section--white">
+  <div class="container">
+    <div class="grid-2" style="gap: 60px;">
+      <div class="anim-fade-up">
+        <h2 style="color: var(--clr-light-text); margin-bottom: 32px;">{journey.heading} <span class="grad-text">{journey.headingHighlight}</span></h2>
+        {journey.description && <p style="color: var(--clr-light-muted); margin-bottom: 24px;">{journey.description}</p>}
+        <div class="step-list">
+          {journey.steps.map((step) => (
+            <div class="step-item">
+              <span class="step-num">{step.number}</span>
+              <div>
+                <h6>{step.title}</h6>
+                <p>{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {integration && (
+        <div class="anim-fade-up">
+          <h2 style="color: var(--clr-light-text); margin-bottom: 24px;">{integration.heading} <span class="grad-text">{integration.headingHighlight}</span></h2>
+          <p style="color: var(--clr-light-muted); margin-bottom: 24px;">{integration.description}</p>
+          <ul class="bullet-list">
+            {integration.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+.check-list, .bullet-list {
+  list-style: none; padding: 0; margin: 0;
+}
+.check-list li, .bullet-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  color: var(--clr-light-muted);
+  font-size: 0.95rem;
+}
+.check-list li::before {
+  content: '\2713';
+  position: absolute; left: 0; top: 0;
+  color: var(--clr-primary); font-weight: bold;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clr-primary);
+}
+.step-list { display: flex; flex-direction: column; gap: 32px; }
+.step-item { display: flex; gap: 24px; align-items: flex-start; }
+.step-num {
+  font-size: 2rem; font-weight: 800;
+  color: rgba(0,200,150,0.15);
+  line-height: 1;
+}
+.step-item h6 {
+  font-size: 1.1rem; color: var(--clr-light-text);
+  margin-bottom: 8px;
+}
+.step-item p { font-size: 0.95rem; color: var(--clr-light-muted); }
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+</style>
