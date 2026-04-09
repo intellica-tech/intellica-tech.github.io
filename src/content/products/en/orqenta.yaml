@@ -111,7 +111,7 @@ useCases:
           interventionItems:
             - "Dynamic readiness checks for high-volume data files."
             - "Early warning signals for upstream bottlenecks."
-            - "Automated eskalation to prevent billing cycle delays."
+            - "Automated escalation to prevent billing cycle delays."
           impactLabel: "BUSINESS IMPACT"
           impactItems:
             - "Minimized risk of revenue leakage and billing errors."

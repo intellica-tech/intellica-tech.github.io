@@ -29,9 +29,14 @@ const basePath = Astro.url.pathname.replace(localePattern, '/');
 <script is:inline define:vars={{ currentLang, defaultLang, langNames, supportedLangs, basePath }}>
 (function() {
   var STORAGE_KEY = 'lang-banner-dismissed';
-  if (localStorage.getItem(STORAGE_KEY)) return;
+  try {
+    if (localStorage.getItem(STORAGE_KEY)) return;
+  } catch (e) {
+    return;
+  }
 
-  var consent = localStorage.getItem('ga_consent');
+  var consent;
+  try { consent = localStorage.getItem('ga_consent'); } catch (e) { consent = null; }
   var delay = consent === null ? 4000 : 1500;
 
   setTimeout(function() {
@@ -64,7 +69,7 @@ const basePath = Astro.url.pathname.replace(localePattern, '/');
   }, delay);
 
   document.getElementById('lang-banner-dismiss')?.addEventListener('click', function() {
-    localStorage.setItem(STORAGE_KEY, 'true');
+    try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (e) {}
     var banner = document.getElementById('lang-banner');
     if (banner) {
       banner.classList.remove('visible');

@@ -70,7 +70,7 @@ const products = defineCollection({
         id: z.string(),
         label: z.string().nullable(),
         cards: z.array(useCaseCardSchema),
-      })),
+      })).min(1),
     }).optional(),
 
     journey: z.object({

@@ -195,7 +195,7 @@ const hasTabs = useCases.tabs.length > 1 || useCases.tabs[0]?.label !== null;
         container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById(target)?.classList.add('active');
+        container.querySelector('#' + target)?.classList.add('active');
       });
     });
   });

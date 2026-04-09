@@ -142,7 +142,7 @@ integration:
   items:
     - "Native log ingestion (syslog, app logs, security appliances)"
     - "Bidirectional SIEM/SOAR and ticketing system integration"
-    - "Granular SSO/LDAP based role-base access (RBAC)"
+    - "Granular SSO/LDAP based role-based access (RBAC)"
     - "Direct connection to DWH and Data Lake layers"
     - "Advanced UI for custom BI and dashboarding integration"
 

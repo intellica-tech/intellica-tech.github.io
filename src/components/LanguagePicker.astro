@@ -20,7 +20,7 @@ const currentPath = Astro.url.pathname.replace(localePattern, '/');
         href={href}
         class:list={['lang-option', { active: isActive }]}
         hreflang={code}
-        aria-current={isActive ? 'true' : undefined}
+        aria-current={isActive ? 'page' : undefined}
         aria-label={`Switch to ${name}`}
       >
         {code.toUpperCase()}
