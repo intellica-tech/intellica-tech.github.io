@@ -13,7 +13,11 @@ const useCaseCardSchema = z.object({
 });
 
 const products = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/products' }),
+  loader: glob({
+    pattern: '**/*.yaml',
+    base: './src/content/products',
+    generateId: ({ entry }) => entry.replace(/\.yaml$/, '').replace(/\//g, '-'),
+  }),
   schema: z.object({
     slug: z.string(),
     lang: z.enum(['en', 'tr']),
