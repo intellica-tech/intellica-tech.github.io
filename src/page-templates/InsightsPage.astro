@@ -12,57 +12,110 @@ const tp = useTranslatedPath(lang);
 const siteUrl = "https://intellica.net";
 const breadcrumbs = [{ name: t('insights.breadcrumb'), url: `${siteUrl}${tp('/insights')}` }];
 
-const insights = [
-  {
-    title: "Why Trust Decreases as the Number of Dashboards Increases?",
-    desc: "Why does dashboard inflation actually hurt trust? A practical framework exploring definition drift, loss of lineage, and maintenance obesity.",
-    slug: "dashboard-guven",
-    time: "6 min",
-    date: "Feb 1, 2026",
-    topics: ["Data Governance", "Dashboard Governance", "Data Lineage", "Semantic Layer"]
-  },
-  {
-    title: "Why Manual Controls Are Still Alive: Excel Shelters in the Age of Data",
-    desc: "Why, in this golden age of data and automation, do manual controls remain a 'survival mechanism' for so many companies?",
-    slug: "manuel-kontroller",
-    time: "5 min",
-    date: "Feb 1, 2026",
-    topics: ["Data Quality", "Reconciliation", "Operational Risk", "Data Lineage"]
-  },
-  {
-    title: "Data Autopsy or Data Pulse? The Paradigm Shift in Early Warning Systems",
-    desc: "Standard reports are autopsies; true early warning is a data-in-motion discipline. Catching the pulse before the crisis arises with live tracking.",
-    slug: "verinin-nabzi",
-    time: "6 min",
-    date: "Feb 1, 2026",
-    topics: ["Early Warning", "Data Observability", "Anomaly Detection", "Event Correlation"]
-  },
-  {
-    title: "Business Analysis: The \"Reality Filter\" That Determines a Project's Fate",
-    desc: "Success starts before the code. A professional approach to clarify scope and reduce regression risk with 5W1H and impact analysis.",
-    slug: "is-analizi",
-    time: "7 min",
-    date: "Feb 1, 2026",
-    topics: ["Business Analysis", "Scope Management", "Impact Analysis", "CR Process"]
-  },
-  {
-    title: "When Does RAG (Retrieval) Work and When Does It Mislead?",
-    desc: "The success of RAG depends more on the quality of information access than the model: chunking, metadata, relevance, freshness, and attribution.",
-    slug: "rag-ne-zaman-ise-yarar",
-    time: "8 min",
-    date: "Feb 1, 2026",
-    topics: ["RAG", "GenAI", "Information Retrieval", "Document AI"]
-  },
-  {
-    title: "How to Establish a 'Trust Standard' in Enterprise GenAI?",
-    desc: "Trust in GenAI is built through processes, measurement, and governance. Leveraging attribution, access, evaluation, and traceability.",
-    slug: "genai-guven-standardi",
-    time: "9 min",
-    date: "Feb 1, 2026",
-    topics: ["GenAI", "Governance", "Security", "LLM Evaluation"]
-  }
-];
+const INSIGHTS_BY_LANG = {
+  en: [
+    {
+      title: "Why Trust Decreases as the Number of Dashboards Increases?",
+      desc: "Why does dashboard inflation actually hurt trust? A practical framework exploring definition drift, loss of lineage, and maintenance obesity.",
+      slug: "dashboard-guven",
+      time: "6 min",
+      date: "Feb 1, 2026",
+      topics: ["Data Governance", "Dashboard Governance", "Data Lineage", "Semantic Layer"]
+    },
+    {
+      title: "Why Manual Controls Are Still Alive: Excel Shelters in the Age of Data",
+      desc: "Why, in this golden age of data and automation, do manual controls remain a 'survival mechanism' for so many companies?",
+      slug: "manuel-kontroller",
+      time: "5 min",
+      date: "Feb 1, 2026",
+      topics: ["Data Quality", "Reconciliation", "Operational Risk", "Data Lineage"]
+    },
+    {
+      title: "Data Autopsy or Data Pulse? The Paradigm Shift in Early Warning Systems",
+      desc: "Standard reports are autopsies; true early warning is a data-in-motion discipline. Catching the pulse before the crisis arises with live tracking.",
+      slug: "verinin-nabzi",
+      time: "6 min",
+      date: "Feb 1, 2026",
+      topics: ["Early Warning", "Data Observability", "Anomaly Detection", "Event Correlation"]
+    },
+    {
+      title: "Business Analysis: The \"Reality Filter\" That Determines a Project's Fate",
+      desc: "Success starts before the code. A professional approach to clarify scope and reduce regression risk with 5W1H and impact analysis.",
+      slug: "is-analizi",
+      time: "7 min",
+      date: "Feb 1, 2026",
+      topics: ["Business Analysis", "Scope Management", "Impact Analysis", "CR Process"]
+    },
+    {
+      title: "When Does RAG (Retrieval) Work and When Does It Mislead?",
+      desc: "The success of RAG depends more on the quality of information access than the model: chunking, metadata, relevance, freshness, and attribution.",
+      slug: "rag-ne-zaman-ise-yarar",
+      time: "8 min",
+      date: "Feb 1, 2026",
+      topics: ["RAG", "GenAI", "Information Retrieval", "Document AI"]
+    },
+    {
+      title: "How to Establish a 'Trust Standard' in Enterprise GenAI?",
+      desc: "Trust in GenAI is built through processes, measurement, and governance. Leveraging attribution, access, evaluation, and traceability.",
+      slug: "genai-guven-standardi",
+      time: "9 min",
+      date: "Feb 1, 2026",
+      topics: ["GenAI", "Governance", "Security", "LLM Evaluation"]
+    }
+  ],
+  tr: [
+    {
+      title: "Dashboard Sayısı Arttıkça Güven Neden Azalır?",
+      desc: "Dashboard enflasyonu güveni neden zedeler? Tanım kayması, lineage kaybı ve bakım obezitesini ele alan pratik bir çerçeve.",
+      slug: "dashboard-guven",
+      time: "6 dk",
+      date: "1 Şub 2026",
+      topics: ["Veri Yönetişimi", "Dashboard Yönetişimi", "Veri Soy Ağacı", "Semantik Katman"]
+    },
+    {
+      title: "Manuel Kontroller Neden Hâlâ Hayatta: Veri Çağında Excel Sığınakları",
+      desc: "Bu veri ve otomasyon altın çağında manuel kontroller neden hâlâ birçok şirket için bir 'hayatta kalma mekanizması'?",
+      slug: "manuel-kontroller",
+      time: "5 dk",
+      date: "1 Şub 2026",
+      topics: ["Veri Kalitesi", "Mutabakat", "Operasyonel Risk", "Veri Soy Ağacı"]
+    },
+    {
+      title: "Veri Otopsisi mi, Verinin Nabzı mı? Erken Uyarı Sistemlerinde Paradigma Değişimi",
+      desc: "Standart raporlar otopsidir; gerçek erken uyarı hareket halindeki veri disiplinidir. Kriz çıkmadan nabzı yakalamak için canlı izleme.",
+      slug: "verinin-nabzi",
+      time: "6 dk",
+      date: "1 Şub 2026",
+      topics: ["Erken Uyarı", "Veri Gözlemlenebilirliği", "Anomali Tespiti", "Olay Korelasyonu"]
+    },
+    {
+      title: "İş Analizi: Bir Projenin Kaderini Belirleyen 'Gerçeklik Filtresi'",
+      desc: "Başarı koddan önce başlar. 5N1K ve etki analiziyle kapsamı netleştirip regresyon riskini azaltmaya profesyonel bir yaklaşım.",
+      slug: "is-analizi",
+      time: "7 dk",
+      date: "1 Şub 2026",
+      topics: ["İş Analizi", "Kapsam Yönetimi", "Etki Analizi", "CR Süreci"]
+    },
+    {
+      title: "RAG (Retrieval) Ne Zaman İşe Yarar, Ne Zaman Yanıltır?",
+      desc: "RAG'ın başarısı modelden çok bilgi erişiminin kalitesine bağlı: chunking, metadata, alaka, tazelik ve atıf.",
+      slug: "rag-ne-zaman-ise-yarar",
+      time: "8 dk",
+      date: "1 Şub 2026",
+      topics: ["RAG", "GenAI", "Bilgi Erişimi", "Document AI"]
+    },
+    {
+      title: "Kurumsal GenAI'da 'Güven Standardı' Nasıl Kurulur?",
+      desc: "GenAI'da güven; süreçler, ölçüm ve yönetişimle inşa edilir. Atıf, erişim, değerlendirme ve izlenebilirlikten faydalanma.",
+      slug: "genai-guven-standardi",
+      time: "9 dk",
+      date: "1 Şub 2026",
+      topics: ["GenAI", "Yönetişim", "Güvenlik", "LLM Değerlendirme"]
+    }
+  ]
+} as const;
 
+const insights = INSIGHTS_BY_LANG[lang];
 const allTopics = Array.from(new Set(insights.flatMap(i => i.topics))).sort();
 ---
 
