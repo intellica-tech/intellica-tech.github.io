@@ -161,6 +161,34 @@ const destinations = [
         </div>
       </div>
     </div>
+
+    <!-- Pipeline Insight Panel -->
+    <div class="pb-insight anim-fade-up" id="pb-insight" hidden>
+      <div class="pb-insight__card">
+        <div class="pb-insight__header">
+          <span class="pb-insight__label">PIPELINE TYPE</span>
+          <h3 class="pb-insight__title" id="pb-insight-title">Batch Analytics Pipeline</h3>
+          <span class="pb-insight__outcome" id="pb-insight-outcome">Analytics Foundation</span>
+        </div>
+        <div class="pb-insight__body">
+          <div class="pb-insight__section">
+            <h4>USE CASE</h4>
+            <p id="pb-insight-usecase"></p>
+          </div>
+          <div class="pb-insight__section">
+            <h4>BUSINESS IMPACT</h4>
+            <ul id="pb-insight-impact"></ul>
+          </div>
+          <div class="pb-insight__section">
+            <h4>INTELLICA SOLUTION</h4>
+            <ul id="pb-insight-solution"></ul>
+          </div>
+          <div class="pb-insight__cta">
+            <a class="btn btn-primary btn-pill uppercase-never" id="pb-insight-cta-link" href="/solutions">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Hidden SVG icon definitions -->
@@ -581,6 +609,104 @@ const destinations = [
     color: var(--clr-light-text);
   }
 
+  /* ── Pipeline Insight Panel ── */
+  .pb-insight {
+    margin-top: 40px;
+  }
+  .pb-insight__card {
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 720px;
+    margin-inline: auto;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+    animation: dmqSlideIn 0.4s ease both;
+  }
+  .pb-insight__header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+  }
+  .pb-insight__label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #10B981;
+  }
+  .pb-insight__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 6px 0 8px;
+  }
+  .pb-insight__outcome {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #94a3b8;
+    padding: 3px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .pb-insight__body {
+    padding: 24px 32px 32px;
+  }
+  .pb-insight__section {
+    margin-bottom: 20px;
+  }
+  .pb-insight__section h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #10B981;
+    margin-bottom: 8px;
+  }
+  .pb-insight__section p {
+    font-size: 0.92rem;
+    color: #ffffff;
+    line-height: 1.6;
+  }
+  .pb-insight__section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pb-insight__section :global(li) {
+    font-size: 0.88rem;
+    color: #ffffff !important;
+    padding-left: 16px;
+    position: relative;
+  }
+  .pb-insight__section :global(li)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+  }
+  .pb-insight__cta {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  @keyframes dmqSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 768px) {
+    .pb-insight__header, .pb-insight__body { padding-inline: 20px; }
+    .pb-insight__title { font-size: 1.2rem; }
+  }
+
   /* ── Reduced motion ────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
     .pb-canvas :global(.pb-node) {
@@ -696,6 +822,99 @@ const destinations = [
       runBtn.setAttribute('aria-disabled', String(!valid));
     }
 
+    // ── Pipeline Insight Panel ──
+    const insightPanel = document.getElementById('pb-insight');
+    const insightTitle = document.getElementById('pb-insight-title');
+    const insightOutcome = document.getElementById('pb-insight-outcome');
+    const insightUsecase = document.getElementById('pb-insight-usecase');
+    const insightImpact = document.getElementById('pb-insight-impact');
+    const insightSolution = document.getElementById('pb-insight-solution');
+    const insightCtaLink = document.getElementById('pb-insight-cta-link') as HTMLAnchorElement | null;
+
+    const pipelineTypes: Record<string, { title: string; outcome: string; useCase: string; impact: string[]; solution: string[]; cta: string; ctaUrl: string }> = {
+      ai: {
+        title: 'AI-Enabled Pipeline',
+        outcome: 'AI Enablement',
+        useCase: 'Use machine learning models to predict behavior, detect patterns, and support automated decisions.',
+        impact: ['Improve prediction accuracy', 'Enable smarter decision workflows', 'Prepare your platform for AI at scale'],
+        solution: ['AI-ready data pipelines', 'ML model integration', 'Scalable data platform foundation'],
+        cta: 'Discover AI Solutions →',
+        ctaUrl: '/solutions'
+      },
+      realtime: {
+        title: 'Real-Time Pipeline',
+        outcome: 'Real-Time Visibility',
+        useCase: 'Ingest and process live data to support time-sensitive analytics and operational decisions.',
+        impact: ['Reduce latency in decision-making', 'Improve visibility across channels', 'Respond faster to changing events'],
+        solution: ['Real-time data ingestion', 'Streaming architecture design', 'Scalable processing pipelines'],
+        cta: 'Explore Real-Time Platforms →',
+        ctaUrl: '/data-platforms'
+      },
+      monitoring: {
+        title: 'Operational Monitoring Pipeline',
+        outcome: 'Operational Intelligence',
+        useCase: 'Track operational events continuously and trigger alerts when critical thresholds are reached.',
+        impact: ['Detect issues earlier', 'Reduce operational risk', 'Improve SLA and service continuity'],
+        solution: ['Event detection and alerting', 'Monitoring dashboards', 'Action management workflows'],
+        cta: 'See Monitoring Solutions →',
+        ctaUrl: '/solutions'
+      },
+      batch: {
+        title: 'Batch Analytics Pipeline',
+        outcome: 'Analytics Foundation',
+        useCase: 'Consolidate data from enterprise systems and transform it into trusted reporting and analysis.',
+        impact: ['Build a single source of truth', 'Improve reporting consistency', 'Create a scalable analytics foundation'],
+        solution: ['Enterprise data warehouse design', 'Data quality and consistency frameworks', 'Reporting and semantic layer'],
+        cta: 'Learn About Data Platforms →',
+        ctaUrl: '/data-platforms'
+      }
+    };
+
+    function detectPipelineType(): string {
+      const transformNames = state.transform.map(t => t.name);
+      const sourceNames = state.source.map(s => s.name);
+      const destNames = state.destination.map(d => d.name);
+      if (transformNames.includes('ML Model')) return 'ai';
+      if (sourceNames.includes('API') || sourceNames.includes('Streaming')) return 'realtime';
+      if (destNames.includes('Alert System')) return 'monitoring';
+      return 'batch';
+    }
+
+    function updateInsightPanel() {
+      if (!insightPanel || !insightTitle) return;
+      const total = state.source.length + state.transform.length + state.destination.length;
+      if (total === 0) {
+        insightPanel.hidden = true;
+        return;
+      }
+      insightPanel.hidden = false;
+      const typeKey = detectPipelineType();
+      const data = pipelineTypes[typeKey];
+      insightTitle.textContent = data.title;
+      if (insightOutcome) insightOutcome.textContent = data.outcome;
+      if (insightUsecase) insightUsecase.textContent = data.useCase;
+      if (insightImpact) {
+        insightImpact.innerHTML = '';
+        data.impact.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          insightImpact.appendChild(li);
+        });
+      }
+      if (insightSolution) {
+        insightSolution.innerHTML = '';
+        data.solution.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          insightSolution.appendChild(li);
+        });
+      }
+      if (insightCtaLink) {
+        insightCtaLink.textContent = data.cta;
+        insightCtaLink.href = data.ctaUrl;
+      }
+    }
+
     // Update empty state
     function updateEmpty() {
       const total = state.source.length + state.transform.length + state.destination.length;
@@ -770,6 +989,7 @@ const destinations = [
       updateRunBtn();
       updateEmpty();
       updateChips();
+      updateInsightPanel();
       requestAnimationFrame(() => drawConnections());
     }
 
@@ -785,6 +1005,7 @@ const destinations = [
       updateRunBtn();
       updateEmpty();
       updateChips();
+      updateInsightPanel();
       requestAnimationFrame(() => drawConnections());
     }
 

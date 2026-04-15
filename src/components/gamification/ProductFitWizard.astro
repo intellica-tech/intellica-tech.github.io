@@ -417,7 +417,7 @@ const productsJson = JSON.stringify(products);
         // Focus the first option button in this step
         var firstOption = stepEls[index].querySelector(".pfw-option");
         if (firstOption) {
-          firstOption.focus();
+          firstOption.focus({ preventScroll: true });
         }
       }
       // Update progress
@@ -513,7 +513,7 @@ const productsJson = JSON.stringify(products);
       var resultTitle = resultPanel.querySelector(".pfw-result__title");
       if (resultTitle) {
         resultTitle.setAttribute("tabindex", "-1");
-        resultTitle.focus();
+        resultTitle.focus({ preventScroll: true });
       }
     }
 
