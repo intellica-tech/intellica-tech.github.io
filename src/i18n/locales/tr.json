@@ -621,7 +621,7 @@
 
   "solutions.portfolio.group4.label": "Operasyonel YZ",
   "solutions.portfolio.group4.imgAlt": "Operasyonel YZ",
-  "solutions.portfolio.defectSolver.title": "YZ Arıza Çözücü",
+  "solutions.portfolio.defectSolver.title": "Önleyici Bakım",
   "solutions.portfolio.defectSolver.desc": "Duruş süresini azaltmak ve üretim verimliliğini artırmak için arızaları önceden tahmin eder.",
   "solutions.portfolio.rollingForce.title": "Haddeleme Kuvveti Optimizasyonu",
   "solutions.portfolio.rollingForce.desc": "Paso sayısını, enerji kullanımını azaltmak ve çıktı kalitesini artırmak için üretim parametrelerini optimize eder.",

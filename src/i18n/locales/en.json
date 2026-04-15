@@ -621,7 +621,7 @@
 
   "solutions.portfolio.group4.label": "Operational AI",
   "solutions.portfolio.group4.imgAlt": "Operational AI",
-  "solutions.portfolio.defectSolver.title": "AI Defect Solver",
+  "solutions.portfolio.defectSolver.title": "Preventive Maintenance",
   "solutions.portfolio.defectSolver.desc": "Predicts failures in advance to reduce downtime and improve production efficiency.",
   "solutions.portfolio.rollingForce.title": "Rolling Force Optimization",
   "solutions.portfolio.rollingForce.desc": "Optimizes production parameters to reduce passes, energy use and improve output quality.",
