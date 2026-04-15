@@ -5,8 +5,12 @@
  * Five progressive challenges with keyword-based validation,
  * styled code editor, table previews, timer, and celebration animation.
  */
+import type { Lang } from '../../i18n/config';
 
-const challenges = [
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+const CHALLENGES_EN = [
   {
     id: 1,
     title: "Select all customers from Istanbul",
@@ -110,25 +114,125 @@ const challenges = [
   },
 ];
 
+const CHALLENGES_TR = [
+  {
+    id: 1,
+    title: "İstanbul'daki tüm müşterileri listele",
+    tables: CHALLENGES_EN[0].tables,
+    keywords: CHALLENGES_EN[0].keywords,
+    hint: "SELECT ... FROM ... WHERE ... kullan",
+  },
+  {
+    id: 2,
+    title: "Her bölge için toplam satışı bul",
+    tables: CHALLENGES_EN[1].tables,
+    keywords: CHALLENGES_EN[1].keywords,
+    hint: "GROUP BY ile bir agregasyon fonksiyonu kullan",
+  },
+  {
+    id: 3,
+    title: "orders tablosunu customers ile join'le",
+    tables: CHALLENGES_EN[2].tables,
+    keywords: CHALLENGES_EN[2].keywords,
+    hint: "Tabloları birleştirmek için JOIN ... ON kullan",
+  },
+  {
+    id: 4,
+    title: "Gelire göre ilk 3 ürünü bul",
+    tables: CHALLENGES_EN[3].tables,
+    keywords: CHALLENGES_EN[3].keywords,
+    hint: "ORDER BY ... DESC ile birlikte LIMIT kullan",
+  },
+  {
+    id: 5,
+    title: "Günlük satışların kümülatif toplamını hesapla",
+    tables: CHALLENGES_EN[4].tables,
+    keywords: CHALLENGES_EN[4].keywords,
+    hint: "Window fonksiyonu kullan: SUM() OVER(ORDER BY ...)",
+  },
+];
+
+const STRINGS = {
+  en: {
+    sectionLabel: 'TEST YOUR SKILLS',
+    titlePrefix: 'SQL ',
+    titleHighlight: 'Challenge Arena',
+    subtitle: 'Put your SQL knowledge to the test with five progressive challenges. Write queries, get instant feedback, and prove you are ready for the academy.',
+    counterTpl: 'Challenge {n} of {total}',
+    timerAria: 'Elapsed time',
+    editorLabel: 'Your SQL Query',
+    editorAria: 'SQL query editor',
+    editorPlaceholder: '-- Write your SQL query here...',
+    runBtn: 'Run Query',
+    hintBtn: 'Show Hint',
+    nextBtn: 'Next Challenge →',
+    completionTitle: 'Challenge Complete!',
+    completionMsg: 'You have demonstrated solid SQL skills. Take the next step and apply to the Intellica Academy.',
+    applyBtn: 'Apply to the Academy',
+    applyHref: '/contact',
+    emptyError: 'Please write a SQL query before running.',
+    correctMsg: 'Correct! Well done.',
+    wrongMsg: 'Not quite right. Check the expected keywords and try again.',
+    hintPrefix: 'Hint: ',
+    scoreTpl: '{score} out of {total} correct',
+    completedInTpl: 'Completed in {time}',
+  },
+  tr: {
+    sectionLabel: 'KENDİNİ SINA',
+    titlePrefix: 'SQL ',
+    titleHighlight: 'Challenge Arena',
+    subtitle: 'Beş aşamalı challenge ile SQL bilginizi sınayın. Sorgu yazın, anında geri bildirim alın ve akademiye hazır olduğunuzu kanıtlayın.',
+    counterTpl: 'Challenge {n}/{total}',
+    timerAria: 'Geçen süre',
+    editorLabel: 'SQL Sorgunuz',
+    editorAria: 'SQL sorgu editörü',
+    editorPlaceholder: '-- SQL sorgunuzu buraya yazın...',
+    runBtn: 'Sorguyu Çalıştır',
+    hintBtn: 'İpucu Göster',
+    nextBtn: 'Sıradaki Challenge →',
+    completionTitle: 'Challenge Tamamlandı!',
+    completionMsg: 'Sağlam bir SQL becerisi sergilediniz. Bir sonraki adımı atın ve Intellica Akademi\u2019ye başvurun.',
+    applyBtn: 'Akademiye Başvur',
+    applyHref: '/tr/contact',
+    emptyError: 'Çalıştırmadan önce bir SQL sorgusu yazın.',
+    correctMsg: 'Doğru! Aferin.',
+    wrongMsg: 'Pek doğru değil. Beklenen anahtar kelimeleri kontrol edip tekrar deneyin.',
+    hintPrefix: 'İpucu: ',
+    scoreTpl: '{total} soruda {score} doğru',
+    completedInTpl: '{time} sürede tamamlandı',
+  },
+} as const;
+
+const t = STRINGS[lang];
+const challenges = lang === 'tr' ? CHALLENGES_TR : CHALLENGES_EN;
+
 const challengeDataJSON = JSON.stringify(challenges);
+const caStrings = JSON.stringify({
+  counterTpl: t.counterTpl,
+  emptyError: t.emptyError,
+  correctMsg: t.correctMsg,
+  wrongMsg: t.wrongMsg,
+  hintPrefix: t.hintPrefix,
+  scoreTpl: t.scoreTpl,
+  completedInTpl: t.completedInTpl,
+});
 ---
 
-<section class="section challenge-arena" id="challenge-arena">
+<section class="section challenge-arena" id="challenge-arena" data-ca-strings={caStrings}>
   <div class="container">
     <div class="text-center anim-fade-up">
-      <div class="section-label" style="margin-inline:auto;">TEST YOUR SKILLS</div>
-      <h2 class="section-title">SQL <span class="grad-text">Challenge Arena</span></h2>
+      <div class="section-label" style="margin-inline:auto;">{t.sectionLabel}</div>
+      <h2 class="section-title">{t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span></h2>
       <p class="challenge-arena__sub">
-        Put your SQL knowledge to the test with five progressive challenges.
-        Write queries, get instant feedback, and prove you are ready for the academy.
+        {t.subtitle}
       </p>
     </div>
 
     <div class="challenge-arena__card anim-fade-up" id="ca-card">
       <!-- Header bar -->
       <div class="ca-header">
-        <div class="ca-counter" id="ca-counter" aria-live="polite">Challenge 1 of 5</div>
-        <div class="ca-timer" id="ca-timer" aria-label="Elapsed time">00:00</div>
+        <div class="ca-counter" id="ca-counter" aria-live="polite">{t.counterTpl.replace('{n}', '1').replace('{total}', String(challenges.length))}</div>
+        <div class="ca-timer" id="ca-timer" aria-label={t.timerAria}>00:00</div>
       </div>
 
       <!-- Challenge title -->
@@ -139,7 +243,7 @@ const challengeDataJSON = JSON.stringify(challenges);
 
       <!-- Code editor -->
       <div class="ca-editor-wrap">
-        <div class="ca-editor-label">Your SQL Query</div>
+        <div class="ca-editor-label">{t.editorLabel}</div>
         <textarea
           id="ca-editor"
           class="ca-editor"
@@ -147,8 +251,8 @@ const challengeDataJSON = JSON.stringify(challenges);
           autocomplete="off"
           autocorrect="off"
           autocapitalize="off"
-          aria-label="SQL query editor"
-          placeholder="-- Write your SQL query here..."
+          aria-label={t.editorAria}
+          placeholder={t.editorPlaceholder}
           rows="5"
         ></textarea>
       </div>
@@ -156,10 +260,10 @@ const challengeDataJSON = JSON.stringify(challenges);
       <!-- Actions -->
       <div class="ca-actions">
         <button class="btn btn-primary btn-pill ca-run-btn" id="ca-run" type="button">
-          Run Query
+          {t.runBtn}
         </button>
         <button class="btn btn-ghost ca-hint-btn" id="ca-hint" type="button">
-          Show Hint
+          {t.hintBtn}
         </button>
       </div>
 
@@ -168,7 +272,7 @@ const challengeDataJSON = JSON.stringify(challenges);
 
       <!-- Next button (hidden by default) -->
       <button class="btn btn-primary btn-pill ca-next-btn" id="ca-next" type="button" style="display:none;">
-        Next Challenge &rarr;
+        {t.nextBtn}
       </button>
     </div>
 
@@ -177,13 +281,13 @@ const challengeDataJSON = JSON.stringify(challenges);
       <div class="ca-particles" id="ca-particles"></div>
       <div class="ca-completion-inner">
         <div class="ca-trophy">&#9733;</div>
-        <h3 class="ca-completion-title">Challenge Complete!</h3>
+        <h3 class="ca-completion-title">{t.completionTitle}</h3>
         <p class="ca-completion-score" id="ca-score"></p>
         <p class="ca-completion-time" id="ca-final-time"></p>
         <p class="ca-completion-msg">
-          You have demonstrated solid SQL skills. Take the next step and apply to the Intellica Academy.
+          {t.completionMsg}
         </p>
-        <a href="/contact" class="btn btn-primary btn-pill btn-lg ca-apply-btn">Apply to the Academy</a>
+        <a href={t.applyHref} class="btn btn-primary btn-pill btn-lg ca-apply-btn">{t.applyBtn}</a>
       </div>
     </div>
   </div>
@@ -597,9 +701,10 @@ const challengeDataJSON = JSON.stringify(challenges);
   }
 </style>
 
-<script define:vars={{ challengeDataJSON }}>
+<script define:vars={{ challengeDataJSON, caStrings }}>
   (function () {
     var challenges = JSON.parse(challengeDataJSON);
+    var caS = JSON.parse(caStrings);
     var currentIndex = 0;
     var score = 0;
     var timerInterval = null;
@@ -694,7 +799,7 @@ const challengeDataJSON = JSON.stringify(challenges);
       var ch = challenges[currentIndex];
       challengeSolved = false;
 
-      counter.textContent = "Challenge " + (currentIndex + 1) + " of " + challenges.length;
+      counter.textContent = caS.counterTpl.replace('{n}', String(currentIndex + 1)).replace('{total}', String(challenges.length));
       title.textContent = ch.title;
 
       // Clear tables
@@ -776,7 +881,7 @@ const challengeDataJSON = JSON.stringify(challenges);
       var msg = document.createElement("div");
       msg.className = "ca-feedback-msg ca-feedback-msg--hint";
       var span = document.createElement("span");
-      span.textContent = "Hint: " + ch.hint;
+      span.textContent = caS.hintPrefix + ch.hint;
       msg.appendChild(span);
       feedback.appendChild(msg);
     }
@@ -807,8 +912,8 @@ const challengeDataJSON = JSON.stringify(challenges);
       card.style.display = "none";
       completion.style.display = "";
 
-      scoreEl.textContent = score + " out of " + challenges.length + " correct";
-      finalTimeEl.textContent = "Completed in " + formatTime(elapsedSeconds);
+      scoreEl.textContent = caS.scoreTpl.replace('{score}', String(score)).replace('{total}', String(challenges.length));
+      finalTimeEl.textContent = caS.completedInTpl.replace('{time}', formatTime(elapsedSeconds));
 
       createParticles();
     }
@@ -823,7 +928,7 @@ const challengeDataJSON = JSON.stringify(challenges);
         while (feedback.firstChild) {
           feedback.removeChild(feedback.firstChild);
         }
-        showFeedback("error", "Please write a SQL query before running.");
+        showFeedback("error", caS.emptyError);
         editor.className = "ca-editor ca-editor--error";
         return;
       }
@@ -836,7 +941,7 @@ const challengeDataJSON = JSON.stringify(challenges);
         score++;
         editor.className = "ca-editor ca-editor--correct";
         editor.setAttribute("readonly", "true");
-        showFeedback("correct", "Correct! Well done.");
+        showFeedback("correct", caS.correctMsg);
 
         // Show next or complete
         if (currentIndex < challenges.length - 1) {
@@ -856,7 +961,7 @@ const challengeDataJSON = JSON.stringify(challenges);
         while (feedback.firstChild) {
           feedback.removeChild(feedback.firstChild);
         }
-        showFeedback("error", "Not quite right. Check the expected keywords and try again.");
+        showFeedback("error", caS.wrongMsg);
         showHint();
       }
     });
