@@ -5,9 +5,152 @@
  * data particles, message encoder, and pipeline success animation.
  * Submits to the same Web3Forms endpoint as the classic form.
  */
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+const STRINGS = {
+  en: {
+    chatIntro: 'Hey! Before the boring form stuff... quick question:',
+    chatQuestion: 'Where does your data currently live?',
+    chatOptions: {
+      'data-platform': 'Spreadsheet chaos',
+      'analytics': 'A data warehouse',
+      'governance': 'Everywhere and nowhere',
+      'consulting': 'What data?',
+    },
+    chatResponse: "Got it! We know exactly who to connect you with. Fill in below and we\u2019ll make it happen.",
+    comment: "-- Let\u2019s build a connection",
+    placeholders: {
+      firstName: 'first_name',
+      lastName: 'last_name',
+      email: 'you@company.com',
+      phone: '+90 555 123 4567',
+      company: 'company_name',
+      message: "'Your message here...'",
+    },
+    aria: {
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      email: 'Email',
+      phone: 'Phone',
+      company: 'Company',
+      interest: 'Interest',
+      message: 'Message',
+    },
+    interestOptions: {
+      empty: "'select_interest'",
+      ai: "'ai'",
+      analytics: "'analytics'",
+      consulting: "'consulting'",
+      talent: "'talent_program'",
+      governance: "'governance'",
+      dataPlatform: "'data_platform'",
+      products: "'products'",
+      other: "'other'",
+    },
+    encodeTrigger: 'Want to encode your message?',
+    amazingCollab: 'amazing_collaboration',
+    executeBtn: 'EXECUTE QUERY',
+    executingBtn: 'EXECUTING...',
+    classicLink: 'Prefer classic form?',
+    pipeline: {
+      extract: { label: 'EXTRACT', desc: 'Parsed your message' },
+      validate: { label: 'VALIDATE', desc: 'Data looks clean' },
+      encrypt: { label: 'ENCRYPT', desc: 'Secured for transit' },
+      route: { label: 'ROUTE', desc: 'Finding the right team' },
+      deliver: { label: 'DELIVER', desc: 'Message delivered!' },
+    },
+    finalTitle: 'Query executed successfully!',
+    finalDescPrefix: 'Your message traveled through our data pipeline and reached the Intellica team. ',
+    finalBytes: '847 bytes processed.',
+    sendAnother: 'Send Another Message',
+    errors: {
+      nameNull: 'ERROR 1054: Column "name" cannot be null \u2014 please enter your first name.',
+      emailNull: 'ERROR 1048: Column "email" cannot be null \u2014 we need your email to respond.',
+      emailBad: 'ERROR 1366: Incorrect email value \u2014 please check the format.',
+      connection: 'ERROR 503: Connection failed \u2014 please try again or email info@intellica.net',
+    },
+    encodeEmpty: 'Type a message to see it encoded...',
+    encodeErr: '[encoding error]',
+  },
+  tr: {
+    chatIntro: 'Merhaba! Sıkıcı form kısmına gelmeden önce kısa bir soru:',
+    chatQuestion: 'Verileriniz şu an nerede yaşıyor?',
+    chatOptions: {
+      'data-platform': 'Spreadsheet kaosu',
+      'analytics': 'Bir veri ambarı',
+      'governance': 'Her yerde, hiçbir yerde',
+      'consulting': 'Hangi veri?',
+    },
+    chatResponse: 'Anlaşıldı! Sizi doğru ekibe bağlayacağımızı tam olarak biliyoruz. Aşağıyı doldurun, gerekeni yapalım.',
+    comment: '-- Bağlantı kuralım',
+    placeholders: {
+      firstName: 'isim',
+      lastName: 'soyisim',
+      email: 'siz@sirket.com',
+      phone: '+90 555 123 4567',
+      company: 'sirket_adi',
+      message: "'Mesajınız buraya...'",
+    },
+    aria: {
+      firstName: 'İsim',
+      lastName: 'Soyisim',
+      email: 'E-posta',
+      phone: 'Telefon',
+      company: 'Şirket',
+      interest: 'İlgi Alanı',
+      message: 'Mesaj',
+    },
+    interestOptions: {
+      empty: "'ilgi_alani_sec'",
+      ai: "'yapay_zeka'",
+      analytics: "'analitik'",
+      consulting: "'danismanlik'",
+      talent: "'yetenek_programi'",
+      governance: "'yonetisim'",
+      dataPlatform: "'veri_platformu'",
+      products: "'urunler'",
+      other: "'diger'",
+    },
+    encodeTrigger: 'Mesajınızı kodlamak ister misiniz?',
+    amazingCollab: 'muhtesem_is_birligi',
+    executeBtn: 'SORGUYU ÇALIŞTIR',
+    executingBtn: 'ÇALIŞIYOR...',
+    classicLink: 'Klasik form mu tercih edersiniz?',
+    pipeline: {
+      extract: { label: 'EXTRACT', desc: 'Mesajınız ayrıştırıldı' },
+      validate: { label: 'VALIDATE', desc: 'Veri temiz görünüyor' },
+      encrypt: { label: 'ENCRYPT', desc: 'İletim için güvene alındı' },
+      route: { label: 'ROUTE', desc: 'Doğru ekip aranıyor' },
+      deliver: { label: 'DELIVER', desc: 'Mesaj iletildi!' },
+    },
+    finalTitle: 'Sorgu başarıyla çalıştırıldı!',
+    finalDescPrefix: 'Mesajınız veri pipeline\u2019ımızdan geçerek Intellica ekibine ulaştı. ',
+    finalBytes: '847 bayt işlendi.',
+    sendAnother: 'Başka Bir Mesaj Gönder',
+    errors: {
+      nameNull: 'ERROR 1054: "name" kolonu null olamaz \u2014 lütfen isminizi girin.',
+      emailNull: 'ERROR 1048: "email" kolonu null olamaz \u2014 dönüş yapabilmemiz için e-posta gerekli.',
+      emailBad: 'ERROR 1366: Geçersiz e-posta değeri \u2014 lütfen formatı kontrol edin.',
+      connection: 'ERROR 503: Bağlantı başarısız \u2014 lütfen tekrar deneyin ya da info@intellica.net adresine yazın.',
+    },
+    encodeEmpty: 'Kodlanmış halini görmek için bir mesaj yazın...',
+    encodeErr: '[kodlama hatası]',
+  },
+} as const;
+
+const t = STRINGS[lang];
+const funStrings = JSON.stringify({
+  errors: t.errors,
+  executingBtn: t.executingBtn,
+  encodeEmpty: t.encodeEmpty,
+  encodeErr: t.encodeErr,
+});
 ---
 
-<div id="fun-mode" class="fun-mode">
+<div id="fun-mode" class="fun-mode" data-fun-strings={funStrings}>
   <!-- ========== FEATURE 1: Chat Icebreaker ========== -->
   <div class="chat-icebreaker" id="chat-icebreaker">
     <div class="chat-bubble chat-bubble--bot">
@@ -16,7 +159,7 @@
       </div>
       <div class="chat-text">
         <span class="chat-name">Intellica</span>
-        <p>Hey! Before the boring form stuff... quick question:</p>
+        <p>{t.chatIntro}</p>
       </div>
     </div>
     <div class="chat-bubble chat-bubble--bot chat-bubble--question">
@@ -24,12 +167,12 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="chat-text">
-        <p>Where does your data currently live?</p>
+        <p>{t.chatQuestion}</p>
         <div class="chat-options" id="chat-options">
-          <button class="chat-option" data-interest="data-platform" type="button">Spreadsheet chaos</button>
-          <button class="chat-option" data-interest="analytics" type="button">A data warehouse</button>
-          <button class="chat-option" data-interest="governance" type="button">Everywhere and nowhere</button>
-          <button class="chat-option" data-interest="consulting" type="button">What data?</button>
+          <button class="chat-option" data-interest="data-platform" type="button">{t.chatOptions['data-platform']}</button>
+          <button class="chat-option" data-interest="analytics" type="button">{t.chatOptions.analytics}</button>
+          <button class="chat-option" data-interest="governance" type="button">{t.chatOptions.governance}</button>
+          <button class="chat-option" data-interest="consulting" type="button">{t.chatOptions.consulting}</button>
         </div>
       </div>
     </div>
@@ -38,7 +181,7 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
       <div class="chat-text">
-        <p>Got it! We know exactly who to connect you with. Fill in below and we'll make it happen.</p>
+        <p>{t.chatResponse}</p>
       </div>
     </div>
   </div>
@@ -82,7 +225,7 @@
         <!-- Line 1: Comment -->
         <div class="sql-line">
           <span class="line-num">1</span>
-          <span class="sql-comment">-- Let's build a connection</span>
+          <span class="sql-comment">{t.comment}</span>
         </div>
 
         <!-- Line 2: SELECT -->
@@ -105,8 +248,8 @@
           <span class="sql-keyword">WHERE</span>
           <span class="sql-col">name</span>
           <span class="sql-op">=</span>
-          <input type="text" name="firstName" id="fun-firstName" class="sql-input sql-input--sm" placeholder="first_name" required aria-label="First Name" />
-          <input type="text" name="lastName" id="fun-lastName" class="sql-input sql-input--sm" placeholder="last_name" aria-label="Last Name" />
+          <input type="text" name="firstName" id="fun-firstName" class="sql-input sql-input--sm" placeholder={t.placeholders.firstName} required aria-label={t.aria.firstName} />
+          <input type="text" name="lastName" id="fun-lastName" class="sql-input sql-input--sm" placeholder={t.placeholders.lastName} aria-label={t.aria.lastName} />
         </div>
 
         <!-- Line 5: AND email -->
@@ -116,7 +259,7 @@
           <span class="sql-keyword">AND</span>
           <span class="sql-col">email</span>
           <span class="sql-op">=</span>
-          <input type="email" name="email" id="fun-email" class="sql-input sql-input--md" placeholder="you@company.com" required aria-label="Email" />
+          <input type="email" name="email" id="fun-email" class="sql-input sql-input--md" placeholder={t.placeholders.email} required aria-label={t.aria.email} />
         </div>
 
         <!-- Line 6: AND phone -->
@@ -126,7 +269,7 @@
           <span class="sql-keyword">AND</span>
           <span class="sql-col">phone</span>
           <span class="sql-op">=</span>
-          <input type="tel" name="phone" id="fun-phone" class="sql-input sql-input--md" placeholder="+90 555 123 4567" aria-label="Phone" />
+          <input type="tel" name="phone" id="fun-phone" class="sql-input sql-input--md" placeholder={t.placeholders.phone} aria-label={t.aria.phone} />
         </div>
 
         <!-- Line 7: AND company -->
@@ -136,7 +279,7 @@
           <span class="sql-keyword">AND</span>
           <span class="sql-col">company</span>
           <span class="sql-op">=</span>
-          <input type="text" name="company" id="fun-company" class="sql-input sql-input--md" placeholder="company_name" aria-label="Company" />
+          <input type="text" name="company" id="fun-company" class="sql-input sql-input--md" placeholder={t.placeholders.company} aria-label={t.aria.company} />
         </div>
 
         <!-- Line 8: AND interest -->
@@ -147,16 +290,16 @@
           <span class="sql-col">interest</span>
           <span class="sql-keyword"> IN</span>
           <span class="sql-op">(</span>
-          <select name="interestDisplay" id="fun-interest-select" class="sql-input sql-input--select" aria-label="Interest">
-            <option value="">'select_interest'</option>
-            <option value="ai">'ai'</option>
-            <option value="analytics">'analytics'</option>
-            <option value="consulting">'consulting'</option>
-            <option value="talent-program">'talent_program'</option>
-            <option value="governance">'governance'</option>
-            <option value="data-platform">'data_platform'</option>
-            <option value="products">'products'</option>
-            <option value="other">'other'</option>
+          <select name="interestDisplay" id="fun-interest-select" class="sql-input sql-input--select" aria-label={t.aria.interest}>
+            <option value="">{t.interestOptions.empty}</option>
+            <option value="ai">{t.interestOptions.ai}</option>
+            <option value="analytics">{t.interestOptions.analytics}</option>
+            <option value="consulting">{t.interestOptions.consulting}</option>
+            <option value="talent-program">{t.interestOptions.talent}</option>
+            <option value="governance">{t.interestOptions.governance}</option>
+            <option value="data-platform">{t.interestOptions.dataPlatform}</option>
+            <option value="products">{t.interestOptions.products}</option>
+            <option value="other">{t.interestOptions.other}</option>
           </select>
           <span class="sql-op">)</span>
         </div>
@@ -168,12 +311,12 @@
           <span class="sql-keyword">AND</span>
           <span class="sql-col">message</span>
           <span class="sql-op">=</span>
-          <textarea name="message" id="fun-message" class="sql-input sql-input--textarea" placeholder="'Your message here...'" rows="3" aria-label="Message"></textarea>
+          <textarea name="message" id="fun-message" class="sql-input sql-input--textarea" placeholder={t.placeholders.message} rows="3" aria-label={t.aria.message}></textarea>
         </div>
 
         <!-- FEATURE 4: Encode Easter Egg -->
         <div class="encode-egg" id="encode-egg">
-          <button type="button" class="encode-trigger" id="encode-trigger">Want to encode your message?</button>
+          <button type="button" class="encode-trigger" id="encode-trigger">{t.encodeTrigger}</button>
           <div class="encode-bar" id="encode-bar" style="display:none;">
             <div class="encode-modes">
               <button type="button" class="encode-mode encode-mode--active" data-mode="base64">Base64</button>
@@ -189,7 +332,7 @@
           <span class="line-num">10</span>
           <span class="sql-keyword">LIMIT</span>
           <span class="sql-value">1</span>
-          <span class="sql-col">amazing_collaboration</span>
+          <span class="sql-col">{t.amazingCollab}</span>
           <span class="sql-op">;</span>
         </div>
 
@@ -197,9 +340,9 @@
         <div class="sql-actions">
           <button type="submit" id="fun-submit-btn" class="sql-execute-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            EXECUTE QUERY
+            {t.executeBtn}
           </button>
-          <button type="button" class="sql-classic-link" id="switch-to-classic">Prefer classic form?</button>
+          <button type="button" class="sql-classic-link" id="switch-to-classic">{t.classicLink}</button>
         </div>
 
         <!-- Validation error -->
@@ -218,40 +361,40 @@
         <div class="pipeline-circle">
           <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="pipeline-label">EXTRACT</div>
-        <div class="pipeline-desc">Parsed your message</div>
+        <div class="pipeline-label">{t.pipeline.extract.label}</div>
+        <div class="pipeline-desc">{t.pipeline.extract.desc}</div>
       </div>
       <div class="pipeline-connector"></div>
       <div class="pipeline-stage" data-stage="validate">
         <div class="pipeline-circle">
           <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="pipeline-label">VALIDATE</div>
-        <div class="pipeline-desc">Data looks clean</div>
+        <div class="pipeline-label">{t.pipeline.validate.label}</div>
+        <div class="pipeline-desc">{t.pipeline.validate.desc}</div>
       </div>
       <div class="pipeline-connector"></div>
       <div class="pipeline-stage" data-stage="encrypt">
         <div class="pipeline-circle">
           <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="pipeline-label">ENCRYPT</div>
-        <div class="pipeline-desc">Secured for transit</div>
+        <div class="pipeline-label">{t.pipeline.encrypt.label}</div>
+        <div class="pipeline-desc">{t.pipeline.encrypt.desc}</div>
       </div>
       <div class="pipeline-connector"></div>
       <div class="pipeline-stage" data-stage="route">
         <div class="pipeline-circle">
           <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="pipeline-label">ROUTE</div>
-        <div class="pipeline-desc">Finding the right team</div>
+        <div class="pipeline-label">{t.pipeline.route.label}</div>
+        <div class="pipeline-desc">{t.pipeline.route.desc}</div>
       </div>
       <div class="pipeline-connector"></div>
       <div class="pipeline-stage" data-stage="deliver">
         <div class="pipeline-circle">
           <svg class="pipeline-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="pipeline-label">DELIVER</div>
-        <div class="pipeline-desc">Message delivered!</div>
+        <div class="pipeline-label">{t.pipeline.deliver.label}</div>
+        <div class="pipeline-desc">{t.pipeline.deliver.desc}</div>
       </div>
     </div>
 
@@ -260,9 +403,9 @@
 
     <!-- Final message -->
     <div class="pipeline-final" id="pipeline-final" style="display:none;">
-      <h3 class="pipeline-final-title">Query executed successfully!</h3>
-      <p class="pipeline-final-desc">Your message traveled through our data pipeline and reached the Intellica team. <span class="pipeline-bytes">847 bytes processed.</span></p>
-      <button type="button" class="sql-execute-btn pipeline-another" id="fun-another-btn">Send Another Message</button>
+      <h3 class="pipeline-final-title">{t.finalTitle}</h3>
+      <p class="pipeline-final-desc">{t.finalDescPrefix}<span class="pipeline-bytes">{t.finalBytes}</span></p>
+      <button type="button" class="sql-execute-btn pipeline-another" id="fun-another-btn">{t.sendAnother}</button>
     </div>
   </div>
 </div>
@@ -1017,6 +1160,25 @@
 (function() {
   'use strict';
 
+  // ── Localized strings ───────────────────────
+  var funModeEl = document.getElementById('fun-mode');
+  var FUN_STR = (function() {
+    try {
+      var raw = funModeEl && funModeEl.getAttribute('data-fun-strings');
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  })() || {
+    errors: {
+      nameNull: 'ERROR 1054: Column "name" cannot be null — please enter your first name.',
+      emailNull: 'ERROR 1048: Column "email" cannot be null — we need your email to respond.',
+      emailBad: 'ERROR 1366: Incorrect email value — please check the format.',
+      connection: 'ERROR 503: Connection failed — please try again or email info@intellica.net'
+    },
+    executingBtn: 'EXECUTING...',
+    encodeEmpty: 'Type a message to see it encoded...',
+    encodeErr: '[encoding error]'
+  };
+
   // ── DOM References ──────────────────────────
   var funForm = document.getElementById('fun-contact-form');
   var funSubmitBtn = document.getElementById('fun-submit-btn');
@@ -1118,7 +1280,7 @@
     if (!funMessage || !encodeOutput) return;
     var text = funMessage.value;
     if (!text) {
-      encodeOutput.textContent = 'Type a message to see it encoded...';
+      encodeOutput.textContent = FUN_STR.encodeEmpty;
       return;
     }
 
@@ -1127,7 +1289,7 @@
       try {
         encoded = btoa(unescape(encodeURIComponent(text)));
       } catch(e) {
-        encoded = '[encoding error]';
+        encoded = FUN_STR.encodeErr;
       }
     } else if (currentEncodeMode === 'binary') {
       for (var i = 0; i < text.length; i++) {
@@ -1161,13 +1323,13 @@
       var email = document.getElementById('fun-email');
 
       if (!firstName || !firstName.value.trim()) {
-        showFunError('ERROR 1054: Column "name" cannot be null — please enter your first name.');
+        showFunError(FUN_STR.errors.nameNull);
         if (firstName) firstName.focus();
         return;
       }
 
       if (!email || !email.value.trim()) {
-        showFunError('ERROR 1048: Column "email" cannot be null — we need your email to respond.');
+        showFunError(FUN_STR.errors.emailNull);
         if (email) email.focus();
         return;
       }
@@ -1175,7 +1337,7 @@
       // Simple email check
       var emailVal = email.value.trim();
       if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
-        showFunError('ERROR 1366: Incorrect email value — please check the format.');
+        showFunError(FUN_STR.errors.emailBad);
         email.focus();
         return;
       }
@@ -1183,7 +1345,7 @@
       // Disable submit
       var originalText = funSubmitBtn.textContent;
       funSubmitBtn.disabled = true;
-      funSubmitBtn.textContent = 'EXECUTING...';
+      funSubmitBtn.textContent = FUN_STR.executingBtn;
 
       var formData = new FormData(funForm);
       // Remove the display-only interestDisplay field; use the hidden interest field
@@ -1208,7 +1370,7 @@
         }
       })
       .catch(function() {
-        showFunError('ERROR 503: Connection failed — please try again or email info@intellica.net');
+        showFunError(FUN_STR.errors.connection);
       })
       .finally(function() {
         funSubmitBtn.disabled = false;
