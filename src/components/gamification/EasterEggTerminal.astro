@@ -2,9 +2,252 @@
 // EasterEggTerminal.astro
 // Hidden retro terminal overlay activated via Konami code or Ctrl+Shift+K
 // Commands: help, about, ls products, cat <product>, ls team, ping ai, whoami, clear, exit
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+const TERM_STRINGS = {
+  en: {
+    closeAria: 'Close terminal',
+    inputAria: 'Terminal command input',
+    help: {
+      heading: 'Available commands:',
+      rows: [
+        '  help              Show this help message',
+        '  about             Learn about Intellica',
+        '  ls products       List all products',
+        '  cat <product>     Show product details (e.g. cat ifdm)',
+        '  ls team           Team statistics',
+        '  ping ai           Test AI connection',
+        '  whoami            Who are you?',
+        '  clear             Clear terminal',
+        '  exit              Close terminal',
+      ],
+      tip: 'Tip: Use arrow keys for command history',
+    },
+    about: {
+      heading: '=== INTELLICA ===',
+      intro: [
+        'Empowering enterprises to generate sustainable',
+        'value from data since 2006.',
+      ],
+      facts: [
+        '  Founded:       2006',
+        '  Headquarters:  Istanbul, Turkey',
+        '  Team:          450+ professionals',
+        '  Presence:      7 countries',
+        '  Academy:       240+ graduates',
+        '  Experience:    11+ years average',
+      ],
+      core: 'Core: Data Platforms | Analytics | AI Systems',
+      visit: 'Visit: https://intellica.net',
+    },
+    products: {
+      header: 'drwxr-xr-x  10 intellica products  4096  Products/',
+      footerTpl: '{n} products listed. Use "cat <name>" for details.',
+      catNotFoundTpl: 'cat: {key}: No such product',
+      catAvailable: 'Available: {list}',
+      catUsage: 'Usage: cat <product-key>',
+      catUrlPrefix: 'URL: https://intellica.net',
+      catNavTip: 'Navigate to product page? Visit the URL above.',
+    },
+    team: {
+      heading: '=== TEAM STATS ===',
+      rows: [
+        '  Total team size:       450+',
+        '  Countries:             7',
+        '  Academy graduates:     240+',
+        '  Avg experience:        11+ years',
+      ],
+      regionsLabel: '  Regions:',
+      regions: [
+        '    Turkey (HQ)',
+        '    UAE',
+        '    Saudi Arabia',
+        '    Pakistan',
+        '    United Kingdom',
+        '    United States',
+        '    Albania',
+      ],
+      mission: 'One team, seven countries, one mission.',
+    },
+    ping: {
+      pinging: 'Pinging AI systems at intellica.net...',
+      responses: [
+        'PONG! AI systems operational. Response time: 0.042ms',
+        'PONG! Neural networks online. Latency: 0.018ms',
+        'PONG! Machine learning models loaded. Ping: 0.007ms',
+        'PONG! Agentic AI ready. Processing time: 0.023ms',
+        'PONG! Data intelligence active. Round-trip: 0.031ms',
+      ],
+      nominal: 'All AI subsystems nominal.',
+    },
+    whoami: {
+      lines: [
+        'user: visitor',
+        'role: explorer',
+        'access: read-only',
+        'status: authenticated via easter egg',
+      ],
+      messages: [
+        'You are a curious explorer who found our hidden terminal.',
+        'You are a data enthusiast with an eye for easter eggs.',
+        'You are a visitor with excellent keyboard skills.',
+        'You are someone who appreciates a good Konami code.',
+        'You are a potential Intellica partner. Welcome aboard!',
+      ],
+    },
+    notFoundTpl: 'command not found: {cmd}',
+    notFoundHelp: 'Type "help" for available commands.',
+    welcome: {
+      banner: [
+        '  _____       _       _ _ _',
+        ' |_   _|     | |     | | (_)',
+        '   | |  _ __ | |_ ___| | |_  ___ __ _',
+        "   | | | '_ \\| __/ _ \\ | | |/ __/ _` |",
+        '  _| |_| | | | ||  __/ | | | (_| (_| |',
+        " |_____|_| |_|\\__\\___|_|_|_|\\___\\__,_|",
+      ],
+      greeting: ' Welcome to the Intellica Secret Terminal v1.0',
+      tip: ' Type "help" for available commands.',
+    },
+    products_data: {
+      'ifdm': { name: 'IFDM', desc: 'Finance Data Model - Enterprise financial data modeling solution', url: '/products/ifdm' },
+      'itdm': { name: 'ITDM', desc: 'Telecom Data Model - Telecommunications data warehouse model', url: '/products/itdm' },
+      'hrdm': { name: 'HRDM', desc: 'HR Data Model - Human resources analytics data model', url: '/products/hrdm' },
+      'icc': { name: 'ICC', desc: 'Consistency Checker - Automated data consistency validation', url: '/products/icc' },
+      'retouch': { name: 'ReTouch', desc: 'Data Entry Management - Streamlined data entry platform', url: '/products/retouch' },
+      'retable': { name: 'Retable', desc: 'No-Code Platform - Build data apps without coding', url: '/products/retable' },
+      'orqenta': { name: 'Orqenta', desc: 'Workflow Orchestration - Enterprise workflow automation', url: '/products/orqenta' },
+      'talk-to': { name: 'Talk To', desc: 'NL-to-SQL AI - Ask questions in natural language, get SQL answers', url: '/products/talk-to-your-data' },
+      'blue-octopus': { name: 'Blue Octopus', desc: 'Event Intelligence - Real-time event processing and analytics', url: '/products/blue-octopus' },
+      'var': { name: 'VAR', desc: 'Voice AI Recognition - Voice-powered AI assistant', url: '/products/var' },
+    },
+  },
+  tr: {
+    closeAria: 'Terminali kapat',
+    inputAria: 'Terminal komut girişi',
+    help: {
+      heading: 'Mevcut komutlar:',
+      rows: [
+        '  help              Bu yardım mesajını göster',
+        '  about             Intellica hakkında bilgi al',
+        '  ls products       Tüm ürünleri listele',
+        '  cat <product>     Ürün detaylarını göster (örn. cat ifdm)',
+        '  ls team           Ekip istatistikleri',
+        '  ping ai           AI bağlantısını test et',
+        '  whoami            Sen kimsin?',
+        '  clear             Terminali temizle',
+        '  exit              Terminali kapat',
+      ],
+      tip: 'İpucu: Komut geçmişi için ok tuşlarını kullan',
+    },
+    about: {
+      heading: '=== INTELLICA ===',
+      intro: [
+        'Kurumlara veriden sürdürülebilir değer üretme',
+        'gücünü 2006\u2019dan beri kazandırıyoruz.',
+      ],
+      facts: [
+        '  Kuruluş:       2006',
+        '  Merkez:        İstanbul, Türkiye',
+        '  Ekip:          450+ profesyonel',
+        '  Varlık:        7 ülke',
+        '  Akademi:       240+ mezun',
+        '  Deneyim:       11+ yıl ortalama',
+      ],
+      core: 'Odak: Veri Platformları | Analitik | AI Sistemleri',
+      visit: 'Ziyaret et: https://intellica.net',
+    },
+    products: {
+      header: 'drwxr-xr-x  10 intellica products  4096  Urunler/',
+      footerTpl: '{n} ürün listelendi. Detay için "cat <isim>" kullan.',
+      catNotFoundTpl: 'cat: {key}: Böyle bir ürün yok',
+      catAvailable: 'Mevcut: {list}',
+      catUsage: 'Kullanım: cat <ürün-anahtarı>',
+      catUrlPrefix: 'URL: https://intellica.net',
+      catNavTip: 'Ürün sayfasına gitmek için yukarıdaki URL\u2019yi ziyaret et.',
+    },
+    team: {
+      heading: '=== EKİP İSTATİSTİKLERİ ===',
+      rows: [
+        '  Toplam ekip:           450+',
+        '  Ülkeler:               7',
+        '  Akademi mezunu:        240+',
+        '  Ort. deneyim:          11+ yıl',
+      ],
+      regionsLabel: '  Bölgeler:',
+      regions: [
+        '    Türkiye (Merkez)',
+        '    BAE',
+        '    Suudi Arabistan',
+        '    Pakistan',
+        '    Birleşik Krallık',
+        '    Amerika Birleşik Devletleri',
+        '    Arnavutluk',
+      ],
+      mission: 'Tek ekip, yedi ülke, tek misyon.',
+    },
+    ping: {
+      pinging: 'intellica.net AI sistemleri ping\u2019leniyor...',
+      responses: [
+        'PONG! AI sistemleri aktif. Yanıt süresi: 0.042ms',
+        'PONG! Sinir ağları çevrimiçi. Gecikme: 0.018ms',
+        'PONG! ML modelleri yüklendi. Ping: 0.007ms',
+        'PONG! Agentic AI hazır. İşleme süresi: 0.023ms',
+        'PONG! Veri zekâsı aktif. Gidiş-dönüş: 0.031ms',
+      ],
+      nominal: 'Tüm AI alt sistemleri normal çalışıyor.',
+    },
+    whoami: {
+      lines: [
+        'kullanıcı: ziyaretçi',
+        'rol: kaşif',
+        'erişim: salt-okunur',
+        'durum: easter egg ile kimliği doğrulandı',
+      ],
+      messages: [
+        'Gizli terminalimizi bulan meraklı bir kaşifsin.',
+        'Easter egg\u2019lere dikkat eden bir veri meraklısısın.',
+        'Mükemmel klavye yeteneği olan bir ziyaretçisin.',
+        'İyi bir Konami code\u2019a değer veren birisin.',
+        'Potansiyel bir Intellica ortağısın. Hoş geldin!',
+      ],
+    },
+    notFoundTpl: 'komut bulunamadı: {cmd}',
+    notFoundHelp: 'Mevcut komutlar için "help" yaz.',
+    welcome: {
+      banner: [
+        '  _____       _       _ _ _',
+        ' |_   _|     | |     | | (_)',
+        '   | |  _ __ | |_ ___| | |_  ___ __ _',
+        "   | | | '_ \\| __/ _ \\ | | |/ __/ _` |",
+        '  _| |_| | | | ||  __/ | | | (_| (_| |',
+        " |_____|_| |_|\\__\\___|_|_|_|\\___\\__,_|",
+      ],
+      greeting: ' Intellica Gizli Terminali v1.0\u2019a hoş geldin',
+      tip: ' Mevcut komutlar için "help" yaz.',
+    },
+    products_data: {
+      'ifdm': { name: 'IFDM', desc: 'Finans Veri Modeli - Kurumsal finansal veri modelleme çözümü', url: '/tr/products/ifdm' },
+      'itdm': { name: 'ITDM', desc: 'Telekom Veri Modeli - Telekom veri ambarı modeli', url: '/tr/products/itdm' },
+      'hrdm': { name: 'HRDM', desc: 'İK Veri Modeli - İK analitiği veri modeli', url: '/tr/products/hrdm' },
+      'icc': { name: 'ICC', desc: 'Tutarlılık Denetleyicisi - Otomatik veri tutarlılık doğrulama', url: '/tr/products/icc' },
+      'retouch': { name: 'ReTouch', desc: 'Veri Girişi Yönetimi - Hızlı veri girişi platformu', url: '/tr/products/retouch' },
+      'retable': { name: 'Retable', desc: 'Kodsuz Platform - Kod yazmadan veri uygulamaları kur', url: '/tr/products/retable' },
+      'orqenta': { name: 'Orqenta', desc: 'İş Akışı Orkestrasyonu - Kurumsal iş akışı otomasyonu', url: '/tr/products/orqenta' },
+      'talk-to': { name: 'Talk To', desc: 'Doğal Dilden SQL AI - Doğal dilde soru sor, SQL yanıt al', url: '/tr/products/talk-to-your-data' },
+      'blue-octopus': { name: 'Blue Octopus', desc: 'Olay Zekâsı - Gerçek zamanlı olay işleme ve analiz', url: '/tr/products/blue-octopus' },
+      'var': { name: 'VAR', desc: 'Ses AI Tanıma - Ses destekli AI asistan', url: '/tr/products/var' },
+    },
+  },
+} as const;
+
+const termStrings = JSON.stringify(TERM_STRINGS[lang]);
 ---
 
-<div id="easter-terminal" class="terminal-overlay" aria-hidden="true">
+<div id="easter-terminal" class="terminal-overlay" aria-hidden="true" data-term-strings={termStrings}>
   <div class="terminal-window">
     <div class="terminal-header">
       <div class="terminal-dots">
@@ -13,7 +256,7 @@
         <span class="dot dot-green"></span>
       </div>
       <span class="terminal-title">intellica@terminal:~$</span>
-      <button id="terminal-close-btn" class="terminal-close" aria-label="Close terminal">&times;</button>
+      <button id="terminal-close-btn" class="terminal-close" aria-label={TERM_STRINGS[lang].closeAria}>&times;</button>
     </div>
     <div class="terminal-body">
       <div class="scanline"></div>
@@ -27,7 +270,7 @@
           autocomplete="off"
           autocapitalize="off"
           spellcheck="false"
-          aria-label="Terminal command input"
+          aria-label={TERM_STRINGS[lang].inputAria}
         />
       </div>
     </div>
@@ -295,19 +538,18 @@
     let historyIndex = -1;
     let activeTypewriterId = 0;
 
-    // Product data
-    const products: Record<string, { name: string; desc: string; url: string }> = {
-      'ifdm': { name: 'IFDM', desc: 'Finance Data Model - Enterprise financial data modeling solution', url: '/products/ifdm' },
-      'itdm': { name: 'ITDM', desc: 'Telecom Data Model - Telecommunications data warehouse model', url: '/products/itdm' },
-      'hrdm': { name: 'HRDM', desc: 'HR Data Model - Human resources analytics data model', url: '/products/hrdm' },
-      'icc': { name: 'ICC', desc: 'Consistency Checker - Automated data consistency validation', url: '/products/icc' },
-      'retouch': { name: 'ReTouch', desc: 'Data Entry Management - Streamlined data entry platform', url: '/products/retouch' },
-      'retable': { name: 'Retable', desc: 'No-Code Platform - Build data apps without coding', url: '/products/retable' },
-      'orqenta': { name: 'Orqenta', desc: 'Workflow Orchestration - Enterprise workflow automation', url: '/products/orqenta' },
-      'talk-to': { name: 'Talk To', desc: 'NL-to-SQL AI - Ask questions in natural language, get SQL answers', url: '/products/talk-to-your-data' },
-      'blue-octopus': { name: 'Blue Octopus', desc: 'Event Intelligence - Real-time event processing and analytics', url: '/products/blue-octopus' },
-      'var': { name: 'VAR', desc: 'Voice AI Recognition - Voice-powered AI assistant', url: '/products/var' }
-    };
+    // Localized strings from data attribute
+    const STR = (() => {
+      try {
+        const raw = (overlay as HTMLElement).dataset.termStrings;
+        return raw ? JSON.parse(raw) : null;
+      } catch { return null; }
+    })();
+
+    if (!STR) return;
+
+    // Product data comes from localized strings
+    const products: Record<string, { name: string; desc: string; url: string }> = STR.products_data || {};
 
     // --- Helpers ---
 
@@ -368,46 +610,34 @@
     // --- Commands ---
 
     function cmdHelp() {
-      typewriterLines([
-        { text: 'Available commands:', className: 'term-highlight' },
+      const lines: Array<{ text: string; className?: string }> = [
+        { text: STR.help.heading, className: 'term-highlight' },
         { text: '' },
-        { text: '  help              Show this help message' },
-        { text: '  about             Learn about Intellica' },
-        { text: '  ls products       List all products' },
-        { text: '  cat <product>     Show product details (e.g. cat ifdm)' },
-        { text: '  ls team           Team statistics' },
-        { text: '  ping ai           Test AI connection' },
-        { text: '  whoami            Who are you?' },
-        { text: '  clear             Clear terminal' },
-        { text: '  exit              Close terminal' },
-        { text: '' },
-        { text: 'Tip: Use arrow keys for command history', className: 'term-dim' }
-      ]);
+      ];
+      for (const r of STR.help.rows) lines.push({ text: r });
+      lines.push({ text: '' });
+      lines.push({ text: STR.help.tip, className: 'term-dim' });
+      typewriterLines(lines);
     }
 
     function cmdAbout() {
-      typewriterLines([
-        { text: '=== INTELLICA ===', className: 'term-highlight' },
+      const lines: Array<{ text: string; className?: string }> = [
+        { text: STR.about.heading, className: 'term-highlight' },
         { text: '' },
-        { text: 'Empowering enterprises to generate sustainable' },
-        { text: 'value from data since 2006.' },
-        { text: '' },
-        { text: '  Founded:       2006' },
-        { text: '  Headquarters:  Istanbul, Turkey' },
-        { text: '  Team:          450+ professionals' },
-        { text: '  Presence:      7 countries' },
-        { text: '  Academy:       240+ graduates' },
-        { text: '  Experience:    11+ years average' },
-        { text: '' },
-        { text: 'Core: Data Platforms | Analytics | AI Systems', className: 'term-accent' },
-        { text: '' },
-        { text: 'Visit: https://intellica.net', className: 'term-dim' }
-      ]);
+      ];
+      for (const r of STR.about.intro) lines.push({ text: r });
+      lines.push({ text: '' });
+      for (const r of STR.about.facts) lines.push({ text: r });
+      lines.push({ text: '' });
+      lines.push({ text: STR.about.core, className: 'term-accent' });
+      lines.push({ text: '' });
+      lines.push({ text: STR.about.visit, className: 'term-dim' });
+      typewriterLines(lines);
     }
 
     function cmdLsProducts() {
       const lines: Array<{ text: string; className?: string }> = [
-        { text: 'drwxr-xr-x  10 intellica products  4096  Products/', className: 'term-highlight' },
+        { text: STR.products.header, className: 'term-highlight' },
         { text: '' }
       ];
 
@@ -419,7 +649,7 @@
       }
 
       lines.push({ text: '' });
-      lines.push({ text: keys.length + ' products listed. Use "cat <name>" for details.', className: 'term-dim' });
+      lines.push({ text: STR.products.footerTpl.replace('{n}', String(keys.length)), className: 'term-dim' });
 
       typewriterLines(lines);
     }
@@ -430,10 +660,10 @@
 
       if (!product) {
         typewriterLines([
-          { text: 'cat: ' + productKey + ': No such product', className: 'term-warn' },
+          { text: STR.products.catNotFoundTpl.replace('{key}', productKey), className: 'term-warn' },
           { text: '' },
-          { text: 'Available: ' + Object.keys(products).join(', '), className: 'term-dim' },
-          { text: 'Usage: cat <product-key>', className: 'term-dim' }
+          { text: STR.products.catAvailable.replace('{list}', Object.keys(products).join(', ')), className: 'term-dim' },
+          { text: STR.products.catUsage, className: 'term-dim' }
         ]);
         return;
       }
@@ -443,74 +673,53 @@
         { text: '' },
         { text: product.desc },
         { text: '' },
-        { text: 'URL: https://intellica.net' + product.url, className: 'term-accent' },
+        { text: STR.products.catUrlPrefix + product.url, className: 'term-accent' },
         { text: '' },
-        { text: 'Navigate to product page? Visit the URL above.', className: 'term-dim' }
+        { text: STR.products.catNavTip, className: 'term-dim' }
       ]);
     }
 
     function cmdLsTeam() {
-      typewriterLines([
-        { text: '=== TEAM STATS ===', className: 'term-highlight' },
+      const lines: Array<{ text: string; className?: string }> = [
+        { text: STR.team.heading, className: 'term-highlight' },
         { text: '' },
-        { text: '  Total team size:       450+' },
-        { text: '  Countries:             7' },
-        { text: '  Academy graduates:     240+' },
-        { text: '  Avg experience:        11+ years' },
-        { text: '' },
-        { text: '  Regions:' },
-        { text: '    Turkey (HQ)' },
-        { text: '    UAE' },
-        { text: '    Saudi Arabia' },
-        { text: '    Pakistan' },
-        { text: '    United Kingdom' },
-        { text: '    United States' },
-        { text: '    Albania' },
-        { text: '' },
-        { text: 'One team, seven countries, one mission.', className: 'term-accent' }
-      ]);
+      ];
+      for (const r of STR.team.rows) lines.push({ text: r });
+      lines.push({ text: '' });
+      lines.push({ text: STR.team.regionsLabel });
+      for (const r of STR.team.regions) lines.push({ text: r });
+      lines.push({ text: '' });
+      lines.push({ text: STR.team.mission, className: 'term-accent' });
+      typewriterLines(lines);
     }
 
     function cmdPingAi() {
-      const responses = [
-        'PONG! AI systems operational. Response time: 0.042ms',
-        'PONG! Neural networks online. Latency: 0.018ms',
-        'PONG! Machine learning models loaded. Ping: 0.007ms',
-        'PONG! Agentic AI ready. Processing time: 0.023ms',
-        'PONG! Data intelligence active. Round-trip: 0.031ms'
-      ];
+      const responses: string[] = STR.ping.responses;
       const response = responses[Math.floor(Math.random() * responses.length)];
 
-      appendLine('Pinging AI systems at intellica.net...', 'term-dim');
+      appendLine(STR.ping.pinging, 'term-dim');
 
       setTimeout(() => {
         typewriterLines([
           { text: '' },
           { text: response, className: 'term-highlight' },
           { text: '' },
-          { text: 'All AI subsystems nominal.', className: 'term-accent' }
+          { text: STR.ping.nominal, className: 'term-accent' }
         ]);
       }, 800);
     }
 
     function cmdWhoami() {
-      const messages = [
-        'You are a curious explorer who found our hidden terminal.',
-        'You are a data enthusiast with an eye for easter eggs.',
-        'You are a visitor with excellent keyboard skills.',
-        'You are someone who appreciates a good Konami code.',
-        'You are a potential Intellica partner. Welcome aboard!'
-      ];
+      const messages: string[] = STR.whoami.messages;
       const msg = messages[Math.floor(Math.random() * messages.length)];
 
-      typewriterLines([
-        { text: 'user: visitor', className: 'term-highlight' },
-        { text: 'role: explorer' },
-        { text: 'access: read-only' },
-        { text: 'status: authenticated via easter egg' },
-        { text: '' },
-        { text: msg, className: 'term-accent' }
-      ]);
+      const lines: Array<{ text: string; className?: string }> = [];
+      STR.whoami.lines.forEach((line: string, i: number) => {
+        lines.push({ text: line, className: i === 0 ? 'term-highlight' : undefined });
+      });
+      lines.push({ text: '' });
+      lines.push({ text: msg, className: 'term-accent' });
+      typewriterLines(lines);
     }
 
     function cmdClear() {
@@ -522,8 +731,8 @@
 
     function cmdNotFound(cmd: string) {
       typewriterLines([
-        { text: 'command not found: ' + cmd, className: 'term-warn' },
-        { text: 'Type "help" for available commands.', className: 'term-dim' }
+        { text: STR.notFoundTpl.replace('{cmd}', cmd), className: 'term-warn' },
+        { text: STR.notFoundHelp, className: 'term-dim' }
       ]);
     }
 
@@ -581,18 +790,13 @@
 
       // Show welcome message on first open
       if (!output.firstChild) {
-        typewriterLines([
-          { text: '  _____       _       _ _ _', className: 'term-highlight' },
-          { text: ' |_   _|     | |     | | (_)', className: 'term-highlight' },
-          { text: '   | |  _ __ | |_ ___| | |_  ___ __ _', className: 'term-highlight' },
-          { text: '   | | | \'_ \\| __/ _ \\ | | |/ __/ _` |', className: 'term-highlight' },
-          { text: '  _| |_| | | | ||  __/ | | | (_| (_| |', className: 'term-highlight' },
-          { text: ' |_____|_| |_|\\__\\___|_|_|_|\\___\\__,_|', className: 'term-highlight' },
-          { text: '' },
-          { text: ' Welcome to the Intellica Secret Terminal v1.0', className: 'term-accent' },
-          { text: ' Type "help" for available commands.', className: 'term-dim' },
-          { text: '' }
-        ]);
+        const lines: Array<{ text: string; className?: string }> = [];
+        for (const row of STR.welcome.banner) lines.push({ text: row, className: 'term-highlight' });
+        lines.push({ text: '' });
+        lines.push({ text: STR.welcome.greeting, className: 'term-accent' });
+        lines.push({ text: STR.welcome.tip, className: 'term-dim' });
+        lines.push({ text: '' });
+        typewriterLines(lines);
       }
     }
 
