@@ -5,41 +5,109 @@
  * reading paths with localStorage progress tracking and expandable
  * article timelines.
  */
+import type { Lang } from '../../i18n/config';
 
-// ── Article catalog ──
-const articles: Record<string, { title: string; time: number }> = {
-  "dashboard-guven": { title: "Why Trust Decreases as the Number of Dashboards Increases?", time: 6 },
-  "manuel-kontroller": { title: "Why Manual Controls Are Still Alive", time: 5 },
-  "verinin-nabzi": { title: "Data Autopsy or Data Pulse?", time: 6 },
-  "is-analizi": { title: "Business Analysis: The Reality Filter", time: 7 },
-  "rag-ne-zaman-ise-yarar": { title: "When Does RAG Work and When Does It Mislead?", time: 8 },
-  "genai-guven-standardi": { title: "How to Establish a Trust Standard in Enterprise GenAI?", time: 9 },
-};
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
-// ── Paths ──
-const paths = [
-  {
-    id: "data-governance",
-    name: "Data Governance Journey",
-    description: "Master data quality, dashboard governance, and reconciliation strategies",
-    icon: "shield",
-    slugs: ["dashboard-guven", "manuel-kontroller"],
+const STRINGS = {
+  en: {
+    sectionLabel: 'LEARNING PATHS',
+    titlePrefix: 'Choose Your ',
+    titleHighlight: 'Journey',
+    subtitle: 'Follow a guided reading path to master a topic end-to-end. Track your progress as you go.',
+    articlesLabel: 'articles',
+    totalLabel: 'min total',
+    completedTpl: '{read}/{total} completed',
+    minReadLabel: 'min read',
+    markRead: 'Mark Read',
+    read: 'Read',
+    markAriaTpl: 'Mark "{title}" as read',
+    readArticle: 'Read Article \u2192',
+    insightsBasePath: '/insights',
+    articles: {
+      'dashboard-guven': { title: 'Why Trust Decreases as the Number of Dashboards Increases?', time: 6 },
+      'manuel-kontroller': { title: 'Why Manual Controls Are Still Alive', time: 5 },
+      'verinin-nabzi': { title: 'Data Autopsy or Data Pulse?', time: 6 },
+      'is-analizi': { title: 'Business Analysis: The Reality Filter', time: 7 },
+      'rag-ne-zaman-ise-yarar': { title: 'When Does RAG Work and When Does It Mislead?', time: 8 },
+      'genai-guven-standardi': { title: 'How to Establish a Trust Standard in Enterprise GenAI?', time: 9 },
+    },
+    paths: [
+      {
+        id: 'data-governance',
+        name: 'Data Governance Journey',
+        description: 'Master data quality, dashboard governance, and reconciliation strategies',
+        icon: 'shield',
+        slugs: ['dashboard-guven', 'manuel-kontroller'],
+      },
+      {
+        id: 'ai-readiness',
+        name: 'AI Readiness Journey',
+        description: 'Build production-grade AI with RAG, GenAI trust, and business analysis',
+        icon: 'cpu',
+        slugs: ['rag-ne-zaman-ise-yarar', 'genai-guven-standardi', 'is-analizi'],
+      },
+      {
+        id: 'data-ops',
+        name: 'Data Operations Journey',
+        description: 'From manual controls to real-time monitoring and early warning systems',
+        icon: 'activity',
+        slugs: ['verinin-nabzi', 'manuel-kontroller'],
+      },
+    ],
   },
-  {
-    id: "ai-readiness",
-    name: "AI Readiness Journey",
-    description: "Build production-grade AI with RAG, GenAI trust, and business analysis",
-    icon: "cpu",
-    slugs: ["rag-ne-zaman-ise-yarar", "genai-guven-standardi", "is-analizi"],
+  tr: {
+    sectionLabel: 'ÖĞRENME ROTALARI',
+    titlePrefix: 'Kendi ',
+    titleHighlight: 'Yolculuğunuzu Seçin',
+    subtitle: 'Rehberli bir okuma rotasıyla bir konuyu baştan sona öğrenin. İlerlemenizi takip edin.',
+    articlesLabel: 'makale',
+    totalLabel: 'dk toplam',
+    completedTpl: '{read}/{total} tamamlandı',
+    minReadLabel: 'dk okuma',
+    markRead: 'Okundu İşaretle',
+    read: 'Okundu',
+    markAriaTpl: '"{title}" makalesini okundu olarak işaretle',
+    readArticle: 'Makaleyi Oku \u2192',
+    insightsBasePath: '/tr/insights',
+    articles: {
+      'dashboard-guven': { title: 'Dashboard Sayısı Arttıkça Güven Neden Azalır?', time: 6 },
+      'manuel-kontroller': { title: 'Manuel Kontroller Neden Hâlâ Hayatta?', time: 5 },
+      'verinin-nabzi': { title: 'Veri Otopsisi mi, Verinin Nabzı mı?', time: 6 },
+      'is-analizi': { title: 'İş Analizi: Gerçeklik Filtresi', time: 7 },
+      'rag-ne-zaman-ise-yarar': { title: 'RAG Ne Zaman İşe Yarar, Ne Zaman Yanıltır?', time: 8 },
+      'genai-guven-standardi': { title: 'Kurumsal GenAI\u2019da Güven Standardı Nasıl Kurulur?', time: 9 },
+    },
+    paths: [
+      {
+        id: 'data-governance',
+        name: 'Veri Yönetişimi Yolculuğu',
+        description: 'Veri kalitesi, dashboard yönetişimi ve mutabakat stratejilerinde ustalaşın',
+        icon: 'shield',
+        slugs: ['dashboard-guven', 'manuel-kontroller'],
+      },
+      {
+        id: 'ai-readiness',
+        name: 'AI Hazırlık Yolculuğu',
+        description: 'RAG, GenAI güveni ve iş analiziyle üretim seviyesinde AI kurun',
+        icon: 'cpu',
+        slugs: ['rag-ne-zaman-ise-yarar', 'genai-guven-standardi', 'is-analizi'],
+      },
+      {
+        id: 'data-ops',
+        name: 'Veri Operasyonları Yolculuğu',
+        description: 'Manuel kontrollerden gerçek zamanlı izleme ve erken uyarı sistemlerine',
+        icon: 'activity',
+        slugs: ['verinin-nabzi', 'manuel-kontroller'],
+      },
+    ],
   },
-  {
-    id: "data-ops",
-    name: "Data Operations Journey",
-    description: "From manual controls to real-time monitoring and early warning systems",
-    icon: "activity",
-    slugs: ["verinin-nabzi", "manuel-kontroller"],
-  },
-];
+} as const;
+
+const t = STRINGS[lang];
+const articles = t.articles as Record<string, { title: string; time: number }>;
+const paths = t.paths;
 
 // Enrich paths with article data for the template
 const enrichedPaths = paths.map(p => ({
@@ -47,15 +115,22 @@ const enrichedPaths = paths.map(p => ({
   articles: p.slugs.map(s => ({ slug: s, ...articles[s] })),
   totalTime: p.slugs.reduce((sum, s) => sum + articles[s].time, 0),
 }));
+
+// Serialise strings for client JS
+const rpStrings = JSON.stringify({
+  markRead: t.markRead,
+  read: t.read,
+  completedTpl: t.completedTpl,
+});
 ---
 
-<section class="section section--dark rp" id="reading-paths">
+<section class="section section--dark rp" id="reading-paths" data-rp-strings={rpStrings}>
   <div class="container">
     <!-- Header -->
     <div class="text-center anim-fade-up">
-      <div class="section-label">LEARNING PATHS</div>
-      <h2 class="section-title">Choose Your <span class="grad-text">Journey</span></h2>
-      <p class="section-sub">Follow a guided reading path to master a topic end-to-end. Track your progress as you go.</p>
+      <div class="section-label">{t.sectionLabel}</div>
+      <h2 class="section-title">{t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span></h2>
+      <p class="section-sub">{t.subtitle}</p>
     </div>
 
     <!-- Path grid -->
@@ -78,11 +153,11 @@ const enrichedPaths = paths.map(p => ({
               <h3 class="rp__name">{path.name}</h3>
               <p class="rp__desc">{path.description}</p>
               <div class="rp__meta">
-                <span class="rp__meta-item">{path.articles.length} articles</span>
+                <span class="rp__meta-item">{path.articles.length} {t.articlesLabel}</span>
                 <span class="rp__meta-sep"></span>
-                <span class="rp__meta-item">{path.totalTime} min total</span>
+                <span class="rp__meta-item">{path.totalTime} {t.totalLabel}</span>
                 <span class="rp__meta-sep"></span>
-                <span class="rp__meta-item rp__progress-label" data-path-id={path.id}>0/{path.articles.length} completed</span>
+                <span class="rp__meta-item rp__progress-label" data-path-id={path.id}>{t.completedTpl.replace('{read}', '0').replace('{total}', String(path.articles.length))}</span>
               </div>
               <!-- Progress bar -->
               <div class="rp__bar-track">
@@ -109,25 +184,25 @@ const enrichedPaths = paths.map(p => ({
                     <div class="rp__step-top">
                       <div class="rp__step-info">
                         <span class="rp__step-title">{article.title}</span>
-                        <span class="rp__step-time">{article.time} min read</span>
+                        <span class="rp__step-time">{article.time} {t.minReadLabel}</span>
                       </div>
                       <div class="rp__step-actions">
                         <button
                           class="rp__mark-btn"
                           data-slug={article.slug}
-                          aria-label={`Mark "${article.title}" as read`}
+                          aria-label={t.markAriaTpl.replace('{title}', article.title)}
                         >
                           <span class="rp__check-icon"></span>
-                          <span class="rp__mark-label">Mark Read</span>
+                          <span class="rp__mark-label">{t.markRead}</span>
                         </button>
                       </div>
                     </div>
                     <a
                       class="rp__read-link"
-                      href={`/insights/${article.slug}`}
+                      href={`${t.insightsBasePath}/${article.slug}`}
                       data-slug={article.slug}
                     >
-                      Read Article &rarr;
+                      {t.readArticle}
                     </a>
                   </div>
                 </li>
@@ -517,6 +592,15 @@ const enrichedPaths = paths.map(p => ({
   // ── Storage key ──
   const STORAGE_KEY = "intellica-reading-progress";
 
+  // ── Localized strings from data attribute ──
+  const rpSection = document.getElementById('reading-paths');
+  const rpStrs = (() => {
+    try {
+      const raw = rpSection?.dataset.rpStrings;
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  })() || { markRead: 'Mark Read', read: 'Read', completedTpl: '{read}/{total} completed' };
+
   // ── Helpers ──
   function loadProgress(): Record<string, boolean> {
     try {
@@ -553,7 +637,7 @@ const enrichedPaths = paths.map(p => ({
       // Update mark button label
       const labelEl = step.querySelector<HTMLElement>(".rp__mark-label");
       if (labelEl) {
-        labelEl.textContent = isRead ? "Read" : "Mark Read";
+        labelEl.textContent = isRead ? rpStrs.read : rpStrs.markRead;
       }
 
       if (isRead) {
@@ -569,7 +653,9 @@ const enrichedPaths = paths.map(p => ({
       `.rp__progress-label[data-path-id="${pathId}"]`
     );
     if (progressLabel) {
-      progressLabel.textContent = `${readCount}/${steps.length} completed`;
+      progressLabel.textContent = rpStrs.completedTpl
+        .replace('{read}', String(readCount))
+        .replace('{total}', String(steps.length));
     }
 
     // Update progress bar
