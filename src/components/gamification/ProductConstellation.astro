@@ -4,19 +4,64 @@
  * Interactive space-themed visualization of Intellica's 10 products
  * as connected star nodes in 4 clusters.
  */
+import type { Lang } from '../../i18n/config';
 
-const products = [
-  { id: 'ifdm', name: 'IFDM', tagline: 'Finance Data Model', description: 'International standard DWH model for banking', tags: ['Data Model', 'Banking'], href: '/products/ifdm', x: 15, y: 25, cluster: 'data-models' },
-  { id: 'itdm', name: 'ITDM', tagline: 'Telecom Data Model', description: 'DWH model for telecom operators', tags: ['Data Model', 'Telecom'], href: '/products/itdm', x: 25, y: 40, cluster: 'data-models' },
-  { id: 'hrdm', name: 'HRDM', tagline: 'HR Data Model', description: 'Optimized for HR analytics', tags: ['Data Model', 'HR'], href: '/products/hrdm', x: 10, y: 50, cluster: 'data-models' },
-  { id: 'icc', name: 'ICC', tagline: 'Consistency Checker', description: 'Data reconciliation & quality control', tags: ['Data Quality', 'Reconciliation'], href: '/products/icc', x: 70, y: 20, cluster: 'governance' },
-  { id: 'retouch', name: 'ReTouch', tagline: 'Data Entry Management', description: 'Validate & import external data', tags: ['Data Entry', 'Validation'], href: '/products/retouch', x: 80, y: 35, cluster: 'governance' },
-  { id: 'retable', name: 'Retable', tagline: 'No-Code Platform', description: 'Build apps without code', tags: ['No-Code', 'Cloud'], href: '/products/retable', x: 20, y: 70, cluster: 'platform' },
-  { id: 'orqenta', name: 'Orqenta', tagline: 'Workflow Orchestration', description: 'Job scheduling for regulated environments', tags: ['Orchestration', 'Enterprise'], href: '/products/orqenta', x: 35, y: 80, cluster: 'platform' },
-  { id: 'talkto', name: 'Talk To', tagline: 'NL-to-SQL AI', description: 'Ask data questions in plain English', tags: ['GenAI', 'NL2SQL'], href: '/products/talk-to-your-data', x: 65, y: 65, cluster: 'ai' },
-  { id: 'blueoctopus', name: 'Blue Octopus', tagline: 'Event Intelligence', description: 'Real-time critical event detection', tags: ['AI Analytics', 'Monitoring'], href: '/products/blue-octopus', x: 80, y: 70, cluster: 'ai' },
-  { id: 'var', name: 'VAR', tagline: 'Voice AI Recognition', description: 'Voice signature & speaker matching', tags: ['Voice AI', 'Security'], href: '/products/var', x: 75, y: 85, cluster: 'ai' },
-];
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+const STRINGS = {
+  en: {
+    sectionAria: 'Product Constellation Map',
+    sectionLabel: 'EXPLORE',
+    titlePrefix: 'Product ',
+    titleHighlight: 'Constellation',
+    subtitle: 'Discover our solutions in a new way',
+    canvasAria: 'Interactive map of Intellica products organized in four clusters: Data Models, Governance, Platform, and AI',
+    cardAria: 'Product details',
+    mobileAria: 'Product list',
+    learnMore: 'Learn More →',
+    nodeAriaTpl: '{name} — {tagline}. Click to learn more.',
+    products: [
+      { id: 'ifdm', name: 'IFDM', tagline: 'Finance Data Model', description: 'International standard DWH model for banking', tags: ['Data Model', 'Banking'], href: '/products/ifdm', x: 15, y: 25, cluster: 'data-models' },
+      { id: 'itdm', name: 'ITDM', tagline: 'Telecom Data Model', description: 'DWH model for telecom operators', tags: ['Data Model', 'Telecom'], href: '/products/itdm', x: 25, y: 40, cluster: 'data-models' },
+      { id: 'hrdm', name: 'HRDM', tagline: 'HR Data Model', description: 'Optimized for HR analytics', tags: ['Data Model', 'HR'], href: '/products/hrdm', x: 10, y: 50, cluster: 'data-models' },
+      { id: 'icc', name: 'ICC', tagline: 'Consistency Checker', description: 'Data reconciliation & quality control', tags: ['Data Quality', 'Reconciliation'], href: '/products/icc', x: 70, y: 20, cluster: 'governance' },
+      { id: 'retouch', name: 'ReTouch', tagline: 'Data Entry Management', description: 'Validate & import external data', tags: ['Data Entry', 'Validation'], href: '/products/retouch', x: 80, y: 35, cluster: 'governance' },
+      { id: 'retable', name: 'Retable', tagline: 'No-Code Platform', description: 'Build apps without code', tags: ['No-Code', 'Cloud'], href: '/products/retable', x: 20, y: 70, cluster: 'platform' },
+      { id: 'orqenta', name: 'Orqenta', tagline: 'Workflow Orchestration', description: 'Job scheduling for regulated environments', tags: ['Orchestration', 'Enterprise'], href: '/products/orqenta', x: 35, y: 80, cluster: 'platform' },
+      { id: 'talkto', name: 'Talk To', tagline: 'NL-to-SQL AI', description: 'Ask data questions in plain English', tags: ['GenAI', 'NL2SQL'], href: '/products/talk-to-your-data', x: 65, y: 65, cluster: 'ai' },
+      { id: 'blueoctopus', name: 'Blue Octopus', tagline: 'Event Intelligence', description: 'Real-time critical event detection', tags: ['AI Analytics', 'Monitoring'], href: '/products/blue-octopus', x: 80, y: 70, cluster: 'ai' },
+      { id: 'var', name: 'VAR', tagline: 'Voice AI Recognition', description: 'Voice signature & speaker matching', tags: ['Voice AI', 'Security'], href: '/products/var', x: 75, y: 85, cluster: 'ai' },
+    ],
+  },
+  tr: {
+    sectionAria: 'Ürün Takımyıldızı Haritası',
+    sectionLabel: 'KEŞFET',
+    titlePrefix: 'Ürün ',
+    titleHighlight: 'Takımyıldızı',
+    subtitle: 'Çözümlerimizi yepyeni bir şekilde keşfedin',
+    canvasAria: 'Intellica ürünlerinin Veri Modelleri, Yönetişim, Platform ve AI olmak üzere dört kümede düzenlendiği etkileşimli harita',
+    cardAria: 'Ürün detayları',
+    mobileAria: 'Ürün listesi',
+    learnMore: 'Daha Fazla →',
+    nodeAriaTpl: '{name} — {tagline}. Daha fazlası için tıklayın.',
+    products: [
+      { id: 'ifdm', name: 'IFDM', tagline: 'Finans Veri Modeli', description: 'Bankacılık için uluslararası standart DWH modeli', tags: ['Veri Modeli', 'Bankacılık'], href: '/tr/products/ifdm', x: 15, y: 25, cluster: 'data-models' },
+      { id: 'itdm', name: 'ITDM', tagline: 'Telekom Veri Modeli', description: 'Telekom operatörleri için DWH modeli', tags: ['Veri Modeli', 'Telekom'], href: '/tr/products/itdm', x: 25, y: 40, cluster: 'data-models' },
+      { id: 'hrdm', name: 'HRDM', tagline: 'İK Veri Modeli', description: 'İK analitiği için optimize', tags: ['Veri Modeli', 'İK'], href: '/tr/products/hrdm', x: 10, y: 50, cluster: 'data-models' },
+      { id: 'icc', name: 'ICC', tagline: 'Tutarlılık Denetleyicisi', description: 'Veri mutabakatı ve kalite kontrolü', tags: ['Veri Kalitesi', 'Mutabakat'], href: '/tr/products/icc', x: 70, y: 20, cluster: 'governance' },
+      { id: 'retouch', name: 'ReTouch', tagline: 'Veri Girişi Yönetimi', description: 'Dış veriyi doğrulayın ve içeri alın', tags: ['Veri Girişi', 'Doğrulama'], href: '/tr/products/retouch', x: 80, y: 35, cluster: 'governance' },
+      { id: 'retable', name: 'Retable', tagline: 'Kodsuz Platform', description: 'Kodsuz uygulama geliştirme', tags: ['Kodsuz', 'Bulut'], href: '/tr/products/retable', x: 20, y: 70, cluster: 'platform' },
+      { id: 'orqenta', name: 'Orqenta', tagline: 'İş Akışı Orkestrasyonu', description: 'Regüle ortamlar için iş zamanlaması', tags: ['Orkestrasyon', 'Kurumsal'], href: '/tr/products/orqenta', x: 35, y: 80, cluster: 'platform' },
+      { id: 'talkto', name: 'Talk To', tagline: 'Doğal Dilden SQL AI', description: 'Veriye doğal dilde soru sorun', tags: ['GenAI', 'NL2SQL'], href: '/tr/products/talk-to-your-data', x: 65, y: 65, cluster: 'ai' },
+      { id: 'blueoctopus', name: 'Blue Octopus', tagline: 'Olay Zekâsı', description: 'Gerçek zamanlı kritik olay tespiti', tags: ['AI Analitiği', 'İzleme'], href: '/tr/products/blue-octopus', x: 80, y: 70, cluster: 'ai' },
+      { id: 'var', name: 'VAR', tagline: 'Ses AI Tanıma', description: 'Ses imzası ve konuşmacı eşleştirme', tags: ['Ses AI', 'Güvenlik'], href: '/tr/products/var', x: 75, y: 85, cluster: 'ai' },
+    ],
+  },
+} as const;
+
+const t = STRINGS[lang];
+const products = t.products;
 
 const connections = [
   ['ifdm', 'icc'],
@@ -31,18 +76,18 @@ const connections = [
 ];
 ---
 
-<section class="constellation-section" id="product-constellation" aria-label="Product Constellation Map">
+<section class="constellation-section" id="product-constellation" aria-label={t.sectionAria}>
   <div class="constellation__stars" aria-hidden="true"></div>
   <div class="container">
     <div class="constellation__frame anim-fade-up">
     <div class="constellation__header">
-      <div class="section-label" style="margin-inline:auto;">EXPLORE</div>
-      <h2 class="section-title">Product <span class="grad-text">Constellation</span></h2>
-      <p class="constellation__subtitle">Discover our solutions in a new way</p>
+      <div class="section-label" style="margin-inline:auto;">{t.sectionLabel}</div>
+      <h2 class="section-title">{t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span></h2>
+      <p class="constellation__subtitle">{t.subtitle}</p>
     </div>
 
     <!-- Desktop: Interactive constellation map -->
-    <div class="constellation__canvas" role="img" aria-label="Interactive map of Intellica products organized in four clusters: Data Models, Governance, Platform, and AI">
+    <div class="constellation__canvas" role="img" aria-label={t.canvasAria}>
       <svg class="constellation__svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
         {connections.map(([fromId, toId]) => {
           const from = products.find(p => p.id === fromId);
@@ -67,7 +112,7 @@ const connections = [
           data-product-id={product.id}
           data-cluster={product.cluster}
           style={`left: ${product.x}%; top: ${product.y}%;`}
-          aria-label={`${product.name} — ${product.tagline}. Click to learn more.`}
+          aria-label={t.nodeAriaTpl.replace('{name}', product.name).replace('{tagline}', product.tagline)}
           aria-expanded="false"
           type="button"
         >
@@ -77,18 +122,18 @@ const connections = [
       ))}
 
       <!-- Expanded card (rendered once, populated via JS) -->
-      <div class="constellation__card" role="dialog" aria-label="Product details" hidden>
+      <div class="constellation__card" role="dialog" aria-label={t.cardAria} hidden>
         <div class="constellation__card-name"></div>
         <div class="constellation__card-tagline"></div>
         <div class="constellation__card-desc"></div>
         <div class="constellation__card-tags"></div>
-        <a class="constellation__card-link" href="#">Learn More &rarr;</a>
+        <a class="constellation__card-link" href="#">{t.learnMore}</a>
       </div>
     </div>
     </div>
 
     <!-- Mobile: Grid fallback -->
-    <div class="constellation__mobile-grid anim-fade-up" aria-label="Product list">
+    <div class="constellation__mobile-grid anim-fade-up" aria-label={t.mobileAria}>
       {products.map((product) => (
         <a class="constellation__mobile-card" href={product.href}>
           <div class="constellation__mobile-card-header">

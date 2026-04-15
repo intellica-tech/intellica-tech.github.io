@@ -5,6 +5,10 @@
  * industry, challenge, and priority selections.
  * Scoring: each answer maps to a tag; product score = matched tag count.
  */
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
 // ── Inline SVG icons (24x24 viewBox, stroke-based) ──
 const iconMap: Record<string, string> = {
@@ -22,71 +26,140 @@ const iconMap: Record<string, string> = {
   rocket: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>`,
 };
 
-// ── Step definitions ──
-const steps = [
-  {
-    title: "What is your industry?",
-    options: [
-      { label: "Finance & Banking", value: "finance", icon: "bank" },
-      { label: "Telecom", value: "telecom", icon: "signal" },
-      { label: "Human Resources", value: "hr", icon: "people" },
-      { label: "Other", value: "other", icon: "building" },
+const STRINGS = {
+  en: {
+    sectionLabel: 'PRODUCT FINDER',
+    titlePrefix: 'Find Your ',
+    titleHighlight: 'Ideal Solution',
+    subtitle: "Answer three quick questions and we\u2019ll recommend the best products for your needs.",
+    progressAria: 'Wizard progress',
+    resultTitle: 'Recommended For You',
+    ctaText: 'Get a Personalized Demo',
+    ctaHref: '/contact',
+    restartText: 'Start Over',
+    matchSuffix: '% match',
+    steps: [
+      {
+        title: 'What is your industry?',
+        options: [
+          { label: 'Finance & Banking', value: 'finance', icon: 'bank' },
+          { label: 'Telecom', value: 'telecom', icon: 'signal' },
+          { label: 'Human Resources', value: 'hr', icon: 'people' },
+          { label: 'Other', value: 'other', icon: 'building' },
+        ],
+      },
+      {
+        title: 'What is your biggest data challenge?',
+        options: [
+          { label: 'Data Quality & Consistency', value: 'data-quality', icon: 'search' },
+          { label: 'Reporting Gaps', value: 'reporting-gaps', icon: 'chart' },
+          { label: 'Manual Processes', value: 'manual-processes', icon: 'gear' },
+          { label: 'AI Readiness', value: 'ai-readiness', icon: 'robot' },
+        ],
+      },
+      {
+        title: 'What is your top priority?',
+        options: [
+          { label: 'Cost Reduction', value: 'cost-reduction', icon: 'money' },
+          { label: 'Speed & Efficiency', value: 'speed', icon: 'bolt' },
+          { label: 'Compliance & Governance', value: 'compliance', icon: 'shield' },
+          { label: 'Innovation', value: 'innovation', icon: 'rocket' },
+        ],
+      },
+    ],
+    products: [
+      { id: 'ifdm', name: 'IFDM', tagline: 'Finance Data Model', url: '/products/ifdm', tags: ['finance', 'data-quality', 'compliance', 'cost-reduction'] },
+      { id: 'itdm', name: 'ITDM', tagline: 'Telecom Data Model', url: '/products/itdm', tags: ['telecom', 'data-quality', 'speed', 'cost-reduction'] },
+      { id: 'hrdm', name: 'HRDM', tagline: 'HR Data Model', url: '/products/hrdm', tags: ['hr', 'data-quality', 'speed', 'cost-reduction'] },
+      { id: 'icc', name: 'ICC', tagline: 'Consistency Checker', url: '/products/icc', tags: ['finance', 'telecom', 'hr', 'other', 'data-quality', 'compliance', 'cost-reduction'] },
+      { id: 'retouch', name: 'ReTouch', tagline: 'Data Entry Management', url: '/products/retouch', tags: ['finance', 'telecom', 'hr', 'other', 'data-quality', 'manual-processes', 'compliance'] },
+      { id: 'retable', name: 'Retable', tagline: 'No-Code Platform', url: '/products/retable', tags: ['finance', 'telecom', 'hr', 'other', 'manual-processes', 'speed', 'innovation'] },
+      { id: 'orqenta', name: 'Orqenta', tagline: 'Workflow Orchestration', url: '/products/orqenta', tags: ['finance', 'telecom', 'other', 'manual-processes', 'speed', 'cost-reduction'] },
+      { id: 'talkto', name: 'Talk To', tagline: 'NL-to-SQL AI', url: '/products/talk-to-your-data', tags: ['finance', 'telecom', 'hr', 'other', 'reporting-gaps', 'speed', 'innovation'] },
+      { id: 'blueoctopus', name: 'Blue Octopus', tagline: 'Event Intelligence', url: '/products/blue-octopus', tags: ['finance', 'telecom', 'other', 'ai-readiness', 'compliance', 'innovation'] },
+      { id: 'var', name: 'VAR', tagline: 'Voice AI Recognition', url: '/products/var', tags: ['finance', 'telecom', 'ai-readiness', 'compliance', 'innovation'] },
     ],
   },
-  {
-    title: "What is your biggest data challenge?",
-    options: [
-      { label: "Data Quality & Consistency", value: "data-quality", icon: "search" },
-      { label: "Reporting Gaps", value: "reporting-gaps", icon: "chart" },
-      { label: "Manual Processes", value: "manual-processes", icon: "gear" },
-      { label: "AI Readiness", value: "ai-readiness", icon: "robot" },
+  tr: {
+    sectionLabel: 'ÜRÜN BULUCU',
+    titlePrefix: 'İdeal ',
+    titleHighlight: 'Çözümünüzü Bulun',
+    subtitle: 'Üç hızlı soruyu yanıtlayın, ihtiyaçlarınıza en uygun ürünleri önerelim.',
+    progressAria: 'Sihirbaz ilerlemesi',
+    resultTitle: 'Size Önerilen Ürünler',
+    ctaText: 'Kişiselleştirilmiş Demo Talep Et',
+    ctaHref: '/tr/contact',
+    restartText: 'Baştan Başla',
+    matchSuffix: '% uyum',
+    steps: [
+      {
+        title: 'Hangi sektördesiniz?',
+        options: [
+          { label: 'Finans & Bankacılık', value: 'finance', icon: 'bank' },
+          { label: 'Telekom', value: 'telecom', icon: 'signal' },
+          { label: 'İnsan Kaynakları', value: 'hr', icon: 'people' },
+          { label: 'Diğer', value: 'other', icon: 'building' },
+        ],
+      },
+      {
+        title: 'En büyük veri zorluğunuz ne?',
+        options: [
+          { label: 'Veri Kalitesi & Tutarlılık', value: 'data-quality', icon: 'search' },
+          { label: 'Raporlama Boşlukları', value: 'reporting-gaps', icon: 'chart' },
+          { label: 'Manuel Süreçler', value: 'manual-processes', icon: 'gear' },
+          { label: 'AI Hazırlığı', value: 'ai-readiness', icon: 'robot' },
+        ],
+      },
+      {
+        title: 'En önemli önceliğiniz hangisi?',
+        options: [
+          { label: 'Maliyet Azaltma', value: 'cost-reduction', icon: 'money' },
+          { label: 'Hız & Verimlilik', value: 'speed', icon: 'bolt' },
+          { label: 'Uyum & Yönetişim', value: 'compliance', icon: 'shield' },
+          { label: 'İnovasyon', value: 'innovation', icon: 'rocket' },
+        ],
+      },
+    ],
+    products: [
+      { id: 'ifdm', name: 'IFDM', tagline: 'Finans Veri Modeli', url: '/tr/products/ifdm', tags: ['finance', 'data-quality', 'compliance', 'cost-reduction'] },
+      { id: 'itdm', name: 'ITDM', tagline: 'Telekom Veri Modeli', url: '/tr/products/itdm', tags: ['telecom', 'data-quality', 'speed', 'cost-reduction'] },
+      { id: 'hrdm', name: 'HRDM', tagline: 'İK Veri Modeli', url: '/tr/products/hrdm', tags: ['hr', 'data-quality', 'speed', 'cost-reduction'] },
+      { id: 'icc', name: 'ICC', tagline: 'Tutarlılık Denetleyicisi', url: '/tr/products/icc', tags: ['finance', 'telecom', 'hr', 'other', 'data-quality', 'compliance', 'cost-reduction'] },
+      { id: 'retouch', name: 'ReTouch', tagline: 'Veri Girişi Yönetimi', url: '/tr/products/retouch', tags: ['finance', 'telecom', 'hr', 'other', 'data-quality', 'manual-processes', 'compliance'] },
+      { id: 'retable', name: 'Retable', tagline: 'Kodsuz Platform', url: '/tr/products/retable', tags: ['finance', 'telecom', 'hr', 'other', 'manual-processes', 'speed', 'innovation'] },
+      { id: 'orqenta', name: 'Orqenta', tagline: 'İş Akışı Orkestrasyonu', url: '/tr/products/orqenta', tags: ['finance', 'telecom', 'other', 'manual-processes', 'speed', 'cost-reduction'] },
+      { id: 'talkto', name: 'Talk To', tagline: 'Doğal Dilden SQL AI', url: '/tr/products/talk-to-your-data', tags: ['finance', 'telecom', 'hr', 'other', 'reporting-gaps', 'speed', 'innovation'] },
+      { id: 'blueoctopus', name: 'Blue Octopus', tagline: 'Olay Zekâsı', url: '/tr/products/blue-octopus', tags: ['finance', 'telecom', 'other', 'ai-readiness', 'compliance', 'innovation'] },
+      { id: 'var', name: 'VAR', tagline: 'Ses AI Tanıma', url: '/tr/products/var', tags: ['finance', 'telecom', 'ai-readiness', 'compliance', 'innovation'] },
     ],
   },
-  {
-    title: "What is your top priority?",
-    options: [
-      { label: "Cost Reduction", value: "cost-reduction", icon: "money" },
-      { label: "Speed & Efficiency", value: "speed", icon: "bolt" },
-      { label: "Compliance & Governance", value: "compliance", icon: "shield" },
-      { label: "Innovation", value: "innovation", icon: "rocket" },
-    ],
-  },
-];
+} as const;
 
-// ── Product data with tags ──
-const products = [
-  { id: "ifdm", name: "IFDM", tagline: "Finance Data Model", url: "/products/ifdm", tags: ["finance", "data-quality", "compliance", "cost-reduction"] },
-  { id: "itdm", name: "ITDM", tagline: "Telecom Data Model", url: "/products/itdm", tags: ["telecom", "data-quality", "speed", "cost-reduction"] },
-  { id: "hrdm", name: "HRDM", tagline: "HR Data Model", url: "/products/hrdm", tags: ["hr", "data-quality", "speed", "cost-reduction"] },
-  { id: "icc", name: "ICC", tagline: "Consistency Checker", url: "/products/icc", tags: ["finance", "telecom", "hr", "other", "data-quality", "compliance", "cost-reduction"] },
-  { id: "retouch", name: "ReTouch", tagline: "Data Entry Management", url: "/products/retouch", tags: ["finance", "telecom", "hr", "other", "data-quality", "manual-processes", "compliance"] },
-  { id: "retable", name: "Retable", tagline: "No-Code Platform", url: "/products/retable", tags: ["finance", "telecom", "hr", "other", "manual-processes", "speed", "innovation"] },
-  { id: "orqenta", name: "Orqenta", tagline: "Workflow Orchestration", url: "/products/orqenta", tags: ["finance", "telecom", "other", "manual-processes", "speed", "cost-reduction"] },
-  { id: "talkto", name: "Talk To", tagline: "NL-to-SQL AI", url: "/products/talk-to-your-data", tags: ["finance", "telecom", "hr", "other", "reporting-gaps", "speed", "innovation"] },
-  { id: "blueoctopus", name: "Blue Octopus", tagline: "Event Intelligence", url: "/products/blue-octopus", tags: ["finance", "telecom", "other", "ai-readiness", "compliance", "innovation"] },
-  { id: "var", name: "VAR", tagline: "Voice AI Recognition", url: "/products/var", tags: ["finance", "telecom", "ai-readiness", "compliance", "innovation"] },
-];
+const t = STRINGS[lang];
+const steps = t.steps;
+const products = t.products;
 
 // Serialise for client script via define:vars
 const stepsJson = JSON.stringify(steps);
 const productsJson = JSON.stringify(products);
+const matchSuffix = t.matchSuffix;
 ---
 
 <section class="section section--light" id="product-fit-wizard">
   <div class="container">
     <div class="pfw-header anim-fade-up">
-      <div class="section-label">PRODUCT FINDER</div>
+      <div class="section-label">{t.sectionLabel}</div>
       <h2 class="section-title" style="color:var(--clr-light-text);text-align:left;">
-        Find Your <span class="grad-text">Ideal Solution</span>
+        {t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span>
       </h2>
       <p class="section-sub" style="text-align:left;margin:0 0 48px;">
-        Answer three quick questions and we'll recommend the best products for your needs.
+        {t.subtitle}
       </p>
     </div>
 
     <div class="pfw-card anim-fade-up" id="pfw-card">
       <!-- Progress bar -->
-      <div class="pfw-progress" aria-label="Wizard progress">
+      <div class="pfw-progress" aria-label={t.progressAria}>
         <div class="pfw-progress__fill" id="pfw-progress-fill" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
 
@@ -114,13 +187,13 @@ const productsJson = JSON.stringify(products);
 
       <!-- Result screen (hidden initially) -->
       <div class="pfw-result" id="pfw-result" aria-live="polite" style="display:none">
-        <h3 class="pfw-result__title">Recommended For You</h3>
+        <h3 class="pfw-result__title">{t.resultTitle}</h3>
         <div class="pfw-result__list" id="pfw-result-list">
           <!-- Populated by JS -->
         </div>
         <div class="pfw-result__actions">
-          <a href="/contact" class="btn btn-primary btn-pill">Get a Personalized Demo</a>
-          <button type="button" class="pfw-restart" id="pfw-restart">Start Over</button>
+          <a href={t.ctaHref} class="btn btn-primary btn-pill">{t.ctaText}</a>
+          <button type="button" class="pfw-restart" id="pfw-restart">{t.restartText}</button>
         </div>
       </div>
     </div>
@@ -385,7 +458,7 @@ const productsJson = JSON.stringify(products);
   }
 </style>
 
-<script define:vars={{ stepsJson, productsJson }}>
+<script define:vars={{ stepsJson, productsJson, matchSuffix }}>
   (function () {
     var stepsData = JSON.parse(stepsJson);
     var productsData = JSON.parse(productsJson);
@@ -487,7 +560,7 @@ const productsJson = JSON.stringify(products);
 
         var matchEl = document.createElement("div");
         matchEl.className = "pfw-result-card__match";
-        matchEl.textContent = matchPct + "% match";
+        matchEl.textContent = matchPct + matchSuffix;
 
         var arrowEl = document.createElement("div");
         arrowEl.className = "pfw-result-card__arrow";
