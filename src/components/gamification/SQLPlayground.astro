@@ -5,12 +5,16 @@
  * pre-defined query mappings, typewriter SQL reveal, result tables,
  * SVG bar charts, and table/chart toggle. Static site compatible.
  */
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
 // ── Query Mappings ──
 const queryMappings = [
   {
     id: "monthly-sales",
-    keywords: ["monthly", "sales", "region", "month"],
+    keywords: ["monthly", "sales", "region", "month", "aylik", "satis", "bolge", "ay"],
     sql: "SELECT region, DATE_TRUNC('month', order_date) AS month,\n       SUM(amount) AS total_sales\nFROM orders\nGROUP BY region, month\nORDER BY month, region",
     columns: ["region", "month", "total_sales"],
     rows: [
@@ -26,7 +30,7 @@ const queryMappings = [
   },
   {
     id: "top-customers",
-    keywords: ["top", "customers", "best", "5"],
+    keywords: ["top", "customers", "best", "5", "en", "musteri", "musteriler", "iyi"],
     sql: "SELECT c.name, SUM(o.amount) AS total_spent\nFROM customers c\nJOIN orders o ON c.id = o.customer_id\nGROUP BY c.name\nORDER BY total_spent DESC\nLIMIT 5",
     columns: ["name", "total_spent"],
     rows: [
@@ -41,7 +45,7 @@ const queryMappings = [
   },
   {
     id: "quarterly-revenue",
-    keywords: ["total", "revenue", "quarter", "quarterly"],
+    keywords: ["total", "revenue", "quarter", "quarterly", "toplam", "ciro", "gelir", "ceyrek"],
     sql: "SELECT SUM(amount) AS total_revenue,\n       COUNT(*) AS order_count\nFROM orders\nWHERE order_date >= '2025-01-01'\n  AND order_date < '2025-04-01'",
     columns: ["total_revenue", "order_count"],
     rows: [
@@ -52,7 +56,7 @@ const queryMappings = [
   },
   {
     id: "regional-comparison",
-    keywords: ["compare", "regions", "regional", "comparison"],
+    keywords: ["compare", "regions", "regional", "comparison", "karsilastir", "bolgeler", "bolge", "kiyasla"],
     sql: "SELECT region, SUM(amount) AS total,\n       COUNT(*) AS orders,\n       ROUND(AVG(amount), 2) AS avg_order\nFROM orders\nGROUP BY region\nORDER BY total DESC",
     columns: ["region", "total", "orders", "avg_order"],
     rows: [
@@ -66,7 +70,7 @@ const queryMappings = [
   },
   {
     id: "declining-products",
-    keywords: ["declining", "products", "revenue", "decrease"],
+    keywords: ["declining", "products", "revenue", "decrease", "dusen", "urunler", "gelir", "azalan"],
     sql: "SELECT p.name, p.revenue_current,\n       p.revenue_previous,\n       ROUND((p.revenue_current - p.revenue_previous)\n             / p.revenue_previous * 100, 1) AS change_pct\nFROM products p\nWHERE p.revenue_current < p.revenue_previous\nORDER BY change_pct ASC",
     columns: ["name", "revenue_current", "revenue_previous", "change_pct"],
     rows: [
@@ -79,7 +83,7 @@ const queryMappings = [
   },
   {
     id: "avg-order-value",
-    keywords: ["average", "order", "value", "avg"],
+    keywords: ["average", "order", "value", "avg", "ortalama", "siparis", "deger", "tutar"],
     sql: "SELECT ROUND(AVG(amount), 2) AS avg_order_value,\n       MIN(amount) AS min_order,\n       MAX(amount) AS max_order\nFROM orders",
     columns: ["avg_order_value", "min_order", "max_order"],
     rows: [
@@ -90,7 +94,7 @@ const queryMappings = [
   },
   {
     id: "customer-city",
-    keywords: ["customer", "count", "city", "cities"],
+    keywords: ["customer", "count", "city", "cities", "musteri", "sayi", "sehir", "sehirler"],
     sql: "SELECT city, COUNT(*) AS customer_count\nFROM customers\nGROUP BY city\nORDER BY customer_count DESC",
     columns: ["city", "customer_count"],
     rows: [
@@ -105,7 +109,7 @@ const queryMappings = [
   },
   {
     id: "daily-sales-trend",
-    keywords: ["daily", "sales", "trend", "running"],
+    keywords: ["daily", "sales", "trend", "running", "gunluk", "satis", "trend", "kumulatif"],
     sql: "SELECT order_date,\n       SUM(amount) AS daily_total,\n       SUM(SUM(amount)) OVER (\n         ORDER BY order_date\n       ) AS running_total\nFROM orders\nGROUP BY order_date\nORDER BY order_date",
     columns: ["order_date", "daily_total", "running_total"],
     rows: [
@@ -120,7 +124,7 @@ const queryMappings = [
   },
   {
     id: "order-status",
-    keywords: ["order", "status", "pending", "completed", "shipped"],
+    keywords: ["order", "status", "pending", "completed", "shipped", "siparis", "durum", "bekleyen", "tamamlanan", "kargoda"],
     sql: "SELECT status, COUNT(*) AS order_count,\n       ROUND(AVG(amount), 2) AS avg_amount\nFROM orders\nGROUP BY status\nORDER BY order_count DESC",
     columns: ["status", "order_count", "avg_amount"],
     rows: [
@@ -134,7 +138,7 @@ const queryMappings = [
   },
   {
     id: "monthly-growth",
-    keywords: ["growth", "month", "over", "percentage"],
+    keywords: ["growth", "month", "over", "percentage", "buyume", "ay", "ustune", "yuzde"],
     sql: "SELECT month,\n       revenue,\n       LAG(revenue) OVER (ORDER BY month) AS prev_month,\n       ROUND((revenue - LAG(revenue) OVER (\n         ORDER BY month)) / LAG(revenue) OVER (\n         ORDER BY month) * 100, 1) AS growth_pct\nFROM monthly_summary\nORDER BY month",
     columns: ["month", "revenue", "prev_month", "growth_pct"],
     rows: [
@@ -148,18 +152,113 @@ const queryMappings = [
 ];
 
 const mappingsJson = JSON.stringify(queryMappings);
+
+const STRINGS = {
+  en: {
+    sectionLabel: 'LIVE DEMO',
+    titlePrefix: 'Talk ',
+    titleHighlight: 'To',
+    subtitle: 'Try it now — ask a question in plain English',
+    tabTitle: 'Talk To — Query Editor',
+    explorerLabel: 'EXPLORER',
+    queryFileLabel: 'query.sql',
+    resultsLabel: 'results',
+    panelNlTitle: 'Natural Language Query',
+    panelOutputTitle: 'Output',
+    textareaPlaceholder: 'e.g. Show me monthly sales by region...',
+    textareaAria: 'Natural language query',
+    askBtn: 'Run Query',
+    askBtnAria: 'Submit your question',
+    chipsAria: 'Example queries',
+    chips: [
+      'Show me monthly sales by region',
+      'Who are the top 5 customers?',
+      "What's the total revenue this quarter?",
+      'Compare sales between regions',
+      'Show me products with declining revenue',
+    ],
+    emptyState: 'Run a query to see generated SQL and results',
+    sqlTag: 'Generated SQL',
+    statusAnalyzing: 'Analyzing...',
+    statusNoMatch: 'No match found',
+    statusGenerated: 'Query generated',
+    noMatchMsg: "I can handle more complex queries in a live demo. Let\u2019s talk!",
+    noMatchCta: 'Get in Touch',
+    noMatchHref: '/contact',
+    statusbarVersion: 'Talk To v2.0',
+    statusbarEngine: 'NL-to-SQL Engine',
+    statusbarReady: '● Ready',
+    chartBar: 'Bar Chart',
+    chartDistribution: 'Distribution',
+    chartTrend: 'Trend',
+    itemsSuffix: ' items',
+    stopWords: ['show', 'me', 'the', 'a', 'an', 'is', 'are', 'what', 'whats', 'who', 'how', 'many', 'much', 'do', 'does', 'give', 'get', 'find', 'list', 'display', 'tell', 'can', 'you', 'i', 'my', 'our', 'all', 'for', 'of', 'in', 'to', 'by', 'with', 'between', 'this', 'that'],
+  },
+  tr: {
+    sectionLabel: 'CANLI DEMO',
+    titlePrefix: 'Verinle ',
+    titleHighlight: 'Konuş',
+    subtitle: 'Hemen dene — doğal dilde bir soru sor',
+    tabTitle: 'Talk To \u2014 Query Editor',
+    explorerLabel: 'GEZGİN',
+    queryFileLabel: 'query.sql',
+    resultsLabel: 'results',
+    panelNlTitle: 'Doğal Dil Sorgusu',
+    panelOutputTitle: 'Çıktı',
+    textareaPlaceholder: 'örn. Bölgeye göre aylık satışları göster...',
+    textareaAria: 'Doğal dil sorgusu',
+    askBtn: 'Sorguyu Çalıştır',
+    askBtnAria: 'Sorunuzu gönder',
+    chipsAria: 'Örnek sorgular',
+    chips: [
+      'Bölgeye göre aylık satışları göster',
+      'En iyi 5 müşteri kimler?',
+      'Bu çeyreğin toplam cirosu ne?',
+      'Bölgeler arası satışları karşılaştır',
+      'Geliri düşen ürünleri göster',
+    ],
+    emptyState: 'Üretilen SQL\u2019i ve sonuçları görmek için bir sorgu çalıştır',
+    sqlTag: 'Üretilen SQL',
+    statusAnalyzing: 'Analiz ediliyor...',
+    statusNoMatch: 'Eşleşme bulunamadı',
+    statusGenerated: 'Sorgu üretildi',
+    noMatchMsg: 'Daha karmaşık sorguları canlı demoda işleyebilirim. Hadi konuşalım!',
+    noMatchCta: 'İletişime Geç',
+    noMatchHref: '/tr/contact',
+    statusbarVersion: 'Talk To v2.0',
+    statusbarEngine: 'NL-to-SQL Motoru',
+    statusbarReady: '● Hazır',
+    chartBar: 'Çubuk Grafik',
+    chartDistribution: 'Dağılım',
+    chartTrend: 'Eğilim',
+    itemsSuffix: ' öğe',
+    stopWords: ['goster', 'bana', 'bir', 'kim', 'ne', 'kac', 'nasil', 've', 'ile', 'icin', 'ama', 'veya', 'bu', 'su', 'olan', 'benim', 'bizim', 'tum', 'de', 'da', 'mi', 'mu'],
+  },
+} as const;
+
+const t = STRINGS[lang];
+const sqlPgStrings = JSON.stringify({
+  statusAnalyzing: t.statusAnalyzing,
+  statusNoMatch: t.statusNoMatch,
+  statusGenerated: t.statusGenerated,
+  chartBar: t.chartBar,
+  chartDistribution: t.chartDistribution,
+  chartTrend: t.chartTrend,
+  itemsSuffix: t.itemsSuffix,
+  stopWords: t.stopWords,
+});
 ---
 
-<section class="section section--white sql-playground-section" id="sql-playground">
+<section class="section section--white sql-playground-section" id="sql-playground" data-sql-pg-strings={sqlPgStrings}>
   <div class="container">
     <!-- Header -->
     <div class="sql-pg__header anim-fade-up">
-      <div class="section-label" style="margin-inline: auto;">LIVE DEMO</div>
+      <div class="section-label" style="margin-inline: auto;">{t.sectionLabel}</div>
       <h2 class="section-title" style="color: var(--clr-light-text);">
-        Talk <span class="grad-text">To</span>
+        {t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span>
       </h2>
       <p class="section-sub">
-        Try it now — ask a question in plain English
+        {t.subtitle}
       </p>
     </div>
 
@@ -175,7 +274,7 @@ const mappingsJson = JSON.stringify(queryMappings);
         <div class="sql-pg__titlebar-tabs">
           <span class="sql-pg__tab sql-pg__tab--active">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            Talk To — Query Editor
+            {t.tabTitle}
           </span>
         </div>
         <div class="sql-pg__titlebar-actions">
@@ -188,14 +287,14 @@ const mappingsJson = JSON.stringify(queryMappings);
       <div class="sql-pg__body" id="sql-pg-layout">
         <!-- Sidebar -->
         <div class="sql-pg__sidebar">
-          <div class="sql-pg__sidebar-label">EXPLORER</div>
+          <div class="sql-pg__sidebar-label">{t.explorerLabel}</div>
           <div class="sql-pg__sidebar-item sql-pg__sidebar-item--active">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            query.sql
+            {t.queryFileLabel}
           </div>
           <div class="sql-pg__sidebar-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-            results
+            {t.resultsLabel}
           </div>
         </div>
 
@@ -206,7 +305,7 @@ const mappingsJson = JSON.stringify(queryMappings);
             <div class="sql-pg__panel-header">
               <span class="sql-pg__panel-title">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                Natural Language Query
+                {t.panelNlTitle}
               </span>
             </div>
             <div class="sql-pg__input-area">
@@ -214,27 +313,25 @@ const mappingsJson = JSON.stringify(queryMappings);
                 class="sql-pg__textarea"
                 id="sql-pg-textarea"
                 rows="2"
-                placeholder="e.g. Show me monthly sales by region..."
-                aria-label="Natural language query"
+                placeholder={t.textareaPlaceholder}
+                aria-label={t.textareaAria}
               ></textarea>
               <div class="sql-pg__input-actions">
                 <button
                   class="btn btn-primary btn-pill sql-pg__ask-btn"
                   id="sql-pg-ask"
                   type="button"
-                  aria-label="Submit your question"
+                  aria-label={t.askBtnAria}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  Run Query
+                  {t.askBtn}
                 </button>
               </div>
             </div>
-            <div class="sql-pg__chips" role="list" aria-label="Example queries">
-              <button class="sql-pg__chip" role="listitem" type="button" data-query="Show me monthly sales by region">Show me monthly sales by region</button>
-              <button class="sql-pg__chip" role="listitem" type="button" data-query="Who are the top 5 customers?">Who are the top 5 customers?</button>
-              <button class="sql-pg__chip" role="listitem" type="button" data-query="What's the total revenue this quarter?">What's the total revenue this quarter?</button>
-              <button class="sql-pg__chip" role="listitem" type="button" data-query="Compare sales between regions">Compare sales between regions</button>
-              <button class="sql-pg__chip" role="listitem" type="button" data-query="Show me products with declining revenue">Show me products with declining revenue</button>
+            <div class="sql-pg__chips" role="list" aria-label={t.chipsAria}>
+              {t.chips.map((q) => (
+                <button class="sql-pg__chip" role="listitem" type="button" data-query={q}>{q}</button>
+              ))}
             </div>
           </div>
 
@@ -243,7 +340,7 @@ const mappingsJson = JSON.stringify(queryMappings);
             <div class="sql-pg__panel-header">
               <span class="sql-pg__panel-title">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                Output
+                {t.panelOutputTitle}
               </span>
             </div>
             <!-- Empty state -->
@@ -254,7 +351,7 @@ const mappingsJson = JSON.stringify(queryMappings);
                   <line x1="12" y1="19" x2="20" y2="19"/>
                 </svg>
               </div>
-              <p>Run a query to see generated SQL and results</p>
+              <p>{t.emptyState}</p>
             </div>
 
             <!-- Active result (hidden until query) -->
@@ -262,8 +359,8 @@ const mappingsJson = JSON.stringify(queryMappings);
               <!-- SQL Output -->
               <div class="sql-pg__sql-block">
                 <div class="sql-pg__sql-header">
-                  <span class="sql-pg__sql-tag">Generated SQL</span>
-                  <span class="sql-pg__sql-status" id="sql-pg-status">Analyzing...</span>
+                  <span class="sql-pg__sql-tag">{t.sqlTag}</span>
+                  <span class="sql-pg__sql-status" id="sql-pg-status">{t.statusAnalyzing}</span>
                 </div>
                 <pre class="sql-pg__code"><code id="sql-pg-code"></code></pre>
               </div>
@@ -276,8 +373,8 @@ const mappingsJson = JSON.stringify(queryMappings);
 
               <!-- No Match -->
               <div class="sql-pg__no-match" id="sql-pg-no-match" hidden>
-                <p>I can handle more complex queries in a live demo. Let's talk!</p>
-                <a href="/contact" class="btn btn-primary btn-pill" style="margin-top: 16px;">Get in Touch</a>
+                <p>{t.noMatchMsg}</p>
+                <a href={t.noMatchHref} class="btn btn-primary btn-pill" style="margin-top: 16px;">{t.noMatchCta}</a>
               </div>
             </div>
           </div>
@@ -286,9 +383,9 @@ const mappingsJson = JSON.stringify(queryMappings);
 
       <!-- Window Status Bar -->
       <div class="sql-pg__statusbar">
-        <span>Talk To v2.0</span>
-        <span>NL-to-SQL Engine</span>
-        <span class="sql-pg__statusbar-ready">● Ready</span>
+        <span>{t.statusbarVersion}</span>
+        <span>{t.statusbarEngine}</span>
+        <span class="sql-pg__statusbar-ready">{t.statusbarReady}</span>
       </div>
     </div>
   </div>
@@ -818,9 +915,10 @@ const mappingsJson = JSON.stringify(queryMappings);
   }
 </style>
 
-<script define:vars={{ mappingsJson }}>
+<script define:vars={{ mappingsJson, sqlPgStrings }}>
   // ── Parse data ──
   const MAPPINGS = JSON.parse(mappingsJson);
+  const SQL_PG_STR = JSON.parse(sqlPgStrings);
 
   // ── SQL Keywords for syntax highlighting ──
   const SQL_KEYWORDS = new Set([
@@ -837,13 +935,7 @@ const mappingsJson = JSON.stringify(queryMappings);
     "LAG", "LEAD", "ROW_NUMBER", "RANK", "COALESCE", "CAST"
   ]);
 
-  const STOP_WORDS = new Set([
-    "show", "me", "the", "a", "an", "is", "are", "what",
-    "whats", "who", "how", "many", "much", "do", "does",
-    "give", "get", "find", "list", "display", "tell",
-    "can", "you", "i", "my", "our", "all", "for", "of",
-    "in", "to", "by", "with", "between", "this", "that"
-  ]);
+  const STOP_WORDS = new Set(SQL_PG_STR.stopWords || []);
 
   // ── State ──
   let typewriterTimer = null;
@@ -918,7 +1010,7 @@ const mappingsJson = JSON.stringify(queryMappings);
 
     // Update status
     if (statusEl) {
-      statusEl.textContent = "Analyzing...";
+      statusEl.textContent = SQL_PG_STR.statusAnalyzing;
       statusEl.removeAttribute("data-done");
     }
 
@@ -929,7 +1021,7 @@ const mappingsJson = JSON.stringify(queryMappings);
       // No match
       if (noMatchEl) noMatchEl.hidden = false;
       if (statusEl) {
-        statusEl.textContent = "No match found";
+        statusEl.textContent = SQL_PG_STR.statusNoMatch;
       }
       // Hide SQL block
       var sqlBlock = document.querySelector(".sql-pg__sql-block");
@@ -948,7 +1040,7 @@ const mappingsJson = JSON.stringify(queryMappings);
       // Instant reveal
       highlightSQL(codeEl, match.sql);
       if (statusEl) {
-        statusEl.textContent = "Query generated";
+        statusEl.textContent = SQL_PG_STR.statusGenerated;
         statusEl.setAttribute("data-done", "true");
       }
       showResults(match, tableWrap, chartsRow, resultsGrid);
@@ -956,7 +1048,7 @@ const mappingsJson = JSON.stringify(queryMappings);
       typewriterReveal(codeEl, match.sql, function () {
         highlightSQL(codeEl, match.sql);
         if (statusEl) {
-          statusEl.textContent = "Query generated";
+          statusEl.textContent = SQL_PG_STR.statusGenerated;
           statusEl.setAttribute("data-done", "true");
         }
         showResults(match, tableWrap, chartsRow, resultsGrid);
@@ -1146,20 +1238,20 @@ const mappingsJson = JSON.stringify(queryMappings);
 
     if (hasChart) {
       // Always show bar chart
-      var barCard = createChartCard("Bar Chart", false);
+      var barCard = createChartCard(SQL_PG_STR.chartBar, false);
       buildBarChart(data, match, barCard);
       chartsRow.appendChild(barCard);
 
       // Donut chart for few categorical rows (2-6 rows), non-date keys
       if (data.length >= 2 && data.length <= 6 && !hasDateKeys(match)) {
-        var donutCard = createChartCard("Distribution", false);
+        var donutCard = createChartCard(SQL_PG_STR.chartDistribution, false);
         buildDonutChart(data, match, donutCard);
         chartsRow.appendChild(donutCard);
       }
 
       // Line chart for time-series data
       if (hasDateKeys(match) && data.length >= 2) {
-        var lineCard = createChartCard("Trend", true);
+        var lineCard = createChartCard(SQL_PG_STR.chartTrend, true);
         buildLineChart(data, match, lineCard);
         chartsRow.appendChild(lineCard);
       }
@@ -1342,7 +1434,7 @@ const mappingsJson = JSON.stringify(queryMappings);
     centerText.setAttribute("font-size", "16");
     centerText.setAttribute("font-weight", "700");
     centerText.setAttribute("font-family", "Inter, sans-serif");
-    centerText.textContent = data.length + " items";
+    centerText.textContent = data.length + SQL_PG_STR.itemsSuffix;
     svg.appendChild(centerText);
 
     container.appendChild(svg);
