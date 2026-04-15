@@ -6,6 +6,10 @@
  * showing annual savings, decision speed, and risk reduction.
  * Benchmark-based calculation with 3-year projection.
  */
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
 // ── Benchmark data ──
 const benchmarkData = {
@@ -42,45 +46,102 @@ const benchmarkData = {
 };
 
 const benchmarkJson = JSON.stringify(benchmarkData);
+
+const STRINGS = {
+  en: {
+    sectionLabel: 'ROI CALCULATOR',
+    titlePrefix: "What\u2019s Your Data ",
+    titleHighlight: 'Worth',
+    titleSuffix: '?',
+    subtitle: 'Estimate how much value a modern data platform could unlock for your organization.',
+    inputsAria: 'ROI calculator inputs',
+    industryLabel: 'Industry',
+    industryOptions: { finance: 'Finance & Banking', telecom: 'Telecom', retail: 'Retail & E-Commerce', manufacturing: 'Manufacturing', other: 'Other' },
+    companySizeLabel: 'Company Size',
+    companySizeAria: 'Company size',
+    maturityLabel: 'Current Data Maturity',
+    maturityAria: 'Data maturity level',
+    maturityBasicTitle: 'Basic',
+    maturityBasicDesc: 'Spreadsheets, manual reports',
+    maturityIntermediateTitle: 'Intermediate',
+    maturityIntermediateDesc: 'Central DWH, some BI',
+    maturityAdvancedTitle: 'Advanced',
+    maturityAdvancedDesc: 'Cloud platform, self-service',
+    savingsLabel: 'Estimated Annual Savings',
+    speedLabel: 'Decision Speed Improvement',
+    riskLabel: 'Risk Reduction',
+    projectionLabel: '3-Year Projected ROI',
+    ctaText: "Unlock Your Data\u2019s Value",
+    ctaHref: '/contact',
+  },
+  tr: {
+    sectionLabel: 'ROI HESAPLAYICI',
+    titlePrefix: 'Verinizin ',
+    titleHighlight: 'Değeri',
+    titleSuffix: ' Ne?',
+    subtitle: 'Modern bir veri platformunun kurumunuz için ne kadar değer yaratabileceğini tahmin edin.',
+    inputsAria: 'ROI hesaplayıcı girdileri',
+    industryLabel: 'Sektör',
+    industryOptions: { finance: 'Finans & Bankacılık', telecom: 'Telekom', retail: 'Perakende & E-Ticaret', manufacturing: 'Üretim', other: 'Diğer' },
+    companySizeLabel: 'Şirket Büyüklüğü',
+    companySizeAria: 'Şirket büyüklüğü',
+    maturityLabel: 'Mevcut Veri Olgunluğu',
+    maturityAria: 'Veri olgunluk seviyesi',
+    maturityBasicTitle: 'Temel',
+    maturityBasicDesc: 'Spreadsheet\u2019ler, manuel raporlar',
+    maturityIntermediateTitle: 'Orta',
+    maturityIntermediateDesc: 'Merkezi DWH, kısmi BI',
+    maturityAdvancedTitle: 'İleri',
+    maturityAdvancedDesc: 'Bulut platform, self-servis',
+    savingsLabel: 'Tahmini Yıllık Tasarruf',
+    speedLabel: 'Karar Hızı İyileşmesi',
+    riskLabel: 'Risk Azalması',
+    projectionLabel: '3 Yıllık Projeksiyon ROI',
+    ctaText: 'Verinizin Değerini Açığa Çıkarın',
+    ctaHref: '/tr/contact',
+  },
+} as const;
+
+const t = STRINGS[lang];
 ---
 
 <section class="section section--light roi-section" id="roi-calculator">
   <div class="container">
     <div class="roi-header anim-fade-up">
-      <div class="section-label">ROI CALCULATOR</div>
+      <div class="section-label">{t.sectionLabel}</div>
       <h2 class="section-title">
-        What's Your Data <span class="grad-text">Worth</span>?
+        {t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span>{t.titleSuffix}
       </h2>
       <p class="roi-subtitle">
-        Estimate how much value a modern data platform could unlock for your organization.
+        {t.subtitle}
       </p>
     </div>
 
     <div class="roi-card anim-fade-up" id="roi-card">
       <div class="roi-layout">
         <!-- Inputs -->
-        <div class="roi-inputs" role="form" aria-label="ROI calculator inputs">
+        <div class="roi-inputs" role="form" aria-label={t.inputsAria}>
 
           <!-- Industry -->
           <div class="roi-field">
-            <label class="roi-field__label" for="roi-industry" id="roi-industry-label">Industry</label>
+            <label class="roi-field__label" for="roi-industry" id="roi-industry-label">{t.industryLabel}</label>
             <select
               class="roi-select"
               id="roi-industry"
               aria-labelledby="roi-industry-label"
             >
-              <option value="finance">Finance &amp; Banking</option>
-              <option value="telecom">Telecom</option>
-              <option value="retail">Retail &amp; E-Commerce</option>
-              <option value="manufacturing">Manufacturing</option>
-              <option value="other">Other</option>
+              <option value="finance">{t.industryOptions.finance}</option>
+              <option value="telecom">{t.industryOptions.telecom}</option>
+              <option value="retail">{t.industryOptions.retail}</option>
+              <option value="manufacturing">{t.industryOptions.manufacturing}</option>
+              <option value="other">{t.industryOptions.other}</option>
             </select>
           </div>
 
           <!-- Company Size -->
           <fieldset class="roi-field roi-fieldset">
-            <legend class="roi-field__label">Company Size</legend>
-            <div class="roi-segments" role="radiogroup" aria-label="Company size">
+            <legend class="roi-field__label">{t.companySizeLabel}</legend>
+            <div class="roi-segments" role="radiogroup" aria-label={t.companySizeAria}>
               <label class="roi-segment">
                 <input type="radio" name="roi-size" value="50-100" class="roi-segment__input" />
                 <span class="roi-segment__label">50–100</span>
@@ -102,27 +163,27 @@ const benchmarkJson = JSON.stringify(benchmarkData);
 
           <!-- Data Maturity -->
           <fieldset class="roi-field roi-fieldset">
-            <legend class="roi-field__label">Current Data Maturity</legend>
-            <div class="roi-maturity-options" role="radiogroup" aria-label="Data maturity level">
+            <legend class="roi-field__label">{t.maturityLabel}</legend>
+            <div class="roi-maturity-options" role="radiogroup" aria-label={t.maturityAria}>
               <label class="roi-maturity-option">
                 <input type="radio" name="roi-maturity" value="basic" class="roi-maturity__input" checked />
                 <span class="roi-maturity__card">
-                  <span class="roi-maturity__title">Basic</span>
-                  <span class="roi-maturity__desc">Spreadsheets, manual reports</span>
+                  <span class="roi-maturity__title">{t.maturityBasicTitle}</span>
+                  <span class="roi-maturity__desc">{t.maturityBasicDesc}</span>
                 </span>
               </label>
               <label class="roi-maturity-option">
                 <input type="radio" name="roi-maturity" value="intermediate" class="roi-maturity__input" />
                 <span class="roi-maturity__card">
-                  <span class="roi-maturity__title">Intermediate</span>
-                  <span class="roi-maturity__desc">Central DWH, some BI</span>
+                  <span class="roi-maturity__title">{t.maturityIntermediateTitle}</span>
+                  <span class="roi-maturity__desc">{t.maturityIntermediateDesc}</span>
                 </span>
               </label>
               <label class="roi-maturity-option">
                 <input type="radio" name="roi-maturity" value="advanced" class="roi-maturity__input" />
                 <span class="roi-maturity__card">
-                  <span class="roi-maturity__title">Advanced</span>
-                  <span class="roi-maturity__desc">Cloud platform, self-service</span>
+                  <span class="roi-maturity__title">{t.maturityAdvancedTitle}</span>
+                  <span class="roi-maturity__desc">{t.maturityAdvancedDesc}</span>
                 </span>
               </label>
             </div>
@@ -140,7 +201,7 @@ const benchmarkJson = JSON.stringify(benchmarkData);
                   <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </span>
-              <span class="roi-metric__label">Estimated Annual Savings</span>
+              <span class="roi-metric__label">{t.savingsLabel}</span>
             </div>
             <div class="roi-metric__value" id="roi-savings-value">$500K</div>
             <div class="roi-bar-wrap">
@@ -158,7 +219,7 @@ const benchmarkJson = JSON.stringify(benchmarkData);
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              <span class="roi-metric__label">Decision Speed Improvement</span>
+              <span class="roi-metric__label">{t.speedLabel}</span>
             </div>
             <div class="roi-gauge-wrap">
               <svg class="roi-gauge" viewBox="0 0 120 120" aria-hidden="true">
@@ -217,12 +278,12 @@ const benchmarkJson = JSON.stringify(benchmarkData);
 
           <!-- 3-Year ROI -->
           <div class="roi-projection">
-            <div class="roi-projection__label">3-Year Projected ROI</div>
+            <div class="roi-projection__label">{t.projectionLabel}</div>
             <div class="roi-projection__value" id="roi-3year-value">$1.4M</div>
           </div>
 
-          <a class="btn btn-primary btn-pill btn-lg roi-cta" href="/contact">
-            Unlock Your Data's Value
+          <a class="btn btn-primary btn-pill btn-lg roi-cta" href={t.ctaHref}>
+            {t.ctaText}
           </a>
         </div>
       </div>

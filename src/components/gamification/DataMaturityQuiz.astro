@@ -5,125 +5,244 @@
  * Governance, Infrastructure, Analytics, AI Readiness, and Culture.
  * Shows SVG radar chart result with product recommendations.
  */
+import type { Lang } from '../../i18n/config';
 
-// ── Question data ──
-const questions = [
-  {
-    category: "Governance",
-    question: "How do you manage data quality and consistency?",
-    options: [
-      { label: "Ad hoc / manual checks", score: 1 },
-      { label: "Basic rules in place, some automation", score: 2 },
-      { label: "Formal governance framework with monitoring", score: 3 },
-      { label: "Automated quality gates with real-time alerts", score: 4 },
-    ],
-  },
-  {
-    category: "Infrastructure",
-    question: "What describes your data infrastructure?",
-    options: [
-      { label: "Spreadsheets and local databases", score: 1 },
-      { label: "Central database with basic ETL", score: 2 },
-      { label: "Cloud data warehouse with orchestrated pipelines", score: 3 },
-      { label: "Modern lakehouse with streaming and batch processing", score: 4 },
-    ],
-  },
-  {
-    category: "Analytics",
-    question: "How does your organization use analytics?",
-    options: [
-      { label: "Basic reports and manual dashboards", score: 1 },
-      { label: "Self-service BI with standard KPIs", score: 2 },
-      { label: "Advanced analytics with predictive models", score: 3 },
-      { label: "AI-driven insights embedded in workflows", score: 4 },
-    ],
-  },
-  {
-    category: "AI Readiness",
-    question: "Where are you on the AI journey?",
-    options: [
-      { label: "No AI initiatives yet", score: 1 },
-      { label: "Exploring POCs and pilots", score: 2 },
-      { label: "Production AI in specific use cases", score: 3 },
-      { label: "Scaled AI with MLOps and governance", score: 4 },
-    ],
-  },
-  {
-    category: "Culture",
-    question: "How data-driven is your organization?",
-    options: [
-      { label: "Decisions mostly based on intuition", score: 1 },
-      { label: "Some teams use data for decisions", score: 2 },
-      { label: "Data-driven culture with training programs", score: 3 },
-      { label: "Organization-wide data literacy and self-service", score: 4 },
-    ],
-  },
-];
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
-// ── Maturity levels ──
-const maturityLevels = [
-  { min: 1.0, max: 1.5, level: "Reactive", desc: "Starting the data journey" },
-  { min: 1.6, max: 2.5, level: "Managed", desc: "Building foundations" },
-  { min: 2.6, max: 3.5, level: "Optimized", desc: "Leveraging data effectively" },
-  { min: 3.6, max: 4.0, level: "Leading", desc: "Data-driven enterprise" },
-];
+const urlPrefix = lang === 'tr' ? '/tr' : '';
 
-// ── Category insights ──
-const categoryInsights = [
-  { category: "Governance", low: "Data quality issues may be costing you trust and rework.", high: "Strong governance ensures reliable, trustworthy data." },
-  { category: "Infrastructure", low: "Legacy infrastructure limits your ability to scale.", high: "Modern infrastructure accelerates time-to-insight." },
-  { category: "Analytics", low: "Manual reporting slows decision-making.", high: "Advanced analytics unlock predictive capabilities." },
-  { category: "AI Readiness", low: "AI adoption gaps leave competitive advantages untapped.", high: "AI at scale drives measurable business impact." },
-  { category: "Culture", low: "Low data literacy limits adoption of new tools.", high: "A data-driven culture multiplies every tech investment." },
-];
+const STRINGS = {
+  en: {
+    sectionLabel: 'ASSESSMENT',
+    titlePrefix: 'How Mature Is Your ',
+    titleHighlight: 'Data Strategy',
+    titleSuffix: '?',
+    subtitle: 'Answer a few quick questions to benchmark your organization and discover tailored recommendations.',
+    progressAria: 'Quiz progress',
+    recsTitle: 'Recommended Products',
+    ctaText: 'Discuss Your Roadmap With Us',
+    ctaHref: '/contact',
+    restartText: 'Start Over',
+    radarCategories: ['Governance', 'Infrastructure', 'Analytics', 'AI', 'Culture'],
+    questions: [
+      {
+        category: 'Governance',
+        question: 'How do you manage data quality and consistency?',
+        options: [
+          { label: 'Ad hoc / manual checks', score: 1 },
+          { label: 'Basic rules in place, some automation', score: 2 },
+          { label: 'Formal governance framework with monitoring', score: 3 },
+          { label: 'Automated quality gates with real-time alerts', score: 4 },
+        ],
+      },
+      {
+        category: 'Infrastructure',
+        question: 'What describes your data infrastructure?',
+        options: [
+          { label: 'Spreadsheets and local databases', score: 1 },
+          { label: 'Central database with basic ETL', score: 2 },
+          { label: 'Cloud data warehouse with orchestrated pipelines', score: 3 },
+          { label: 'Modern lakehouse with streaming and batch processing', score: 4 },
+        ],
+      },
+      {
+        category: 'Analytics',
+        question: 'How does your organization use analytics?',
+        options: [
+          { label: 'Basic reports and manual dashboards', score: 1 },
+          { label: 'Self-service BI with standard KPIs', score: 2 },
+          { label: 'Advanced analytics with predictive models', score: 3 },
+          { label: 'AI-driven insights embedded in workflows', score: 4 },
+        ],
+      },
+      {
+        category: 'AI Readiness',
+        question: 'Where are you on the AI journey?',
+        options: [
+          { label: 'No AI initiatives yet', score: 1 },
+          { label: 'Exploring POCs and pilots', score: 2 },
+          { label: 'Production AI in specific use cases', score: 3 },
+          { label: 'Scaled AI with MLOps and governance', score: 4 },
+        ],
+      },
+      {
+        category: 'Culture',
+        question: 'How data-driven is your organization?',
+        options: [
+          { label: 'Decisions mostly based on intuition', score: 1 },
+          { label: 'Some teams use data for decisions', score: 2 },
+          { label: 'Data-driven culture with training programs', score: 3 },
+          { label: 'Organization-wide data literacy and self-service', score: 4 },
+        ],
+      },
+    ],
+    maturityLevels: [
+      { min: 1.0, max: 1.5, level: 'Reactive', desc: 'Starting the data journey' },
+      { min: 1.6, max: 2.5, level: 'Managed', desc: 'Building foundations' },
+      { min: 2.6, max: 3.5, level: 'Optimized', desc: 'Leveraging data effectively' },
+      { min: 3.6, max: 4.0, level: 'Leading', desc: 'Data-driven enterprise' },
+    ],
+    categoryInsights: [
+      { category: 'Governance', low: 'Data quality issues may be costing you trust and rework.', high: 'Strong governance ensures reliable, trustworthy data.' },
+      { category: 'Infrastructure', low: 'Legacy infrastructure limits your ability to scale.', high: 'Modern infrastructure accelerates time-to-insight.' },
+      { category: 'Analytics', low: 'Manual reporting slows decision-making.', high: 'Advanced analytics unlock predictive capabilities.' },
+      { category: 'AI Readiness', low: 'AI adoption gaps leave competitive advantages untapped.', high: 'AI at scale drives measurable business impact.' },
+      { category: 'Culture', low: 'Low data literacy limits adoption of new tools.', high: 'A data-driven culture multiplies every tech investment.' },
+    ],
+    productRecommendations: [
+      { category: 'Governance', products: [
+        { name: 'ICC', tagline: 'Data Consistency Checker', url: '/products/icc' },
+        { name: 'ReTouch', tagline: 'Data Entry Management', url: '/products/retouch' },
+      ]},
+      { category: 'Infrastructure', products: [
+        { name: 'IFDM', tagline: 'Finance Data Model', url: '/products/ifdm' },
+        { name: 'ITDM', tagline: 'Telecom Data Model', url: '/products/itdm' },
+        { name: 'HRDM', tagline: 'HR Data Model', url: '/products/hrdm' },
+      ]},
+      { category: 'Analytics', products: [
+        { name: 'Talk To', tagline: 'NL-to-SQL AI', url: '/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Event Intelligence', url: '/products/blue-octopus' },
+      ]},
+      { category: 'AI Readiness', products: [
+        { name: 'Talk To', tagline: 'NL-to-SQL AI', url: '/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Event Intelligence', url: '/products/blue-octopus' },
+        { name: 'VAR', tagline: 'Voice AI Recognition', url: '/products/var' },
+      ]},
+      { category: 'Culture', products: [
+        { name: 'Retable', tagline: 'No-Code Self-Service Platform', url: '/products/retable' },
+      ]},
+    ],
+  },
+  tr: {
+    sectionLabel: 'DEĞERLENDİRME',
+    titlePrefix: 'Veri Stratejiniz Ne Kadar ',
+    titleHighlight: 'Olgun',
+    titleSuffix: '?',
+    subtitle: 'Kurumunuzu kıyaslamak ve size özel öneriler keşfetmek için birkaç hızlı soruya yanıt verin.',
+    progressAria: 'Quiz ilerlemesi',
+    recsTitle: 'Önerilen Ürünler',
+    ctaText: 'Yol Haritanızı Birlikte Konuşalım',
+    ctaHref: '/tr/contact',
+    restartText: 'Baştan Başla',
+    radarCategories: ['Yönetişim', 'Altyapı', 'Analitik', 'AI', 'Kültür'],
+    questions: [
+      {
+        category: 'Yönetişim',
+        question: 'Veri kalitesini ve tutarlılığını nasıl yönetiyorsunuz?',
+        options: [
+          { label: 'Ad hoc / manuel kontroller', score: 1 },
+          { label: 'Temel kurallar + kısmi otomasyon', score: 2 },
+          { label: 'İzlemeli formel yönetişim çerçevesi', score: 3 },
+          { label: 'Otomatik kalite kapıları + gerçek zamanlı uyarılar', score: 4 },
+        ],
+      },
+      {
+        category: 'Altyapı',
+        question: 'Veri altyapınızı en iyi ne tanımlıyor?',
+        options: [
+          { label: 'Spreadsheet\u2019ler ve lokal veritabanları', score: 1 },
+          { label: 'Temel ETL ile merkezi veritabanı', score: 2 },
+          { label: 'Orkestre pipeline\u2019lı bulut veri ambarı', score: 3 },
+          { label: 'Streaming ve batch işlemeli modern lakehouse', score: 4 },
+        ],
+      },
+      {
+        category: 'Analitik',
+        question: 'Kurumunuz analitiği nasıl kullanıyor?',
+        options: [
+          { label: 'Temel raporlar ve manuel dashboard\u2019lar', score: 1 },
+          { label: 'Standart KPI\u2019lı self-service BI', score: 2 },
+          { label: 'Tahmin modelleriyle ileri analitik', score: 3 },
+          { label: 'İş akışlarına gömülü AI destekli içgörüler', score: 4 },
+        ],
+      },
+      {
+        category: 'AI Hazırlığı',
+        question: 'AI yolculuğunda neredesiniz?',
+        options: [
+          { label: 'Henüz AI girişimi yok', score: 1 },
+          { label: 'POC ve pilot projeler', score: 2 },
+          { label: 'Belirli use-case\u2019lerde üretim AI\u2019ı', score: 3 },
+          { label: 'MLOps ve yönetişimle ölçekli AI', score: 4 },
+        ],
+      },
+      {
+        category: 'Kültür',
+        question: 'Kurumunuz ne kadar veri odaklı?',
+        options: [
+          { label: 'Kararlar ağırlıklı sezgiyle alınıyor', score: 1 },
+          { label: 'Bazı ekipler veriyi kullanıyor', score: 2 },
+          { label: 'Eğitim programlarıyla veri odaklı kültür', score: 3 },
+          { label: 'Kurum geneli veri okuryazarlığı ve self-servis', score: 4 },
+        ],
+      },
+    ],
+    maturityLevels: [
+      { min: 1.0, max: 1.5, level: 'Reaktif', desc: 'Veri yolculuğuna başlama' },
+      { min: 1.6, max: 2.5, level: 'Yönetilen', desc: 'Temelleri oluşturma' },
+      { min: 2.6, max: 3.5, level: 'Optimize', desc: 'Veriyi etkin kullanma' },
+      { min: 3.6, max: 4.0, level: 'Öncü', desc: 'Veri odaklı kurum' },
+    ],
+    categoryInsights: [
+      { category: 'Yönetişim', low: 'Veri kalitesi sorunları güven ve yeniden çalışma maliyetine yol açabilir.', high: 'Güçlü yönetişim güvenilir ve tutarlı veri sağlar.' },
+      { category: 'Altyapı', low: 'Eski altyapı ölçeklenme becerinizi sınırlıyor.', high: 'Modern altyapı içgörüye geçiş süresini hızlandırır.' },
+      { category: 'Analitik', low: 'Manuel raporlama karar almayı yavaşlatır.', high: 'İleri analitik tahminsel yetenekleri açar.' },
+      { category: 'AI Hazırlığı', low: 'AI benimseme açıkları rekabet avantajını kullanılmamış bırakır.', high: 'Ölçekte AI ölçülebilir iş etkisi yaratır.' },
+      { category: 'Kültür', low: 'Düşük veri okuryazarlığı yeni araçların benimsenmesini sınırlar.', high: 'Veri odaklı kültür her teknoloji yatırımını katlar.' },
+    ],
+    productRecommendations: [
+      { category: 'Yönetişim', products: [
+        { name: 'ICC', tagline: 'Veri Tutarlılık Denetleyicisi', url: '/tr/products/icc' },
+        { name: 'ReTouch', tagline: 'Veri Girişi Yönetimi', url: '/tr/products/retouch' },
+      ]},
+      { category: 'Altyapı', products: [
+        { name: 'IFDM', tagline: 'Finans Veri Modeli', url: '/tr/products/ifdm' },
+        { name: 'ITDM', tagline: 'Telekom Veri Modeli', url: '/tr/products/itdm' },
+        { name: 'HRDM', tagline: 'İK Veri Modeli', url: '/tr/products/hrdm' },
+      ]},
+      { category: 'Analitik', products: [
+        { name: 'Talk To', tagline: 'Doğal Dilden SQL AI', url: '/tr/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Olay Zekâsı', url: '/tr/products/blue-octopus' },
+      ]},
+      { category: 'AI Hazırlığı', products: [
+        { name: 'Talk To', tagline: 'Doğal Dilden SQL AI', url: '/tr/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Olay Zekâsı', url: '/tr/products/blue-octopus' },
+        { name: 'VAR', tagline: 'Ses AI Tanıma', url: '/tr/products/var' },
+      ]},
+      { category: 'Kültür', products: [
+        { name: 'Retable', tagline: 'Kodsuz Self-Servis Platform', url: '/tr/products/retable' },
+      ]},
+    ],
+  },
+} as const;
 
-// ── Product recommendations by weak category ──
-const productRecommendations = [
-  { category: "Governance", products: [
-    { name: "ICC", tagline: "Data Consistency Checker", url: "/products/icc" },
-    { name: "ReTouch", tagline: "Data Entry Management", url: "/products/retouch" },
-  ]},
-  { category: "Infrastructure", products: [
-    { name: "IFDM", tagline: "Finance Data Model", url: "/products/ifdm" },
-    { name: "ITDM", tagline: "Telecom Data Model", url: "/products/itdm" },
-    { name: "HRDM", tagline: "HR Data Model", url: "/products/hrdm" },
-  ]},
-  { category: "Analytics", products: [
-    { name: "Talk To", tagline: "NL-to-SQL AI", url: "/products/talk-to-your-data" },
-    { name: "Blue Octopus", tagline: "Event Intelligence", url: "/products/blue-octopus" },
-  ]},
-  { category: "AI Readiness", products: [
-    { name: "Talk To", tagline: "NL-to-SQL AI", url: "/products/talk-to-your-data" },
-    { name: "Blue Octopus", tagline: "Event Intelligence", url: "/products/blue-octopus" },
-    { name: "VAR", tagline: "Voice AI Recognition", url: "/products/var" },
-  ]},
-  { category: "Culture", products: [
-    { name: "Retable", tagline: "No-Code Self-Service Platform", url: "/products/retable" },
-  ]},
-];
+const t = STRINGS[lang];
+const questions = t.questions;
 
 // Serialize for client script
-const questionsJson = JSON.stringify(questions);
-const maturityLevelsJson = JSON.stringify(maturityLevels);
-const categoryInsightsJson = JSON.stringify(categoryInsights);
-const productRecommendationsJson = JSON.stringify(productRecommendations);
+const questionsJson = JSON.stringify(t.questions);
+const maturityLevelsJson = JSON.stringify(t.maturityLevels);
+const categoryInsightsJson = JSON.stringify(t.categoryInsights);
+const productRecommendationsJson = JSON.stringify(t.productRecommendations);
+const radarCategoriesJson = JSON.stringify(t.radarCategories);
 ---
 
-<section class="section dmq-section" id="data-maturity-quiz">
+<section class="section dmq-section" id="data-maturity-quiz" data-radar-categories={radarCategoriesJson}>
   <div class="container">
     <div class="dmq-header anim-fade-up">
-      <div class="section-label" style="margin-inline:auto;">ASSESSMENT</div>
+      <div class="section-label" style="margin-inline:auto;">{t.sectionLabel}</div>
       <h2 class="section-title" style="color: var(--clr-light-text);">
-        How Mature Is Your <span class="grad-text">Data Strategy</span>?
+        {t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span>{t.titleSuffix}
       </h2>
       <p class="dmq-subtitle">
-        Answer a few quick questions to benchmark your organization and discover tailored recommendations.
+        {t.subtitle}
       </p>
     </div>
 
     <div class="dmq-card anim-fade-up" id="dmq-card">
       <!-- Progress bar -->
-      <div class="dmq-progress" aria-label="Quiz progress">
+      <div class="dmq-progress" aria-label={t.progressAria}>
         <div
           class="dmq-progress__fill"
           id="dmq-progress-fill"
@@ -171,14 +290,14 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
           <!-- Per-category insights populated by JS -->
         </div>
         <div class="dmq-result__recs">
-          <h4 class="dmq-result__recs-title">Recommended Products</h4>
+          <h4 class="dmq-result__recs-title">{t.recsTitle}</h4>
           <div class="dmq-result__recs-list" id="dmq-recs-list">
             <!-- Product cards populated by JS -->
           </div>
         </div>
         <div class="dmq-result__actions">
-          <a href="/contact" class="btn btn-primary btn-pill btn-lg">Discuss Your Roadmap With Us</a>
-          <button type="button" class="dmq-restart" id="dmq-restart">Start Over</button>
+          <a href={t.ctaHref} class="btn btn-primary btn-pill btn-lg">{t.ctaText}</a>
+          <button type="button" class="dmq-restart" id="dmq-restart">{t.restartText}</button>
         </div>
       </div>
     </div>
@@ -484,7 +603,14 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
     var CX = 150;
     var CY = 150;
     var R = 120;
-    var CATEGORIES = ["Governance", "Infrastructure", "Analytics", "AI", "Culture"];
+    var CATEGORIES = (function() {
+      try {
+        var raw = document.getElementById('data-maturity-quiz').getAttribute('data-radar-categories');
+        return raw ? JSON.parse(raw) : ["Governance", "Infrastructure", "Analytics", "AI", "Culture"];
+      } catch (e) {
+        return ["Governance", "Infrastructure", "Analytics", "AI", "Culture"];
+      }
+    })();
     // Angles: -90, -18, 54, 126, 198 degrees
     var ANGLES_DEG = [-90, -18, 54, 126, 198];
     var ANGLES_RAD = ANGLES_DEG.map(function (d) {
