@@ -15,16 +15,14 @@ const { card } = Astro.props;
 ---
 <div class="use-case-card-alt">
   {card.badges.length > 0 && (
-    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+    <div class="uc-badges">
       {card.badges.map((badge, i) => (
-        <span style={`font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; ${i === 0 ? 'background: rgba(0, 200, 150, 0.1); color: var(--clr-primary);' : 'background: #f1f5f9; color: #64748b;'}`}>
-          {badge}
-        </span>
+        <span class={`uc-badge${i === 0 ? ' uc-badge--primary' : ''}`}>{badge}</span>
       ))}
     </div>
   )}
-  <h4>{card.title}</h4>
-  {card.scenario && <p class="scenario">{card.scenario}</p>}
+  <h4 class="uc-title">{card.title}</h4>
+  {card.scenario && <p class="uc-scenario">{card.scenario}</p>}
   <div class="uc-section">
     <p class="uc-label">{card.interventionLabel}</p>
     <ul class="uc-list">
@@ -42,3 +40,129 @@ const { card } = Astro.props;
     </ul>
   </div>
 </div>
+
+<style>
+.use-case-card-alt {
+  background: #fff;
+  border: 1px solid #E8EEF5;
+  border-radius: 24px;
+  padding: 40px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.use-case-card-alt:hover {
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+.uc-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.uc-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #F1F5F9;
+  color: #64748B;
+}
+.uc-badge--primary {
+  background: rgba(0, 200, 150, 0.1);
+  color: var(--clr-primary);
+}
+.uc-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-light-text);
+  margin: 0 0 20px;
+  line-height: 1.35;
+}
+.uc-scenario {
+  font-size: 1rem;
+  color: var(--clr-light-muted);
+  line-height: 1.65;
+  margin: 0 0 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+.uc-section {
+  margin-bottom: 20px;
+}
+.uc-section:last-child {
+  margin-bottom: 0;
+}
+.uc-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  margin: 0 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.uc-label::before {
+  content: '';
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+.uc-label--impact {
+  color: #10B981;
+}
+.uc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.uc-list li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--clr-light-muted);
+}
+.uc-list li:last-child {
+  margin-bottom: 0;
+}
+.uc-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.12);
+}
+.uc-label--impact ~ .uc-list li::before {
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+
+@media (max-width: 768px) {
+  .use-case-card-alt {
+    padding: 28px 24px;
+    border-radius: 20px;
+  }
+  .uc-title {
+    font-size: 1.1rem;
+  }
+  .uc-scenario {
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+    padding-bottom: 20px;
+  }
+}
+</style>
