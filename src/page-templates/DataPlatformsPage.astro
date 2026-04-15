@@ -202,9 +202,72 @@ const breadcrumbs = [
         <h2 class="section-title">{t('dataPlatforms.tech.title')}<span class="grad-text">{t('dataPlatforms.tech.titleHighlight')}</span></h2>
         <p class="section-sub">{t('dataPlatforms.tech.desc')}</p>
       </div>
-      <div class="architecture-main anim-fade-up">
-        <div class="card-light archi-card">
-          <img src="/assets/images/technology.png" alt={t('dataPlatforms.tech.imgAlt')} class="archi-img" loading="lazy" />
+      <div class="tech-ecosystem anim-fade-up">
+        <!-- Glowing light streaks decoration -->
+        <div class="tech-glow tech-glow--1" aria-hidden="true"></div>
+        <div class="tech-glow tech-glow--2" aria-hidden="true"></div>
+
+        <!-- Header inside card -->
+        <div class="tech-inner-header">
+          <h3 class="tech-inner-title">{t('dataPlatforms.tech.title')}{t('dataPlatforms.tech.titleHighlight')}</h3>
+          <p class="tech-inner-sub">{t('dataPlatforms.tech.desc')}</p>
+        </div>
+
+        <!-- Data Integration & Pipelines -->
+        <div class="tech-row">
+          <div class="tech-row__label">{t('dataPlatforms.tech.cat1')}</div>
+          <div class="tech-row__logos">
+            <div class="tech-logo"><img src="/assets/images/tech-logos/oracle.svg" alt="Oracle Data Integrator" loading="lazy" /><span>Oracle DI</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/informatica.svg" alt="Informatica" loading="lazy" /><span>Informatica</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/talend.svg" alt="Talend" loading="lazy" /><span>Talend</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/airflow.svg" alt="Apache Airflow" loading="lazy" /><span>Airflow</span></div>
+          </div>
+        </div>
+
+        <!-- Separator -->
+        <div class="tech-separator" aria-hidden="true"></div>
+
+        <!-- Data Platforms & Warehousing -->
+        <div class="tech-row">
+          <div class="tech-row__label">{t('dataPlatforms.tech.cat2')}</div>
+          <div class="tech-row__logos">
+            <div class="tech-logo"><img src="/assets/images/tech-logos/oracle.svg" alt="Oracle" loading="lazy" /><span>Oracle</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/snowflake.svg" alt="Snowflake" loading="lazy" /><span>Snowflake</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/databricks.svg" alt="Databricks" loading="lazy" /><span>Databricks</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/bigquery.svg" alt="BigQuery" loading="lazy" /><span>BigQuery</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/azure.svg" alt="Azure Synapse" loading="lazy" /><span>Azure Synapse</span></div>
+          </div>
+        </div>
+
+        <div class="tech-separator" aria-hidden="true"></div>
+
+        <!-- Analytics & BI -->
+        <div class="tech-row">
+          <div class="tech-row__label">{t('dataPlatforms.tech.cat3')}</div>
+          <div class="tech-row__logos">
+            <div class="tech-logo"><img src="/assets/images/tech-logos/powerbi.svg" alt="Power BI" loading="lazy" /><span>Power BI</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/tableau.svg" alt="Tableau" loading="lazy" /><span>Tableau</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/looker.svg" alt="Looker" loading="lazy" /><span>Looker</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/oracle.svg" alt="Oracle BI" loading="lazy" /><span>Oracle BI</span></div>
+          </div>
+        </div>
+
+        <div class="tech-separator" aria-hidden="true"></div>
+
+        <!-- Cloud Platforms -->
+        <div class="tech-row">
+          <div class="tech-row__label">{t('dataPlatforms.tech.cat4')}</div>
+          <div class="tech-row__logos">
+            <div class="tech-logo"><img src="/assets/images/tech-logos/aws.svg" alt="AWS" loading="lazy" /><span>AWS</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/azure.svg" alt="Microsoft Azure" loading="lazy" /><span>Azure</span></div>
+            <div class="tech-logo"><img src="/assets/images/tech-logos/gcloud.svg" alt="Google Cloud" loading="lazy" /><span>Google Cloud</span></div>
+          </div>
+        </div>
+
+        <!-- Vendor Agnostic Footer -->
+        <div class="tech-footer">
+          <div class="tech-footer__badge">{t('dataPlatforms.tech.vendorTitle')}</div>
+          <p class="tech-footer__desc">{t('dataPlatforms.tech.vendorDesc')}</p>
         </div>
       </div>
     </div>
@@ -347,5 +410,174 @@ const breadcrumbs = [
     .layer-chip { width: 100%; padding: 12px; font-size: 0.85rem; }
     .platform-box { width: 100%; padding: 16px; }
     .vendor-box { grid-template-columns: 1fr; padding: 32px; }
+  }
+
+  /* Technology Ecosystem — Premium Card */
+  .tech-ecosystem {
+    background: linear-gradient(160deg, #040d1a 0%, #0c1f3d 30%, #0a1a35 60%, #061225 100%);
+    border-radius: 28px;
+    padding: 56px 48px;
+    box-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.1),
+      0 24px 80px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Light streak decorations */
+  .tech-glow {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  .tech-glow--1 {
+    width: 600px;
+    height: 200px;
+    top: -40px;
+    left: 10%;
+    background: radial-gradient(ellipse, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+  .tech-glow--2 {
+    width: 500px;
+    height: 180px;
+    bottom: 20%;
+    right: 5%;
+    background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+
+  /* Inner header */
+  .tech-inner-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .tech-inner-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+  }
+  .tech-inner-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.45);
+    max-width: 500px;
+    margin-inline: auto;
+  }
+
+  /* Separator line */
+  .tech-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.15), transparent);
+    margin: 8px 40px;
+  }
+
+  /* Tech Row */
+  .tech-row {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .tech-row__label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--clr-primary);
+    margin-bottom: 18px;
+  }
+
+  .tech-row__logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* Logo chip — glass card style */
+  .tech-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    min-width: 120px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .tech-logo:hover {
+    background: #ffffff;
+    border-color: rgba(16, 185, 129, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 20px rgba(16, 185, 129, 0.08);
+  }
+
+  .tech-logo img {
+    height: 26px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+  }
+
+  .tech-logo span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #374151;
+    white-space: nowrap;
+  }
+
+  /* Footer — vendor agnostic badge */
+  .tech-footer {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+  }
+
+  .tech-footer__badge {
+    display: inline-block;
+    padding: 6px 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-primary);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.06);
+    margin-bottom: 12px;
+  }
+
+  .tech-footer__desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.45);
+    max-width: 520px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .tech-ecosystem {
+      padding: 36px 20px;
+      border-radius: 18px;
+    }
+    .tech-inner-title { font-size: 1.2rem; }
+    .tech-logo {
+      min-width: 90px;
+      padding: 10px 14px;
+      gap: 8px;
+    }
+    .tech-logo img { height: 20px; }
+    .tech-logo span { font-size: 0.68rem; }
+    .tech-separator { margin: 4px 16px; }
+    .tech-glow { display: none; }
   }
 </style>
