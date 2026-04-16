@@ -22,23 +22,6 @@ export default defineConfig({
             },
         }),
     ],
-    redirects: {
-        '/about-us': '/about',
-        '/our-products': '/products',
-        '/our-services': '/solutions',
-        '/career': '/careers',
-        '/privacy-policy': '/privacy',
-        '/cookie-policy': '/cookies',
-        '/terms-and-conditions': '/terms',
-        '/blog': '/insights',
-        '/business-benefits': '/solutions',
-        '/demo': '/contact',
-        '/tr/about-us': '/tr/about',
-        '/tr/our-products': '/tr/products',
-        '/tr/our-services': '/tr/solutions',
-        '/tr/career': '/tr/careers',
-        '/tr/business-benefits': '/tr/solutions',
-        '/tr/privacy-policy': '/tr/privacy',
-        '/tr/cookie-policy': '/tr/cookies',
-    },
+    // Redirects are handled via static HTML files in public/ for instant
+    // client-side redirection (no visible "Redirecting…" flash).
 });
