@@ -609,9 +609,21 @@ const t = STRINGS[lang];
       grid-template-columns: 1fr;
       gap: 32px;
     }
+    .roi-segments {
+      flex-wrap: wrap;
+    }
+    .roi-segment {
+      flex: 0 0 50%;
+    }
+    .roi-segment:nth-child(2n) .roi-segment__label {
+      border-right: none;
+    }
+    .roi-segment:nth-child(-n+2) .roi-segment__label {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
     .roi-segment__label {
-      padding: 10px 4px;
-      font-size: 0.75rem;
+      padding: 10px 8px;
+      font-size: 0.82rem;
     }
     .roi-metric__value {
       font-size: 1.6rem;
