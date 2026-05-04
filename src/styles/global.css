@@ -34,6 +34,13 @@
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --container: 1280px;
   --header-h: 72px;
+
+  /* Typography scale (added in typography pass) */
+  --fs-card-title: 1.15rem;
+  --fs-card-body: 0.88rem;
+  --fs-section-sub: 1.15rem;
+  --fs-meta: 0.85rem;
+  --fw-card-title: 700;
 }
 
 /* ── Reset ──────────────────────────────────────── */
@@ -819,14 +826,14 @@ p {
 }
 
 .cap-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-card-title);
   color: var(--clr-light-text);
   margin-bottom: 10px;
 }
 
 .cap-card p {
-  font-size: 0.88rem;
+  font-size: var(--fs-card-body);
   line-height: 1.65;
   color: var(--clr-light-muted);
 }
@@ -852,14 +859,14 @@ p {
 
 
 .dwh-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-card-title);
   color: var(--clr-light-text);
   margin-bottom: 14px;
 }
 
 .dwh-card p {
-  font-size: 0.88rem;
+  font-size: var(--fs-card-body);
   line-height: 1.65;
   color: var(--clr-light-muted);
   margin-bottom: 22px;
@@ -949,14 +956,14 @@ p {
 }
 
 .step-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-card-title);
   color: var(--clr-light-text);
   margin-bottom: 12px;
 }
 
 .step-card p {
-  font-size: 0.88rem;
+  font-size: var(--fs-card-body);
   line-height: 1.6;
   color: var(--clr-light-muted);
 }
