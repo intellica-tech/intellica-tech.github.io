@@ -17,6 +17,73 @@ const siteUrl = "https://intellica.net";
 const breadcrumbs = [
   { name: t('solutions.breadcrumb'), url: `${siteUrl}${tp('/solutions')}` }
 ];
+
+// Blueprint detail data for script injection
+const blueprintDataJson = JSON.stringify({
+  "customer-360": {
+    title: t('solutions.portfolio.customer360.title'),
+    description: t('solutions.portfolio.customer360.detail.desc'),
+    useCases: [t('solutions.portfolio.customer360.detail.uc1'), t('solutions.portfolio.customer360.detail.uc2'), t('solutions.portfolio.customer360.detail.uc3')],
+    metrics: [t('solutions.portfolio.customer360.detail.m1'), t('solutions.portfolio.customer360.detail.m2'), t('solutions.portfolio.customer360.detail.m3')],
+    users: t('solutions.portfolio.customer360.detail.users')
+  },
+  "demand-prediction": {
+    title: t('solutions.portfolio.demandPrediction.title'),
+    description: t('solutions.portfolio.demandPrediction.detail.desc'),
+    useCases: [t('solutions.portfolio.demandPrediction.detail.uc1'), t('solutions.portfolio.demandPrediction.detail.uc2'), t('solutions.portfolio.demandPrediction.detail.uc3')],
+    metrics: [t('solutions.portfolio.demandPrediction.detail.m1'), t('solutions.portfolio.demandPrediction.detail.m2'), t('solutions.portfolio.demandPrediction.detail.m3')],
+    users: t('solutions.portfolio.demandPrediction.detail.users')
+  },
+  "procurement-analytics": {
+    title: t('solutions.portfolio.procurementAnalytics.title'),
+    description: t('solutions.portfolio.procurementAnalytics.detail.desc'),
+    useCases: [t('solutions.portfolio.procurementAnalytics.detail.uc1'), t('solutions.portfolio.procurementAnalytics.detail.uc2'), t('solutions.portfolio.procurementAnalytics.detail.uc3')],
+    metrics: [t('solutions.portfolio.procurementAnalytics.detail.m1'), t('solutions.portfolio.procurementAnalytics.detail.m2'), t('solutions.portfolio.procurementAnalytics.detail.m3')],
+    users: t('solutions.portfolio.procurementAnalytics.detail.users')
+  },
+  "likelihood-to-buy": {
+    title: t('solutions.portfolio.likelihoodToBuy.title'),
+    description: t('solutions.portfolio.likelihoodToBuy.detail.desc'),
+    useCases: [t('solutions.portfolio.likelihoodToBuy.detail.uc1'), t('solutions.portfolio.likelihoodToBuy.detail.uc2'), t('solutions.portfolio.likelihoodToBuy.detail.uc3')],
+    metrics: [t('solutions.portfolio.likelihoodToBuy.detail.m1'), t('solutions.portfolio.likelihoodToBuy.detail.m2'), t('solutions.portfolio.likelihoodToBuy.detail.m3')],
+    users: t('solutions.portfolio.likelihoodToBuy.detail.users')
+  },
+  "document-answers": {
+    title: t('solutions.portfolio.documentAnswers.title'),
+    description: t('solutions.portfolio.documentAnswers.detail.desc'),
+    useCases: [t('solutions.portfolio.documentAnswers.detail.uc1'), t('solutions.portfolio.documentAnswers.detail.uc2'), t('solutions.portfolio.documentAnswers.detail.uc3')],
+    metrics: [t('solutions.portfolio.documentAnswers.detail.m1'), t('solutions.portfolio.documentAnswers.detail.m2'), t('solutions.portfolio.documentAnswers.detail.m3')],
+    users: t('solutions.portfolio.documentAnswers.detail.users')
+  },
+  "defect-solver": {
+    title: t('solutions.portfolio.defectSolver.title'),
+    description: t('solutions.portfolio.defectSolver.detail.desc'),
+    useCases: [t('solutions.portfolio.defectSolver.detail.uc1'), t('solutions.portfolio.defectSolver.detail.uc2'), t('solutions.portfolio.defectSolver.detail.uc3')],
+    metrics: [t('solutions.portfolio.defectSolver.detail.m1'), t('solutions.portfolio.defectSolver.detail.m2'), t('solutions.portfolio.defectSolver.detail.m3')],
+    users: t('solutions.portfolio.defectSolver.detail.users')
+  },
+  "rolling-force": {
+    title: t('solutions.portfolio.rollingForce.title'),
+    description: t('solutions.portfolio.rollingForce.detail.desc'),
+    useCases: [t('solutions.portfolio.rollingForce.detail.uc1'), t('solutions.portfolio.rollingForce.detail.uc2'), t('solutions.portfolio.rollingForce.detail.uc3')],
+    metrics: [t('solutions.portfolio.rollingForce.detail.m1'), t('solutions.portfolio.rollingForce.detail.m2'), t('solutions.portfolio.rollingForce.detail.m3')],
+    users: t('solutions.portfolio.rollingForce.detail.users')
+  },
+  "energy-optimization": {
+    title: t('solutions.portfolio.energyOptimization.title'),
+    description: t('solutions.portfolio.energyOptimization.detail.desc'),
+    useCases: [t('solutions.portfolio.energyOptimization.detail.uc1'), t('solutions.portfolio.energyOptimization.detail.uc2'), t('solutions.portfolio.energyOptimization.detail.uc3')],
+    metrics: [t('solutions.portfolio.energyOptimization.detail.m1'), t('solutions.portfolio.energyOptimization.detail.m2'), t('solutions.portfolio.energyOptimization.detail.m3')],
+    users: t('solutions.portfolio.energyOptimization.detail.users')
+  }
+});
+
+const detailLabelsJson = JSON.stringify({
+  label: t('solutions.portfolio.detail.label'),
+  useCases: t('solutions.portfolio.detail.useCases'),
+  impact: t('solutions.portfolio.detail.impact'),
+  users: t('solutions.portfolio.detail.users')
+});
 ---
 
 <Layout title={t('meta.solutions.title')} description={t('meta.solutions.description')} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
@@ -40,10 +107,10 @@ const breadcrumbs = [
   </section>
 
   <!-- DATA MATURITY ASSESSMENT QUIZ -->
-  <DataMaturityQuiz />
+  <DataMaturityQuiz lang={lang} />
 
   <!-- ROI CALCULATOR -->
-  <ROICalculator />
+  <ROICalculator lang={lang} />
 
   <!-- AI SOLUTIONS OVERVIEW: MODERN DARK THEME -->
   <section class="ai-solutions" id="framework">
@@ -1257,65 +1324,9 @@ const breadcrumbs = [
 }
 </style>
 
-<script is:inline>
-  const blueprintData = {
-    "customer-360": {
-      title: "AI-Assisted Customer 360",
-      description: "Combines customer data sources to support intelligent decision-making for call center and field teams.",
-      useCases: ["Predicting customer intent before interaction", "Personalized service recommendations", "Proactive issue resolution"],
-      metrics: ["\u2191 Conversion per interaction", "\u2193 Average handle time", "\u2191 Customer satisfaction"],
-      users: "Call Center Teams, Campaign Managers, Field Operations"
-    },
-    "demand-prediction": {
-      title: "Demand Prediction",
-      description: "Predicts demand patterns using time series and machine learning to improve workforce planning and service levels.",
-      useCases: ["Forecasting call volumes and peak periods", "Planning staffing for campaigns", "Detecting demand spikes"],
-      metrics: ["\u2191 Staffing accuracy", "\u2193 Waiting times", "\u2193 Overtime costs"],
-      users: "Operations Teams, Workforce Planners, Call Center Managers"
-    },
-    "procurement-analytics": {
-      title: "Procurement Analytics",
-      description: "Predicts material and commodity price movements to improve purchasing timing, cost control and budget planning.",
-      useCases: ["Raw material price forecasting", "Market-based purchasing optimization", "Budget planning and cost tracking"],
-      metrics: ["\u2191 Prediction accuracy", "\u2193 Cost variance", "\u2191 Budget reliability"],
-      users: "Procurement Teams, Category Managers, Finance Teams"
-    },
-    "likelihood-to-buy": {
-      title: "Likelihood to Buy",
-      description: "Identifies high-potential customers to improve targeting, conversion and campaign performance.",
-      useCases: ["Lead prioritization", "Campaign targeting optimization", "Churn and upsell prediction"],
-      metrics: ["\u2191 Campaign conversion rate", "\u2193 Cost per acquisition", "\u2191 Customer lifetime value"],
-      users: "Marketing Teams, Sales Teams, Growth Teams"
-    },
-    "document-answers": {
-      title: "Document Answers",
-      description: "Enables intelligent search and summarization across enterprise documents such as contracts, policies and reports.",
-      useCases: ["Policy and procedure queries", "Contract analysis and summarization", "Technical document search"],
-      metrics: ["\u2193 Time to access information", "\u2191 Response accuracy", "\u2191 Employee productivity"],
-      users: "Operations, Legal, HR, Customer Support Teams"
-    },
-    "defect-solver": {
-      title: "AI Defect Solver",
-      description: "Predicts failures in advance by analyzing sensor data to reduce downtime and improve production efficiency.",
-      useCases: ["Failure prediction in production lines", "Early warning for critical equipment", "Maintenance optimization"],
-      metrics: ["\u2191 Prediction accuracy", "\u2193 Downtime", "\u2193 Maintenance cost"],
-      users: "Maintenance Teams, Production Managers, Plant Operations"
-    },
-    "rolling-force": {
-      title: "Rolling Force Optimization",
-      description: "Optimizes production parameters to reduce passes, lower energy consumption and improve output quality.",
-      useCases: ["Optimal force prediction per production step", "Production parameter tuning", "Efficiency optimization"],
-      metrics: ["\u2193 Number of passes", "\u2191 Production efficiency", "\u2193 Energy consumption"],
-      users: "Production Engineers, Process Teams, Operations Managers"
-    },
-    "energy-optimization": {
-      title: "Real-Time Energy Optimization",
-      description: "Monitors and optimizes energy usage in real time to reduce cost, emissions and operational inefficiencies.",
-      useCases: ["Real-time consumption monitoring", "Anomaly detection in energy usage", "Optimization of production parameters"],
-      metrics: ["\u2193 Energy costs", "\u2193 CO2 emissions", "\u2191 System efficiency"],
-      users: "Energy Managers, Production Teams, Plant Operations"
-    }
-  };
+<script define:vars={{ blueprintDataJson, detailLabelsJson }}>
+  const blueprintData = JSON.parse(blueprintDataJson);
+  const detailLabels = JSON.parse(detailLabelsJson);
 
   function initBlueprintBrowser() {
     const strips = document.querySelectorAll('.bp-strip');
@@ -1336,12 +1347,12 @@ const breadcrumbs = [
 
       detailInner.textContent = '';
       const fragment = document.createRange().createContextualFragment(
-        '<span class="dt-label" style="font-size:12px; letter-spacing:1px; color:var(--accent); margin-bottom:10px; display:block;">DETAILED SOLUTION</span>' +
+        '<span class="dt-label" style="font-size:12px; letter-spacing:1px; color:var(--accent); margin-bottom:10px; display:block;">' + detailLabels.label + '</span>' +
         '<h3 class="dt-title"></h3>' +
         '<p class="dt-desc"></p>' +
-        '<div class="dt-sec"><div class="dt-h" style="font-weight:750; color:var(--text); margin-bottom:12px;">Key Use Cases</div><ul class="dt-list">' + useCasesHtml + '</ul></div>' +
-        '<div class="dt-sec"><div class="dt-h" style="font-weight:750; color:var(--text); margin-bottom:12px;">Business Impact</div><ul class="dt-list">' + metricsHtml + '</ul></div>' +
-        '<div class="dt-meta" style="margin-top:24px; padding-top:24px; border-top:1px solid #F1F5F9;"><div class="dt-meta-i"><div style="font-weight:750; color:var(--text); margin-bottom:8px;">Primary Users</div><p></p></div></div>'
+        '<div class="dt-sec"><div class="dt-h" style="font-weight:750; color:var(--text); margin-bottom:12px;">' + detailLabels.useCases + '</div><ul class="dt-list">' + useCasesHtml + '</ul></div>' +
+        '<div class="dt-sec"><div class="dt-h" style="font-weight:750; color:var(--text); margin-bottom:12px;">' + detailLabels.impact + '</div><ul class="dt-list">' + metricsHtml + '</ul></div>' +
+        '<div class="dt-meta" style="margin-top:24px; padding-top:24px; border-top:1px solid #F1F5F9;"><div class="dt-meta-i"><div style="font-weight:750; color:var(--text); margin-bottom:8px;">' + detailLabels.users + '</div><p></p></div></div>'
       );
 
       const titleEl = fragment.querySelector('.dt-title');

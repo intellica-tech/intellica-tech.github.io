@@ -5,8 +5,12 @@
  * from source/transform/destination palettes. SVG bezier connections
  * with animated data flow particles on "Run Pipeline".
  */
+import type { Lang } from '../../i18n/config';
 
-// Palette definitions
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+// Palette definitions — names kept in English as standard data-engineering terminology
 const sources = [
   { id: 'src-db', name: 'Database', iconId: 'cylinder' },
   { id: 'src-api', name: 'API', iconId: 'cloud' },
@@ -27,24 +31,175 @@ const destinations = [
   { id: 'dst-alert', name: 'Alert System', iconId: 'bell' },
   { id: 'dst-api', name: 'API Output', iconId: 'cloud-upload' },
 ];
+
+const STRINGS = {
+  en: {
+    sectionLabel: 'INTERACTIVE DEMO',
+    titlePrefix: 'Build Your ',
+    titleHighlight: 'Pipeline',
+    subtitle: 'Click components below to assemble a data pipeline. Connect sources, transforms, and destinations — then run it.',
+    paletteSources: 'Sources',
+    paletteTransforms: 'Transforms',
+    paletteDestinations: 'Destinations',
+    laneSources: 'Sources',
+    laneTransforms: 'Transforms',
+    laneDestinations: 'Destinations',
+    emptyState: 'Click items above to add them to your pipeline',
+    runBtn: 'Run Pipeline',
+    runBtnAria: 'Run pipeline',
+    successText: "Pipeline Ready! Let\u2019s build this for real.",
+    successCta: 'Get Started',
+    successCtaHref: '/contact',
+    insightLabel: 'PIPELINE TYPE',
+    insightUseCase: 'USE CASE',
+    insightImpact: 'BUSINESS IMPACT',
+    insightSolution: 'INTELLICA SOLUTION',
+    toolbarAria: 'Pipeline component palettes',
+    sourcesAria: 'Source components',
+    transformsAria: 'Transform components',
+    destinationsAria: 'Destination components',
+    canvasAria: 'Pipeline canvas',
+    addSourceTpl: 'Add {n} source',
+    addTransformTpl: 'Add {n} transform',
+    addDestinationTpl: 'Add {n} destination',
+    removeTpl: 'Remove {n}',
+    pipelineTypes: {
+      ai: {
+        title: 'AI-Enabled Pipeline',
+        outcome: 'AI Enablement',
+        useCase: 'Use machine learning models to predict behavior, detect patterns, and support automated decisions.',
+        impact: ['Improve prediction accuracy', 'Enable smarter decision workflows', 'Prepare your platform for AI at scale'],
+        solution: ['AI-ready data pipelines', 'ML model integration', 'Scalable data platform foundation'],
+        cta: 'Discover AI Solutions \u2192',
+        ctaUrl: '/solutions'
+      },
+      realtime: {
+        title: 'Real-Time Pipeline',
+        outcome: 'Real-Time Visibility',
+        useCase: 'Ingest and process live data to support time-sensitive analytics and operational decisions.',
+        impact: ['Reduce latency in decision-making', 'Improve visibility across channels', 'Respond faster to changing events'],
+        solution: ['Real-time data ingestion', 'Streaming architecture design', 'Scalable processing pipelines'],
+        cta: 'Explore Real-Time Platforms \u2192',
+        ctaUrl: '/data-platforms'
+      },
+      monitoring: {
+        title: 'Operational Monitoring Pipeline',
+        outcome: 'Operational Intelligence',
+        useCase: 'Track operational events continuously and trigger alerts when critical thresholds are reached.',
+        impact: ['Detect issues earlier', 'Reduce operational risk', 'Improve SLA and service continuity'],
+        solution: ['Event detection and alerting', 'Monitoring dashboards', 'Action management workflows'],
+        cta: 'See Monitoring Solutions \u2192',
+        ctaUrl: '/solutions'
+      },
+      batch: {
+        title: 'Batch Analytics Pipeline',
+        outcome: 'Analytics Foundation',
+        useCase: 'Consolidate data from enterprise systems and transform it into trusted reporting and analysis.',
+        impact: ['Build a single source of truth', 'Improve reporting consistency', 'Create a scalable analytics foundation'],
+        solution: ['Enterprise data warehouse design', 'Data quality and consistency frameworks', 'Reporting and semantic layer'],
+        cta: 'Learn About Data Platforms \u2192',
+        ctaUrl: '/data-platforms'
+      }
+    }
+  },
+  tr: {
+    sectionLabel: 'İNTERAKTİF DEMO',
+    titlePrefix: 'Kendi ',
+    titleHighlight: 'Pipeline\u2019ını Kur',
+    subtitle: 'Veri pipeline\u2019ı oluşturmak için aşağıdaki bileşenlere tıklayın. Kaynakları, dönüşümleri ve hedefleri bağlayın — sonra çalıştırın.',
+    paletteSources: 'Kaynaklar',
+    paletteTransforms: 'Dönüşümler',
+    paletteDestinations: 'Hedefler',
+    laneSources: 'Kaynaklar',
+    laneTransforms: 'Dönüşümler',
+    laneDestinations: 'Hedefler',
+    emptyState: 'Pipeline\u2019ınıza eklemek için yukarıdaki bileşenlere tıklayın',
+    runBtn: 'Pipeline\u2019ı Çalıştır',
+    runBtnAria: 'Pipeline\u2019ı çalıştır',
+    successText: 'Pipeline hazır! Hadi gerçekten kuralım.',
+    successCta: 'Başlayalım',
+    successCtaHref: '/tr/contact',
+    insightLabel: 'PIPELINE TİPİ',
+    insightUseCase: 'KULLANIM SENARYOSU',
+    insightImpact: 'İŞ ETKİSİ',
+    insightSolution: 'INTELLICA ÇÖZÜMÜ',
+    toolbarAria: 'Pipeline bileşen paletleri',
+    sourcesAria: 'Kaynak bileşenler',
+    transformsAria: 'Dönüşüm bileşenleri',
+    destinationsAria: 'Hedef bileşenleri',
+    canvasAria: 'Pipeline canvas\u2019ı',
+    addSourceTpl: '{n} kaynağı ekle',
+    addTransformTpl: '{n} dönüşümü ekle',
+    addDestinationTpl: '{n} hedefi ekle',
+    removeTpl: '{n} öğesini kaldır',
+    pipelineTypes: {
+      ai: {
+        title: 'AI Destekli Pipeline',
+        outcome: 'AI Etkinleştirme',
+        useCase: 'Davranışları tahmin etmek, örüntüleri tespit etmek ve otomatik kararları desteklemek için makine öğrenimi modelleri kullanın.',
+        impact: ['Tahmin doğruluğunu iyileştirir', 'Daha akıllı karar iş akışları sağlar', 'Platformunuzu ölçekte AI için hazırlar'],
+        solution: ['AI\u2019a hazır veri pipeline\u2019ları', 'ML model entegrasyonu', 'Ölçeklenebilir veri platformu temeli'],
+        cta: 'AI Çözümlerini Keşfet \u2192',
+        ctaUrl: '/tr/solutions'
+      },
+      realtime: {
+        title: 'Gerçek Zamanlı Pipeline',
+        outcome: 'Gerçek Zamanlı Görünürlük',
+        useCase: 'Zamana duyarlı analitik ve operasyonel kararları desteklemek için canlı veriyi alın ve işleyin.',
+        impact: ['Karar verme süresini düşürür', 'Kanallar arası görünürlüğü iyileştirir', 'Değişen olaylara daha hızlı tepki verir'],
+        solution: ['Gerçek zamanlı veri ingestion', 'Streaming mimarisi tasarımı', 'Ölçeklenebilir işleme pipeline\u2019ları'],
+        cta: 'Gerçek Zamanlı Platformları Keşfet \u2192',
+        ctaUrl: '/tr/data-platforms'
+      },
+      monitoring: {
+        title: 'Operasyonel İzleme Pipeline\u2019ı',
+        outcome: 'Operasyonel Zeka',
+        useCase: 'Operasyonel olayları sürekli takip edin ve kritik eşiklere ulaşıldığında uyarı tetikleyin.',
+        impact: ['Sorunları daha erken tespit eder', 'Operasyonel riski azaltır', 'SLA ve hizmet sürekliliğini iyileştirir'],
+        solution: ['Olay tespiti ve uyarı', 'İzleme dashboard\u2019ları', 'Aksiyon yönetimi iş akışları'],
+        cta: 'İzleme Çözümlerini Gör \u2192',
+        ctaUrl: '/tr/solutions'
+      },
+      batch: {
+        title: 'Batch Analitik Pipeline\u2019ı',
+        outcome: 'Analitik Temeli',
+        useCase: 'Kurumsal sistemlerden veriyi konsolide edip güvenilir raporlama ve analize dönüştürün.',
+        impact: ['Tek doğruluk kaynağı oluşturur', 'Raporlama tutarlılığını iyileştirir', 'Ölçeklenebilir analitik temeli yaratır'],
+        solution: ['Kurumsal veri ambarı tasarımı', 'Veri kalitesi ve tutarlılık çerçeveleri', 'Raporlama ve semantik katman'],
+        cta: 'Veri Platformları Hakkında Bilgi Al \u2192',
+        ctaUrl: '/tr/data-platforms'
+      }
+    }
+  }
+} as const;
+
+const t = STRINGS[lang];
+const fmt = (tpl: string, n: string) => tpl.replace('{n}', n);
+
+// Serialize runtime strings for client JS
+const clientStrings = JSON.stringify({
+  removeTpl: t.removeTpl,
+  emptyState: t.emptyState,
+  pipelineTypes: t.pipelineTypes,
+});
 ---
 
-<section class="section section--light pb-section" id="pipeline-builder">
+<section class="section section--light pb-section" id="pipeline-builder" data-pb-strings={clientStrings}>
   <div class="container">
     <!-- Section Header -->
     <div class="text-center anim-fade-up">
-      <div class="section-label" style="margin-inline:auto;">INTERACTIVE DEMO</div>
-      <h2 class="section-title">Build Your <span class="grad-text">Pipeline</span></h2>
+      <div class="section-label" style="margin-inline:auto;">{t.sectionLabel}</div>
+      <h2 class="section-title">{t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span></h2>
       <p class="section-sub">
-        Click components below to assemble a data pipeline. Connect sources, transforms, and destinations — then run it.
+        {t.subtitle}
       </p>
     </div>
 
     <!-- Palettes -->
-    <div class="pb-palettes anim-fade-up" role="toolbar" aria-label="Pipeline component palettes">
+    <div class="pb-palettes anim-fade-up" role="toolbar" aria-label={t.toolbarAria}>
       <!-- Sources Palette -->
-      <div class="pb-palette" aria-label="Source components">
-        <h3 class="pb-palette__title pb-palette__title--source">Sources</h3>
+      <div class="pb-palette" aria-label={t.sourcesAria}>
+        <h3 class="pb-palette__title pb-palette__title--source">{t.paletteSources}</h3>
         <div class="pb-palette__items">
           {sources.map((s) => (
             <button
@@ -54,7 +209,7 @@ const destinations = [
               data-node-icon={s.iconId}
               data-lane="source"
               type="button"
-              aria-label={`Add ${s.name} source`}
+              aria-label={fmt(t.addSourceTpl, s.name)}
             >
               <svg class="pb-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
                 <use href={`#pb-icon-${s.iconId}`} />
@@ -66,31 +221,31 @@ const destinations = [
       </div>
 
       <!-- Transforms Palette -->
-      <div class="pb-palette" aria-label="Transform components">
-        <h3 class="pb-palette__title pb-palette__title--transform">Transforms</h3>
+      <div class="pb-palette" aria-label={t.transformsAria}>
+        <h3 class="pb-palette__title pb-palette__title--transform">{t.paletteTransforms}</h3>
         <div class="pb-palette__items">
-          {transforms.map((t) => (
+          {transforms.map((tr) => (
             <button
               class="pb-chip pb-chip--transform"
-              data-node-id={t.id}
-              data-node-name={t.name}
-              data-node-icon={t.iconId}
+              data-node-id={tr.id}
+              data-node-name={tr.name}
+              data-node-icon={tr.iconId}
               data-lane="transform"
               type="button"
-              aria-label={`Add ${t.name} transform`}
+              aria-label={fmt(t.addTransformTpl, tr.name)}
             >
               <svg class="pb-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
-                <use href={`#pb-icon-${t.iconId}`} />
+                <use href={`#pb-icon-${tr.iconId}`} />
               </svg>
-              <span class="pb-chip__label">{t.name}</span>
+              <span class="pb-chip__label">{tr.name}</span>
             </button>
           ))}
         </div>
       </div>
 
       <!-- Destinations Palette -->
-      <div class="pb-palette" aria-label="Destination components">
-        <h3 class="pb-palette__title pb-palette__title--dest">Destinations</h3>
+      <div class="pb-palette" aria-label={t.destinationsAria}>
+        <h3 class="pb-palette__title pb-palette__title--dest">{t.paletteDestinations}</h3>
         <div class="pb-palette__items">
           {destinations.map((d) => (
             <button
@@ -100,7 +255,7 @@ const destinations = [
               data-node-icon={d.iconId}
               data-lane="destination"
               type="button"
-              aria-label={`Add ${d.name} destination`}
+              aria-label={fmt(t.addDestinationTpl, d.name)}
             >
               <svg class="pb-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
                 <use href={`#pb-icon-${d.iconId}`} />
@@ -113,25 +268,25 @@ const destinations = [
     </div>
 
     <!-- Canvas -->
-    <div class="pb-canvas anim-fade-up" role="region" aria-label="Pipeline canvas" aria-live="polite">
+    <div class="pb-canvas anim-fade-up" role="region" aria-label={t.canvasAria} aria-live="polite">
       <svg class="pb-canvas__svg" id="pb-svg" aria-hidden="true"></svg>
       <div class="pb-canvas__lanes">
         <div class="pb-lane" data-lane-type="source">
-          <div class="pb-lane__label">Sources</div>
+          <div class="pb-lane__label">{t.laneSources}</div>
           <div class="pb-lane__nodes" id="pb-lane-source"></div>
         </div>
         <div class="pb-lane" data-lane-type="transform">
-          <div class="pb-lane__label">Transforms</div>
+          <div class="pb-lane__label">{t.laneTransforms}</div>
           <div class="pb-lane__nodes" id="pb-lane-transform"></div>
         </div>
         <div class="pb-lane" data-lane-type="destination">
-          <div class="pb-lane__label">Destinations</div>
+          <div class="pb-lane__label">{t.laneDestinations}</div>
           <div class="pb-lane__nodes" id="pb-lane-destination"></div>
         </div>
       </div>
       <!-- Empty state -->
       <div class="pb-canvas__empty" id="pb-empty">
-        <p>Click items above to add them to your pipeline</p>
+        <p>{t.emptyState}</p>
       </div>
     </div>
 
@@ -143,12 +298,12 @@ const destinations = [
         type="button"
         disabled
         aria-disabled="true"
-        aria-label="Run pipeline"
+        aria-label={t.runBtnAria}
       >
         <svg class="pb-run-btn__icon" viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
           <polygon points="4,2 18,10 4,18" />
         </svg>
-        Run Pipeline
+        {t.runBtn}
       </button>
       <div class="pb-success" id="pb-success" hidden aria-live="assertive">
         <div class="pb-success__inner">
@@ -156,8 +311,36 @@ const destinations = [
             <circle cx="12" cy="12" r="11" stroke="var(--clr-primary)" stroke-width="2" fill="none" />
             <polyline points="7,12 10,16 17,8" stroke="var(--clr-primary)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-          <p class="pb-success__text">Pipeline Ready! Let's build this for real.</p>
-          <a class="btn btn-primary btn-pill" href="/contact">Get Started</a>
+          <p class="pb-success__text">{t.successText}</p>
+          <a class="btn btn-primary btn-pill" href={t.successCtaHref}>{t.successCta}</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pipeline Insight Panel -->
+    <div class="pb-insight anim-fade-up" id="pb-insight" hidden>
+      <div class="pb-insight__card">
+        <div class="pb-insight__header">
+          <span class="pb-insight__label">{t.insightLabel}</span>
+          <h3 class="pb-insight__title" id="pb-insight-title">{t.pipelineTypes.batch.title}</h3>
+          <span class="pb-insight__outcome" id="pb-insight-outcome">{t.pipelineTypes.batch.outcome}</span>
+        </div>
+        <div class="pb-insight__body">
+          <div class="pb-insight__section">
+            <h4>{t.insightUseCase}</h4>
+            <p id="pb-insight-usecase"></p>
+          </div>
+          <div class="pb-insight__section">
+            <h4>{t.insightImpact}</h4>
+            <ul id="pb-insight-impact"></ul>
+          </div>
+          <div class="pb-insight__section">
+            <h4>{t.insightSolution}</h4>
+            <ul id="pb-insight-solution"></ul>
+          </div>
+          <div class="pb-insight__cta">
+            <a class="btn btn-primary btn-pill uppercase-never" id="pb-insight-cta-link" href={t.pipelineTypes.batch.ctaUrl}>{t.pipelineTypes.batch.cta}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -581,6 +764,104 @@ const destinations = [
     color: var(--clr-light-text);
   }
 
+  /* ── Pipeline Insight Panel ── */
+  .pb-insight {
+    margin-top: 40px;
+  }
+  .pb-insight__card {
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 720px;
+    margin-inline: auto;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+    animation: dmqSlideIn 0.4s ease both;
+  }
+  .pb-insight__header {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+  }
+  .pb-insight__label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #10B981;
+  }
+  .pb-insight__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 6px 0 8px;
+  }
+  .pb-insight__outcome {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #94a3b8;
+    padding: 3px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .pb-insight__body {
+    padding: 24px 32px 32px;
+  }
+  .pb-insight__section {
+    margin-bottom: 20px;
+  }
+  .pb-insight__section h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #10B981;
+    margin-bottom: 8px;
+  }
+  .pb-insight__section p {
+    font-size: 0.92rem;
+    color: #ffffff;
+    line-height: 1.6;
+  }
+  .pb-insight__section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pb-insight__section :global(li) {
+    font-size: 0.88rem;
+    color: #ffffff !important;
+    padding-left: 16px;
+    position: relative;
+  }
+  .pb-insight__section :global(li)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+  }
+  .pb-insight__cta {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  @keyframes dmqSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 768px) {
+    .pb-insight__header, .pb-insight__body { padding-inline: 20px; }
+    .pb-insight__title { font-size: 1.2rem; }
+  }
+
   /* ── Reduced motion ────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
     .pb-canvas :global(.pb-node) {
@@ -631,6 +912,19 @@ const destinations = [
       destination: [] as { id: string; name: string; iconId: string }[],
     };
     let isRunning = false;
+
+    // Localized runtime strings injected from the server
+    const rootSection = document.getElementById('pipeline-builder');
+    const pbStrings = (() => {
+      try {
+        const raw = rootSection?.dataset.pbStrings;
+        return raw ? JSON.parse(raw) : null;
+      } catch { return null; }
+    })() || {
+      removeTpl: 'Remove {n}',
+      emptyState: 'Click items above to add them to your pipeline',
+      pipelineTypes: {}
+    };
 
     // DOM references
     const svg = document.getElementById('pb-svg') as unknown as SVGSVGElement;
@@ -696,6 +990,63 @@ const destinations = [
       runBtn.setAttribute('aria-disabled', String(!valid));
     }
 
+    // ── Pipeline Insight Panel ──
+    const insightPanel = document.getElementById('pb-insight');
+    const insightTitle = document.getElementById('pb-insight-title');
+    const insightOutcome = document.getElementById('pb-insight-outcome');
+    const insightUsecase = document.getElementById('pb-insight-usecase');
+    const insightImpact = document.getElementById('pb-insight-impact');
+    const insightSolution = document.getElementById('pb-insight-solution');
+    const insightCtaLink = document.getElementById('pb-insight-cta-link') as HTMLAnchorElement | null;
+
+    // Pipeline-type copy comes from localized server-injected strings
+    const pipelineTypes: Record<string, { title: string; outcome: string; useCase: string; impact: string[]; solution: string[]; cta: string; ctaUrl: string }> = pbStrings.pipelineTypes;
+
+    function detectPipelineType(): string {
+      const transformNames = state.transform.map(t => t.name);
+      const sourceNames = state.source.map(s => s.name);
+      const destNames = state.destination.map(d => d.name);
+      if (transformNames.includes('ML Model')) return 'ai';
+      if (sourceNames.includes('API') || sourceNames.includes('Streaming')) return 'realtime';
+      if (destNames.includes('Alert System')) return 'monitoring';
+      return 'batch';
+    }
+
+    function updateInsightPanel() {
+      if (!insightPanel || !insightTitle) return;
+      const total = state.source.length + state.transform.length + state.destination.length;
+      if (total === 0) {
+        insightPanel.hidden = true;
+        return;
+      }
+      insightPanel.hidden = false;
+      const typeKey = detectPipelineType();
+      const data = pipelineTypes[typeKey];
+      insightTitle.textContent = data.title;
+      if (insightOutcome) insightOutcome.textContent = data.outcome;
+      if (insightUsecase) insightUsecase.textContent = data.useCase;
+      if (insightImpact) {
+        insightImpact.innerHTML = '';
+        data.impact.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          insightImpact.appendChild(li);
+        });
+      }
+      if (insightSolution) {
+        insightSolution.innerHTML = '';
+        data.solution.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          insightSolution.appendChild(li);
+        });
+      }
+      if (insightCtaLink) {
+        insightCtaLink.textContent = data.cta;
+        insightCtaLink.href = data.ctaUrl;
+      }
+    }
+
     // Update empty state
     function updateEmpty() {
       const total = state.source.length + state.transform.length + state.destination.length;
@@ -744,7 +1095,7 @@ const destinations = [
       const removeBtn = document.createElement('button');
       removeBtn.className = 'pb-node__remove';
       removeBtn.type = 'button';
-      removeBtn.setAttribute('aria-label', `Remove ${nodeData.name}`);
+      removeBtn.setAttribute('aria-label', pbStrings.removeTpl.replace('{n}', nodeData.name));
       removeBtn.textContent = '\u00D7';
       removeBtn.addEventListener('click', () => {
         if (isRunning) return;
@@ -770,6 +1121,7 @@ const destinations = [
       updateRunBtn();
       updateEmpty();
       updateChips();
+      updateInsightPanel();
       requestAnimationFrame(() => drawConnections());
     }
 
@@ -785,6 +1137,7 @@ const destinations = [
       updateRunBtn();
       updateEmpty();
       updateChips();
+      updateInsightPanel();
       requestAnimationFrame(() => drawConnections());
     }
 

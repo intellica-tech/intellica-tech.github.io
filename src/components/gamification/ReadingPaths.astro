@@ -5,41 +5,109 @@
  * reading paths with localStorage progress tracking and expandable
  * article timelines.
  */
+import type { Lang } from '../../i18n/config';
 
-// ── Article catalog ──
-const articles: Record<string, { title: string; time: number }> = {
-  "dashboard-guven": { title: "Why Trust Decreases as the Number of Dashboards Increases?", time: 6 },
-  "manuel-kontroller": { title: "Why Manual Controls Are Still Alive", time: 5 },
-  "verinin-nabzi": { title: "Data Autopsy or Data Pulse?", time: 6 },
-  "is-analizi": { title: "Business Analysis: The Reality Filter", time: 7 },
-  "rag-ne-zaman-ise-yarar": { title: "When Does RAG Work and When Does It Mislead?", time: 8 },
-  "genai-guven-standardi": { title: "How to Establish a Trust Standard in Enterprise GenAI?", time: 9 },
-};
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
-// ── Paths ──
-const paths = [
-  {
-    id: "data-governance",
-    name: "Data Governance Journey",
-    description: "Master data quality, dashboard governance, and reconciliation strategies",
-    icon: "shield",
-    slugs: ["dashboard-guven", "manuel-kontroller"],
+const STRINGS = {
+  en: {
+    sectionLabel: 'LEARNING PATHS',
+    titlePrefix: 'Choose Your ',
+    titleHighlight: 'Journey',
+    subtitle: 'Follow a guided reading path to master a topic end-to-end. Track your progress as you go.',
+    articlesLabel: 'articles',
+    totalLabel: 'min',
+    completedTpl: '{read}/{total}',
+    minReadLabel: 'min read',
+    markRead: 'Mark Read',
+    read: 'Read',
+    markAriaTpl: 'Mark "{title}" as read',
+    readArticle: 'Read Article \u2192',
+    insightsBasePath: '/insights',
+    articles: {
+      'dashboard-guven': { title: 'Why Trust Decreases as the Number of Dashboards Increases?', time: 6 },
+      'manuel-kontroller': { title: 'Why Manual Controls Are Still Alive', time: 5 },
+      'verinin-nabzi': { title: 'Data Autopsy or Data Pulse?', time: 6 },
+      'is-analizi': { title: 'Business Analysis: The Reality Filter', time: 7 },
+      'rag-ne-zaman-ise-yarar': { title: 'When Does RAG Work and When Does It Mislead?', time: 8 },
+      'genai-guven-standardi': { title: 'How to Establish a Trust Standard in Enterprise GenAI?', time: 9 },
+    },
+    paths: [
+      {
+        id: 'data-governance',
+        name: 'Data Governance Journey',
+        description: 'Master data quality, dashboard governance, and reconciliation strategies',
+        icon: 'shield',
+        slugs: ['dashboard-guven', 'manuel-kontroller'],
+      },
+      {
+        id: 'ai-readiness',
+        name: 'AI Readiness Journey',
+        description: 'Build production-grade AI with RAG, GenAI trust, and business analysis',
+        icon: 'cpu',
+        slugs: ['rag-ne-zaman-ise-yarar', 'genai-guven-standardi', 'is-analizi'],
+      },
+      {
+        id: 'data-ops',
+        name: 'Data Operations Journey',
+        description: 'From manual controls to real-time monitoring and early warning systems',
+        icon: 'activity',
+        slugs: ['verinin-nabzi', 'manuel-kontroller'],
+      },
+    ],
   },
-  {
-    id: "ai-readiness",
-    name: "AI Readiness Journey",
-    description: "Build production-grade AI with RAG, GenAI trust, and business analysis",
-    icon: "cpu",
-    slugs: ["rag-ne-zaman-ise-yarar", "genai-guven-standardi", "is-analizi"],
+  tr: {
+    sectionLabel: 'ÖĞRENME ROTALARI',
+    titlePrefix: 'Kendi ',
+    titleHighlight: 'Yolculuğunuzu Seçin',
+    subtitle: 'Rehberli bir okuma rotasıyla bir konuyu baştan sona öğrenin. İlerlemenizi takip edin.',
+    articlesLabel: 'yazı',
+    totalLabel: 'dk',
+    completedTpl: '{read}/{total}',
+    minReadLabel: 'dk okuma',
+    markRead: 'Okundu İşaretle',
+    read: 'Okundu',
+    markAriaTpl: '"{title}" makalesini okundu olarak işaretle',
+    readArticle: 'Makaleyi Oku \u2192',
+    insightsBasePath: '/tr/insights',
+    articles: {
+      'dashboard-guven': { title: 'Dashboard Sayısı Arttıkça Güven Neden Azalır?', time: 6 },
+      'manuel-kontroller': { title: 'Manuel Kontroller Neden Hâlâ Hayatta?', time: 5 },
+      'verinin-nabzi': { title: 'Veri Otopsisi mi, Verinin Nabzı mı?', time: 6 },
+      'is-analizi': { title: 'İş Analizi: Gerçeklik Filtresi', time: 7 },
+      'rag-ne-zaman-ise-yarar': { title: 'RAG Ne Zaman İşe Yarar, Ne Zaman Yanıltır?', time: 8 },
+      'genai-guven-standardi': { title: 'Kurumsal GenAI\u2019da Güven Standardı Nasıl Kurulur?', time: 9 },
+    },
+    paths: [
+      {
+        id: 'data-governance',
+        name: 'Veri Yönetişimi Yolculuğu',
+        description: 'Veri kalitesi, dashboard yönetişimi ve mutabakat stratejilerinde ustalaşın',
+        icon: 'shield',
+        slugs: ['dashboard-guven', 'manuel-kontroller'],
+      },
+      {
+        id: 'ai-readiness',
+        name: 'AI Hazırlık Yolculuğu',
+        description: 'RAG, GenAI güveni ve iş analiziyle üretim seviyesinde AI kurun',
+        icon: 'cpu',
+        slugs: ['rag-ne-zaman-ise-yarar', 'genai-guven-standardi', 'is-analizi'],
+      },
+      {
+        id: 'data-ops',
+        name: 'Veri Operasyonları Yolculuğu',
+        description: 'Manuel kontrollerden gerçek zamanlı izleme ve erken uyarı sistemlerine',
+        icon: 'activity',
+        slugs: ['verinin-nabzi', 'manuel-kontroller'],
+      },
+    ],
   },
-  {
-    id: "data-ops",
-    name: "Data Operations Journey",
-    description: "From manual controls to real-time monitoring and early warning systems",
-    icon: "activity",
-    slugs: ["verinin-nabzi", "manuel-kontroller"],
-  },
-];
+} as const;
+
+const t = STRINGS[lang];
+const articles = t.articles as Record<string, { title: string; time: number }>;
+const paths = t.paths;
 
 // Enrich paths with article data for the template
 const enrichedPaths = paths.map(p => ({
@@ -47,15 +115,22 @@ const enrichedPaths = paths.map(p => ({
   articles: p.slugs.map(s => ({ slug: s, ...articles[s] })),
   totalTime: p.slugs.reduce((sum, s) => sum + articles[s].time, 0),
 }));
+
+// Serialise strings for client JS
+const rpStrings = JSON.stringify({
+  markRead: t.markRead,
+  read: t.read,
+  completedTpl: t.completedTpl,
+});
 ---
 
-<section class="section section--dark rp" id="reading-paths">
+<section class="section section--light rp" id="reading-paths" data-rp-strings={rpStrings}>
   <div class="container">
     <!-- Header -->
     <div class="text-center anim-fade-up">
-      <div class="section-label">LEARNING PATHS</div>
-      <h2 class="section-title">Choose Your <span class="grad-text">Journey</span></h2>
-      <p class="section-sub">Follow a guided reading path to master a topic end-to-end. Track your progress as you go.</p>
+      <div class="section-label">{t.sectionLabel}</div>
+      <h2 class="section-title">{t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span></h2>
+      <p class="section-sub">{t.subtitle}</p>
     </div>
 
     <!-- Path grid -->
@@ -73,16 +148,15 @@ const enrichedPaths = paths.map(p => ({
             aria-expanded="false"
             aria-controls={`rp-articles-${path.id}`}
           >
-            <div class="rp__icon" data-icon={path.icon}></div>
             <div class="rp__header">
               <h3 class="rp__name">{path.name}</h3>
               <p class="rp__desc">{path.description}</p>
               <div class="rp__meta">
-                <span class="rp__meta-item">{path.articles.length} articles</span>
+                <span class="rp__meta-item">{path.articles.length} {t.articlesLabel}</span>
                 <span class="rp__meta-sep"></span>
-                <span class="rp__meta-item">{path.totalTime} min total</span>
+                <span class="rp__meta-item">{path.totalTime} {t.totalLabel}</span>
                 <span class="rp__meta-sep"></span>
-                <span class="rp__meta-item rp__progress-label" data-path-id={path.id}>0/{path.articles.length} completed</span>
+                <span class="rp__meta-item rp__progress-label" data-path-id={path.id}>{t.completedTpl.replace('{read}', '0').replace('{total}', String(path.articles.length))}</span>
               </div>
               <!-- Progress bar -->
               <div class="rp__bar-track">
@@ -109,25 +183,25 @@ const enrichedPaths = paths.map(p => ({
                     <div class="rp__step-top">
                       <div class="rp__step-info">
                         <span class="rp__step-title">{article.title}</span>
-                        <span class="rp__step-time">{article.time} min read</span>
+                        <span class="rp__step-time">{article.time} {t.minReadLabel}</span>
                       </div>
                       <div class="rp__step-actions">
                         <button
                           class="rp__mark-btn"
                           data-slug={article.slug}
-                          aria-label={`Mark "${article.title}" as read`}
+                          aria-label={t.markAriaTpl.replace('{title}', article.title)}
                         >
                           <span class="rp__check-icon"></span>
-                          <span class="rp__mark-label">Mark Read</span>
+                          <span class="rp__mark-label">{t.markRead}</span>
                         </button>
                       </div>
                     </div>
                     <a
                       class="rp__read-link"
-                      href={`/insights/${article.slug}`}
+                      href={`${t.insightsBasePath}/${article.slug}`}
                       data-slug={article.slug}
                     >
-                      Read Article &rarr;
+                      {t.readArticle}
                     </a>
                   </div>
                 </li>
@@ -151,15 +225,15 @@ const enrichedPaths = paths.map(p => ({
 
 /* ── Card ── */
 .rp__card {
-  background: var(--clr-card);
-  border: 1px solid var(--clr-border);
+  background: #fff;
+  border: 1px solid #E8EEF5;
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .rp__card:hover {
-  border-color: rgba(0, 200, 150, 0.25);
-  box-shadow: 0 8px 40px rgba(0, 200, 150, 0.06);
+  border-color: var(--clr-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 /* ── Toggle button (card header) ── */
@@ -168,9 +242,9 @@ const enrichedPaths = paths.map(p => ({
   align-items: flex-start;
   gap: 16px;
   width: 100%;
-  padding: 28px 24px;
+  padding: 28px 28px 24px;
   text-align: left;
-  color: var(--clr-text);
+  color: var(--clr-light-text);
   cursor: pointer;
   background: none;
   border: none;
@@ -182,43 +256,24 @@ const enrichedPaths = paths.map(p => ({
   border-radius: var(--radius-lg);
 }
 
-/* ── Icon ── */
-.rp__icon {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(0, 200, 150, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.rp__icon::after {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-.rp__icon[data-icon="shield"]::after { content: "\1F6E1"; }
-.rp__icon[data-icon="cpu"]::after    { content: "\1F9E0"; }
-.rp__icon[data-icon="activity"]::after { content: "\1F4CA"; }
-
 /* ── Header text ── */
 .rp__header {
   flex: 1;
   min-width: 0;
 }
 .rp__name {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--clr-text);
-  margin-bottom: 6px;
+  color: var(--clr-light-text);
+  margin-bottom: 10px;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 .rp__desc {
-  font-size: 0.85rem;
-  color: var(--clr-muted);
-  line-height: 1.5;
-  margin-bottom: 14px;
+  font-size: 0.92rem;
+  color: var(--clr-light-muted);
+  line-height: 1.55;
+  margin-bottom: 18px;
 }
 
 /* ── Meta row ── */
@@ -226,20 +281,19 @@ const enrichedPaths = paths.map(p => ({
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  font-size: 0.72rem;
-  font-weight: 600;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--clr-muted);
-  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+  color: var(--clr-light-muted);
+  margin-bottom: 12px;
 }
 .rp__meta-sep {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: var(--clr-muted);
-  opacity: 0.5;
+  background: #CBD5E1;
 }
 
 /* ── Progress bar ── */
@@ -247,7 +301,7 @@ const enrichedPaths = paths.map(p => ({
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.06);
+  background: #E2E8F0;
   overflow: hidden;
 }
 .rp__bar-fill {
@@ -274,7 +328,7 @@ const enrichedPaths = paths.map(p => ({
   width: 8px;
   height: 2px;
   border-radius: 2px;
-  background: var(--clr-muted);
+  background: var(--clr-light-muted);
   transition: transform 0.3s ease;
 }
 .rp__chevron::before {
@@ -322,15 +376,15 @@ const enrichedPaths = paths.map(p => ({
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 2px solid var(--clr-border);
-  background: var(--clr-dark);
+  border: 2px solid #CBD5E1;
+  background: #fff;
   flex-shrink: 0;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 .rp__step-line {
   width: 2px;
   flex: 1;
-  background: var(--clr-border);
+  background: #E2E8F0;
   margin-top: 4px;
 }
 
@@ -369,13 +423,13 @@ const enrichedPaths = paths.map(p => ({
   display: block;
   font-size: 0.92rem;
   font-weight: 600;
-  color: var(--clr-text);
+  color: var(--clr-light-text);
   line-height: 1.4;
   margin-bottom: 4px;
 }
 .rp__step-time {
   font-size: 0.72rem;
-  color: var(--clr-muted);
+  color: var(--clr-light-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-weight: 600;
@@ -388,9 +442,9 @@ const enrichedPaths = paths.map(p => ({
   gap: 6px;
   padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid var(--clr-border);
-  background: transparent;
-  color: var(--clr-muted);
+  border: 1px solid #E2E8F0;
+  background: #fff;
+  color: var(--clr-light-muted);
   font-size: 0.72rem;
   font-weight: 600;
   font-family: inherit;
@@ -452,7 +506,7 @@ const enrichedPaths = paths.map(p => ({
 
 /* ── Read link ── */
 .rp__read-link {
-  display: none;
+  display: inline-block;
   margin-top: 10px;
   font-size: 0.82rem;
   font-weight: 700;
@@ -461,18 +515,7 @@ const enrichedPaths = paths.map(p => ({
   transition: opacity 0.2s ease;
 }
 .rp__read-link:hover {
-  opacity: 0.8;
-}
-.rp__step.is-next .rp__read-link {
-  display: inline-block;
-}
-/* Also show link on read articles for re-reading */
-.rp__step.is-read .rp__read-link {
-  display: inline-block;
-  opacity: 0.6;
-}
-.rp__step.is-read .rp__read-link:hover {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 /* ── Responsive ── */
@@ -517,6 +560,15 @@ const enrichedPaths = paths.map(p => ({
   // ── Storage key ──
   const STORAGE_KEY = "intellica-reading-progress";
 
+  // ── Localized strings from data attribute ──
+  const rpSection = document.getElementById('reading-paths');
+  const rpStrs = (() => {
+    try {
+      const raw = rpSection?.dataset.rpStrings;
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  })() || { markRead: 'Mark Read', read: 'Read', completedTpl: '{read}/{total} completed' };
+
   // ── Helpers ──
   function loadProgress(): Record<string, boolean> {
     try {
@@ -553,7 +605,7 @@ const enrichedPaths = paths.map(p => ({
       // Update mark button label
       const labelEl = step.querySelector<HTMLElement>(".rp__mark-label");
       if (labelEl) {
-        labelEl.textContent = isRead ? "Read" : "Mark Read";
+        labelEl.textContent = isRead ? rpStrs.read : rpStrs.markRead;
       }
 
       if (isRead) {
@@ -569,7 +621,9 @@ const enrichedPaths = paths.map(p => ({
       `.rp__progress-label[data-path-id="${pathId}"]`
     );
     if (progressLabel) {
-      progressLabel.textContent = `${readCount}/${steps.length} completed`;
+      progressLabel.textContent = rpStrs.completedTpl
+        .replace('{read}', String(readCount))
+        .replace('{total}', String(steps.length));
     }
 
     // Update progress bar

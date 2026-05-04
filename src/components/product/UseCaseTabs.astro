@@ -81,52 +81,6 @@ const hasTabs = useCases.tabs.length > 1 || useCases.tabs[0]?.label !== null;
 </section>
 
 <style>
-.use-case-card-alt {
-  background: #fff;
-  border: 1px solid #E8EEF5;
-  border-radius: 24px;
-  padding: 40px;
-  transition: all 0.3s ease;
-  height: 100%;
-}
-.use-case-card-alt:hover {
-  border-color: var(--clr-primary);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-}
-.use-case-card-alt h4 {
-  font-size: 1.25rem;
-  color: var(--clr-light-text);
-  margin-bottom: 20px;
-}
-.use-case-card-alt .scenario {
-  font-size: 1rem;
-  color: var(--clr-light-muted);
-  line-height: 1.6;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #F1F5F9;
-}
-.uc-section { margin-bottom: 24px; }
-.uc-label {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: var(--clr-primary);
-  margin-bottom: 16px;
-}
-.uc-label--impact { color: #10B981; }
-.uc-list { list-style: none; padding: 0; }
-.uc-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: var(--clr-light-muted);
-}
-.uc-list li::before {
-  content: '\2022';
-  position: absolute; left: 0; color: var(--clr-primary);
-}
 .tabs-nav {
   display: flex;
   justify-content: center;

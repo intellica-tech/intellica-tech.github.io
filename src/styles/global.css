@@ -215,6 +215,8 @@ p {
   border: none;
 }
 
+.uppercase-never { text-transform: none !important; letter-spacing: 0.04em; }
+
 .btn-primary {
   background: var(--grad-brand);
   color: #fff !important;

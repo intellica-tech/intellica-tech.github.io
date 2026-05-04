@@ -4,6 +4,43 @@
  * Scroll-driven animated section showing data flowing through a 4-stage pipeline.
  * Each stage activates via IntersectionObserver as the user scrolls.
  */
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+const STRINGS = {
+  en: {
+    sectionLabel: 'HOW IT WORKS',
+    titlePrefix: 'Your ',
+    titleHighlight: 'Data Journey',
+    subtitle: 'Scroll to follow the data through the pipeline',
+    cta: 'BUILD YOUR PIPELINE WITH US',
+    pipelineAria: 'Data pipeline stages',
+    stages: [
+      { label: 'EXTRACT',   title: 'Collect from 50+ Sources',     description: 'Databases, APIs, files, streaming — all unified.' },
+      { label: 'TRANSFORM', title: 'Apply Business Rules',         description: 'Filter, join, aggregate, enrich — enterprise-grade processing.' },
+      { label: 'LOAD',      title: 'Land in Your Data Warehouse',  description: 'Structured, governed, and ready for consumption.' },
+      { label: 'ANALYZE',   title: 'Generate Insights & AI',       description: 'Dashboards, reports, ML models — value from data.' },
+    ],
+  },
+  tr: {
+    sectionLabel: 'NASIL ÇALIŞIR',
+    titlePrefix: 'Verinin ',
+    titleHighlight: 'Yolculuğu',
+    subtitle: 'Verinin pipeline boyunca akışını izlemek için kaydırın',
+    cta: 'PIPELINE\u2019INIZI BİZİMLE KURUN',
+    pipelineAria: 'Veri pipeline aşamaları',
+    stages: [
+      { label: 'EXTRACT',   title: '50+ Kaynaktan Topla',          description: 'Veritabanları, API\u2019ler, dosyalar, akış verisi — hepsi tek çatı altında.' },
+      { label: 'TRANSFORM', title: 'İş Kurallarını Uygula',        description: 'Filtrele, birleştir, topla, zenginleştir — kurumsal seviyede işleme.' },
+      { label: 'LOAD',      title: 'Veri Ambarınıza Aktar',        description: 'Yapılandırılmış, yönetişim altında, kullanıma hazır.' },
+      { label: 'ANALYZE',   title: 'İçgörü ve AI Üret',            description: 'Dashboard\u2019lar, raporlar, ML modelleri — veriden değer.' },
+    ],
+  },
+} as const;
+
+const t = STRINGS[lang];
 
 const iconExtract = `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
@@ -29,45 +66,21 @@ const iconAnalyze = `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.o
   <circle cx="30" cy="10" r="2.5" fill="currentColor"/>
 </svg>`;
 
-const stages = [
-  {
-    label: 'EXTRACT',
-    title: 'Collect from 50+ Sources',
-    description: 'Databases, APIs, files, streaming — all unified.',
-    icon: iconExtract,
-  },
-  {
-    label: 'TRANSFORM',
-    title: 'Apply Business Rules',
-    description: 'Filter, join, aggregate, enrich — enterprise-grade processing.',
-    icon: iconTransform,
-  },
-  {
-    label: 'LOAD',
-    title: 'Land in Your Data Warehouse',
-    description: 'Structured, governed, and ready for consumption.',
-    icon: iconLoad,
-  },
-  {
-    label: 'ANALYZE',
-    title: 'Generate Insights & AI',
-    description: 'Dashboards, reports, ML models — value from data.',
-    icon: iconAnalyze,
-  },
-];
+const stageIcons = [iconExtract, iconTransform, iconLoad, iconAnalyze];
+const stages = t.stages.map((s, i) => ({ ...s, icon: stageIcons[i] }));
 ---
 
 <section class="dfs-section" id="data-flow-story">
   <div class="container">
     <!-- Header -->
     <div class="dfs-header anim-fade-up">
-      <div class="section-label">HOW IT WORKS</div>
-      <h2 class="section-title">Your <span class="grad-text">Data Journey</span></h2>
-      <p class="section-sub">Scroll to follow the data through the pipeline</p>
+      <div class="section-label">{t.sectionLabel}</div>
+      <h2 class="section-title">{t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span></h2>
+      <p class="section-sub">{t.subtitle}</p>
     </div>
 
     <!-- Pipeline -->
-    <div class="dfs-pipeline" aria-label="Data pipeline stages" role="list">
+    <div class="dfs-pipeline" aria-label={t.pipelineAria} role="list">
       <!-- Vertical connector -->
       <div class="dfs-connector" aria-hidden="true">
         <div class="dfs-connector__track"></div>
@@ -97,7 +110,7 @@ const stages = [
 
     <!-- CTA -->
     <div class="dfs-cta anim-fade-up">
-      <a class="btn btn-primary btn-pill btn-lg" href="/contact">Build Your Pipeline With Us</a>
+      <a class="btn btn-primary btn-pill btn-lg uppercase-never" href={lang === 'tr' ? '/tr/contact' : '/contact'}>{t.cta}</a>
     </div>
   </div>
 </section>

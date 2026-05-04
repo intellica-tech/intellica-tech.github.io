@@ -5,125 +5,244 @@
  * Governance, Infrastructure, Analytics, AI Readiness, and Culture.
  * Shows SVG radar chart result with product recommendations.
  */
+import type { Lang } from '../../i18n/config';
 
-// ── Question data ──
-const questions = [
-  {
-    category: "Governance",
-    question: "How do you manage data quality and consistency?",
-    options: [
-      { label: "Ad hoc / manual checks", score: 1 },
-      { label: "Basic rules in place, some automation", score: 2 },
-      { label: "Formal governance framework with monitoring", score: 3 },
-      { label: "Automated quality gates with real-time alerts", score: 4 },
-    ],
-  },
-  {
-    category: "Infrastructure",
-    question: "What describes your data infrastructure?",
-    options: [
-      { label: "Spreadsheets and local databases", score: 1 },
-      { label: "Central database with basic ETL", score: 2 },
-      { label: "Cloud data warehouse with orchestrated pipelines", score: 3 },
-      { label: "Modern lakehouse with streaming and batch processing", score: 4 },
-    ],
-  },
-  {
-    category: "Analytics",
-    question: "How does your organization use analytics?",
-    options: [
-      { label: "Basic reports and manual dashboards", score: 1 },
-      { label: "Self-service BI with standard KPIs", score: 2 },
-      { label: "Advanced analytics with predictive models", score: 3 },
-      { label: "AI-driven insights embedded in workflows", score: 4 },
-    ],
-  },
-  {
-    category: "AI Readiness",
-    question: "Where are you on the AI journey?",
-    options: [
-      { label: "No AI initiatives yet", score: 1 },
-      { label: "Exploring POCs and pilots", score: 2 },
-      { label: "Production AI in specific use cases", score: 3 },
-      { label: "Scaled AI with MLOps and governance", score: 4 },
-    ],
-  },
-  {
-    category: "Culture",
-    question: "How data-driven is your organization?",
-    options: [
-      { label: "Decisions mostly based on intuition", score: 1 },
-      { label: "Some teams use data for decisions", score: 2 },
-      { label: "Data-driven culture with training programs", score: 3 },
-      { label: "Organization-wide data literacy and self-service", score: 4 },
-    ],
-  },
-];
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
 
-// ── Maturity levels ──
-const maturityLevels = [
-  { min: 1.0, max: 1.5, level: "Reactive", desc: "Starting the data journey" },
-  { min: 1.6, max: 2.5, level: "Managed", desc: "Building foundations" },
-  { min: 2.6, max: 3.5, level: "Optimized", desc: "Leveraging data effectively" },
-  { min: 3.6, max: 4.0, level: "Leading", desc: "Data-driven enterprise" },
-];
+const urlPrefix = lang === 'tr' ? '/tr' : '';
 
-// ── Category insights ──
-const categoryInsights = [
-  { category: "Governance", low: "Data quality issues may be costing you trust and rework.", high: "Strong governance ensures reliable, trustworthy data." },
-  { category: "Infrastructure", low: "Legacy infrastructure limits your ability to scale.", high: "Modern infrastructure accelerates time-to-insight." },
-  { category: "Analytics", low: "Manual reporting slows decision-making.", high: "Advanced analytics unlock predictive capabilities." },
-  { category: "AI Readiness", low: "AI adoption gaps leave competitive advantages untapped.", high: "AI at scale drives measurable business impact." },
-  { category: "Culture", low: "Low data literacy limits adoption of new tools.", high: "A data-driven culture multiplies every tech investment." },
-];
+const STRINGS = {
+  en: {
+    sectionLabel: 'ASSESSMENT',
+    titlePrefix: 'How Mature Is Your ',
+    titleHighlight: 'Data Strategy',
+    titleSuffix: '?',
+    subtitle: 'Answer a few quick questions to benchmark your organization and discover tailored recommendations.',
+    progressAria: 'Quiz progress',
+    recsTitle: 'Recommended Products',
+    ctaText: 'Discuss Your Roadmap With Us',
+    ctaHref: '/contact',
+    restartText: 'Start Over',
+    radarCategories: ['Governance', 'Infrastructure', 'Analytics', 'AI', 'Culture'],
+    questions: [
+      {
+        category: 'Governance',
+        question: 'How do you manage data quality and consistency?',
+        options: [
+          { label: 'Ad hoc / manual checks', score: 1 },
+          { label: 'Basic rules in place, some automation', score: 2 },
+          { label: 'Formal governance framework with monitoring', score: 3 },
+          { label: 'Automated quality gates with real-time alerts', score: 4 },
+        ],
+      },
+      {
+        category: 'Infrastructure',
+        question: 'What describes your data infrastructure?',
+        options: [
+          { label: 'Spreadsheets and local databases', score: 1 },
+          { label: 'Central database with basic ETL', score: 2 },
+          { label: 'Cloud data warehouse with orchestrated pipelines', score: 3 },
+          { label: 'Modern lakehouse with streaming and batch processing', score: 4 },
+        ],
+      },
+      {
+        category: 'Analytics',
+        question: 'How does your organization use analytics?',
+        options: [
+          { label: 'Basic reports and manual dashboards', score: 1 },
+          { label: 'Self-service BI with standard KPIs', score: 2 },
+          { label: 'Advanced analytics with predictive models', score: 3 },
+          { label: 'AI-driven insights embedded in workflows', score: 4 },
+        ],
+      },
+      {
+        category: 'AI Readiness',
+        question: 'Where are you on the AI journey?',
+        options: [
+          { label: 'No AI initiatives yet', score: 1 },
+          { label: 'Exploring POCs and pilots', score: 2 },
+          { label: 'Production AI in specific use cases', score: 3 },
+          { label: 'Scaled AI with MLOps and governance', score: 4 },
+        ],
+      },
+      {
+        category: 'Culture',
+        question: 'How data-driven is your organization?',
+        options: [
+          { label: 'Decisions mostly based on intuition', score: 1 },
+          { label: 'Some teams use data for decisions', score: 2 },
+          { label: 'Data-driven culture with training programs', score: 3 },
+          { label: 'Organization-wide data literacy and self-service', score: 4 },
+        ],
+      },
+    ],
+    maturityLevels: [
+      { min: 1.0, max: 1.5, level: 'Reactive', desc: 'Starting the data journey' },
+      { min: 1.6, max: 2.5, level: 'Managed', desc: 'Building foundations' },
+      { min: 2.6, max: 3.5, level: 'Optimized', desc: 'Leveraging data effectively' },
+      { min: 3.6, max: 4.0, level: 'Leading', desc: 'Data-driven enterprise' },
+    ],
+    categoryInsights: [
+      { category: 'Governance', low: 'Data quality issues may be costing you trust and rework.', high: 'Strong governance ensures reliable, trustworthy data.' },
+      { category: 'Infrastructure', low: 'Legacy infrastructure limits your ability to scale.', high: 'Modern infrastructure accelerates time-to-insight.' },
+      { category: 'Analytics', low: 'Manual reporting slows decision-making.', high: 'Advanced analytics unlock predictive capabilities.' },
+      { category: 'AI Readiness', low: 'AI adoption gaps leave competitive advantages untapped.', high: 'AI at scale drives measurable business impact.' },
+      { category: 'Culture', low: 'Low data literacy limits adoption of new tools.', high: 'A data-driven culture multiplies every tech investment.' },
+    ],
+    productRecommendations: [
+      { category: 'Governance', products: [
+        { name: 'ICC', tagline: 'Data Consistency Checker', url: '/products/icc' },
+        { name: 'ReTouch', tagline: 'Data Entry Management', url: '/products/retouch' },
+      ]},
+      { category: 'Infrastructure', products: [
+        { name: 'IFDM', tagline: 'Finance Data Model', url: '/products/ifdm' },
+        { name: 'ITDM', tagline: 'Telecom Data Model', url: '/products/itdm' },
+        { name: 'HRDM', tagline: 'HR Data Model', url: '/products/hrdm' },
+      ]},
+      { category: 'Analytics', products: [
+        { name: 'Talk To', tagline: 'NL-to-SQL AI', url: '/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Event Intelligence', url: '/products/blue-octopus' },
+      ]},
+      { category: 'AI Readiness', products: [
+        { name: 'Talk To', tagline: 'NL-to-SQL AI', url: '/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Event Intelligence', url: '/products/blue-octopus' },
+        { name: 'VAR', tagline: 'Voice AI Recognition', url: '/products/var' },
+      ]},
+      { category: 'Culture', products: [
+        { name: 'Retable', tagline: 'No-Code Self-Service Platform', url: '/products/retable' },
+      ]},
+    ],
+  },
+  tr: {
+    sectionLabel: 'DEĞERLENDİRME',
+    titlePrefix: 'Veri Stratejiniz Ne Kadar ',
+    titleHighlight: 'Olgun',
+    titleSuffix: '?',
+    subtitle: 'Kurumunuzu kıyaslamak ve size özel öneriler keşfetmek için birkaç hızlı soruya yanıt verin.',
+    progressAria: 'Quiz ilerlemesi',
+    recsTitle: 'Önerilen Ürünler',
+    ctaText: 'Yol Haritanızı Birlikte Konuşalım',
+    ctaHref: '/tr/contact',
+    restartText: 'Baştan Başla',
+    radarCategories: ['Yönetişim', 'Altyapı', 'Analitik', 'AI', 'Kültür'],
+    questions: [
+      {
+        category: 'Yönetişim',
+        question: 'Veri kalitesini ve tutarlılığını nasıl yönetiyorsunuz?',
+        options: [
+          { label: 'Ad hoc / manuel kontroller', score: 1 },
+          { label: 'Temel kurallar + kısmi otomasyon', score: 2 },
+          { label: 'İzlemeli formel yönetişim çerçevesi', score: 3 },
+          { label: 'Otomatik kalite kapıları + gerçek zamanlı uyarılar', score: 4 },
+        ],
+      },
+      {
+        category: 'Altyapı',
+        question: 'Veri altyapınızı en iyi ne tanımlıyor?',
+        options: [
+          { label: 'Spreadsheet\u2019ler ve lokal veritabanları', score: 1 },
+          { label: 'Temel ETL ile merkezi veritabanı', score: 2 },
+          { label: 'Orkestre pipeline\u2019lı bulut veri ambarı', score: 3 },
+          { label: 'Streaming ve batch işlemeli modern lakehouse', score: 4 },
+        ],
+      },
+      {
+        category: 'Analitik',
+        question: 'Kurumunuz analitiği nasıl kullanıyor?',
+        options: [
+          { label: 'Temel raporlar ve manuel dashboard\u2019lar', score: 1 },
+          { label: 'Standart KPI\u2019lı self-service BI', score: 2 },
+          { label: 'Tahmin modelleriyle ileri analitik', score: 3 },
+          { label: 'İş akışlarına gömülü AI destekli içgörüler', score: 4 },
+        ],
+      },
+      {
+        category: 'AI Hazırlığı',
+        question: 'AI yolculuğunda neredesiniz?',
+        options: [
+          { label: 'Henüz AI girişimi yok', score: 1 },
+          { label: 'POC ve pilot projeler', score: 2 },
+          { label: 'Belirli use-case\u2019lerde üretim AI\u2019ı', score: 3 },
+          { label: 'MLOps ve yönetişimle ölçekli AI', score: 4 },
+        ],
+      },
+      {
+        category: 'Kültür',
+        question: 'Kurumunuz ne kadar veri odaklı?',
+        options: [
+          { label: 'Kararlar ağırlıklı sezgiyle alınıyor', score: 1 },
+          { label: 'Bazı ekipler veriyi kullanıyor', score: 2 },
+          { label: 'Eğitim programlarıyla veri odaklı kültür', score: 3 },
+          { label: 'Kurum geneli veri okuryazarlığı ve self-servis', score: 4 },
+        ],
+      },
+    ],
+    maturityLevels: [
+      { min: 1.0, max: 1.5, level: 'Reaktif', desc: 'Veri yolculuğuna başlama' },
+      { min: 1.6, max: 2.5, level: 'Yönetilen', desc: 'Temelleri oluşturma' },
+      { min: 2.6, max: 3.5, level: 'Optimize', desc: 'Veriyi etkin kullanma' },
+      { min: 3.6, max: 4.0, level: 'Öncü', desc: 'Veri odaklı kurum' },
+    ],
+    categoryInsights: [
+      { category: 'Yönetişim', low: 'Veri kalitesi sorunları güven ve yeniden çalışma maliyetine yol açabilir.', high: 'Güçlü yönetişim güvenilir ve tutarlı veri sağlar.' },
+      { category: 'Altyapı', low: 'Eski altyapı ölçeklenme becerinizi sınırlıyor.', high: 'Modern altyapı içgörüye geçiş süresini hızlandırır.' },
+      { category: 'Analitik', low: 'Manuel raporlama karar almayı yavaşlatır.', high: 'İleri analitik tahminsel yetenekleri açar.' },
+      { category: 'AI Hazırlığı', low: 'AI benimseme açıkları rekabet avantajını kullanılmamış bırakır.', high: 'Ölçekte AI ölçülebilir iş etkisi yaratır.' },
+      { category: 'Kültür', low: 'Düşük veri okuryazarlığı yeni araçların benimsenmesini sınırlar.', high: 'Veri odaklı kültür her teknoloji yatırımını katlar.' },
+    ],
+    productRecommendations: [
+      { category: 'Yönetişim', products: [
+        { name: 'ICC', tagline: 'Veri Tutarlılık Denetleyicisi', url: '/tr/products/icc' },
+        { name: 'ReTouch', tagline: 'Veri Girişi Yönetimi', url: '/tr/products/retouch' },
+      ]},
+      { category: 'Altyapı', products: [
+        { name: 'IFDM', tagline: 'Finans Veri Modeli', url: '/tr/products/ifdm' },
+        { name: 'ITDM', tagline: 'Telekom Veri Modeli', url: '/tr/products/itdm' },
+        { name: 'HRDM', tagline: 'İK Veri Modeli', url: '/tr/products/hrdm' },
+      ]},
+      { category: 'Analitik', products: [
+        { name: 'Talk To', tagline: 'Doğal Dilden SQL AI', url: '/tr/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Olay Zekâsı', url: '/tr/products/blue-octopus' },
+      ]},
+      { category: 'AI Hazırlığı', products: [
+        { name: 'Talk To', tagline: 'Doğal Dilden SQL AI', url: '/tr/products/talk-to-your-data' },
+        { name: 'Blue Octopus', tagline: 'Olay Zekâsı', url: '/tr/products/blue-octopus' },
+        { name: 'VAR', tagline: 'Ses AI Tanıma', url: '/tr/products/var' },
+      ]},
+      { category: 'Kültür', products: [
+        { name: 'Retable', tagline: 'Kodsuz Self-Servis Platform', url: '/tr/products/retable' },
+      ]},
+    ],
+  },
+} as const;
 
-// ── Product recommendations by weak category ──
-const productRecommendations = [
-  { category: "Governance", products: [
-    { name: "ICC", tagline: "Data Consistency Checker", url: "/products/icc" },
-    { name: "ReTouch", tagline: "Data Entry Management", url: "/products/retouch" },
-  ]},
-  { category: "Infrastructure", products: [
-    { name: "IFDM", tagline: "Finance Data Model", url: "/products/ifdm" },
-    { name: "ITDM", tagline: "Telecom Data Model", url: "/products/itdm" },
-    { name: "HRDM", tagline: "HR Data Model", url: "/products/hrdm" },
-  ]},
-  { category: "Analytics", products: [
-    { name: "Talk To", tagline: "NL-to-SQL AI", url: "/products/talk-to-your-data" },
-    { name: "Blue Octopus", tagline: "Event Intelligence", url: "/products/blue-octopus" },
-  ]},
-  { category: "AI Readiness", products: [
-    { name: "Talk To", tagline: "NL-to-SQL AI", url: "/products/talk-to-your-data" },
-    { name: "Blue Octopus", tagline: "Event Intelligence", url: "/products/blue-octopus" },
-    { name: "VAR", tagline: "Voice AI Recognition", url: "/products/var" },
-  ]},
-  { category: "Culture", products: [
-    { name: "Retable", tagline: "No-Code Self-Service Platform", url: "/products/retable" },
-  ]},
-];
+const t = STRINGS[lang];
+const questions = t.questions;
 
 // Serialize for client script
-const questionsJson = JSON.stringify(questions);
-const maturityLevelsJson = JSON.stringify(maturityLevels);
-const categoryInsightsJson = JSON.stringify(categoryInsights);
-const productRecommendationsJson = JSON.stringify(productRecommendations);
+const questionsJson = JSON.stringify(t.questions);
+const maturityLevelsJson = JSON.stringify(t.maturityLevels);
+const categoryInsightsJson = JSON.stringify(t.categoryInsights);
+const productRecommendationsJson = JSON.stringify(t.productRecommendations);
+const radarCategoriesJson = JSON.stringify(t.radarCategories);
 ---
 
-<section class="section dmq-section noise" id="data-maturity-quiz">
+<section class="section dmq-section" id="data-maturity-quiz" data-radar-categories={radarCategoriesJson}>
   <div class="container">
     <div class="dmq-header anim-fade-up">
-      <div class="section-label">ASSESSMENT</div>
-      <h2 class="section-title">
-        How Mature Is Your <span class="grad-text">Data Strategy</span>?
+      <div class="section-label" style="margin-inline:auto;">{t.sectionLabel}</div>
+      <h2 class="section-title" style="color: var(--clr-light-text);">
+        {t.titlePrefix}<span class="grad-text">{t.titleHighlight}</span>{t.titleSuffix}
       </h2>
       <p class="dmq-subtitle">
-        Answer five quick questions to benchmark your organization and get tailored recommendations.
+        {t.subtitle}
       </p>
     </div>
 
     <div class="dmq-card anim-fade-up" id="dmq-card">
       <!-- Progress bar -->
-      <div class="dmq-progress" aria-label="Quiz progress">
+      <div class="dmq-progress" aria-label={t.progressAria}>
         <div
           class="dmq-progress__fill"
           id="dmq-progress-fill"
@@ -171,14 +290,14 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
           <!-- Per-category insights populated by JS -->
         </div>
         <div class="dmq-result__recs">
-          <h4 class="dmq-result__recs-title">Recommended Products</h4>
+          <h4 class="dmq-result__recs-title">{t.recsTitle}</h4>
           <div class="dmq-result__recs-list" id="dmq-recs-list">
             <!-- Product cards populated by JS -->
           </div>
         </div>
         <div class="dmq-result__actions">
-          <a href="/contact" class="btn btn-primary btn-pill btn-lg">Discuss Your Roadmap With Us</a>
-          <button type="button" class="dmq-restart" id="dmq-restart">Start Over</button>
+          <a href={t.ctaHref} class="btn btn-primary btn-pill btn-lg">{t.ctaText}</a>
+          <button type="button" class="dmq-restart" id="dmq-restart">{t.restartText}</button>
         </div>
       </div>
     </div>
@@ -186,44 +305,60 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
 </section>
 
 <style>
-  /* ── Section ── */
+  /* ── Section — light background with soft hero transition ── */
   .dmq-section {
-    background: var(--clr-dark-2);
+    background: #f8fafc;
     padding-block: clamp(64px, 8vw, 100px);
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   }
+
 
   .dmq-header {
     text-align: center;
     margin-bottom: 48px;
-  }
-  .dmq-header .section-label {
-    margin-inline: auto;
+    position: relative;
+    z-index: 2;
   }
   .dmq-subtitle {
-    color: var(--clr-muted);
+    color: #64748b;
     font-size: 1.05rem;
     max-width: 560px;
     margin: 8px auto 0;
     line-height: 1.7;
   }
 
-  /* ── Card shell ── */
+  /* ── Card shell — premium dark card on light bg ── */
   .dmq-card {
-    background: var(--clr-card);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-lg);
-    padding: 40px;
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 44px;
     position: relative;
     overflow: hidden;
     max-width: 720px;
     margin-inline: auto;
-    backdrop-filter: blur(12px);
+    box-shadow:
+      0 4px 6px rgba(0, 0, 0, 0.05),
+      0 20px 60px rgba(15, 23, 42, 0.15);
+  }
+
+  /* Subtle inner glow */
+  .dmq-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
   }
 
   /* ── Progress bar ── */
   .dmq-progress {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.06);
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 999px;
     margin-bottom: 40px;
     overflow: hidden;
@@ -231,7 +366,7 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
   .dmq-progress__fill {
     height: 100%;
     width: 20%;
-    background: var(--grad-brand);
+    background: linear-gradient(90deg, #10B981, #3B82F6);
     border-radius: 999px;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -243,29 +378,30 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
   }
   .dmq-step__badge {
     display: inline-flex;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--clr-primary);
-    padding: 4px 12px;
-    border: 1px solid rgba(0, 200, 150, 0.2);
+    color: #10B981;
+    padding: 5px 14px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
     border-radius: 999px;
-    background: rgba(0, 200, 150, 0.06);
+    background: rgba(16, 185, 129, 0.08);
     margin-bottom: 16px;
   }
   .dmq-step__title {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 800;
-    color: var(--clr-text);
+    color: #e2e8f0;
     margin-bottom: 28px;
+    line-height: 1.3;
   }
 
-  /* ── Options (vertical stack) ── */
+  /* ── Options ── */
   .dmq-options {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     max-width: 560px;
     margin-inline: auto;
   }
@@ -273,55 +409,55 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 18px 24px;
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.02);
+    padding: 16px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
     cursor: pointer;
     transition: all 0.2s ease;
-    color: var(--clr-text);
+    color: #cbd5e1;
     text-align: left;
+    font-family: var(--font);
   }
   .dmq-option:hover {
-    border-color: var(--clr-primary);
-    background: rgba(0, 200, 150, 0.06);
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.06);
     transform: translateX(4px);
-    box-shadow: 0 4px 20px rgba(0, 200, 150, 0.1);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+  }
+  .dmq-option[aria-checked="true"] {
+    border-color: #10B981;
+    background: rgba(16, 185, 129, 0.1);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.3);
   }
   .dmq-option:focus-visible {
-    outline: 2px solid var(--clr-primary);
+    outline: 2px solid #10B981;
     outline-offset: 2px;
   }
   .dmq-option__score {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
-    background: rgba(0, 200, 150, 0.1);
-    color: var(--clr-primary);
+    border-radius: 10px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
     font-weight: 800;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    border: 1px solid rgba(0, 200, 150, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.15);
   }
   .dmq-option__label {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 500;
     line-height: 1.4;
   }
 
   /* ── Slide-in animation ── */
   @keyframes dmqSlideIn {
-    from {
-      opacity: 0;
-      transform: translateX(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
   }
 
   /* ── Result screen ── */
@@ -346,9 +482,9 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
     gap: 10px;
     margin-bottom: 32px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
   }
 
   /* ── Recommendations ── */
@@ -358,14 +494,14 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
   .dmq-result__recs-title {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--clr-text);
+    color: #e2e8f0;
     margin-bottom: 16px;
     text-align: center;
   }
   .dmq-result__recs-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   /* ── Result actions ── */
@@ -379,23 +515,28 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
   .dmq-restart {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--clr-muted);
+    color: #94a3b8;
     cursor: pointer;
     padding: 8px 16px;
     border-radius: 999px;
     transition: all 0.2s ease;
     background: none;
     border: none;
+    font-family: var(--font);
   }
   .dmq-restart:hover {
-    color: var(--clr-primary);
-    background: rgba(0, 200, 150, 0.06);
+    color: #10B981;
+    background: rgba(16, 185, 129, 0.06);
   }
 
   /* ── Mobile ── */
   @media (max-width: 768px) {
     .dmq-card {
-      padding: 24px 16px;
+      padding: 28px 18px;
+      border-radius: 16px;
+    }
+    .dmq-step__title {
+      font-size: 1.1rem;
     }
     .dmq-option {
       padding: 14px 16px;
@@ -405,6 +546,7 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
       width: 32px;
       height: 32px;
       font-size: 0.8rem;
+      border-radius: 8px;
     }
     .dmq-result__top {
       grid-template-columns: 1fr;
@@ -461,7 +603,14 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
     var CX = 150;
     var CY = 150;
     var R = 120;
-    var CATEGORIES = ["Governance", "Infrastructure", "Analytics", "AI", "Culture"];
+    var CATEGORIES = (function() {
+      try {
+        var raw = document.getElementById('data-maturity-quiz').getAttribute('data-radar-categories');
+        return raw ? JSON.parse(raw) : ["Governance", "Infrastructure", "Analytics", "AI", "Culture"];
+      } catch (e) {
+        return ["Governance", "Infrastructure", "Analytics", "AI", "Culture"];
+      }
+    })();
     // Angles: -90, -18, 54, 126, 198 degrees
     var ANGLES_DEG = [-90, -18, 54, 126, 198];
     var ANGLES_RAD = ANGLES_DEG.map(function (d) {
@@ -498,7 +647,7 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
         }
         var firstOption = stepEls[index].querySelector(".dmq-option");
         if (firstOption) {
-          firstOption.focus();
+          firstOption.focus({ preventScroll: true });
         }
       }
       var pct = ((index + 1) / totalSteps) * 100;
@@ -798,7 +947,7 @@ const productRecommendationsJson = JSON.stringify(productRecommendations);
       var firstFocusable = levelWrap.querySelector("div");
       if (firstFocusable) {
         firstFocusable.setAttribute("tabindex", "-1");
-        firstFocusable.focus();
+        firstFocusable.focus({ preventScroll: true });
       }
     }
 

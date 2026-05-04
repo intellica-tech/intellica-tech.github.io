@@ -61,7 +61,7 @@ const customComponentMap: Record<string, any> = {
 
   {product.customComponents?.map((name: string) => {
     const Component = customComponentMap[name];
-    return Component ? <Component /> : null;
+    return Component ? <Component lang={lang} /> : null;
   })}
 
   {product.useCases && (
