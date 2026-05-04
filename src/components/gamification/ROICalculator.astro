@@ -329,6 +329,7 @@ const t = STRINGS[lang];
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: start;
+    min-width: 0;
   }
 
   /* ── Inputs ── */
@@ -336,6 +337,7 @@ const t = STRINGS[lang];
     display: flex;
     flex-direction: column;
     gap: 28px;
+    min-width: 0;
   }
 
   .roi-field {
@@ -607,7 +609,7 @@ const t = STRINGS[lang];
       padding: 24px 16px;
     }
     .roi-layout {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 32px;
     }
     .roi-segments {
