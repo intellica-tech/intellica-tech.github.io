@@ -143,22 +143,22 @@ const websiteSchema = {
         <div class="metric-item">
           <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric1.label')}</span>
           <span class="metric-number"><span class="counter" data-target="20">0</span>{t('home.globalImpact.metric1.number')}</span>
-          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric1.desc')}</p>
+          <p style="font-size: 0.9rem; color: var(--clr-light-muted); margin-top: 8px;">{t('home.globalImpact.metric1.desc')}</p>
         </div>
         <div class="metric-item">
           <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric2.label')}</span>
           <span class="metric-number"><span class="counter" data-target="80">0</span>{t('home.globalImpact.metric2.number')}</span>
-          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric2.desc')}</p>
+          <p style="font-size: 0.9rem; color: var(--clr-light-muted); margin-top: 8px;">{t('home.globalImpact.metric2.desc')}</p>
         </div>
         <div class="metric-item">
           <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric3.label')}</span>
           <span class="metric-number"><span class="counter" data-target="100">0</span>{t('home.globalImpact.metric3.number')}</span>
-          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric3.desc')}</p>
+          <p style="font-size: 0.9rem; color: var(--clr-light-muted); margin-top: 8px;">{t('home.globalImpact.metric3.desc')}</p>
         </div>
         <div class="metric-item">
           <span class="metric-label" style="font-weight: 800; color: #111; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 8px; display: block;">{t('home.globalImpact.metric4.label')}</span>
           <span class="metric-number"><span class="counter" data-target="30">0</span>{t('home.globalImpact.metric4.number')}</span>
-          <p style="font-size: 0.9rem; color: #64748b; margin-top: 8px;">{t('home.globalImpact.metric4.desc')}</p>
+          <p style="font-size: 0.9rem; color: var(--clr-light-muted); margin-top: 8px;">{t('home.globalImpact.metric4.desc')}</p>
         </div>
       </div>
     </div>
@@ -1120,8 +1120,8 @@ img[alt="Hopi"] {
   margin-bottom: 24px;
 }
 .cap-icon-box svg { width: 26px; height: 26px; }
-.cap-card-v2 h3 { font-size: 1.25rem; font-weight: 850; color: var(--clr-light-text); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
-.cap-card-v2 p { font-size: 0.95rem; color: var(--clr-light-muted); line-height: 1.6; margin: 0; }
+.cap-card-v2 h3 { font-size: var(--fs-card-title); font-weight: var(--fw-card-title); color: var(--clr-light-text); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
+.cap-card-v2 p { font-size: var(--fs-card-body); color: var(--clr-light-muted); line-height: 1.6; margin: 0; }
 
 @media (max-width: 1200px) {
   .cap-grid-row-2 { grid-template-columns: repeat(2, 1fr); }
@@ -1150,8 +1150,7 @@ img[alt="Hopi"] {
   border-color: var(--clr-primary);
   box-shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
-.dwh-card h3 { font-size: 1.4rem; font-weight: 800; color: var(--clr-light-text); margin-bottom: 16px; }
-.dwh-card p { font-size: 1rem; color: var(--clr-light-muted); line-height: 1.6; margin-bottom: 24px; }
+/* .dwh-card h3 / p — using global.css definitions (1.15rem / 0.88rem) */
 .dwh-card__list {
   list-style: none;
   padding: 0;
