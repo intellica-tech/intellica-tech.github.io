@@ -142,12 +142,12 @@
   "home.globalImpact.label": "Global Presence",
   "home.globalImpact.title": "Global Impact in Data & ",
   "home.globalImpact.titleHighlight": "Artificial Intelligence",
-  "home.globalImpact.sub": "Turkey-based data and AI company delivering enterprise-grade solutions across 20+ countries with successful projects in banking, telecom, public sector and manufacturing.",
+  "home.globalImpact.sub": "Türkiye-based data and AI company delivering enterprise-grade solutions across 20+ countries with successful projects in banking, telecom, public sector and manufacturing.",
   "home.globalImpact.mapAlt": "Global footprint",
   "home.globalImpact.map.seattle": "Seattle, USA",
   "home.globalImpact.map.london": "London, UK",
   "home.globalImpact.map.tirana": "Tirana, Albania",
-  "home.globalImpact.map.turkey": "Turkey",
+  "home.globalImpact.map.turkey": "Türkiye",
   "home.globalImpact.map.riyadh": "Riyadh, Saudi",
   "home.globalImpact.map.dubai": "Dubai, UAE",
   "home.globalImpact.map.islamabad": "Islamabad, Pakistan",
@@ -752,7 +752,7 @@
 
   "contact.info.addressLine1": "Atatürk Mah. Turgut Özal Blv.",
   "contact.info.addressLine2": "Gardenya 1 Plaza · Floor 1",
-  "contact.info.addressLine3": "Ataşehir, Istanbul · Turkey",
+  "contact.info.addressLine3": "Ataşehir, Istanbul · Türkiye",
 
   "contact.why.title": "Why Join Intellica?",
   "contact.why.stat1": "20+ Countries",
