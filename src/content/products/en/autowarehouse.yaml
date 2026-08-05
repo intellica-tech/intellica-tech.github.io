@@ -13,8 +13,8 @@ hero:
   titlePrefix: "AutoWarehouse — DWH"
   titleHighlight: "Automation"
   description: >
-    From source to insight, automatically. AI-powered discovery, governed data
-    modeling, deterministic ETL code generation, and NL-to-SQL analytics — all
+    From source to insight, automatically. AI-powered discovery and source-to-target mapping, governed data
+    modeling, and NL-to-SQL analytics — all
     running on your own infrastructure with zero data leaving your perimeter.
 
 overview:
@@ -33,7 +33,7 @@ overview:
     - "When building a new data warehouse from scratch across multiple source systems"
     - "To accelerate DWH modernization without losing existing model investments"
     - "For regulated industries requiring air-gapped, self-hosted deployment"
-    - "When manual ETL development is too slow and error-prone"
+    - "When you want to accelerate ETL development with AI-assisted automation"
     - "To unify analytics across disparate ERP, CRM, and operational databases"
   preferredNote: "Note: AutoWarehouse supports industry-ready DataModel templates (IFDM, ITDM, HRDM) and fully custom models."
 
@@ -46,8 +46,8 @@ capabilities:
       description: "Multi-agent analysis of source systems: schema profiling, PII detection, entity relationships, and anomaly flags."
     - title: "Governed DataModels"
       description: "Model-first architecture with industry templates (Finance, Telecom, HR) or fully custom star-schema designs."
-    - title: "Deterministic ETL Generation"
-      description: "Zero-hallucination code export for Airflow, dbt, Snowflake, Spark, and PL/SQL — plugin-based and versioned."
+    - title: "AI-Assisted ETL Generation"
+      description: "Accelerate pipeline development with AI-powered code generation for your target platform — plugin-based, versioned, and ready for production."
     - title: "Database DNA Report"
       description: "Comprehensive profiling: row counts, column distributions, anomaly detection, and table classification."
     - title: "NL-to-SQL Analytics"

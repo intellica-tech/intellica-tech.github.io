@@ -525,7 +525,7 @@
   "productsPage.var.tag2": "Security",
 
   "productsPage.autowarehouse.tagline": "AI-POWERED DWH AUTOMATION",
-  "productsPage.autowarehouse.desc": "From source to insight, automatically. AI-driven discovery, governed data modeling, deterministic ETL code generation and NL-to-SQL analytics — fully self-hosted.",
+  "productsPage.autowarehouse.desc": "From source to insight, automatically. AI-powered discovery and source-to-target mapping, governed data modeling, and NL-to-SQL analytics — all running on your own infrastructure with zero data leaving your perimeter.",
   "productsPage.autowarehouse.tag1": "AI Automation",
   "productsPage.autowarehouse.tag2": "Data Warehouse",
 

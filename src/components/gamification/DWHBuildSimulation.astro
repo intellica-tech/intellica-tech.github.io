@@ -113,38 +113,40 @@ const discoveryLines = lang === 'tr' ? [
   { prefix: 'done', text: 'discovery report compiled' },
 ];
 
-const etlCode = `-- AutoWarehouse · Generated ETL
--- Target: HRDM Star Schema
+const etlCode = `── AutoWarehouse · Generated Pipeline Blueprint
+── Target: HRDM Star Schema · 3 Layers
 
-CREATE TABLE dim_employee AS
-SELECT
-  e.employee_id,
-  e.full_name,
-  d.department_name,
-  e.hire_date,
-  e.status
-FROM staging.hr_employees e
-JOIN staging.hr_departments d
-  ON e.dept_id = d.dept_id;
+STAGE 1 → Extract & Profile
+  ├─ source: HR Database ········ 42 columns → profiled
+  ├─ source: Payroll ············ 36 columns → profiled
+  └─ source: CV Pool ············ 18 columns → profiled
+     quality score: 94.2%  │  PII fields masked: 3
 
-CREATE TABLE fact_payroll AS
-SELECT
-  p.payroll_id,
-  p.employee_id,
-  p.pay_period,
-  p.gross_amount,
-  p.net_amount,
-  p.currency
-FROM staging.payroll_records p
-WHERE p.status = 'PROCESSED';`;
+STAGE 2 → Transform & Model
+  ├─ dim_employee ← hr_employees + hr_departments
+  │   join: dept_id  │  SCD Type 2  │  7 attributes
+  ├─ dim_department ← hr_departments
+  │   slowly changing  │  4 attributes
+  ├─ fact_payroll ← payroll_records
+  │   filter: status = PROCESSED  │  6 measures
+  └─ fact_recruitment ← cv_pool + ats_records
+      deduplicate: candidate_id  │  5 measures
+
+STAGE 3 → Load & Validate
+  ├─ target: Foundation Layer ··· 4 tables  ✓
+  ├─ target: Analytical Layer ··· 4 tables  ✓
+  └─ target: Semantic Layer ····· 4 views   ✓
+     rows validated: 48,200  │  quality gates: passed`;
 
 const queryResults = {
   en: [
+    { q: 'Show headcount distribution by department', sql: "SELECT department_name,\n       COUNT(*) AS headcount\nFROM dim_employee\nWHERE status = 'ACTIVE'\nGROUP BY department_name\nORDER BY headcount DESC;", chart: [{ label: 'Engineering', value: 186 }, { label: 'Product', value: 124 }, { label: 'Sales', value: 98 }, { label: 'Operations', value: 72 }, { label: 'HR', value: 45 }, { label: 'Finance', value: 38 }] },
     { q: 'How many employees joined this year?', sql: "SELECT COUNT(*) AS new_hires\nFROM dim_employee\nWHERE hire_date >= '2025-01-01';", result: [['NEW_HIRES'], ['147']] },
     { q: 'What is the average salary by department?', sql: "SELECT d.department_name,\n       ROUND(AVG(f.gross_amount), 2) AS avg_salary\nFROM fact_payroll f\nJOIN dim_employee d ON f.employee_id = d.employee_id\nGROUP BY d.department_name\nORDER BY avg_salary DESC;", result: [['DEPARTMENT', 'AVG_SALARY'], ['Engineering', '12,450.00'], ['Product', '11,200.00'], ['Sales', '9,800.00'], ['Operations', '8,650.00']] },
     { q: 'Show turnover rate trend by quarter', sql: "SELECT pay_period AS quarter,\n       COUNT(CASE WHEN status='LEFT' THEN 1 END) AS exits,\n       COUNT(*) AS total,\n       ROUND(100.0 * COUNT(CASE WHEN status='LEFT' THEN 1 END) / COUNT(*), 1) AS turnover_pct\nFROM fact_payroll\nGROUP BY quarter\nORDER BY quarter;", result: [['QUARTER', 'EXITS', 'TOTAL', 'TURNOVER_%'], ['Q1 2025', '12', '580', '2.1'], ['Q2 2025', '8', '595', '1.3'], ['Q3 2025', '15', '610', '2.5'], ['Q4 2025', '6', '620', '1.0']] },
   ],
   tr: [
+    { q: 'Departman bazlı çalışan dağılımını göster', sql: "SELECT department_name AS departman,\n       COUNT(*) AS calisan_sayisi\nFROM dim_employee\nWHERE status = 'ACTIVE'\nGROUP BY department_name\nORDER BY calisan_sayisi DESC;", chart: [{ label: 'Mühendislik', value: 186 }, { label: 'Ürün', value: 124 }, { label: 'Satış', value: 98 }, { label: 'Operasyon', value: 72 }, { label: 'İK', value: 45 }, { label: 'Finans', value: 38 }] },
     { q: 'Bu yıl kaç çalışan işe başladı?', sql: "SELECT COUNT(*) AS yeni_ise_alim\nFROM dim_employee\nWHERE hire_date >= '2025-01-01';", result: [['YENİ_İŞE_ALIM'], ['147']] },
     { q: 'Departmana göre ortalama maaş nedir?', sql: "SELECT d.department_name AS departman,\n       ROUND(AVG(f.gross_amount), 2) AS ort_maas\nFROM fact_payroll f\nJOIN dim_employee d ON f.employee_id = d.employee_id\nGROUP BY d.department_name\nORDER BY ort_maas DESC;", result: [['DEPARTMAN', 'ORT_MAAS'], ['Mühendislik', '12.450,00'], ['Ürün', '11.200,00'], ['Satış', '9.800,00'], ['Operasyon', '8.650,00']] },
     { q: 'Çeyreğe göre işten ayrılma oranı trendi', sql: "SELECT pay_period AS ceyrek,\n       COUNT(CASE WHEN status='LEFT' THEN 1 END) AS cikis,\n       COUNT(*) AS toplam,\n       ROUND(100.0 * COUNT(CASE WHEN status='LEFT' THEN 1 END) / COUNT(*), 1) AS devir_yuzde\nFROM fact_payroll\nGROUP BY ceyrek\nORDER BY ceyrek;", result: [['ÇEYREK', 'ÇIKIŞ', 'TOPLAM', 'DEVİR_%'], ['Ç1 2025', '12', '580', '2.1'], ['Ç2 2025', '8', '595', '1.3'], ['Ç3 2025', '15', '610', '2.5'], ['Ç4 2025', '6', '620', '1.0']] },
@@ -502,6 +504,53 @@ const clientData = JSON.stringify({
   color: var(--clr-light-text);
 }
 
+/* ── Chart ── */
+:global(.dwh-sim__chart) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+:global(.dwh-sim__chart-row) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+:global(.dwh-sim__chart-label) {
+  width: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--clr-light-text);
+  text-align: right;
+  flex-shrink: 0;
+}
+:global(.dwh-sim__chart-bar-wrap) {
+  flex: 1;
+  height: 28px;
+  background: #F1F5F9;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+:global(.dwh-sim__chart-bar) {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--clr-primary), #00b4d8);
+  transition: width 0.8s ease;
+  min-width: 2px;
+}
+:global(.dwh-sim__chart-val) {
+  width: 36px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--clr-light-text);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  :global(.dwh-sim__chart-label) { width: 70px; font-size: 0.7rem; }
+}
+
 /* ── CTA ── */
 :global(.dwh-sim__cta) {
   text-align: center;
@@ -771,21 +820,39 @@ const clientData = JSON.stringify({
       sql.textContent = q.sql;
       wrap.appendChild(sql);
 
-      const table = document.createElement('table');
-      table.className = 'dwh-sim__table';
-      const thead = document.createElement('thead');
-      const headRow = document.createElement('tr');
-      q.result[0].forEach(h => { const th = document.createElement('th'); th.textContent = h; headRow.appendChild(th); });
-      thead.appendChild(headRow);
-      table.appendChild(thead);
-      const tbody = document.createElement('tbody');
-      q.result.slice(1).forEach(row => {
-        const tr = document.createElement('tr');
-        row.forEach(cell => { const td = document.createElement('td'); td.textContent = cell; tr.appendChild(td); });
-        tbody.appendChild(tr);
-      });
-      table.appendChild(tbody);
-      wrap.appendChild(table);
+      if (q.chart) {
+        const maxVal = Math.max(...q.chart.map(d => d.value));
+        const chart = el('div', 'dwh-sim__chart');
+        q.chart.forEach((d, i) => {
+          const row = el('div', 'dwh-sim__chart-row');
+          row.appendChild(el('span', 'dwh-sim__chart-label', d.label));
+          const barWrap = el('div', 'dwh-sim__chart-bar-wrap');
+          const bar = el('div', 'dwh-sim__chart-bar');
+          bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = Math.round(d.value / maxVal * 100) + '%'; }, 50 + i * 80);
+          barWrap.appendChild(bar);
+          row.appendChild(barWrap);
+          row.appendChild(el('span', 'dwh-sim__chart-val', String(d.value)));
+          chart.appendChild(row);
+        });
+        wrap.appendChild(chart);
+      } else if (q.result) {
+        const table = document.createElement('table');
+        table.className = 'dwh-sim__table';
+        const thead = document.createElement('thead');
+        const headRow = document.createElement('tr');
+        q.result[0].forEach(h => { const th = document.createElement('th'); th.textContent = h; headRow.appendChild(th); });
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        q.result.slice(1).forEach(row => {
+          const tr = document.createElement('tr');
+          row.forEach(cell => { const td = document.createElement('td'); td.textContent = cell; tr.appendChild(td); });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        wrap.appendChild(table);
+      }
       box.appendChild(wrap);
     }
 

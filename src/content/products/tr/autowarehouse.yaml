@@ -13,8 +13,8 @@ hero:
   titlePrefix: "AutoWarehouse — DWH"
   titleHighlight: "Otomasyon"
   description: >
-    Kaynaktan içgörüye, otomatik olarak. Yapay zekâ destekli keşif, yönetişimli
-    veri modelleme, deterministik ETL kod üretimi ve doğal dil analitiği — tümü
+    Kaynaktan içgörüye, otomatik olarak. Yapay zekâ destekli keşif ve kaynaktan hedefe haritalama, yönetişimli
+    veri modelleme ve doğal dil analitiği — tümü
     kendi altyapınızda çalışır, hiçbir veri dışarı çıkmaz.
 
 overview:
@@ -33,7 +33,7 @@ overview:
     - "Birden fazla kaynak sistemden sıfırdan veri ambarı kurarken"
     - "Mevcut model yatırımlarını kaybetmeden DWH modernizasyonu hızlandırırken"
     - "Kapalı ağ, self-hosted dağıtım gerektiren düzenlenmiş sektörlerde"
-    - "Manuel ETL geliştirme çok yavaş ve hataya açık olduğunda"
+    - "ETL geliştirmeyi yapay zekâ destekli otomasyonla hızlandırmak istediğinizde"
     - "Dağınık ERP, CRM ve operasyonel veritabanlarında analitiği birleştirirken"
   preferredNote: "Not: AutoWarehouse sektöre hazır DataModel şablonlarını (IFDM, ITDM, HRDM) ve tamamen özel modelleri destekler."
 
@@ -46,8 +46,8 @@ capabilities:
       description: "Kaynak sistemlerin çok ajanlı analizi: şema profilleme, PII tespiti, varlık ilişkileri ve anomali işaretleri."
     - title: "Yönetişimli DataModel'ler"
       description: "Sektör şablonları (Finans, Telekom, İK) veya tamamen özel yıldız şema tasarımlarıyla model-odaklı mimari."
-    - title: "Deterministik ETL Üretimi"
-      description: "Airflow, dbt, Snowflake, Spark ve PL/SQL için kurala dayalı, öngörülebilir kod dışa aktarımı — eklenti tabanlı ve sürümlü."
+    - title: "Yapay Zekâ Destekli ETL Üretimi"
+      description: "Hedef platformunuz için yapay zekâ destekli kod üretimiyle pipeline geliştirmeyi hızlandırın — eklenti tabanlı, sürümlü ve üretime hazır."
     - title: "Database DNA Raporu"
       description: "Kapsamlı profilleme: satır sayıları, sütun dağılımları, anomali tespiti ve tablo sınıflandırması."
     - title: "Doğal Dil Analitiği"
