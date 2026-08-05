@@ -12,6 +12,13 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const tp = useTranslatedPath(lang);
 
+const productWebsites: Record<string, string> = {
+  icc: lang === 'tr' ? 'https://icc.intellica.net/tr' : 'https://icc.intellica.net/?r=0',
+  retouch: 'https://retouch.intellica.net/',
+  retable: 'https://www.retable.io/',
+};
+const visitLabel = lang === 'tr' ? 'Ziyaret Et' : 'Visit';
+
 const siteUrl = "https://intellica.net";
 
 const websiteSchema = {
@@ -316,6 +323,7 @@ const websiteSchema = {
               <div class="card-p-content">
                 <h4>{t('home.products.icc.title')}</h4>
                 <p>{t('home.products.icc.desc')}</p>
+                <span class="tag tag-visit" data-href={productWebsites.icc}>{visitLabel} ↗</span>
               </div>
               <div class="card-p-arrow">&rarr;</div>
             </a>
@@ -324,6 +332,7 @@ const websiteSchema = {
               <div class="card-p-content">
                 <h4>{t('home.products.retouch.title')}</h4>
                 <p>{t('home.products.retouch.desc')}</p>
+                <span class="tag tag-visit" data-href={productWebsites.retouch}>{visitLabel} ↗</span>
               </div>
               <div class="card-p-arrow">&rarr;</div>
             </a>
@@ -332,6 +341,7 @@ const websiteSchema = {
               <div class="card-p-content">
                 <h4>{t('home.products.retable.title')}</h4>
                 <p>{t('home.products.retable.desc')}</p>
+                <span class="tag tag-visit" data-href={productWebsites.retable}>{visitLabel} ↗</span>
               </div>
               <div class="card-p-arrow">&rarr;</div>
             </a>
@@ -1399,4 +1409,33 @@ img[alt="Yapı Kredi"] {
     }, 600);
   }
   setInterval(rotateText, 4500);
+
+  document.querySelectorAll<HTMLElement>('.tag-visit').forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const href = tag.dataset.href;
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+    });
+  });
 </script>
+
+<style>
+.tag-visit {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(0, 200, 150, 0.15);
+  color: var(--clr-primary);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+.tag-visit:hover {
+  background: rgba(0, 200, 150, 0.3);
+}
+</style>
