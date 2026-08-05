@@ -465,13 +465,14 @@ const productsSchema = {
 }
 </style>
 
-<script>
-  document.querySelectorAll<HTMLElement>('.tag-visit').forEach(tag => {
-    tag.addEventListener('click', (e) => {
+<script is:inline>
+  document.addEventListener('click', function(e) {
+    var tag = e.target.closest('.tag-visit');
+    if (tag) {
       e.preventDefault();
       e.stopPropagation();
-      const href = tag.dataset.href;
+      var href = tag.getAttribute('data-href');
       if (href) window.open(href, '_blank', 'noopener,noreferrer');
-    });
-  });
+    }
+  }, true);
 </script>
