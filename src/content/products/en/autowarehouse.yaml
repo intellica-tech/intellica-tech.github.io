@@ -1,0 +1,158 @@
+slug: "autowarehouse"
+lang: "en"
+name: "AutoWarehouse — DWH Automation"
+
+websiteUrl: "https://autowarehouse.ai/"
+pageTitle: "AutoWarehouse — AI-Powered DWH Automation | Intellica"
+pageDescription: >
+  AutoWarehouse: Model-first data warehouse automation; AI-driven discovery,
+  mapping, ETL code generation, and governed analytics — fully self-hosted.
+
+hero:
+  category: "AI & Data Platform"
+  titlePrefix: "AutoWarehouse — DWH"
+  titleHighlight: "Automation"
+  description: >
+    From source to insight, automatically. AI-powered discovery, governed data
+    modeling, deterministic ETL code generation, and NL-to-SQL analytics — all
+    running on your own infrastructure with zero data leaving your perimeter.
+
+overview:
+  problem: >
+    Building a data warehouse takes months of manual discovery, modeling, and
+    ETL development. Teams drown in spreadsheets, tribal knowledge, and fragile
+    hand-coded pipelines that break at every schema change.
+  approach: >
+    AutoWarehouse replaces the manual lifecycle with an AI agent engine that
+    discovers sources, profiles schemas, maps columns to a governed DataModel,
+    and generates deterministic ETL code — with human review at every step.
+  businessValue: >
+    Weeks instead of months to a production-ready DWH. Zero-hallucination code
+    generation. Complete data sovereignty with self-hosted, air-gapped deployment.
+  whenPreferred:
+    - "When building a new data warehouse from scratch across multiple source systems"
+    - "To accelerate DWH modernization without losing existing model investments"
+    - "For regulated industries requiring air-gapped, self-hosted deployment"
+    - "When manual ETL development is too slow and error-prone"
+    - "To unify analytics across disparate ERP, CRM, and operational databases"
+  preferredNote: "Note: AutoWarehouse supports industry-ready DataModel templates (IFDM, ITDM, HRDM) and fully custom models."
+
+capabilities:
+  label: "Capabilities"
+  heading: "Core"
+  headingHighlight: "Capabilities"
+  items:
+    - title: "AI Source Discovery"
+      description: "Multi-agent analysis of source systems: schema profiling, PII detection, entity relationships, and anomaly flags."
+    - title: "Governed DataModels"
+      description: "Model-first architecture with industry templates (Finance, Telecom, HR) or fully custom star-schema designs."
+    - title: "Deterministic ETL Generation"
+      description: "Zero-hallucination code export for Airflow, dbt, Snowflake, Spark, and PL/SQL — plugin-based and versioned."
+    - title: "Database DNA Report"
+      description: "Comprehensive profiling: row counts, column distributions, anomaly detection, and table classification."
+    - title: "NL-to-SQL Analytics"
+      description: "Ask questions in plain language, get governed SQL and visualizations back — powered by local LLM."
+    - title: "Data Quality Engine"
+      description: "Null analysis, cardinality checks, completeness scoring, and quality gates before data reaches production."
+
+featureSection:
+  heading: "Model-First"
+  headingHighlight: "Architecture"
+  description: >
+    Discovery, mapping, ETL, reporting, and Talk-to-DWH all read and write
+    one governed DataModel. An executive's answer and an engineer's pipeline
+    are provably the same thing — no shadow logic, no definition drift.
+  calloutTitle: "One Model, Every Layer"
+  calloutDescription: "From source discovery to business intelligence, every component operates on a single governed truth."
+  image: "/assets/images/autowarehouse_feature.png"
+  imageAlt: "AutoWarehouse Model-First Architecture"
+  imageCaption: "AutoWarehouse: Unified DataModel governing the entire data warehouse lifecycle."
+
+useCases:
+  label: "Solutions"
+  heading: "Strategic"
+  headingHighlight: "Use Cases"
+  subtitle: "Three paths to your data warehouse — from ready-made templates to full AI-driven builds."
+  tabs:
+    - id: "ready-made"
+      label: "Ready-Made Model"
+      cards:
+        - title: "Deploy an Industry Data Model"
+          badges: []
+          scenario: "Your organization needs a data warehouse but has no existing model. Months of manual design and ETL development lie ahead."
+          interventionLabel: "AUTOWAREHOUSE APPROACH"
+          interventionItems:
+            - "Select a battle-tested industry template (IFDM, ITDM, HRDM)."
+            - "Auto-provision Foundation, Analytical, and Semantic layers."
+            - "Export production-ready Airflow DAGs and dbt models."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Analytics-ready DWH deployed in weeks, not months."
+            - "Pre-built star-schema with SCD Type 2 handling."
+            - "Production ETL code on your own infrastructure."
+    - id: "extend"
+      label: "Extend Existing"
+      cards:
+        - title: "Evolve Your DWH Without Starting Over"
+          badges: []
+          scenario: "You have a partial warehouse or data model. New business requirements demand new subject areas without disrupting existing pipelines."
+          interventionLabel: "AUTOWAREHOUSE APPROACH"
+          interventionItems:
+            - "Import existing model and overlay new requirements."
+            - "AI suggests column mappings while preserving existing ones."
+            - "Model versioning with full rollback safety."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Surgical model extensions without pipeline disruption."
+            - "Source-to-target visibility across the entire warehouse."
+            - "Incremental dbt models slotting into existing pipelines."
+    - id: "greenfield"
+      label: "Build from Scratch"
+      cards:
+        - title: "AI-Driven Discovery to Production DWH"
+          badges: []
+          scenario: "Complex source landscape with no existing model. Multiple ERPs, databases, and APIs need to be unified into a governed analytics platform."
+          interventionLabel: "AUTOWAREHOUSE APPROACH"
+          interventionItems:
+            - "Connect to all sources and generate Database DNA reports."
+            - "AI-generated database dictionary with human review."
+            - "Design custom target model, map all tables, export ETL code."
+          impactLabel: "BUSINESS IMPACT"
+          impactItems:
+            - "Full traceability from source discovery to production deployment."
+            - "2,400+ tables profiled and classified automatically."
+            - "Human-in-the-loop approval at every critical step."
+
+journey:
+  heading: "Operational"
+  headingHighlight: "Model"
+  steps:
+    - number: "01"
+      title: "Discover"
+      description: "AI agents analyze source systems — profiling schemas, detecting PII, mapping entities and relationships."
+    - number: "02"
+      title: "Model"
+      description: "Select an industry DataModel template or design a custom star-schema with governed dimensions and facts."
+    - number: "03"
+      title: "Map & Generate"
+      description: "AI-assisted column mapping with human approval. Deterministic ETL code generation for your target platform."
+    - number: "04"
+      title: "Deploy & Query"
+      description: "Load your warehouse, generate reports, and ask questions in natural language — all governed by one DataModel."
+
+integration:
+  heading: "Enterprise"
+  headingHighlight: "Ready"
+  description: "AutoWarehouse is built for mission-critical, regulated environments:"
+  items:
+    - "Self-hosted, air-gapped deployment — no data leaves your perimeter"
+    - "Local LLM support: Ollama, vLLM, LiteLLM — no cloud AI dependency"
+    - "KVKK, GDPR, PCI-DSS, and SOC 2 aligned with full audit trails"
+    - "Container-native: Docker Compose and Kubernetes with Helm charts"
+    - "RBAC with 30+ granular permissions and OIDC-first authentication"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataWarehouse, AIAutomation"
+
+customComponents: []

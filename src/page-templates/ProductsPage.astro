@@ -17,6 +17,7 @@ const productWebsites: Record<string, string> = {
   icc: lang === 'tr' ? 'https://icc.intellica.net/tr' : 'https://icc.intellica.net/?r=0',
   retouch: 'https://retouch.intellica.net/',
   retable: 'https://www.retable.io/',
+  autowarehouse: 'https://autowarehouse.ai/',
 };
 const visitLabel = lang === 'tr' ? 'Ziyaret Et' : 'Visit';
 
@@ -28,7 +29,7 @@ const productsSchema = {
   "@type": "ItemList",
   "name": t('productsPage.schema.name'),
   "description": t('productsPage.schema.description'),
-  "numberOfItems": 10,
+  "numberOfItems": 11,
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "IFDM", "description": t('productsPage.ifdm.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud", "offers": { "@type": "Offer", "availability": "https://schema.org/InStock" } } },
     { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "ITDM", "description": t('productsPage.itdm.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
@@ -39,7 +40,8 @@ const productsSchema = {
     { "@type": "ListItem", "position": 7, "item": { "@type": "SoftwareApplication", "name": "Orqenta", "description": t('productsPage.orqenta.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
     { "@type": "ListItem", "position": 8, "item": { "@type": "SoftwareApplication", "name": "Talk To", "description": t('productsPage.talkto.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
     { "@type": "ListItem", "position": 9, "item": { "@type": "SoftwareApplication", "name": "Blue Octopus", "description": t('productsPage.blueoctopus.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
-    { "@type": "ListItem", "position": 10, "item": { "@type": "SoftwareApplication", "name": "VAR", "description": t('productsPage.var.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } }
+    { "@type": "ListItem", "position": 10, "item": { "@type": "SoftwareApplication", "name": "VAR", "description": t('productsPage.var.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } },
+    { "@type": "ListItem", "position": 11, "item": { "@type": "SoftwareApplication", "name": "AutoWarehouse", "description": t('productsPage.autowarehouse.desc'), "applicationCategory": "BusinessApplication", "operatingSystem": "Cloud" } }
   ]
 };
 ---
@@ -300,6 +302,22 @@ const productsSchema = {
             <div class="product-card__tags">
               <span class="tag tag-ai">{t('productsPage.var.tag1')}</span>
               <span class="tag tag-security">{t('productsPage.var.tag2')}</span>
+            </div>
+          </div>
+          <div class="product-card__arrow">&rarr;</div>
+        </a>
+        <a href={tp('/products/autowarehouse')} class="product-card card-light" id="autowarehouse">
+          <div class="product-card__logo">
+            <img src="/assets/images/logos/autowarehouse_logo.png" alt="AutoWarehouse" loading="lazy" />
+          </div>
+          <div class="product-card__content">
+            <h3>AutoWarehouse</h3>
+            <p class="product-card__tagline">{t('productsPage.autowarehouse.tagline')}</p>
+            <p>{t('productsPage.autowarehouse.desc')}</p>
+            <div class="product-card__tags">
+              <span class="tag tag-ai">{t('productsPage.autowarehouse.tag1')}</span>
+              <span class="tag tag-data">{t('productsPage.autowarehouse.tag2')}</span>
+              <span class="tag tag-visit" data-href={productWebsites.autowarehouse}>{visitLabel} ↗</span>
             </div>
           </div>
           <div class="product-card__arrow">&rarr;</div>

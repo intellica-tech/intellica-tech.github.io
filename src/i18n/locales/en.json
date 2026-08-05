@@ -42,6 +42,8 @@
   "products.blueoctopus.desc": "Event intelligence & automated response",
   "products.var.name": "VAR",
   "products.var.desc": "AI voice analytics & recognition",
+  "products.autowarehouse.name": "AutoWarehouse",
+  "products.autowarehouse.desc": "AI-powered DWH automation",
   "footer.cta.title": "Ready to Transform Your Data?",
   "footer.cta.desc": "From data platforms to AI solutions, we help organizations turn data into measurable business value.",
   "footer.cta.getInTouch": "Get in Touch",
@@ -230,6 +232,8 @@
   "home.products.blueoctopus.desc": "Event intelligence & automated response.",
   "home.products.var.title": "VAR",
   "home.products.var.desc": "Voice analysis & recognition platform.",
+  "home.products.autowarehouse.title": "AutoWarehouse",
+  "home.products.autowarehouse.desc": "AI-powered DWH automation platform.",
   "home.products.viewAll": "View All Products →",
 
   "home.aiSolutions.label": "AI PORTFOLIO",
@@ -519,6 +523,11 @@
   "productsPage.var.desc": "AI-powered voice signature creation, speaker matching and identity extraction. Built for security, call center and compliance use cases.",
   "productsPage.var.tag1": "Voice AI",
   "productsPage.var.tag2": "Security",
+
+  "productsPage.autowarehouse.tagline": "AI-POWERED DWH AUTOMATION",
+  "productsPage.autowarehouse.desc": "From source to insight, automatically. AI-driven discovery, governed data modeling, deterministic ETL code generation and NL-to-SQL analytics — fully self-hosted.",
+  "productsPage.autowarehouse.tag1": "AI Automation",
+  "productsPage.autowarehouse.tag2": "Data Warehouse",
 
   "productsPage.cta.title": "Ready to Transform Your ",
   "productsPage.cta.titleHighlight": "Data?",

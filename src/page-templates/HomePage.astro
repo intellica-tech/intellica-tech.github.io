@@ -16,6 +16,7 @@ const productWebsites: Record<string, string> = {
   icc: lang === 'tr' ? 'https://icc.intellica.net/tr' : 'https://icc.intellica.net/?r=0',
   retouch: 'https://retouch.intellica.net/',
   retable: 'https://www.retable.io/',
+  autowarehouse: 'https://autowarehouse.ai/',
 };
 const visitLabel = lang === 'tr' ? 'Ziyaret Et' : 'Visit';
 
@@ -384,6 +385,15 @@ const websiteSchema = {
               <div class="card-p-content">
                 <h4>{t('home.products.var.title')}</h4>
                 <p>{t('home.products.var.desc')}</p>
+              </div>
+              <div class="card-p-arrow">&rarr;</div>
+            </a>
+            <a href={tp('/products/autowarehouse')} class="premium-card">
+              <div class="card-p-logo"><img alt="AutoWarehouse" src="/assets/images/logos/autowarehouse_logo.png" loading="lazy" /></div>
+              <div class="card-p-content">
+                <h4>{t('home.products.autowarehouse.title')}</h4>
+                <p>{t('home.products.autowarehouse.desc')}</p>
+                <span class="tag tag-visit" data-href={productWebsites.autowarehouse}>{visitLabel} ↗</span>
               </div>
               <div class="card-p-arrow">&rarr;</div>
             </a>
