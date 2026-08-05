@@ -155,4 +155,5 @@ jsonLd:
   type: "SoftwareApplication"
   category: "BusinessApplication, DataWarehouse, AIAutomation"
 
-customComponents: []
+customComponents:
+  - DWHBuildSimulation

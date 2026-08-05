@@ -10,6 +10,7 @@ import UseCaseTabs from '../components/product/UseCaseTabs.astro';
 import JourneySection from '../components/product/JourneySection.astro';
 import ProductCTA from '../components/product/ProductCTA.astro';
 import SQLPlayground from '../components/gamification/SQLPlayground.astro';
+import DWHBuildSimulation from '../components/gamification/DWHBuildSimulation.astro';
 
 interface Props {
   product: Record<string, any>;
@@ -44,6 +45,7 @@ const productSchema = {
 
 const customComponentMap: Record<string, any> = {
   SQLPlayground,
+  DWHBuildSimulation,
 };
 ---
 <Layout title={product.pageTitle} description={product.pageDescription} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
