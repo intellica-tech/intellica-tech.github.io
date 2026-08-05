@@ -49,7 +49,7 @@ const customComponentMap: Record<string, any> = {
 <Layout title={product.pageTitle} description={product.pageDescription} breadcrumbs={breadcrumbs} hideCta={true} lang={lang}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
-  <ProductHero hero={product.hero} lang={lang} />
+  <ProductHero hero={product.hero} websiteUrl={product.websiteUrl} lang={lang} />
 
   <OverviewSection overview={product.overview} lang={lang} />
 

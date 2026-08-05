@@ -13,6 +13,13 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const tp = useTranslatedPath(lang);
 
+const productWebsites: Record<string, string> = {
+  icc: lang === 'tr' ? 'https://icc.intellica.net/tr' : 'https://icc.intellica.net/?r=0',
+  retouch: 'https://retouch.intellica.net/',
+  retable: 'https://www.retable.io/',
+};
+const visitLabel = lang === 'tr' ? 'Ziyaret Et' : 'Visit';
+
 const siteUrl = "https://intellica.net";
 const breadcrumbs = [{ name: t('productsPage.breadcrumb'), url: `${siteUrl}${tp('/products')}` }];
 
@@ -187,6 +194,7 @@ const productsSchema = {
             <div class="product-card__tags">
               <span class="tag tag-data">{t('productsPage.icc.tag1')}</span>
               <span class="tag tag-security">{t('productsPage.icc.tag2')}</span>
+              <span class="tag tag-visit" data-href={productWebsites.icc}>{visitLabel} ↗</span>
             </div>
           </div>
           <div class="product-card__arrow">&rarr;</div>
@@ -202,6 +210,7 @@ const productsSchema = {
             <div class="product-card__tags">
               <span class="tag tag-data">{t('productsPage.retouch.tag1')}</span>
               <span class="tag tag-security">{t('productsPage.retouch.tag2')}</span>
+              <span class="tag tag-visit" data-href={productWebsites.retouch}>{visitLabel} ↗</span>
             </div>
           </div>
           <div class="product-card__arrow">&rarr;</div>
@@ -217,6 +226,7 @@ const productsSchema = {
             <div class="product-card__tags">
               <span class="tag tag-ai">{t('productsPage.retable.tag1')}</span>
               <span class="tag tag-data">{t('productsPage.retable.tag2')}</span>
+              <span class="tag tag-visit" data-href={productWebsites.retable}>{visitLabel} ↗</span>
             </div>
           </div>
           <div class="product-card__arrow">&rarr;</div>
@@ -409,6 +419,18 @@ const productsSchema = {
   box-shadow: 0 20px 40px rgba(0,0,0,0.05);
 }
 
+.tag-visit {
+  background: rgba(0, 200, 150, 0.1);
+  color: var(--clr-primary);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: background 0.2s ease;
+}
+.tag-visit:hover {
+  background: rgba(0, 200, 150, 0.2);
+}
+
 @media (max-width: 768px) {
   .product-card {
     flex-direction: column;
@@ -424,3 +446,14 @@ const productsSchema = {
   }
 }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.tag-visit').forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const href = tag.dataset.href;
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+    });
+  });
+</script>

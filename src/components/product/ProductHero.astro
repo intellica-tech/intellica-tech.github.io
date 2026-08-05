@@ -9,10 +9,11 @@ interface Props {
     titleHighlight: string;
     description: string;
   };
+  websiteUrl?: string;
   lang: Lang;
 }
 
-const { hero, lang } = Astro.props;
+const { hero, websiteUrl, lang } = Astro.props;
 const t = useTranslations(lang);
 const tp = useTranslatedPath(lang);
 ---
@@ -23,6 +24,11 @@ const tp = useTranslatedPath(lang);
     <p class="anim-fade-up">{hero.description}</p>
     <div class="hero-actions anim-fade-up" style="margin-top: 32px;">
       <a href={tp('/contact')} class="btn btn-primary btn-pill btn-lg">{t('productLayout.cta.primary')}</a>
+      {websiteUrl && (
+        <a href={websiteUrl} target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-pill btn-lg">
+          {lang === 'tr' ? 'Ürünü Ziyaret Et' : 'Visit Product'} <span style="margin-left:4px;">↗</span>
+        </a>
+      )}
     </div>
   </div>
 </section>
