@@ -42,6 +42,8 @@
   "products.blueoctopus.desc": "Olay istihbaratı ve otomatik aksiyon",
   "products.var.name": "VAR",
   "products.var.desc": "Yapay zeka ses analizi ve tanıma",
+  "products.autowarehouse.name": "AutoWarehouse",
+  "products.autowarehouse.desc": "Yapay zekâ destekli DWH otomasyon",
   "footer.cta.title": "Verilerinizi Değere Dönüştürmeye Hazır Mısınız?",
   "footer.cta.desc": "Veri platformlarından yapay zeka çözümlerine kadar, kurumların veriyi ölçülebilir iş değerine dönüştürmesine yardımcı oluyoruz.",
   "footer.cta.getInTouch": "Bize Ulaşın",
@@ -230,6 +232,8 @@
   "home.products.blueoctopus.desc": "Olay analitiği ve otomatik müdahale.",
   "home.products.var.title": "VAR",
   "home.products.var.desc": "Ses analizi ve tanıma platformu.",
+  "home.products.autowarehouse.title": "AutoWarehouse",
+  "home.products.autowarehouse.desc": "Yapay zekâ destekli DWH otomasyon platformu.",
   "home.products.viewAll": "Tüm Ürünleri Gör →",
 
   "home.aiSolutions.label": "YAPAY ZEKA PORTFÖYÜ",
@@ -519,6 +523,11 @@
   "productsPage.var.desc": "Yapay zeka destekli ses imzası oluşturma, konuşmacı eşleştirme ve kimlik çıkarma. Güvenlik, çağrı merkezi ve uyumluluk kullanım senaryoları için tasarlandı.",
   "productsPage.var.tag1": "Ses Yapay Zekası",
   "productsPage.var.tag2": "Güvenlik",
+
+  "productsPage.autowarehouse.tagline": "YAPAY ZEKÂ DESTEKLİ DWH OTOMASYON",
+  "productsPage.autowarehouse.desc": "Kaynaktan içgörüye, otomatik olarak. Yapay zekâ destekli keşif ve kaynaktan hedefe haritalama, yönetişimli veri modelleme ve doğal dil analitiği — tümü kendi altyapınızda, hiçbir veri dışarı çıkmaz.",
+  "productsPage.autowarehouse.tag1": "Yapay Zekâ Otomasyon",
+  "productsPage.autowarehouse.tag2": "Veri Ambarı",
 
   "productsPage.cta.title": "Verilerinizi Dönüştürmeye ",
   "productsPage.cta.titleHighlight": "Hazır mısınız?",

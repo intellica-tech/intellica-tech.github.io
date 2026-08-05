@@ -1,0 +1,865 @@
+---
+import type { Lang } from '../../i18n/config';
+
+interface Props { lang?: Lang; }
+const { lang = 'en' } = Astro.props;
+
+const STRINGS = {
+  en: {
+    label: 'INTERACTIVE DEMO',
+    title: 'Build Your ',
+    titleHighlight: 'Data Warehouse',
+    subtitle: 'Experience the full DWH lifecycle — from source selection to natural language queries.',
+    station: 'Station',
+    steps: ['Select Sources', 'AI Discovery', 'Data Model', 'ETL Code', 'Query DWH'],
+    // Step 1
+    s1Title: 'Select your source systems',
+    s1Role: 'DATA ENGINEER',
+    s1Btn: 'Run Agent Discovery',
+    s1Min: 'Select at least 2 sources',
+    // Step 2
+    s2Title: 'Agent is scanning the estate',
+    s2Role: 'AI AGENT',
+    s2Status: 'Discovery complete',
+    s2Btn: 'Approve & Continue',
+    // Step 3
+    s3Title: 'Governed DataModel',
+    s3Role: 'CORE MODEL',
+    s3Desc: 'One governed model — Foundation, Analytical, and Semantic layers.',
+    s3Btn: 'Generate ETL Code',
+    // Step 4
+    s4Title: 'ETL Code Generated',
+    s4Role: 'CODE GENERATOR',
+    s4Desc: 'Deterministic, plugin-based code — ready for your pipeline.',
+    s4Btn: 'Deploy & Query',
+    // Step 5
+    s5Title: 'Talk to Your Warehouse',
+    s5Role: 'BUSINESS USER',
+    s5Placeholder: 'Click a question below or type your own...',
+    s5Questions: [
+      'How many employees joined this year?',
+      'What is the average salary by department?',
+      'Show turnover rate trend by quarter'
+    ],
+    s5RunQuery: 'Run Query',
+    restart: 'Restart',
+    ctaText: 'Ready to build the real one?',
+    ctaBtn: 'Book a Build Review',
+    ctaHref: '/contact',
+  },
+  tr: {
+    label: 'İNTERAKTİF DEMO',
+    title: 'Veri Ambarınızı ',
+    titleHighlight: 'Oluşturun',
+    subtitle: 'Tam DWH yaşam döngüsünü deneyimleyin — kaynak seçiminden doğal dil sorgularına.',
+    station: 'Aşama',
+    steps: ['Kaynak Seç', 'AI Keşif', 'Veri Modeli', 'ETL Kodu', 'DWH Sorgula'],
+    s1Title: 'Kaynak sistemlerinizi seçin',
+    s1Role: 'VERİ MÜHENDİSİ',
+    s1Btn: 'Agent Keşfini Başlat',
+    s1Min: 'En az 2 kaynak seçin',
+    s2Title: 'Agent sistemleri tarıyor',
+    s2Role: 'AI AGENT',
+    s2Status: 'Keşif tamamlandı',
+    s2Btn: 'Onayla ve Devam Et',
+    s3Title: 'Yönetişimli DataModel',
+    s3Role: 'TEMEL MODEL',
+    s3Desc: 'Tek bir yönetişimli model — Foundation, Analytical ve Semantic katmanları.',
+    s3Btn: 'ETL Kodu Üret',
+    s4Title: 'ETL Kodu Üretildi',
+    s4Role: 'KOD ÜRETİCİ',
+    s4Desc: 'Kurala dayalı, eklenti tabanlı kod — pipeline\'ınız için hazır.',
+    s4Btn: 'Dağıt ve Sorgula',
+    s5Title: 'Ambarınızla Konuşun',
+    s5Role: 'İŞ KULLANICISI',
+    s5Placeholder: 'Aşağıdan bir soru seçin veya kendi sorunuzu yazın...',
+    s5Questions: [
+      'Bu yıl kaç çalışan işe başladı?',
+      'Departmana göre ortalama maaş nedir?',
+      'Çeyreğe göre işten ayrılma oranı trendi'
+    ],
+    s5RunQuery: 'Sorguyu Çalıştır',
+    restart: 'Yeniden Başla',
+    ctaText: 'Gerçeğini kurmaya hazır mısınız?',
+    ctaBtn: 'Build Review Talep Et',
+    ctaHref: '/tr/contact',
+  }
+} as const;
+
+const t = STRINGS[lang];
+
+const sources = [
+  { id: 'hr', label: 'HR Database', type: 'POSTGRESQL', cols: 42 },
+  { id: 'cv', label: 'CV Pool', type: 'DOCUMENTS', cols: 18 },
+  { id: 'pr', label: 'Payroll', type: 'ORACLE', cols: 36 },
+  { id: 'at', label: 'ATS', type: 'REST API', cols: 24 },
+  { id: 'xl', label: 'Excel Sheets', type: 'SPREADSHEETS', cols: 15 },
+  { id: 'ap', label: 'Ops APIs', type: 'REST / JSON', cols: 29 },
+];
+
+const discoveryLines = lang === 'tr' ? [
+  { prefix: 'ok', text: 'şema ayrıştırıldı · {src} ({cols} sütun)' },
+  { prefix: 'ok', text: 'varlıklar sınıflandırıldı · {src}' },
+  { prefix: 'pii', text: 'PII tespit edildi · 3 alan işaretlendi' },
+  { prefix: 'ok', text: 'ilişki grafiği oluşturuldu' },
+  { prefix: 'ok', text: 'kaynak kalitesi derecelendirildi' },
+  { prefix: 'done', text: 'keşif raporu derlendi' },
+] : [
+  { prefix: 'ok', text: 'schema parsed · {src} ({cols} columns)' },
+  { prefix: 'ok', text: 'entities classified · {src}' },
+  { prefix: 'pii', text: 'PII detected · 3 fields flagged' },
+  { prefix: 'ok', text: 'relationship graph built' },
+  { prefix: 'ok', text: 'source quality ranked' },
+  { prefix: 'done', text: 'discovery report compiled' },
+];
+
+const etlCode = `── AutoWarehouse · Generated Pipeline Blueprint
+── Target: HRDM Star Schema · 3 Layers
+
+STAGE 1 → Extract & Profile
+  ├─ source: HR Database ········ 42 columns → profiled
+  ├─ source: Payroll ············ 36 columns → profiled
+  └─ source: CV Pool ············ 18 columns → profiled
+     quality score: 94.2%  │  PII fields masked: 3
+
+STAGE 2 → Transform & Model
+  ├─ dim_employee ← hr_employees + hr_departments
+  │   join: dept_id  │  SCD Type 2  │  7 attributes
+  ├─ dim_department ← hr_departments
+  │   slowly changing  │  4 attributes
+  ├─ fact_payroll ← payroll_records
+  │   filter: status = PROCESSED  │  6 measures
+  └─ fact_recruitment ← cv_pool + ats_records
+      deduplicate: candidate_id  │  5 measures
+
+STAGE 3 → Load & Validate
+  ├─ target: Foundation Layer ··· 4 tables  ✓
+  ├─ target: Analytical Layer ··· 4 tables  ✓
+  └─ target: Semantic Layer ····· 4 views   ✓
+     rows validated: 48,200  │  quality gates: passed`;
+
+const queryResults = {
+  en: [
+    { q: 'Show headcount distribution by department', sql: "SELECT department_name,\n       COUNT(*) AS headcount\nFROM dim_employee\nWHERE status = 'ACTIVE'\nGROUP BY department_name\nORDER BY headcount DESC;", chart: [{ label: 'Engineering', value: 186 }, { label: 'Product', value: 124 }, { label: 'Sales', value: 98 }, { label: 'Operations', value: 72 }, { label: 'HR', value: 45 }, { label: 'Finance', value: 38 }] },
+    { q: 'How many employees joined this year?', sql: "SELECT COUNT(*) AS new_hires\nFROM dim_employee\nWHERE hire_date >= '2025-01-01';", result: [['NEW_HIRES'], ['147']] },
+    { q: 'What is the average salary by department?', sql: "SELECT d.department_name,\n       ROUND(AVG(f.gross_amount), 2) AS avg_salary\nFROM fact_payroll f\nJOIN dim_employee d ON f.employee_id = d.employee_id\nGROUP BY d.department_name\nORDER BY avg_salary DESC;", result: [['DEPARTMENT', 'AVG_SALARY'], ['Engineering', '12,450.00'], ['Product', '11,200.00'], ['Sales', '9,800.00'], ['Operations', '8,650.00']] },
+    { q: 'Show turnover rate trend by quarter', sql: "SELECT pay_period AS quarter,\n       COUNT(CASE WHEN status='LEFT' THEN 1 END) AS exits,\n       COUNT(*) AS total,\n       ROUND(100.0 * COUNT(CASE WHEN status='LEFT' THEN 1 END) / COUNT(*), 1) AS turnover_pct\nFROM fact_payroll\nGROUP BY quarter\nORDER BY quarter;", result: [['QUARTER', 'EXITS', 'TOTAL', 'TURNOVER_%'], ['Q1 2025', '12', '580', '2.1'], ['Q2 2025', '8', '595', '1.3'], ['Q3 2025', '15', '610', '2.5'], ['Q4 2025', '6', '620', '1.0']] },
+  ],
+  tr: [
+    { q: 'Departman bazlı çalışan dağılımını göster', sql: "SELECT department_name AS departman,\n       COUNT(*) AS calisan_sayisi\nFROM dim_employee\nWHERE status = 'ACTIVE'\nGROUP BY department_name\nORDER BY calisan_sayisi DESC;", chart: [{ label: 'Mühendislik', value: 186 }, { label: 'Ürün', value: 124 }, { label: 'Satış', value: 98 }, { label: 'Operasyon', value: 72 }, { label: 'İK', value: 45 }, { label: 'Finans', value: 38 }] },
+    { q: 'Bu yıl kaç çalışan işe başladı?', sql: "SELECT COUNT(*) AS yeni_ise_alim\nFROM dim_employee\nWHERE hire_date >= '2025-01-01';", result: [['YENİ_İŞE_ALIM'], ['147']] },
+    { q: 'Departmana göre ortalama maaş nedir?', sql: "SELECT d.department_name AS departman,\n       ROUND(AVG(f.gross_amount), 2) AS ort_maas\nFROM fact_payroll f\nJOIN dim_employee d ON f.employee_id = d.employee_id\nGROUP BY d.department_name\nORDER BY ort_maas DESC;", result: [['DEPARTMAN', 'ORT_MAAS'], ['Mühendislik', '12.450,00'], ['Ürün', '11.200,00'], ['Satış', '9.800,00'], ['Operasyon', '8.650,00']] },
+    { q: 'Çeyreğe göre işten ayrılma oranı trendi', sql: "SELECT pay_period AS ceyrek,\n       COUNT(CASE WHEN status='LEFT' THEN 1 END) AS cikis,\n       COUNT(*) AS toplam,\n       ROUND(100.0 * COUNT(CASE WHEN status='LEFT' THEN 1 END) / COUNT(*), 1) AS devir_yuzde\nFROM fact_payroll\nGROUP BY ceyrek\nORDER BY ceyrek;", result: [['ÇEYREK', 'ÇIKIŞ', 'TOPLAM', 'DEVİR_%'], ['Ç1 2025', '12', '580', '2.1'], ['Ç2 2025', '8', '595', '1.3'], ['Ç3 2025', '15', '610', '2.5'], ['Ç4 2025', '6', '620', '1.0']] },
+  ]
+};
+
+const clientData = JSON.stringify({
+  strings: t,
+  sources,
+  discoveryLines,
+  etlCode,
+  queryResults: queryResults[lang],
+});
+---
+
+<section class="section section--light dwh-sim" id="dwh-build-sim" data-dwh={clientData}>
+  <div class="container">
+    <div class="text-center anim-fade-up">
+      <div class="section-label">{t.label}</div>
+      <h2 class="section-title" style="color:var(--clr-light-text);">
+        {t.title}<span class="grad-text">{t.titleHighlight}</span>
+      </h2>
+      <p class="section-sub">{t.subtitle}</p>
+    </div>
+
+    <div class="dwh-sim__shell anim-fade-up">
+      <div class="dwh-sim__progress" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="1">
+        {t.steps.map((step, i) => (
+          <button class={`dwh-sim__step-dot ${i === 0 ? 'is-active' : ''}`} data-step={i} disabled={i !== 0} aria-label={`${t.station} ${i + 1}: ${step}`}>
+            <span class="dwh-sim__step-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="dwh-sim__step-label">{step}</span>
+          </button>
+        ))}
+        <div class="dwh-sim__progress-bar"><div class="dwh-sim__progress-fill"></div></div>
+      </div>
+
+      <div class="dwh-sim__stage" id="dwh-stage"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.dwh-sim__shell {
+  background: #fff;
+  border: 1px solid #E8EEF5;
+  border-radius: var(--radius-lg, 24px);
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.dwh-sim__progress {
+  display: flex;
+  gap: 0;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E8EEF5;
+  position: relative;
+  overflow-x: auto;
+}
+.dwh-sim__progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #E2E8F0;
+}
+.dwh-sim__progress-fill {
+  height: 100%;
+  width: 20%;
+  background: var(--grad-brand, linear-gradient(135deg, #00c896, #00b4d8));
+  transition: width 0.5s ease;
+}
+.dwh-sim__step-dot {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: none;
+  border: none;
+  cursor: default;
+  font-family: inherit;
+  transition: opacity 0.3s ease;
+  opacity: 0.35;
+}
+.dwh-sim__step-dot.is-active { opacity: 1; }
+.dwh-sim__step-dot.is-done { opacity: 0.7; }
+.dwh-sim__step-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--clr-light-muted);
+  letter-spacing: 0.04em;
+}
+.dwh-sim__step-dot.is-active .dwh-sim__step-num {
+  color: var(--clr-primary);
+}
+.dwh-sim__step-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--clr-light-muted);
+  white-space: nowrap;
+}
+.dwh-sim__step-dot.is-active .dwh-sim__step-label {
+  color: var(--clr-light-text);
+}
+.dwh-sim__stage {
+  padding: 32px 28px;
+  min-height: 340px;
+}
+
+/* ── Shared ── */
+:global(.dwh-sim__role) {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+:global(.dwh-sim__role--engineer) { background: #EEF2FF; color: #4F46E5; }
+:global(.dwh-sim__role--ai) { background: #FFF7ED; color: #EA580C; }
+:global(.dwh-sim__role--model) { background: #ECFDF5; color: #059669; }
+:global(.dwh-sim__role--code) { background: #FDF4FF; color: #A855F7; }
+:global(.dwh-sim__role--user) { background: #EFF6FF; color: #2563EB; }
+
+:global(.dwh-sim__heading) {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--clr-light-text);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+:global(.dwh-sim__btn) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  background: var(--clr-primary);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  margin-top: 20px;
+}
+:global(.dwh-sim__btn:hover) { transform: translateY(-2px); opacity: 0.9; }
+:global(.dwh-sim__btn:disabled) { opacity: 0.4; cursor: not-allowed; transform: none; }
+:global(.dwh-sim__btn--ghost) {
+  background: transparent;
+  color: var(--clr-primary);
+  border: 1px solid var(--clr-primary);
+}
+:global(.dwh-sim__btn--ghost:hover) { background: rgba(0,200,150,0.05); }
+
+/* ── Step 1: Sources ── */
+:global(.dwh-sim__sources) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 8px;
+}
+:global(.dwh-sim__source) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 2px solid #E8EEF5;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  background: #FAFBFC;
+}
+:global(.dwh-sim__source:hover) { border-color: #CBD5E1; }
+:global(.dwh-sim__source.is-selected) {
+  border-color: var(--clr-primary);
+  background: rgba(0,200,150,0.04);
+}
+:global(.dwh-sim__source-name) {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-light-text);
+}
+:global(.dwh-sim__source-meta) {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--clr-light-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+:global(.dwh-sim__hint) {
+  font-size: 0.78rem;
+  color: var(--clr-light-muted);
+  margin-top: 8px;
+}
+
+/* ── Step 2: Discovery terminal ── */
+:global(.dwh-sim__terminal) {
+  background: #1E1E2E;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+:global(.dwh-sim__terminal-line) {
+  color: #CDD6F4;
+  opacity: 0;
+  animation: dwh-line-in 0.3s ease forwards;
+}
+:global(.dwh-sim__terminal-prefix) { font-weight: 700; }
+:global(.dwh-sim__terminal-prefix--ok) { color: #A6E3A1; }
+:global(.dwh-sim__terminal-prefix--pii) { color: #FAB387; }
+:global(.dwh-sim__terminal-prefix--done) { color: #89DCEB; }
+:global(.dwh-sim__stats) {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+:global(.dwh-sim__stat) {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #E8EEF5;
+  border-radius: 10px;
+  text-align: center;
+}
+:global(.dwh-sim__stat-num) {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--clr-primary);
+  display: block;
+}
+:global(.dwh-sim__stat-label) {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clr-light-muted);
+}
+
+/* ── Step 3: Model layers ── */
+:global(.dwh-sim__layers) {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+:global(.dwh-sim__layer) {
+  padding: 16px 20px;
+  border-radius: 12px;
+  border-left: 4px solid;
+  opacity: 0;
+  transform: translateX(-12px);
+  animation: dwh-layer-in 0.4s ease forwards;
+}
+:global(.dwh-sim__layer--foundation) { background: #ECFDF5; border-color: #059669; }
+:global(.dwh-sim__layer--analytical) { background: #EFF6FF; border-color: #2563EB; }
+:global(.dwh-sim__layer--semantic) { background: #FDF4FF; border-color: #A855F7; }
+:global(.dwh-sim__layer-title) {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--clr-light-text);
+  margin-bottom: 4px;
+}
+:global(.dwh-sim__layer-desc) {
+  font-size: 0.78rem;
+  color: var(--clr-light-muted);
+  line-height: 1.5;
+}
+
+/* ── Step 4: ETL code ── */
+:global(.dwh-sim__code) {
+  background: #1E1E2E;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: #CDD6F4;
+  max-height: 240px;
+  overflow-y: auto;
+  white-space: pre;
+  margin-bottom: 16px;
+}
+
+/* ── Step 5: Query ── */
+:global(.dwh-sim__questions) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+:global(.dwh-sim__question) {
+  padding: 12px 16px;
+  border: 1px solid #E8EEF5;
+  border-radius: 10px;
+  background: #FAFBFC;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--clr-light-text);
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.2s ease;
+}
+:global(.dwh-sim__question:hover) { border-color: var(--clr-primary); }
+:global(.dwh-sim__question.is-active) {
+  border-color: var(--clr-primary);
+  background: rgba(0,200,150,0.04);
+}
+:global(.dwh-sim__result) {
+  margin-top: 16px;
+  animation: dwh-layer-in 0.3s ease forwards;
+}
+:global(.dwh-sim__sql) {
+  background: #1E1E2E;
+  border-radius: 10px;
+  padding: 16px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  color: #89DCEB;
+  white-space: pre;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+:global(.dwh-sim__table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+:global(.dwh-sim__table th) {
+  background: #F1F5F9;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--clr-light-muted);
+  border-bottom: 2px solid #E2E8F0;
+}
+:global(.dwh-sim__table td) {
+  padding: 8px 12px;
+  border-bottom: 1px solid #F1F5F9;
+  color: var(--clr-light-text);
+}
+
+/* ── Chart ── */
+:global(.dwh-sim__chart) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+:global(.dwh-sim__chart-row) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+:global(.dwh-sim__chart-label) {
+  width: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--clr-light-text);
+  text-align: right;
+  flex-shrink: 0;
+}
+:global(.dwh-sim__chart-bar-wrap) {
+  flex: 1;
+  height: 28px;
+  background: #F1F5F9;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+:global(.dwh-sim__chart-bar) {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--clr-primary), #00b4d8);
+  transition: width 0.8s ease;
+  min-width: 2px;
+}
+:global(.dwh-sim__chart-val) {
+  width: 36px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--clr-light-text);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  :global(.dwh-sim__chart-label) { width: 70px; font-size: 0.7rem; }
+}
+
+/* ── CTA ── */
+:global(.dwh-sim__cta) {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid #E8EEF5;
+  margin-top: 24px;
+}
+:global(.dwh-sim__cta-text) {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-light-text);
+  margin-bottom: 12px;
+}
+
+/* ── Animations ── */
+@keyframes dwh-line-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes dwh-layer-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.dwh-sim__terminal-line),
+  :global(.dwh-sim__layer),
+  :global(.dwh-sim__result) {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .dwh-sim__progress-fill { transition: none; }
+}
+
+@media (max-width: 768px) {
+  :global(.dwh-sim__sources) { grid-template-columns: repeat(2, 1fr); }
+  :global(.dwh-sim__stats) { flex-direction: column; }
+  .dwh-sim__step-label { display: none; }
+  .dwh-sim__stage { padding: 24px 16px; }
+  .dwh-sim__progress { padding: 16px; }
+}
+</style>
+
+<script>
+(function() {
+  function init() {
+    const root = document.getElementById('dwh-build-sim');
+    if (!root || root.dataset.init === '1') return;
+    root.dataset.init = '1';
+
+    const data = JSON.parse(root.dataset.dwh || '{}');
+    const STR = data.strings;
+    const SOURCES = data.sources;
+    const DISCOVERY = data.discoveryLines;
+    const ETL = data.etlCode;
+    const QUERIES = data.queryResults;
+
+    const stage = root.querySelector('#dwh-stage');
+    const dots = root.querySelectorAll('.dwh-sim__step-dot');
+    const fill = root.querySelector('.dwh-sim__progress-fill');
+    let current = 0;
+    let selected = new Set();
+
+    function setStep(n) {
+      current = n;
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-active', i === n);
+        d.classList.toggle('is-done', i < n);
+      });
+      if (fill) fill.style.width = ((n + 1) / 5 * 100) + '%';
+      renderStep(n);
+    }
+
+    function el(tag, cls, text) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text) e.textContent = text;
+      return e;
+    }
+
+    function clear() { while (stage.firstChild) stage.removeChild(stage.firstChild); }
+
+    function renderStep(n) {
+      clear();
+      if (n === 0) renderSources();
+      else if (n === 1) renderDiscovery();
+      else if (n === 2) renderModel();
+      else if (n === 3) renderETL();
+      else if (n === 4) renderQuery();
+    }
+
+    // ── Step 1: Sources ──
+    function renderSources() {
+      stage.appendChild(el('div', 'dwh-sim__role dwh-sim__role--engineer', STR.s1Role));
+      stage.appendChild(el('h3', 'dwh-sim__heading', STR.s1Title));
+
+      const grid = el('div', 'dwh-sim__sources');
+      SOURCES.forEach(src => {
+        const card = el('button', 'dwh-sim__source');
+        card.setAttribute('aria-pressed', 'false');
+        card.appendChild(el('span', 'dwh-sim__source-name', src.label));
+        card.appendChild(el('span', 'dwh-sim__source-meta', src.type + ' · ' + src.cols + ' COLS'));
+        card.addEventListener('click', () => {
+          if (selected.has(src.id)) { selected.delete(src.id); card.classList.remove('is-selected'); card.setAttribute('aria-pressed', 'false'); }
+          else { selected.add(src.id); card.classList.add('is-selected'); card.setAttribute('aria-pressed', 'true'); }
+          btn.disabled = selected.size < 2;
+          hint.textContent = selected.size < 2 ? STR.s1Min : selected.size + ' / ' + SOURCES.length;
+        });
+        grid.appendChild(card);
+      });
+      stage.appendChild(grid);
+
+      const hint = el('p', 'dwh-sim__hint', STR.s1Min);
+      stage.appendChild(hint);
+
+      const btn = el('button', 'dwh-sim__btn', '▶ ' + STR.s1Btn);
+      btn.disabled = true;
+      btn.addEventListener('click', () => setStep(1));
+      stage.appendChild(btn);
+    }
+
+    // ── Step 2: Discovery ──
+    function renderDiscovery() {
+      stage.appendChild(el('div', 'dwh-sim__role dwh-sim__role--ai', STR.s2Role));
+      stage.appendChild(el('h3', 'dwh-sim__heading', STR.s2Title));
+
+      const term = el('div', 'dwh-sim__terminal');
+      const comment = el('div', 'dwh-sim__terminal-line');
+      comment.textContent = '// agent.discovery — scanning estate';
+      comment.style.color = '#6C7086';
+      comment.style.opacity = '1';
+      term.appendChild(comment);
+      stage.appendChild(term);
+
+      const btn = el('button', 'dwh-sim__btn', STR.s2Btn);
+      btn.disabled = true;
+      btn.style.display = 'none';
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let delay = 0;
+      const selectedSources = SOURCES.filter(s => selected.has(s.id));
+      const firstSrc = selectedSources[0] || SOURCES[0];
+
+      DISCOVERY.forEach((line, i) => {
+        delay += reducedMotion ? 0 : 400;
+        setTimeout(() => {
+          const row = el('div', 'dwh-sim__terminal-line');
+          if (reducedMotion) { row.style.opacity = '1'; row.style.animation = 'none'; }
+          else { row.style.animationDelay = '0s'; }
+          const prefix = el('span', 'dwh-sim__terminal-prefix dwh-sim__terminal-prefix--' + line.prefix, '[' + line.prefix + ']');
+          row.appendChild(prefix);
+          const txt = ' ' + line.text.replace('{src}', firstSrc.label).replace('{cols}', String(firstSrc.cols));
+          row.appendChild(document.createTextNode(txt));
+          term.appendChild(row);
+          term.scrollTop = term.scrollHeight;
+
+          if (i === DISCOVERY.length - 1) {
+            const stats = el('div', 'dwh-sim__stats');
+            const entities = selected.size * 4 + 3;
+            const statData = [
+              { num: String(entities), label: 'ENTITIES FOUND' },
+              { num: '3', label: 'PII FIELDS' },
+              { num: String(selected.size + 1), label: 'RELATIONSHIPS' },
+            ];
+            statData.forEach(s => {
+              const st = el('div', 'dwh-sim__stat');
+              st.appendChild(el('span', 'dwh-sim__stat-num', s.num));
+              st.appendChild(el('span', 'dwh-sim__stat-label', s.label));
+              stats.appendChild(st);
+            });
+            stage.appendChild(stats);
+            btn.disabled = false;
+            btn.style.display = '';
+          }
+        }, delay);
+      });
+
+      btn.addEventListener('click', () => setStep(2));
+      stage.appendChild(btn);
+    }
+
+    // ── Step 3: Model ──
+    function renderModel() {
+      stage.appendChild(el('div', 'dwh-sim__role dwh-sim__role--model', STR.s3Role));
+      stage.appendChild(el('h3', 'dwh-sim__heading', STR.s3Title));
+      stage.appendChild(el('p', 'dwh-sim__hint', STR.s3Desc));
+
+      const layers = el('div', 'dwh-sim__layers');
+      const layerData = [
+        { cls: 'foundation', title: 'Foundation Layer', desc: 'dim_employee · dim_department · dim_position · dim_location' },
+        { cls: 'analytical', title: 'Analytical Layer', desc: 'fact_payroll · fact_attendance · fact_recruitment · fact_performance' },
+        { cls: 'semantic', title: 'Semantic Layer', desc: 'vw_headcount · vw_turnover · vw_compensation · vw_diversity' },
+      ];
+      layerData.forEach((l, i) => {
+        const layer = el('div', 'dwh-sim__layer dwh-sim__layer--' + l.cls);
+        layer.style.animationDelay = (i * 0.15) + 's';
+        layer.appendChild(el('div', 'dwh-sim__layer-title', l.title));
+        layer.appendChild(el('div', 'dwh-sim__layer-desc', l.desc));
+        layers.appendChild(layer);
+      });
+      stage.appendChild(layers);
+
+      const btn = el('button', 'dwh-sim__btn', STR.s3Btn);
+      btn.addEventListener('click', () => setStep(3));
+      stage.appendChild(btn);
+    }
+
+    // ── Step 4: ETL ──
+    function renderETL() {
+      stage.appendChild(el('div', 'dwh-sim__role dwh-sim__role--code', STR.s4Role));
+      stage.appendChild(el('h3', 'dwh-sim__heading', STR.s4Title));
+      stage.appendChild(el('p', 'dwh-sim__hint', STR.s4Desc));
+
+      const code = el('pre', 'dwh-sim__code');
+      code.textContent = ETL;
+      stage.appendChild(code);
+
+      const btn = el('button', 'dwh-sim__btn', STR.s4Btn);
+      btn.addEventListener('click', () => setStep(4));
+      stage.appendChild(btn);
+    }
+
+    // ── Step 5: Query ──
+    function renderQuery() {
+      stage.appendChild(el('div', 'dwh-sim__role dwh-sim__role--user', STR.s5Role));
+      stage.appendChild(el('h3', 'dwh-sim__heading', STR.s5Title));
+
+      const qBox = el('div', 'dwh-sim__questions');
+      QUERIES.forEach((q, i) => {
+        const btn = el('button', 'dwh-sim__question', q.q);
+        btn.addEventListener('click', () => {
+          qBox.querySelectorAll('.dwh-sim__question').forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          showResult(q);
+        });
+        qBox.appendChild(btn);
+      });
+      stage.appendChild(qBox);
+
+      const resultBox = el('div', '');
+      resultBox.id = 'dwh-result-box';
+      stage.appendChild(resultBox);
+
+      // Restart + CTA
+      const cta = el('div', 'dwh-sim__cta');
+      cta.appendChild(el('p', 'dwh-sim__cta-text', STR.ctaText));
+      const ctaRow = el('div', '');
+      ctaRow.style.cssText = 'display:flex;gap:12px;justify-content:center;flex-wrap:wrap;';
+      const ctaLink = el('a', 'dwh-sim__btn', STR.ctaBtn);
+      ctaLink.href = STR.ctaHref;
+      const restartBtn = el('button', 'dwh-sim__btn dwh-sim__btn--ghost', '↻ ' + STR.restart);
+      restartBtn.addEventListener('click', () => { selected.clear(); setStep(0); });
+      ctaRow.appendChild(ctaLink);
+      ctaRow.appendChild(restartBtn);
+      cta.appendChild(ctaRow);
+      stage.appendChild(cta);
+    }
+
+    function showResult(q) {
+      const box = document.getElementById('dwh-result-box');
+      if (!box) return;
+      while (box.firstChild) box.removeChild(box.firstChild);
+
+      const wrap = el('div', 'dwh-sim__result');
+      const sql = el('pre', 'dwh-sim__sql');
+      sql.textContent = q.sql;
+      wrap.appendChild(sql);
+
+      if (q.chart) {
+        const maxVal = Math.max(...q.chart.map(d => d.value));
+        const chart = el('div', 'dwh-sim__chart');
+        q.chart.forEach((d, i) => {
+          const row = el('div', 'dwh-sim__chart-row');
+          row.appendChild(el('span', 'dwh-sim__chart-label', d.label));
+          const barWrap = el('div', 'dwh-sim__chart-bar-wrap');
+          const bar = el('div', 'dwh-sim__chart-bar');
+          bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = Math.round(d.value / maxVal * 100) + '%'; }, 50 + i * 80);
+          barWrap.appendChild(bar);
+          row.appendChild(barWrap);
+          row.appendChild(el('span', 'dwh-sim__chart-val', String(d.value)));
+          chart.appendChild(row);
+        });
+        wrap.appendChild(chart);
+      } else if (q.result) {
+        const table = document.createElement('table');
+        table.className = 'dwh-sim__table';
+        const thead = document.createElement('thead');
+        const headRow = document.createElement('tr');
+        q.result[0].forEach(h => { const th = document.createElement('th'); th.textContent = h; headRow.appendChild(th); });
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        q.result.slice(1).forEach(row => {
+          const tr = document.createElement('tr');
+          row.forEach(cell => { const td = document.createElement('td'); td.textContent = cell; tr.appendChild(td); });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        wrap.appendChild(table);
+      }
+      box.appendChild(wrap);
+    }
+
+    setStep(0);
+  }
+
+  init();
+  document.addEventListener('astro:page-load', init);
+})();
+</script>

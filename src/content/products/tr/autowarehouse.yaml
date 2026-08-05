@@ -1,0 +1,159 @@
+slug: "autowarehouse"
+lang: "tr"
+name: "AutoWarehouse — DWH Otomasyon"
+
+websiteUrl: "https://autowarehouse.ai/"
+pageTitle: "AutoWarehouse — Yapay Zekâ Destekli DWH Otomasyon | Intellica"
+pageDescription: >
+  AutoWarehouse: Model-odaklı veri ambarı otomasyonu; yapay zekâ destekli keşif,
+  haritalama, ETL kod üretimi ve yönetişimli analitik — tamamen kendi altyapınızda.
+
+hero:
+  category: "Yapay Zekâ & Veri Platformu"
+  titlePrefix: "AutoWarehouse — DWH"
+  titleHighlight: "Otomasyon"
+  description: >
+    Kaynaktan içgörüye, otomatik olarak. Yapay zekâ destekli keşif ve kaynaktan hedefe haritalama, yönetişimli
+    veri modelleme ve doğal dil analitiği — tümü
+    kendi altyapınızda çalışır, hiçbir veri dışarı çıkmaz.
+
+overview:
+  problem: >
+    Bir veri ambarı kurmak aylarca süren manuel keşif, modelleme ve ETL
+    geliştirme gerektirir. Ekipler tablolara, kurumsal hafızaya ve
+    her şema değişikliğinde bozulan kırılgan pipeline'lara boğulur.
+  approach: >
+    AutoWarehouse, manuel yaşam döngüsünü yapay zekâ ajan motoruyla değiştirir:
+    kaynakları keşfeder, şemaları profiller, sütunları yönetişimli bir DataModel'e
+    haritalandırır ve deterministik ETL kodu üretir — her adımda kullanıcı onayı ile.
+  businessValue: >
+    Aylar yerine haftalar içinde üretime hazır DWH. Kurala dayalı, öngörülebilir kod üretimi.
+    Self-hosted, kapalı ağ dağıtımıyla tam veri egemenliği.
+  whenPreferred:
+    - "Birden fazla kaynak sistemden sıfırdan veri ambarı kurarken"
+    - "Mevcut model yatırımlarını kaybetmeden DWH modernizasyonu hızlandırırken"
+    - "Kapalı ağ, self-hosted dağıtım gerektiren düzenlenmiş sektörlerde"
+    - "ETL geliştirmeyi yapay zekâ destekli otomasyonla hızlandırmak istediğinizde"
+    - "Dağınık ERP, CRM ve operasyonel veritabanlarında analitiği birleştirirken"
+  preferredNote: "Not: AutoWarehouse sektöre hazır DataModel şablonlarını (IFDM, ITDM, HRDM) ve tamamen özel modelleri destekler."
+
+capabilities:
+  label: "Yetenekler"
+  heading: "Temel"
+  headingHighlight: "Yetenekler"
+  items:
+    - title: "Yapay Zekâ Kaynak Keşfi"
+      description: "Kaynak sistemlerin çok ajanlı analizi: şema profilleme, PII tespiti, varlık ilişkileri ve anomali işaretleri."
+    - title: "Yönetişimli DataModel'ler"
+      description: "Sektör şablonları (Finans, Telekom, İK) veya tamamen özel yıldız şema tasarımlarıyla model-odaklı mimari."
+    - title: "Yapay Zekâ Destekli ETL Üretimi"
+      description: "Hedef platformunuz için yapay zekâ destekli kod üretimiyle pipeline geliştirmeyi hızlandırın — eklenti tabanlı, sürümlü ve üretime hazır."
+    - title: "Database DNA Raporu"
+      description: "Kapsamlı profilleme: satır sayıları, sütun dağılımları, anomali tespiti ve tablo sınıflandırması."
+    - title: "Doğal Dil Analitiği"
+      description: "Soruları düz Türkçe sorun, yönetişimli SQL ve görselleştirmeler alın — yerel LLM ile çalışır."
+    - title: "Veri Kalite Motoru"
+      description: "Null analizi, kardinalite kontrolleri, tamlık puanlaması ve veri üretime ulaşmadan kalite kapıları."
+
+featureSection:
+  heading: "Model-Odaklı"
+  headingHighlight: "Mimari"
+  description: >
+    Keşif, haritalama, ETL, raporlama ve Talk-to-DWH hepsi tek bir yönetişimli
+    DataModel üzerinden okur ve yazar. Bir yöneticinin aldığı yanıt ile bir
+    mühendisin pipeline'ı kanıtlanabilir biçimde aynı şeydir.
+  calloutTitle: "Tek Model, Her Katman"
+  calloutDescription: "Kaynak keşfinden iş zekâsına kadar her bileşen tek bir yönetişimli gerçek üzerinde çalışır."
+  image: "/assets/images/autowarehouse_feature.png"
+  imageAlt: "AutoWarehouse Model-Odaklı Mimari"
+  imageCaption: "AutoWarehouse: Tüm veri ambarı yaşam döngüsünü yöneten birleşik DataModel."
+
+useCases:
+  label: "Çözümler"
+  heading: "Stratejik"
+  headingHighlight: "Kullanım Senaryoları"
+  subtitle: "Veri ambarınıza üç yol — hazır şablonlardan tam yapay zekâ destekli kurulumlara."
+  tabs:
+    - id: "ready-made"
+      label: "Hazır Model"
+      cards:
+        - title: "Sektörel Veri Modeli ile Dağıtım"
+          badges: []
+          scenario: "Kuruluşunuzun veri ambarına ihtiyacı var ama mevcut bir modeli yok. Aylarca süren manuel tasarım ve ETL geliştirme sizi bekliyor."
+          interventionLabel: "AUTOWAREHOUSE YAKLAŞIMI"
+          interventionItems:
+            - "Sahada kanıtlanmış sektör şablonu seçin (IFDM, ITDM, HRDM)."
+            - "Foundation, Analytical ve Semantic katmanlarını otomatik sağlayın."
+            - "Üretime hazır Airflow DAG'ları ve dbt modelleri dışa aktarın."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Aylar yerine haftalar içinde analitiğe hazır DWH."
+            - "SCD Type 2 desteğiyle önceden kurulmuş yıldız şema."
+            - "Kendi altyapınızda üretim ETL kodu."
+    - id: "extend"
+      label: "Mevcut Modeli Genişlet"
+      cards:
+        - title: "DWH'nizi Sıfırdan Başlamadan Geliştirin"
+          badges: []
+          scenario: "Kısmi bir ambarınız veya veri modeliniz var. Yeni iş gereksinimleri mevcut pipeline'ları bozmadan yeni konu alanları talep ediyor."
+          interventionLabel: "AUTOWAREHOUSE YAKLAŞIMI"
+          interventionItems:
+            - "Mevcut modeli içe aktarın ve yeni gereksinimleri ekleyin."
+            - "Yapay zekâ mevcut haritaları koruyarak yeni sütun eşlemeleri önerir."
+            - "Tam geri alma güvenliğiyle model sürümleme."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Pipeline kesintisi olmadan cerrahi model genişletmeleri."
+            - "Tüm ambar genelinde kaynaktan hedefe görünürlük."
+            - "Mevcut pipeline'lara eklenen artırımlı dbt modelleri."
+    - id: "greenfield"
+      label: "Sıfırdan İnşa"
+      cards:
+        - title: "Yapay Zekâ Destekli Keşiften Üretim DWH'sine"
+          badges: []
+          scenario: "Karmaşık kaynak ortamı, mevcut model yok. Birden fazla ERP, veritabanı ve API'nin yönetişimli bir analitik platformda birleştirilmesi gerekiyor."
+          interventionLabel: "AUTOWAREHOUSE YAKLAŞIMI"
+          interventionItems:
+            - "Tüm kaynaklara bağlanın ve Database DNA raporları oluşturun."
+            - "Kullanıcı onayıyla yapay zekâ destekli veritabanı sözlüğü."
+            - "Özel hedef model tasarlayın, tüm tabloları eşleyin, ETL kodunu dışa aktarın."
+          impactLabel: "İŞ ETKİSİ"
+          impactItems:
+            - "Kaynak keşfinden üretim dağıtımına tam izlenebilirlik."
+            - "2.400+ tablo otomatik olarak profillendi ve sınıflandırıldı."
+            - "Her kritik adımda kullanıcı onaylı kontrol noktaları."
+
+journey:
+  heading: "Operasyonel"
+  headingHighlight: "Model"
+  steps:
+    - number: "01"
+      title: "Keşfet"
+      description: "Yapay zekâ ajanları kaynak sistemleri analiz eder — şemaları profiller, PII tespit eder, varlıkları ve ilişkileri haritalandırır."
+    - number: "02"
+      title: "Modelle"
+      description: "Sektörel DataModel şablonu seçin veya yönetişimli boyutlar ve fact tabloları ile özel yıldız şema tasarlayın."
+    - number: "03"
+      title: "Eşle ve Üret"
+      description: "Kullanıcı onayıyla yapay zekâ destekli sütun eşleme. Hedef platformunuz için deterministik ETL kod üretimi."
+    - number: "04"
+      title: "Dağıt ve Sorgula"
+      description: "Ambarınızı yükleyin, raporlar oluşturun ve doğal dilde sorular sorun — hepsi tek bir DataModel tarafından yönetilir."
+
+integration:
+  heading: "Kurumsal"
+  headingHighlight: "Hazır"
+  description: "AutoWarehouse, kritik görevli ve düzenlenmiş ortamlar için tasarlanmıştır:"
+  items:
+    - "Self-hosted, kapalı ağ dağıtımı — hiçbir veri çevrenizi terk etmez"
+    - "Yerel LLM desteği: Ollama, vLLM, LiteLLM — bulut AI bağımlılığı yok"
+    - "Tam denetim izleriyle KVKK, GDPR, PCI-DSS ve SOC 2 uyumlu"
+    - "Container-native: Docker Compose ve Helm chart'larla Kubernetes"
+    - "30+ granüler izin ve OIDC-first kimlik doğrulamayla RBAC"
+
+jsonLd:
+  type: "SoftwareApplication"
+  category: "BusinessApplication, DataWarehouse, AIAutomation"
+
+customComponents:
+  - DWHBuildSimulation

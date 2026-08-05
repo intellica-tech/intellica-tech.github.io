@@ -24,6 +24,7 @@ const products = defineCollection({
     name: z.string(),
     pageTitle: z.string(),
     pageDescription: z.string(),
+    websiteUrl: z.string().url().optional(),
 
     hero: z.object({
       category: z.string(),
