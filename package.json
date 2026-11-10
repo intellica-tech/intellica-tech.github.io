@@ -1,7 +1,7 @@
 {
   "name": "intellica-tech",
   "type": "module",
-  "version": "1.8.4",
+  "version": "1.9.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
