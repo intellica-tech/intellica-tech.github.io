@@ -1277,5 +1277,30 @@
   "cookies.h4": "Çerezleri Yönetme",
   "cookies.p4": "Tarayıcı ayarlarınız aracılığıyla çerezleri kontrol edebilir, devre dışı bırakabilir veya silebilirsiniz. Bazı çerezlerin devre dışı bırakılmasının web sitesinin belirli bölümlerinin işlevselliğini etkileyebileceğini lütfen unutmayın.",
   "cookies.h5": "Güncellemeler",
-  "cookies.p5": "Intellica, web sitesi değişikliklerini veya düzenleyici gereksinimleri yansıtmak için bu Çerez Politikasını zaman zaman güncelleyebilir."
+  "cookies.p5": "Intellica, web sitesi değişikliklerini veya düzenleyici gereksinimleri yansıtmak için bu Çerez Politikasını zaman zaman güncelleyebilir.",
+
+  "home.aiBazaar.label": "Açık Kaynak · Intellica",
+  "home.aiBazaar.title": "AI Engineering Bazaar",
+  "home.aiBazaar.desc": "Pratik ve üretime hazır AI becerileri kazandırmak için tasarlanmış, 44 modüllük ücretsiz ve açık kaynak AI mühendisliği müfredatı.",
+  "home.aiBazaar.cta": "AI Bazaar'ı Keşfet",
+
+  "academy.aiBazaar.label": "Açık Kaynak",
+  "academy.aiBazaar.title": "AI Engineering ",
+  "academy.aiBazaar.titleHighlight": "Bazaar",
+  "academy.aiBazaar.desc": "Intellica uygulayıcıları tarafından geliştirilen ücretsiz, açık kaynak bir AI mühendisliği müfredatı. AI temellerinden gerçek dünya mühendisliğine ve yeni teknolojilere kadar 5 seviyede 44 modülü keşfedin.",
+  "academy.aiBazaar.stat1.value": "44",
+  "academy.aiBazaar.stat1.label": "Modül",
+  "academy.aiBazaar.stat2.value": "5",
+  "academy.aiBazaar.stat2.label": "Seviye",
+  "academy.aiBazaar.stat3.value": "3",
+  "academy.aiBazaar.stat3.label": "Dil",
+  "academy.aiBazaar.track1.title": "Mühendisler İçin",
+  "academy.aiBazaar.track1.desc": "Pratik kod örnekleri, mimari diyagramlar ve gerçek dünya mühendislik içgörüleriyle teknik kavramlara dalın.",
+  "academy.aiBazaar.track2.title": "Herkes İçin",
+  "academy.aiBazaar.track2.desc": "AI mühendisliğini anlaşılır açıklamalar ve erişilebilir örneklerle anlayın — teknik altyapı gerektirmez.",
+  "academy.aiBazaar.cta": "Öğrenmeye Başla",
+  "academy.aiBazaar.github": "GitHub'da Görüntüle",
+
+  "footer.col.resources": "Kaynaklar",
+  "footer.link.aiBazaar": "AI Engineering Bazaar"
 }

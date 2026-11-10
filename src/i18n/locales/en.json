@@ -1277,5 +1277,30 @@
   "cookies.h4": "Managing Cookies",
   "cookies.p4": "You can control, disable, or delete cookies through your browser settings. Please note that disabling some cookies may affect the functionality of certain parts of the website.",
   "cookies.h5": "Updates",
-  "cookies.p5": "Intellica may update this Cookie Policy from time to time to reflect website changes or regulatory requirements."
+  "cookies.p5": "Intellica may update this Cookie Policy from time to time to reflect website changes or regulatory requirements.",
+
+  "home.aiBazaar.label": "Open Source · By Intellica",
+  "home.aiBazaar.title": "AI Engineering Bazaar",
+  "home.aiBazaar.desc": "A free, open-source AI engineering curriculum with 44 modules, designed to build practical, production-ready AI skills.",
+  "home.aiBazaar.cta": "Explore AI Bazaar",
+
+  "academy.aiBazaar.label": "Open Source",
+  "academy.aiBazaar.title": "AI Engineering ",
+  "academy.aiBazaar.titleHighlight": "Bazaar",
+  "academy.aiBazaar.desc": "A free, open-source AI engineering curriculum developed by Intellica practitioners. Explore 44 modules across 5 levels, from AI fundamentals to real-world engineering and emerging technologies.",
+  "academy.aiBazaar.stat1.value": "44",
+  "academy.aiBazaar.stat1.label": "Modules",
+  "academy.aiBazaar.stat2.value": "5",
+  "academy.aiBazaar.stat2.label": "Levels",
+  "academy.aiBazaar.stat3.value": "3",
+  "academy.aiBazaar.stat3.label": "Languages",
+  "academy.aiBazaar.track1.title": "For Engineers",
+  "academy.aiBazaar.track1.desc": "Dive into technical concepts with practical code examples, architecture diagrams and real-world engineering insights.",
+  "academy.aiBazaar.track2.title": "For Everyone",
+  "academy.aiBazaar.track2.desc": "Understand AI engineering through clear explanations and accessible examples — no technical background required.",
+  "academy.aiBazaar.cta": "Start Learning",
+  "academy.aiBazaar.github": "View on GitHub",
+
+  "footer.col.resources": "Resources",
+  "footer.link.aiBazaar": "AI Engineering Bazaar"
 }

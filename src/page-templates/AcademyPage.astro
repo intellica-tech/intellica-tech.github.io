@@ -269,6 +269,59 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- AI BAZAAR -->
+  <section class="section section--white" id="ai-bazaar">
+    <div class="container">
+      <div class="text-center anim-fade-up">
+        <div class="section-label" style="margin-inline:auto;">{t('academy.aiBazaar.label')}</div>
+        <h2 class="hero__title" style="font-size:clamp(1.8rem,5vw,3rem);color:#0F172A;">
+          {t('academy.aiBazaar.title')}<span class="grad-text">{t('academy.aiBazaar.titleHighlight')}</span>
+        </h2>
+        <span class="hero__accent" style="margin-inline:auto;"></span>
+        <p class="hero__desc" style="margin-inline:auto;max-width:720px;color:#475569;">
+          {t('academy.aiBazaar.desc')}
+        </p>
+      </div>
+
+      <div class="bazaar-stats anim-fade-up">
+        <div class="bazaar-stat">
+          <span class="bazaar-stat__value grad-text">{t('academy.aiBazaar.stat1.value')}</span>
+          <span class="bazaar-stat__label">{t('academy.aiBazaar.stat1.label')}</span>
+        </div>
+        <div class="bazaar-stat">
+          <span class="bazaar-stat__value grad-text">{t('academy.aiBazaar.stat2.value')}</span>
+          <span class="bazaar-stat__label">{t('academy.aiBazaar.stat2.label')}</span>
+        </div>
+        <div class="bazaar-stat">
+          <span class="bazaar-stat__value grad-text">{t('academy.aiBazaar.stat3.value')}</span>
+          <span class="bazaar-stat__label">{t('academy.aiBazaar.stat3.label')}</span>
+        </div>
+      </div>
+
+      <div class="bazaar-tracks anim-fade-up">
+        <a href="https://ai-bazaar.lokum.dev/" target="_blank" rel="noopener noreferrer" class="bazaar-track-card">
+          <div class="bazaar-track-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          </div>
+          <h3>{t('academy.aiBazaar.track1.title')}</h3>
+          <p>{t('academy.aiBazaar.track1.desc')}</p>
+        </a>
+        <a href="https://ai-bazaar.lokum.dev/" target="_blank" rel="noopener noreferrer" class="bazaar-track-card">
+          <div class="bazaar-track-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>{t('academy.aiBazaar.track2.title')}</h3>
+          <p>{t('academy.aiBazaar.track2.desc')}</p>
+        </a>
+      </div>
+
+      <div class="bazaar-actions anim-fade-up">
+        <a href="https://ai-bazaar.lokum.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill btn-lg uppercase-never">{t('academy.aiBazaar.cta')}</a>
+        <a href="https://github.com/lokumai/ai-engineering-bazaar" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark btn-pill btn-lg uppercase-never">{t('academy.aiBazaar.github')}</a>
+      </div>
+    </div>
+  </section>
+
   <!-- CHALLENGE ARENA -->
   <ChallengeArena lang={lang} />
 
@@ -321,4 +374,71 @@ const faqSchema = {
 .author-role { font-size: 0.8rem; color: var(--clr-light-muted); }
 .faq-item h4 { font-size: var(--fs-card-title); font-weight: var(--fw-card-title); color: var(--clr-light-text); margin-bottom: 12px; }
 .faq-item p { font-size: var(--fs-card-body); color: var(--clr-light-muted); }
+
+/* AI Bazaar section */
+.bazaar-stats {
+  display: flex;
+  justify-content: center;
+  gap: 52px;
+  margin-top: 40px;
+  padding: 26px 0;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+.bazaar-stat { text-align: center; }
+.bazaar-stat__value { font-size: 3rem; font-weight: 900; line-height: 1; display: block; }
+.bazaar-stat__label { font-size: 0.9rem; color: #64748B; margin-top: 8px; display: block; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+
+.bazaar-tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+  max-width: 800px;
+  margin-inline: auto;
+}
+.bazaar-track-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 26px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+.bazaar-track-card:hover {
+  background: #F8FAFC;
+  border-color: var(--clr-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(16,185,129,0.1);
+}
+.bazaar-track-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #F0FDFA, #EFF6FF);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.bazaar-track-icon svg { width: 24px; height: 24px; color: var(--clr-primary); }
+.bazaar-track-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; color: #0F172A; }
+.bazaar-track-card p { font-size: 0.95rem; color: #64748B; line-height: 1.6; margin: 0; }
+
+.bazaar-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .bazaar-stats { gap: 32px; flex-wrap: wrap; }
+  .bazaar-stat__value { font-size: 2.2rem; }
+  .bazaar-tracks { grid-template-columns: 1fr; }
+  .bazaar-actions { flex-direction: column; align-items: center; }
+  .bazaar-actions .btn { width: 100%; text-align: center; justify-content: center; }
+}
 </style>

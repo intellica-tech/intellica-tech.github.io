@@ -503,6 +503,25 @@ const websiteSchema = {
     </div>
   </section>
 
+  <!-- ===== AI BAZAAR BANNER ===== -->
+  <section class="section section--white" style="padding-top:0;padding-bottom:0;">
+    <div class="container anim-fade-up" style="padding-top:24px;padding-bottom:48px;">
+      <div class="bazaar-card">
+        <div class="bazaar-card__body">
+          <div class="bazaar-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div class="bazaar-card__content">
+            <span class="bazaar-card__label">{t('home.aiBazaar.label')}</span>
+            <h3 class="bazaar-card__title">{t('home.aiBazaar.title')}</h3>
+            <p class="bazaar-card__desc">{t('home.aiBazaar.desc')}</p>
+          </div>
+          <a href="https://ai-bazaar.lokum.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill bazaar-card__cta">{t('home.aiBazaar.cta')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== WHY INTELLICA ===== -->
   <section class="section section--white" id="why-intellica">
     <div class="container">
@@ -1452,5 +1471,77 @@ img[alt="Yapı Kredi"] {
 }
 .tag-visit:hover {
   background: rgba(0, 200, 150, 0.3);
+}
+
+/* AI Bazaar Banner */
+.bazaar-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.bazaar-card:hover {
+  box-shadow: 0 4px 20px rgba(16,185,129,0.1);
+  border-color: rgba(16,185,129,0.3);
+}
+.bazaar-card__body {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 32px;
+}
+.bazaar-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #F0FDFA, #EFF6FF);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bazaar-card__icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--clr-primary);
+}
+.bazaar-card__content { flex: 1; min-width: 0; }
+.bazaar-card__label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.08em;
+  color: var(--clr-primary);
+  margin-bottom: 4px;
+}
+.bazaar-card__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 4px;
+}
+.bazaar-card__desc {
+  font-size: 0.88rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.5;
+}
+.bazaar-card__cta {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  padding: 10px 24px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .bazaar-card__body {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+  .bazaar-card__cta { width: 100%; justify-content: center; }
 }
 </style>
